@@ -1,5 +1,6 @@
 import os
 
+import ApplicationServices as AS
 import Quartz
 from AppKit import (
     NSApplicationActivateIgnoringOtherApps,
@@ -49,6 +50,8 @@ class MacPcGameWindow:
     GAME_TITLE_ALIASES: dict[str, set[str]] = {
         '绝区零': {'绝区零', '絕區零'},
         '絕區零': {'绝区零', '絕區零'},
+        'ZenlessZoneZero': {'ZenlessZoneZero', 'Zenless Zone Zero'},
+        'Zenless Zone Zero': {'ZenlessZoneZero', 'Zenless Zone Zero'},
     }
 
     def __init__(
@@ -62,6 +65,7 @@ class MacPcGameWindow:
         self.standard_game_rect: Rect = Rect(0, 0, standard_width, standard_height)
         self._win: MacGameWindowHandle | None = None
         self._window_id: int | None = None
+        self._content_bounds_warning_logged: bool = False
 
     def _clear_cached_window(self) -> None:
         self._win = None
@@ -154,8 +158,8 @@ class MacPcGameWindow:
         return window.isActive if window is not None else False
 
     @property
-    def win_rect(self) -> Rect | None:
-        """获取游戏窗口在桌面上的位置。"""
+    def window_rect(self) -> Rect | None:
+        """Return the full window bounds, including the title bar, in screen points."""
         window_id = self.get_hwnd()
         if window_id is None:
             return None
@@ -164,25 +168,70 @@ class MacPcGameWindow:
             if int(window.get(Quartz.kCGWindowNumber, -1)) != window_id:
                 continue
             bounds = window.get(Quartz.kCGWindowBounds, {})
-            x = int(bounds.get('X', 0))
-            y = int(bounds.get('Y', 0))
-            width = int(bounds.get('Width', 0))
-            height = int(bounds.get('Height', 0))
+            x = round(bounds.get('X', 0))
+            y = round(bounds.get('Y', 0))
+            width = round(bounds.get('Width', 0))
+            height = round(bounds.get('Height', 0))
             if width <= 0 or height <= 0:
                 return None
-            game_height = min(
-                height,
-                round(width * self.standard_height / self.standard_width),
-            )
-            title_bar_height = height - game_height
-            return Rect(
-                x,
-                y + title_bar_height,
-                x + width,
-                y + height,
-            )
+            return Rect(x, y, x + width, y + height)
 
         self._clear_cached_window()
+        return None
+
+    @staticmethod
+    def _ax_attribute(element: object, name: str) -> object | None:
+        error, value = AS.AXUIElementCopyAttributeValue(element, name, None)
+        return value if error == 0 else None
+
+    @classmethod
+    def _ax_rect(cls, element: object) -> Rect | None:
+        position = cls._ax_attribute(element, 'AXPosition')
+        size = cls._ax_attribute(element, 'AXSize')
+        if position is None or size is None:
+            return None
+        got_position, point = AS.AXValueGetValue(position, AS.kAXValueCGPointType, None)
+        got_size, dimensions = AS.AXValueGetValue(size, AS.kAXValueCGSizeType, None)
+        if not got_position or not got_size:
+            return None
+        if dimensions.width <= 0 or dimensions.height <= 0:
+            return None
+        return Rect(
+            round(point.x), round(point.y),
+            round(point.x + dimensions.width), round(point.y + dimensions.height),
+        )
+
+    @property
+    def win_rect(self) -> Rect | None:
+        """Use the same content viewport for screenshots and click coordinates."""
+        outer = self.window_rect
+        window = self.get_win()
+        if outer is None or window is None:
+            return None
+        app = AS.AXUIElementCreateApplication(window.owner_pid)
+        for ax_window in self._ax_attribute(app, 'AXWindows') or []:
+            bounds = self._ax_rect(ax_window)
+            if bounds is None or (
+                bounds.x1, bounds.y1, bounds.x2, bounds.y2
+            ) != (outer.x1, outer.y1, outer.x2, outer.y2):
+                continue
+            for child in self._ax_attribute(ax_window, 'AXChildren') or []:
+                if self._ax_attribute(child, 'AXRole') != 'AXGroup':
+                    continue
+                content = self._ax_rect(child)
+                if content is not None and (
+                    content.x1 == outer.x1 and content.x2 == outer.x2
+                    and content.y2 == outer.y2
+                    and outer.y1 <= content.y1 < outer.y2
+                ):
+                    self._content_bounds_warning_logged = False
+                    return content
+        if not self._content_bounds_warning_logged:
+            log.error(
+                'Cannot determine PlayCover content bounds; '
+                'check Accessibility access for the running application'
+            )
+            self._content_bounds_warning_logged = True
         return None
 
     @property
@@ -224,7 +273,10 @@ class MacPcGameWindow:
 
     def game2win_pos(self, game_pos: Point) -> Point | None:
         rect = self.win_rect
-        scaled_pos = self.get_scaled_game_pos(game_pos)
-        if rect is None or scaled_pos is None:
+        if rect is None or not self.is_valid_game_pos(game_pos, self.standard_game_rect):
             return None
+        scaled_pos = Point(
+            game_pos.x * rect.width / self.standard_width,
+            game_pos.y * rect.height / self.standard_height,
+        )
         return rect.left_top + scaled_pos

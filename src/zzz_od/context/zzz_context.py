@@ -131,6 +131,8 @@ class ZContext(OneDragonContext):
             )
             # 初始化窗口标题
             self.controller.set_window_title(self._get_win_title())
+            from one_dragon.utils.log_utils import log
+            log.info('游戏窗口检测: %s', '已找到' if self.controller.is_game_window_ready else '未找到')
 
     def init_for_application(self) -> None:
         self.map_service.reload()  # 传送需要用的数据
@@ -138,7 +140,8 @@ class ZContext(OneDragonContext):
         self.auto_battle_context.init_screen_area()  # 自动战斗相关的区域 依赖 ScreenLoader
 
     def init_others(self) -> None:
-        self.telemetry.initialize()  # 遥测
+        # 本地禁用启动遥测，避免发送设备标识。
+        pass
 
     def after_app_shutdown(self) -> None:
         """

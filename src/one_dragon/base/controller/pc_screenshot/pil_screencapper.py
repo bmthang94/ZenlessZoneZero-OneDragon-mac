@@ -36,7 +36,7 @@ class PilScreencapper(ScreencapperBase):
         """
         try:
             if sys.platform == 'darwin':
-                return self._capture_mac_window()
+                return self._capture_mac_window(rect)
 
             img = pyautogui_screenshot(region=(rect.x1, rect.y1, rect.width, rect.height))
             screenshot = np.array(img)
@@ -45,10 +45,18 @@ class PilScreencapper(ScreencapperBase):
 
         return screenshot
 
-    def _capture_mac_window(self) -> MatLike | None:
-        """按窗口 ID 截取游戏画面，转换到 sRGB 色彩空间并裁剪标题栏。"""
+    def _capture_mac_window(self, rect: Rect) -> MatLike | None:
+        """Capture the content area, converting screen points to Retina pixels."""
         window_id = self.game_win.get_hwnd()
-        if window_id is None:
+        outer = self.game_win.window_rect
+        if window_id is None or outer is None or outer.width <= 0 or outer.height <= 0:
+            return None
+        if self.game_win.win_rect != rect:
+            return None
+        if not (
+            outer.x1 <= rect.x1 < rect.x2 <= outer.x2
+            and outer.y1 <= rect.y1 < rect.y2 <= outer.y2
+        ):
             return None
 
         image_ref = Quartz.CGWindowListCreateImage(
@@ -59,25 +67,30 @@ class PilScreencapper(ScreencapperBase):
         )
         if image_ref is None:
             return None
+        # Discard frames captured while window geometry is changing.
+        if self.game_win.window_rect != outer or self.game_win.win_rect != rect:
+            return None
 
         width = int(Quartz.CGImageGetWidth(image_ref))
         height = int(Quartz.CGImageGetHeight(image_ref))
         if width <= 0 or height <= 0:
             return None
 
-        game_height = min(
-            height,
-            round(width * self.standard_height / self.standard_width),
+        x1 = round((rect.x1 - outer.x1) * width / outer.width)
+        y1 = round((rect.y1 - outer.y1) * height / outer.height)
+        x2 = round((rect.x2 - outer.x1) * width / outer.width)
+        y2 = round((rect.y2 - outer.y1) * height / outer.height)
+        if x2 <= x1 or y2 <= y1:
+            return None
+        cropped_ref = Quartz.CGImageCreateWithImageInRect(
+            image_ref,
+            Quartz.CGRectMake(x1, y1, x2 - x1, y2 - y1),
         )
-        title_height = max(0, height - game_height)
-        if title_height > 0:
-            cropped_ref = Quartz.CGImageCreateWithImageInRect(
-                image_ref,
-                Quartz.CGRectMake(0, title_height, width, game_height),
-            )
-            if cropped_ref is not None:
-                image_ref = cropped_ref
-                height = game_height
+        if cropped_ref is None:
+            return None
+        image_ref = cropped_ref
+        width = int(Quartz.CGImageGetWidth(image_ref))
+        height = int(Quartz.CGImageGetHeight(image_ref))
 
         srgb_space = Quartz.CGColorSpaceCreateWithName(
             Quartz.kCGColorSpaceSRGB

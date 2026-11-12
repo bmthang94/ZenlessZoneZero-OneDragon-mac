@@ -1,0 +1,8 @@
+sub_dir: normal_world
+template_id: preset_config_playcover
+template_name: 预备编队 PlayCover
+template_shape: rectangle
+auto_mask: true
+point_list:
+- 1210, 65
+- 1319, 118

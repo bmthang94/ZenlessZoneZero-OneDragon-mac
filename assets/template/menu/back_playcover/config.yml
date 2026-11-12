@@ -1,0 +1,8 @@
+sub_dir: menu
+template_id: back_playcover
+template_name: back_playcover
+template_shape: rectangle
+auto_mask: true
+point_list:
+- 80, 24
+- 190, 107
