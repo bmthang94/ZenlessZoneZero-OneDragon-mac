@@ -64,8 +64,6 @@ class PipelineNameDialog(MessageBoxBase):
 
 
 class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
-    _CREATE_NEW_PIPELINE_TEXT = '[ 新建流水线... ]'
-
     def __init__(self, ctx: OneDragonContext, parent=None):
         self.ctx: OneDragonContext = ctx
         self.logic = ImageAnalysisLogic(ctx)
@@ -796,8 +794,8 @@ class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
             center_hsv = hsv_result['center_hsv']
             diff_hsv = hsv_result['diff_hsv']
 
-            content += f"\nHSV中心: {center_hsv}"
-            content += f"\nHSV差值: {diff_hsv}"
+            content += gt("\nHSV中心: {center_hsv}").format(center_hsv=center_hsv)
+            content += gt("\nHSV差值: {diff_hsv}").format(diff_hsv=diff_hsv)
 
         # 显示结果
         InfoBar.success(
@@ -843,18 +841,23 @@ class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
         刷新流水线选择框
         """
         self.pipeline_combo.blockSignals(True)
-        current_text = self.pipeline_combo.currentText()
+        current_name = self.pipeline_combo.itemData(self.pipeline_combo.currentIndex())
         self.pipeline_combo.clear()
 
-        pipelines = self.logic.get_pipeline_names()
-        all_items = [self._CREATE_NEW_PIPELINE_TEXT] + pipelines
-        self.pipeline_combo.addItems(all_items)
+        self.pipeline_combo.addItem(gt('[ 新建流水线... ]'), userData=None)
+        for name in self.logic.get_pipeline_names():
+            self.pipeline_combo.addItem(gt(name), userData=name)
 
-        if current_text in all_items:
-            self.pipeline_combo.setCurrentText(current_text)
-        else:
-            self.pipeline_combo.setCurrentIndex(0)
+        self._select_pipeline(current_name)
         self.pipeline_combo.blockSignals(False)
+
+    def _select_pipeline(self, name: str | None) -> None:
+        """按原始名称选择流水线，避免依赖显示语言。"""
+        for index in range(self.pipeline_combo.count()):
+            if self.pipeline_combo.itemData(index) == name:
+                self.pipeline_combo.setCurrentIndex(index)
+                return
+        self.pipeline_combo.setCurrentIndex(0)
 
     def _update_ui_status(self):
         """
@@ -874,8 +877,8 @@ class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
         if index < 0:
             return
 
-        pipeline_name = self.pipeline_combo.itemText(index)
-        if pipeline_name == self._CREATE_NEW_PIPELINE_TEXT:
+        pipeline_name = self.pipeline_combo.itemData(index)
+        if pipeline_name is None:
             self.logic.active_pipeline_name = None
             self.logic.pipeline.steps.clear()
         else:
@@ -906,7 +909,7 @@ class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
             if text:
                 if self.logic.save_pipeline(text):
                     self._update_pipeline_combo()
-                    self.pipeline_combo.setCurrentText(text)
+                    self._select_pipeline(text)
                     self._update_ui_status()
                     InfoBar.success(gt('成功'), f"{gt('流水线已另存为')} {text}", parent=self)
                 else:
@@ -926,7 +929,7 @@ class DevtoolsImageAnalysisInterface(VerticalScrollInterface):
             if new_name and new_name != old_name:
                 self.logic.rename_pipeline(old_name, new_name)
                 self._update_pipeline_combo()
-                self.pipeline_combo.setCurrentText(new_name)
+                self._select_pipeline(new_name)
                 InfoBar.success(gt('成功'), f"{gt('流水线已重命名为')} {new_name}", parent=self)
 
     def _on_delete_pipeline_btn_clicked(self):

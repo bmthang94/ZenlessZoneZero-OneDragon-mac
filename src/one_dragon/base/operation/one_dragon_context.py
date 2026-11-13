@@ -341,6 +341,13 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
 
     #------------------- 以下是 初始化相关 -------------------#
 
+    def apply_ui_language(self) -> None:
+        """根据用户配置设置界面语言。"""
+        if self.custom_config.ui_language == UILanguageEnum.AUTO.value.value:
+            i18_utils.detect_and_set_default_language()
+        else:
+            i18_utils.update_default_lang(self.custom_config.ui_language)
+
     def init(self) -> None:
         if not self._init_lock.acquire(blocking=False):
             return
@@ -348,10 +355,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         try:
             self.ready_for_application = False
 
-            if self.custom_config.ui_language == UILanguageEnum.AUTO.value.value:
-                i18_utils.detect_and_set_default_language()
-            else:
-                i18_utils.update_default_lang(self.custom_config.ui_language)
+            self.apply_ui_language()
 
             log_utils.set_log_level(logging.DEBUG if self.env_config.is_debug else logging.INFO)
 

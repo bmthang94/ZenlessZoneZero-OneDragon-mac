@@ -12,6 +12,7 @@ from PySide6.QtGui import QGuiApplication
 
 from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.context_event_bus import ContextEventItem
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.overlay.overlay_config import OverlayConfig
 from one_dragon_qt.overlay.overlay_events import OverlayEventEnum, OverlayLogEvent
@@ -700,7 +701,7 @@ class OverlayManager(QObject):
         if app is not None:
             app_name = str(getattr(app, "display_name", None) or getattr(app, "op_name", "-"))
             if app_name and app_name != "-":
-                parts.append(app_name)
+                parts.append(gt(app_name))
             node = "-"
             with contextlib.suppress(Exception):
                 node = str(app.current_node.name or "-")

@@ -12,6 +12,16 @@
   uv run --env-file .env pytest zzz-od-test/
   ```
 
+### 界面翻译检查
+
+在项目根目录执行以下命令，检查界面翻译键（包括导航文字和设置卡片的标题、描述）、GUI 直接赋值的中文，以及 PO 和 MO 是否一致。`--widgets` 可额外执行 Qt 离屏检查；`--lang` 可指定语言，默认为 `en`。该检查不覆盖游戏 OCR 文本或动态生成的全部界面文字。
+
+```shell
+PYTHONPATH=src uv run --no-sync python -m one_dragon.devtools.check_ui_translations --widgets
+```
+
+Windows PowerShell 可先执行 `$env:PYTHONPATH = 'src'`，再运行 `uv run --no-sync python -m one_dragon.devtools.check_ui_translations --widgets`。
+
 ## 2. 测试基建(`zzz-od-test/test/conftest.py`)
 
 - **`test_context` fixture**(session 级):跑 `ctx.init()` → 真 OCR + 真 screen_info;注入 `MockController`。所有要识别能力的测试都用它(只 init 一次,session 复用)。用 `current_instance_idx=99` 隔离测试配置写盘。

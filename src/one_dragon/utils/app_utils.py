@@ -3,15 +3,34 @@ import os
 import re
 import subprocess
 import sys
+from collections.abc import Callable
 from pathlib import Path
 
 from one_dragon.utils import os_utils
 
 ANSI_ESCAPE_PATTERN = re.compile(r'\x1b\[[0-?]*[ -/]*[@-~]')
+RESTART_EXIT_CODE = 75
+_restart_exit_handler: Callable[[int], None] = sys.exit
+
+
+def set_restart_exit_handler(handler: Callable[[int], None]) -> None:
+    """设置重启时退出事件循环的方法。"""
+    global _restart_exit_handler
+    _restart_exit_handler = handler
 
 
 def start_one_dragon(restart: bool) -> None:
     """启动独立的一条龙进程，重启时在创建进程成功后退出当前程序。"""
+    if sys.platform != 'win32':
+        if restart and os.environ.get('OD_LAUNCHER_OWNS_RESTART') == '1':
+            _restart_exit_handler(RESTART_EXIT_CODE)
+            return
+        args = sys.argv if getattr(sys, 'frozen', False) else sys.orig_argv
+        subprocess.Popen([sys.executable, *args[1:]], start_new_session=True)
+        if restart:
+            _restart_exit_handler(0)
+        return
+
     if getattr(sys, 'frozen', False):
         launcher_path = Path(sys.executable)
     else:

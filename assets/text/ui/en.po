@@ -744,3 +744,3144 @@ msgstr "Custom Homepage Background"
 
 msgid "设置后重启脚本生效"
 msgstr "Restart script for changes to take effect"
+
+
+msgid "游戏助手"
+msgstr "Game Assistant"
+
+msgid "应用运行"
+msgstr "Run Applications"
+
+msgid "资源管理"
+msgstr "Resource Management"
+
+msgid "自定义设置"
+msgstr "Custom Settings"
+
+msgid "跟随系统"
+msgstr "Follow System"
+
+msgid "一条龙中不运行"
+msgstr "Do not run in OneDragon"
+
+msgid "一条龙中运行"
+msgstr "Run in OneDragon"
+
+msgid "一条龙安装向导"
+msgstr "OneDragon Setup Wizard"
+
+msgid "一键安装"
+msgstr "Install All"
+
+msgid "上一步"
+msgstr "Previous"
+
+msgid "上次成功"
+msgstr "Last successful run"
+
+msgid "下一步"
+msgstr "Next"
+
+msgid "下载"
+msgstr "Download"
+
+msgid "下载仍在进行"
+msgstr "Download in progress"
+
+msgid "下载失败 请尝试更改网络代理"
+msgstr "Download failed. Try changing the network proxy"
+
+msgid "下载完成"
+msgstr "Download complete"
+
+msgid "下载已取消"
+msgstr "Download cancelled"
+
+msgid "下载源"
+msgstr "Download source"
+
+msgid "下载选中项"
+msgstr "Download selected"
+
+msgid "下载队列"
+msgstr "Download queue"
+
+msgid "下载队列不可用"
+msgstr "Download queue unavailable"
+
+msgid "不使用"
+msgstr "Do not use"
+
+msgid "不再提示此插件的更新"
+msgstr "Do not remind me about updates for this plugin"
+
+msgid "不进行"
+msgstr "Do not proceed"
+
+msgid "与远程分支不一致"
+msgstr "Differs from remote branch"
+
+msgid "个人代理"
+msgstr "Personal proxy"
+
+msgid "个人代理地址"
+msgstr "Personal proxy address"
+
+msgid "中"
+msgstr "Medium"
+
+msgid "主页"
+msgstr "Home"
+
+msgid "亚服"
+msgstr "Asia server"
+
+msgid "仍然继续"
+msgstr "Continue anyway"
+
+msgid "从文件选择"
+msgstr "Select from file"
+
+msgid "仓库失联"
+msgstr "Repository unavailable"
+
+msgid "代理人模板"
+msgstr "Agent template"
+
+msgid "代理人英文名"
+msgstr "Agent English name"
+
+msgid "代码同步"
+msgstr "Code synchronization"
+
+msgid "代码已同步"
+msgstr "Code synchronized"
+
+msgid "代码已更新，重启以应用更改"
+msgstr "Code updated. Restart to apply changes"
+
+msgid "代码设置"
+msgstr "Code settings"
+
+msgid "以下插件将降级安装，确定继续？"
+msgstr "The following plugins will be downgraded. Continue?"
+
+msgid "以下插件已存在，是否覆盖安装？"
+msgstr "The following plugins already exist. Overwrite them?"
+
+msgid "以下配置项未就绪，可能影响正常运行："
+msgstr "The following settings are not ready and may affect operation:"
+
+msgid "以后自动下载，不再询问"
+msgstr "Download automatically in future without asking"
+
+msgid "任务"
+msgstr "Tasks"
+
+msgid "休眠"
+msgstr "Hibernate"
+
+msgid "作者"
+msgstr "Author"
+
+msgid "使用中"
+msgstr "In use"
+
+msgid "使用以太电池"
+msgstr "Use Ether Batteries"
+
+msgid "使用储蓄电量"
+msgstr "Use reserved battery charge"
+
+msgid "使用说明"
+msgstr "Instructions"
+
+msgid "保存掩码"
+msgstr "Save mask"
+
+msgid "保存模板"
+msgstr "Save template"
+
+msgid "保存配置"
+msgstr "Save configuration"
+
+msgid "保留"
+msgstr "Keep"
+
+msgid "值"
+msgstr "Value"
+
+msgid "停止"
+msgstr "Stop"
+
+msgid "克隆仓库成功"
+msgstr "Repository cloned successfully"
+
+msgid "免费代理地址"
+msgstr "Free proxy address"
+
+msgid "兑换码"
+msgstr "Redemption code"
+
+msgid "兑换码已存在"
+msgstr "Redemption code already exists"
+
+msgid "入口"
+msgstr "Entry"
+
+msgid "全部"
+msgstr "All"
+
+msgid "全部插件"
+msgstr "All plugins"
+
+msgid "共享配置"
+msgstr "Shared configuration"
+
+msgid "关闭"
+msgstr "Close"
+
+msgid "内容"
+msgstr "Content"
+
+msgid "切换到目标分支"
+msgstr "Switch to target branch"
+
+msgid "切换到目标版本失败"
+msgstr "Failed to switch to target version"
+
+msgid "切换窗口"
+msgstr "Switch window"
+
+msgid "切换视图"
+msgstr "Switch view"
+
+msgid "创建环境失败"
+msgstr "Failed to create environment"
+
+msgid "创建虚拟环境失败"
+msgstr "Failed to create virtual environment"
+
+msgid "创建虚拟环境成功"
+msgstr "Virtual environment created"
+
+msgid "初始化本地 Git 仓库"
+msgstr "Initialize local Git repository"
+
+msgid "初始化本地 Git 仓库失败"
+msgstr "Failed to initialize local Git repository"
+
+msgid "删除 {name}？"
+msgstr "Delete {name}?"
+
+msgid "删除步骤"
+msgstr "Delete step"
+
+msgid "刷新"
+msgstr "Refresh"
+
+msgid "刷新失败"
+msgstr "Refresh failed"
+
+msgid "刷新成功"
+msgstr "Refresh successful"
+
+msgid "前往"
+msgstr "Go"
+
+msgid "前往社区"
+msgstr "Go to community"
+
+msgid "前往配置"
+msgstr "Go to settings"
+
+msgid "剪贴板"
+msgstr "Clipboard"
+
+msgid "加载"
+msgstr "Load"
+
+msgid "加载失败"
+msgstr "Failed to load"
+
+msgid "即将导入以下插件："
+msgstr "The following plugins will be imported:"
+
+msgid "卸载"
+msgstr "Uninstall"
+
+msgid "卸载失败"
+msgstr "Uninstall failed"
+
+msgid "原图"
+msgstr "Original image"
+
+msgid "原始启动器"
+msgstr "Original launcher"
+
+msgid "原始图像"
+msgstr "Original image"
+
+msgid "参数设置"
+msgstr "Parameter settings"
+
+msgid "反向抠图"
+msgstr "Invert extraction"
+
+msgid "发生了一个未知错误"
+msgstr "An unknown error occurred"
+
+msgid "取消中"
+msgstr "Cancelling"
+
+msgid "取消失败"
+msgstr "Cancellation failed"
+
+msgid "取消订阅"
+msgstr "Unsubscribe"
+
+msgid "另存为"
+msgstr "Save as"
+
+msgid "另存为失败"
+msgstr "Save as failed"
+
+msgid "只能用小写字母、数字和下划线，以字母开头"
+msgstr "Use lowercase letters, numbers and underscores only; start with a letter"
+
+msgid "可下载"
+msgstr "Available to download"
+
+msgid "可开启“强制更新”后重试"
+msgstr "Enable \"Force Update\" and try again"
+
+msgid "可更新 v{version}"
+msgstr "Update available: v{version}"
+
+msgid "可选安装或配置"
+msgstr "Optional installation or configuration"
+
+msgid "右侧"
+msgstr "Right"
+
+msgid "同步中"
+msgstr "Synchronizing"
+
+msgid "同步失败"
+msgstr "Synchronization failed"
+
+msgid "同步完成"
+msgstr "Synchronization complete"
+
+msgid "同步本地代码"
+msgstr "Synchronize local code"
+
+msgid "名称"
+msgstr "Name"
+
+msgid "启动时提示插件更新"
+msgstr "Notify about plugin updates on startup"
+
+msgid "启动程序"
+msgstr "Launch application"
+
+msgid "周一"
+msgstr "Monday"
+
+msgid "周二"
+msgstr "Tuesday"
+
+msgid "周三"
+msgstr "Wednesday"
+
+msgid "周四"
+msgstr "Thursday"
+
+msgid "周五"
+msgstr "Friday"
+
+msgid "周六"
+msgstr "Saturday"
+
+msgid "周日"
+msgstr "Sunday"
+
+msgid "咖啡店"
+msgstr "Coffee Shop"
+
+msgid "商店中的第三方插件未经官方审查，订阅前请确认来源可信，风险自负"
+msgstr "Third-party plugins in the store are not officially reviewed. Verify the source before subscribing; use them at your own risk."
+
+msgid "商店共 {count} 个插件"
+msgstr "{count} plugins in store"
+
+msgid "回滚"
+msgstr "Roll back"
+
+msgid "回滚失败"
+msgstr "Rollback failed"
+
+msgid "国服"
+msgstr "Mainland China server"
+
+msgid "在线配置"
+msgstr "Online configuration"
+
+msgid "地图传送"
+msgstr "Map teleport"
+
+msgid "处理增量"
+msgstr "Processing deltas"
+
+msgid "复制"
+msgstr "Copy"
+
+msgid "复制方法"
+msgstr "Copy method"
+
+msgid "大"
+msgstr "Large"
+
+msgid "失败"
+msgstr "Failed"
+
+msgid "安装 Python 失败 请尝试到「设置」更改 Python 下载源"
+msgstr "Python installation failed. Try changing the Python download source in Settings."
+
+msgid "安装 UV 失败"
+msgstr "UV installation failed"
+
+msgid "安装 UV 成功"
+msgstr "UV installed successfully"
+
+msgid "安装中"
+msgstr "Installing"
+
+msgid "安装启动器失败"
+msgstr "Launcher installation failed"
+
+msgid "安装启动器成功"
+msgstr "Launcher installed successfully"
+
+msgid "安装失败"
+msgstr "Installation failed"
+
+msgid "安装失败！"
+msgstr "Installation failed!"
+
+msgid "安装失败！已自动打开排障文档"
+msgstr "Installation failed! Troubleshooting documentation has been opened."
+
+msgid "安装完成！"
+msgstr "Installation complete!"
+
+msgid "安装成功"
+msgstr "Installation successful"
+
+msgid "安装进度"
+msgstr "Installation progress"
+
+msgid "完成"
+msgstr "Complete"
+
+msgid "完整模板"
+msgstr "Full template"
+
+msgid "官方社区"
+msgstr "Official community"
+
+msgid "官方资源以后自动下载，不再询问（插件更新仍需确认）"
+msgstr "Automatically download official resources without asking (plugin updates still require confirmation)"
+
+msgid "官网"
+msgstr "Official website"
+
+msgid "导入 ZIP"
+msgstr "Import ZIP"
+
+msgid "导入成功"
+msgstr "Import successful"
+
+msgid "导入文件夹"
+msgstr "Import folder"
+
+msgid "导入模板区域"
+msgstr "Import template region"
+
+msgid "小"
+msgstr "Small"
+
+msgid "展开/收起悬浮窗"
+msgstr "Expand/collapse overlay"
+
+msgid "展开悬浮窗"
+msgstr "Expand overlay"
+
+msgid "左侧"
+msgstr "Left"
+
+msgid "已保存"
+msgstr "Saved"
+
+msgid "已关闭更新提示"
+msgstr "Update notifications disabled"
+
+msgid "已删除"
+msgstr "Deleted"
+
+msgid "已加入下载队列"
+msgstr "Added to download queue"
+
+msgid "已卸载"
+msgstr "Uninstalled"
+
+msgid "已取消订阅"
+msgstr "Unsubscribed"
+
+msgid "已在队列"
+msgstr "Already in queue"
+
+msgid "已存在，是否覆盖？"
+msgstr "Already exists. Overwrite?"
+
+msgid "已安装"
+msgstr "Installed"
+
+msgid "已安装 {count} 个插件"
+msgstr "{count} plugins installed"
+
+msgid "已安装 · 未从商店订阅"
+msgstr "Installed · Not subscribed from store"
+
+msgid "已安装 · 本地插件"
+msgstr "Installed · Local plugin"
+
+msgid "已完成"
+msgstr "Completed"
+
+msgid "已将方法代码复制到剪贴板"
+msgstr "Method code copied to clipboard"
+
+msgid "已恢复更新提示"
+msgstr "Update notifications restored"
+
+msgid "已经安装了 UV"
+msgstr "UV is already installed"
+
+msgid "已订阅"
+msgstr "Subscribed"
+
+msgid "已订阅 · v{version}"
+msgstr "Subscribed · v{version}"
+
+msgid "已订阅 · 商店暂无此插件"
+msgstr "Subscribed · Plugin unavailable in store"
+
+msgid "已跳过"
+msgstr "Skipped"
+
+msgid "已跳过版本 v{version}"
+msgstr "Skipped version v{version}"
+
+msgid "已选择区域"
+msgstr "Region selected"
+
+msgid "已重新加载插件"
+msgstr "Plugin reloaded"
+
+msgid "已重置"
+msgstr "Reset"
+
+msgid "帮助文档"
+msgstr "Help documentation"
+
+msgid "应用"
+msgstr "Application"
+
+msgid "应用设置"
+msgstr "Application settings"
+
+msgid "应用通知"
+msgstr "Application notifications"
+
+msgid "建议版本"
+msgstr "Recommended version"
+
+msgid "开发工具"
+msgstr "Developer tools"
+
+msgid "开发工具和实验功能现在可见"
+msgstr "Developer tools and experimental features are now visible"
+
+msgid "开发者模式已开启"
+msgstr "Developer mode enabled"
+
+msgid "开发者选项"
+msgstr "Developer options"
+
+msgid "开始"
+msgstr "Start"
+
+msgid "开始下载"
+msgstr "Start download"
+
+msgid "开始安装"
+msgstr "Start installation"
+
+msgid "弹出表格"
+msgstr "Open table"
+
+msgid "强制更新失败"
+msgstr "Force update failed"
+
+msgid "当前图像"
+msgstr "Current image"
+
+msgid "当前已是最新版本"
+msgstr "Already up to date"
+
+msgid "当前版本"
+msgstr "Current version"
+
+msgid "当前状态"
+msgstr "Current status"
+
+msgid "快捷键"
+msgstr "Shortcut"
+
+msgid "快进更新失败"
+msgstr "Fast-forward update failed"
+
+msgid "性能分析"
+msgstr "Performance analysis"
+
+msgid "总耗时"
+msgstr "Total duration"
+
+msgid "恢复"
+msgstr "Restore"
+
+msgid "恢复更新提示"
+msgstr "Restore update notifications"
+
+msgid "您确定要删除流水线"
+msgstr "Are you sure you want to delete the pipeline"
+
+msgid "悬浮窗"
+msgstr "Overlay"
+
+msgid "成功导入 {count} 个插件"
+msgstr "Successfully imported {count} plugins"
+
+msgid "我们匿名收集你的信息用于改进我们的产品，感谢您的参与！"
+msgstr "We collect information anonymously to improve our product. Thank you for participating!"
+
+msgid "我已了解风险，继续订阅"
+msgstr "I understand the risks; continue subscribing"
+
+msgid "战斗配置"
+msgstr "Battle configuration"
+
+msgid "截图"
+msgstr "Screenshot"
+
+msgid "截图失败"
+msgstr "Screenshot failed"
+
+msgid "截图键修饰键"
+msgstr "Screenshot key modifier"
+
+msgid "打开图片"
+msgstr "Open image"
+
+msgid "打开图片文件"
+msgstr "Open image file"
+
+msgid "打开目录"
+msgstr "Open folder"
+
+msgid "执行"
+msgstr "Execute"
+
+msgid "执行应用组"
+msgstr "Run application group"
+
+msgid "找不到"
+msgstr "Not found"
+
+msgid "找不到 uv.lock，无法同步运行环境"
+msgstr "uv.lock not found; cannot synchronize the runtime environment"
+
+msgid "找不到该插件的订阅记录"
+msgstr "No subscription record found for this plugin"
+
+msgid "拉取对象"
+msgstr "Fetching objects"
+
+msgid "拉取远程代码"
+msgstr "Pull remote code"
+
+msgid "拉取远程代码..."
+msgstr "Pulling remote code..."
+
+msgid "拉取远程代码成功"
+msgstr "Remote code pulled successfully"
+
+msgid "指令调试"
+msgstr "Command debugging"
+
+msgid "按键设置"
+msgstr "Key settings"
+
+msgid "推荐"
+msgstr "Recommended"
+
+msgid "插件仓库长期无法访问，可能已停止维护"
+msgstr "The plugin repository has been unavailable for a long time and may no longer be maintained"
+
+msgid "插件商店暂时没有可订阅的插件"
+msgstr "No plugins are currently available to subscribe to"
+
+msgid "插件商店读取失败，请检查网络后点击刷新"
+msgstr "Failed to load the plugin store. Check your network and click Refresh."
+
+msgid "插件已存在"
+msgstr "Plugin already exists"
+
+msgid "插件正在运行，请先停止后再{action}"
+msgstr "The plugin is running. Stop it before {action}."
+
+msgid "插件说明"
+msgstr "Plugin description"
+
+msgid "插入变量"
+msgstr "Insert variable"
+
+msgid "搜索"
+msgstr "Search"
+
+msgid "搜索代理人"
+msgstr "Search agents"
+
+msgid "搜索已安装插件"
+msgstr "Search installed plugins"
+
+msgid "搜索插件商店"
+msgstr "Search plugin store"
+
+msgid "撤回"
+msgstr "Recall"
+
+msgid "撤销"
+msgstr "Undo"
+
+msgid "操作"
+msgstr "Action"
+
+msgid "操作失败"
+msgstr "Operation failed"
+
+msgid "收起悬浮窗"
+msgstr "Collapse overlay"
+
+msgid "放弃"
+msgstr "Discard"
+
+msgid "放弃未保存的截图？"
+msgstr "Discard the unsaved screenshot?"
+
+msgid "数据错误"
+msgstr "Invalid data"
+
+msgid "文件不存在"
+msgstr "File does not exist"
+
+msgid "文件已存在"
+msgstr "File already exists"
+
+msgid "文件已成功删除"
+msgstr "File deleted successfully"
+
+msgid "新建"
+msgstr "New"
+
+msgid "无可用模板"
+msgstr "No templates available"
+
+msgid "无法{action}"
+msgstr "Cannot {action}"
+
+msgid "无法定位插件目录，只能删除 plugins 目录下的插件"
+msgstr "Cannot locate the plugin directory; only plugins in the plugins directory can be deleted"
+
+msgid "无法获取 Python 版本"
+msgstr "Cannot determine Python version"
+
+msgid "无法获取 UV 版本"
+msgstr "Cannot determine UV version"
+
+msgid "无法读取 Git 提交记录"
+msgstr "Cannot read Git commit history"
+
+msgid "无法读取这张图片"
+msgstr "Cannot read this image"
+
+msgid "无法连接服务器"
+msgstr "Cannot connect to server"
+
+msgid "时间"
+msgstr "Time"
+
+msgid "暂停"
+msgstr "Pause"
+
+msgid "暂停中"
+msgstr "Paused"
+
+msgid "暂无下载任务"
+msgstr "No download tasks"
+
+msgid "暂时无法获取当前版本所需文件"
+msgstr "Files required for the current version are temporarily unavailable"
+
+msgid "暂时无法获取更新"
+msgstr "Updates are temporarily unavailable"
+
+msgid "更多"
+msgstr "More"
+
+msgid "更新"
+msgstr "Update"
+
+msgid "更新到 v{version}"
+msgstr "Update to v{version}"
+
+msgid "更新后需重启脚本生效。如不能运行，请更新启动器"
+msgstr "Restart the script after updating. If it cannot run, update the launcher."
+
+msgid "更新完成"
+msgstr "Update complete"
+
+msgid "更新日志"
+msgstr "Changelog"
+
+msgid "最后一个"
+msgstr "Last"
+
+msgid "最新版本"
+msgstr "Latest version"
+
+msgid "有插件操作正在进行"
+msgstr "A plugin operation is in progress"
+
+msgid "服务器返回的数据格式不正确"
+msgstr "The server returned data in an invalid format"
+
+msgid "服务异常"
+msgstr "Service error"
+
+msgid "未安装"
+msgstr "Not installed"
+
+msgid "未安装。可选择你自己的 uv.exe"
+msgstr "Not installed. You can select your own uv.exe"
+
+msgid "未安装。可选择手动创建"
+msgstr "Not installed. You can choose to create it manually"
+
+msgid "未开启代码自动更新，跳过"
+msgstr "Automatic code updates disabled; skipped"
+
+msgid "未知"
+msgstr "Unknown"
+
+msgid "未知错误"
+msgstr "Unknown error"
+
+msgid "未订阅"
+msgstr "Not subscribed"
+
+msgid "未设置"
+msgstr "Not set"
+
+msgid "本地代码更新失败"
+msgstr "Local code update failed"
+
+msgid "本地代码更新完成"
+msgstr "Local code update complete"
+
+msgid "本地配置"
+msgstr "Local configuration"
+
+msgid "本期推荐"
+msgstr "Current recommendations"
+
+msgid "查看失败"
+msgstr "Failed to view"
+
+msgid "查看指南"
+msgstr "View guide"
+
+msgid "核对当前仓库"
+msgstr "Check current repository"
+
+msgid "框选模式"
+msgstr "Selection mode"
+
+msgid "检查中..."
+msgstr "Checking..."
+
+msgid "检查工作区状态"
+msgstr "Check working tree status"
+
+msgid "检查运行环境兼容性"
+msgstr "Check runtime environment compatibility"
+
+msgid "检测到已存在的环境压缩包，正在解压..."
+msgstr "Existing environment archive found. Extracting..."
+
+msgid "检测到程序文件有改动"
+msgstr "Changes to program files detected"
+
+msgid "检测当前 Python 版本"
+msgstr "Check current Python version"
+
+msgid "检测当前 UV 版本"
+msgstr "Check current UV version"
+
+msgid "检测当前代码分支"
+msgstr "Check current code branch"
+
+msgid "检测当前代码是否最新"
+msgstr "Check whether code is up to date"
+
+msgid "检测当前代码是否有修改"
+msgstr "Check for code changes"
+
+msgid "检测当前代码状态失败"
+msgstr "Failed to check code status"
+
+msgid "模板原图"
+msgstr "Original template image"
+
+msgid "模板抠图"
+msgstr "Extracted template image"
+
+msgid "模板掩码"
+msgstr "Template mask"
+
+msgid "欧服"
+msgstr "Europe server"
+
+msgid "正在下载"
+msgstr "Downloading"
+
+msgid "正在使用 UV 创建虚拟环境..."
+msgstr "Creating virtual environment with UV..."
+
+msgid "正在使用 UV 安装依赖..."
+msgstr "Installing dependencies with UV..."
+
+msgid "正在安装 UV..."
+msgstr "Installing UV..."
+
+msgid "正在安装..."
+msgstr "Installing..."
+
+msgid "正在检查代码更新..."
+msgstr "Checking for code updates..."
+
+msgid "正在检查版本..."
+msgstr "Checking version..."
+
+msgid "正在检查环境同步状态..."
+msgstr "Checking environment synchronization..."
+
+msgid "正在清理旧文件"
+msgstr "Cleaning up old files"
+
+msgid "正在解压"
+msgstr "Extracting"
+
+msgid "正在读取插件商店…"
+msgstr "Loading plugin store…"
+
+msgid "正在连接"
+msgstr "Connecting"
+
+msgid "此操作无法撤销。"
+msgstr "This action cannot be undone."
+
+msgid "每日签到"
+msgstr "Daily check-in"
+
+msgid "没找到游戏窗口"
+msgstr "Game window not found"
+
+msgid "没有可用的图像进行分析"
+msgstr "No image available for analysis"
+
+msgid "没有找到可用插件"
+msgstr "No available plugins found"
+
+msgid "没有未提交的代理人"
+msgstr "No uncommitted agents"
+
+msgid "没法访问GitHub可以查看帮助文档"
+msgstr "If you cannot access GitHub, see the help documentation"
+
+msgid "流水线"
+msgstr "Pipeline"
+
+msgid "流水线保存失败"
+msgstr "Failed to save pipeline"
+
+msgid "流水线已另存为"
+msgstr "Pipeline saved as"
+
+msgid "流水线已重命名为"
+msgstr "Pipeline renamed to"
+
+msgid "浅色"
+msgstr "Light"
+
+msgid "测试推送通知"
+msgstr "Test push notification"
+
+msgid "测试版"
+msgstr "Beta"
+
+msgid "测速失败"
+msgstr "Speed test failed"
+
+msgid "深色"
+msgstr "Dark"
+
+msgid "添加应用"
+msgstr "Add application"
+
+msgid "添加步骤"
+msgstr "Add step"
+
+msgid "清除点位"
+msgstr "Clear points"
+
+msgid "清除选择"
+msgstr "Clear selection"
+
+msgid "港澳台服"
+msgstr "Hong Kong, Macau and Taiwan server"
+
+msgid "源"
+msgstr "Source"
+
+msgid "点击下载按钮查看进度"
+msgstr "Click the download button to view progress"
+
+msgid "点击模式"
+msgstr "Click mode"
+
+msgid "版本记录"
+msgstr "Version history"
+
+msgid "版本降级警告"
+msgstr "Version downgrade warning"
+
+msgid "状态"
+msgstr "Status"
+
+msgid "状态值"
+msgstr "Status value"
+
+msgid "环境已同步"
+msgstr "Environment synchronized"
+
+msgid "环境未同步，请点击默认安装更新"
+msgstr "Environment is not synchronized. Click Default Install to update."
+
+msgid "画面信息"
+msgstr "Screen information"
+
+msgid "白名单"
+msgstr "Allowlist"
+
+msgid "目标版本"
+msgstr "Target version"
+
+msgid "目标版本的运行环境与当前不兼容"
+msgstr "The target version's runtime environment is incompatible with the current one"
+
+msgid "睡眠"
+msgstr "Sleep"
+
+msgid "确定要删除吗"
+msgstr "Are you sure you want to delete this?"
+
+msgid "确定要卸载 \"{name}\" 吗？插件文件会被删除。"
+msgstr "Uninstall \"{name}\"? Plugin files will be deleted."
+
+msgid "确定要取消订阅 \"{name}\" 吗？插件文件会被删除。"
+msgstr "Unsubscribe from \"{name}\"? Plugin files will be deleted."
+
+msgid "确认删除"
+msgstr "Confirm deletion"
+
+msgid "确认导入"
+msgstr "Confirm import"
+
+msgid "确认降级"
+msgstr "Confirm downgrade"
+
+msgid "移到顶部"
+msgstr "Move to top"
+
+msgid "移动"
+msgstr "Move"
+
+msgid "稍后"
+msgstr "Later"
+
+msgid "稳定版"
+msgstr "Stable"
+
+msgid "空闲"
+msgstr "Idle"
+
+msgid "窗口化"
+msgstr "Windowed"
+
+msgid "立即获取"
+msgstr "Get now"
+
+msgid "第一个"
+msgstr "First"
+
+msgid "第三个"
+msgstr "Third"
+
+msgid "第二个"
+msgstr "Second"
+
+msgid "第三方插件更新，未经官方审查"
+msgstr "Third-party plugin update; not officially reviewed"
+
+msgid "第三方插件风险提示"
+msgstr "Third-party plugin risk warning"
+
+msgid "等待中"
+msgstr "Waiting"
+
+msgid "简体中文"
+msgstr "Simplified Chinese"
+
+msgid "继续"
+msgstr "Continue"
+
+msgid "继续使用内置版本"
+msgstr "Continue using bundled version"
+
+msgid "继续使用当前版本"
+msgstr "Continue using current version"
+
+msgid "缺失或有新版本"
+msgstr "Missing or update available"
+
+msgid "缺少参考模板"
+msgstr "Reference template missing"
+
+msgid "网络代理设置"
+msgstr "Network proxy settings"
+
+msgid "网络相关"
+msgstr "Network settings"
+
+msgid "美服"
+msgstr "America server"
+
+msgid "背景图片"
+msgstr "Background image"
+
+msgid "自动"
+msgstr "Automatic"
+
+msgid "自动测速选择"
+msgstr "Automatically select by speed test"
+
+msgid "自动点击"
+msgstr "Auto click"
+
+msgid "自定义"
+msgstr "Custom"
+
+msgid "自定义主题色"
+msgstr "Custom theme color"
+
+msgid "自定义分支"
+msgstr "Custom branch"
+
+msgid "自定义安装"
+msgstr "Custom installation"
+
+msgid "色彩通道"
+msgstr "Color channel"
+
+msgid "节点"
+msgstr "Node"
+
+msgid "获取"
+msgstr "Fetch"
+
+msgid "获取commit"
+msgstr "Fetch commit"
+
+msgid "获取commit总数"
+msgstr "Get total commit count"
+
+msgid "获取本地提交信息失败"
+msgstr "Failed to get local commit information"
+
+msgid "获取系统环境变量中的 UV"
+msgstr "Find UV in system environment variables"
+
+msgid "获取远程提交信息失败"
+msgstr "Failed to get remote commit information"
+
+msgid "覆盖安装"
+msgstr "Overwrite installation"
+
+msgid "解压失败"
+msgstr "Extraction failed"
+
+msgid "解压失败 准备重试"
+msgstr "Extraction failed; preparing to retry"
+
+msgid "解压成功"
+msgstr "Extraction successful"
+
+msgid "解压环境包成功，正在安装运行依赖..."
+msgstr "Environment archive extracted. Installing runtime dependencies..."
+
+msgid "解析提交ID失败"
+msgstr "Failed to parse commit ID"
+
+msgid "触发秒数"
+msgstr "Trigger time (seconds)"
+
+msgid "警告"
+msgstr "Warning"
+
+msgid "订阅"
+msgstr "Subscribe"
+
+msgid "设置失败"
+msgstr "Setting failed"
+
+msgid "该插件位于源码仓库目录中，请在 plugins 目录里手动处理仓库：{path}"
+msgstr "This plugin is in a source repository. Manage the repository manually in the plugins directory: {path}"
+
+msgid "该插件暂无可展示的说明"
+msgstr "No description is available for this plugin"
+
+msgid "该插件没有可下载的版本"
+msgstr "No downloadable version is available for this plugin"
+
+msgid "该插件没有提供校验值，无法确认安装包未被篡改"
+msgstr "This plugin provides no checksum, so the package integrity cannot be verified"
+
+msgid "该插件目录含 git 仓库，请用 git 管理：{path}"
+msgstr "This plugin directory contains a Git repository. Manage it with Git: {path}"
+
+msgid "请先打开一张图片"
+msgstr "Open an image first"
+
+msgid "请先更新启动器"
+msgstr "Update the launcher first"
+
+msgid "请先选择一个流水线"
+msgstr "Select a pipeline first"
+
+msgid "请查看日志后重试"
+msgstr "Check the logs and try again"
+
+msgid "请确保手动创建的虚拟环境目录为"
+msgstr "Make sure the manually created virtual environment directory is"
+
+msgid "请稍后重试"
+msgstr "Please try again later"
+
+msgid "请稍后重试或切换代码源"
+msgstr "Try again later or switch code source"
+
+msgid "请稍后重试；仍然失败时请查看日志"
+msgstr "Try again later; if it still fails, check the logs"
+
+msgid "请等上一个插件操作完成后再试"
+msgstr "Wait for the previous plugin operation to finish and try again"
+
+msgid "请输入 JSON 格式的请求体"
+msgstr "Enter a JSON request body"
+
+msgid "请输入兑换码"
+msgstr "Enter a redemption code"
+
+msgid "请输入流水线名称"
+msgstr "Enter a pipeline name"
+
+msgid "请选择主题色"
+msgstr "Select a theme color"
+
+msgid "请重启后重试；仍然失败时请重新安装"
+msgstr "Restart and try again; reinstall if it still fails"
+
+msgid "请重新运行启动器；仍然失败时请重新安装"
+msgstr "Run the launcher again; reinstall if it still fails"
+
+msgid "读取 uv.lock 失败"
+msgstr "Failed to read uv.lock"
+
+msgid "跳过"
+msgstr "Skip"
+
+msgid "跳过此步骤"
+msgstr "Skip this step"
+
+msgid "跳过此版本"
+msgstr "Skip this version"
+
+msgid "输入关键字进行搜索..."
+msgstr "Enter keywords to search..."
+
+msgid "输入状态关键词过滤..."
+msgstr "Enter status keywords to filter..."
+
+msgid "过期日期"
+msgstr "Expiration date"
+
+msgid "运行"
+msgstr "Run"
+
+msgid "运行中"
+msgstr "Running"
+
+msgid "运行依赖安装失败"
+msgstr "Runtime dependency installation failed"
+
+msgid "运行依赖安装成功"
+msgstr "Runtime dependencies installed"
+
+msgid "运行前检查"
+msgstr "Pre-run checks"
+
+msgid "运行环境同步失败"
+msgstr "Runtime environment synchronization failed"
+
+msgid "运行环境同步完成"
+msgstr "Runtime environment synchronization complete"
+
+msgid "运行环境已同步"
+msgstr "Runtime environment synchronized"
+
+msgid "运行路线"
+msgstr "Run route"
+
+msgid "返回"
+msgstr "Back"
+
+msgid "还没有安装任何插件，去插件商店看看吧"
+msgstr "No plugins installed yet. Visit the plugin store."
+
+msgid "这个名称已存在"
+msgstr "This name already exists"
+
+msgid "这个文件夹里没有找到可用插件"
+msgstr "No available plugins found in this folder"
+
+msgid "这是一条测试消息"
+msgstr "This is a test message"
+
+msgid "进行测速"
+msgstr "Run speed test"
+
+msgid "远程分支不存在"
+msgstr "Remote branch does not exist"
+
+msgid "退出前需要取消正在进行的下载，是否取消全部任务？"
+msgstr "Active downloads must be cancelled before exiting. Cancel all tasks?"
+
+msgid "适应窗口"
+msgstr "Fit to window"
+
+msgid "选择你的"
+msgstr "Select your"
+
+msgid "选择区域"
+msgstr "Select region"
+
+msgid "选择区域: 未选择"
+msgstr "Select region: None selected"
+
+msgid "选择图片"
+msgstr "Select image"
+
+msgid "选择图片文件"
+msgstr "Select image file"
+
+msgid "选择已有"
+msgstr "Select existing"
+
+msgid "选择或新建流水线"
+msgstr "Select or create a pipeline"
+
+msgid "选择截图"
+msgstr "Select screenshot"
+
+msgid "选择插件压缩包"
+msgstr "Select plugin archive"
+
+msgid "选择插件文件夹"
+msgstr "Select plugin folder"
+
+msgid "选择最优"
+msgstr "Select best"
+
+msgid "选择模板配置文件"
+msgstr "Select template configuration file"
+
+msgid "选择路径"
+msgstr "Select path"
+
+msgid "选项优先级"
+msgstr "Option priority"
+
+msgid "通用"
+msgstr "General"
+
+msgid "通知"
+msgstr "Notification"
+
+msgid "通知设置"
+msgstr "Notification settings"
+
+msgid "避免途经点"
+msgstr "Avoid waypoints"
+
+msgid "邮件"
+msgstr "Mail"
+
+msgid "部分导入失败"
+msgstr "Some imports failed"
+
+msgid "部分模板没有保存"
+msgstr "Some templates were not saved"
+
+msgid "重启后生效"
+msgstr "Takes effect after restart"
+
+msgid "重命名"
+msgstr "Rename"
+
+msgid "重拍"
+msgstr "Retake"
+
+msgid "重新下载"
+msgstr "Download again"
+
+msgid "重置到远程提交失败"
+msgstr "Failed to reset to remote commit"
+
+msgid "重置进度"
+msgstr "Reset progress"
+
+msgid "键"
+msgstr "Key"
+
+msgid "键盘输入"
+msgstr "Keyboard input"
+
+msgid "集成启动器"
+msgstr "Integrated launcher"
+
+msgid "需下载"
+msgstr "Download required"
+
+msgid "需要安装或配置"
+msgstr "Installation or configuration required"
+
+msgid "静默失败"
+msgstr "Fail silently"
+
+msgid "项资源"
+msgstr "resources"
+
+msgid "黑名单"
+msgstr "Blocklist"
+
+msgid "默认"
+msgstr "Default"
+
+msgid "默认数量"
+msgstr "Default quantity"
+
+msgid "默认等级"
+msgstr "Default level"
+
+msgid "鼠标灵敏度检测"
+msgstr "Mouse sensitivity detection"
+
+msgid "（来自缓存）"
+msgstr "(from cache)"
+
+msgid "，{count} 个可更新"
+msgstr ", {count} updates available"
+
+msgid "，可更新到 v{version}"
+msgstr ", update available to v{version}"
+
+msgid "，已订阅 {count} 个"
+msgstr ", {count} subscribed"
+
+msgid "GitHub 代理"
+msgstr "GitHub proxy"
+
+msgid "Python 安装失败"
+msgstr "Python installation failed"
+
+msgid "Python 安装成功"
+msgstr "Python installation successful"
+
+msgid "Python相关"
+msgstr "Python settings"
+
+msgid "pip源"
+msgstr "pip source"
+
+msgid "{action}失败"
+msgstr "{action} failed"
+
+msgid "{action}成功"
+msgstr "{action} succeeded"
+
+msgid "{name} 已{action}"
+msgstr "{name}: {action} completed"
+
+msgid "{name} 已移除"
+msgstr "{name} removed"
+
+msgid "{name} 的更新不再在启动时弹窗提示，卡片上仍会显示可更新"
+msgstr "Updates for {name} will no longer prompt at startup; available updates will still appear on its card"
+
+msgid "{name} 的更新会在启动时提示"
+msgstr "Updates for {name} will be announced at startup"
+
+msgid "⚠ 已跳过此步骤"
+msgstr "⚠ This step was skipped"
+
+msgid "✓ 安装完成"
+msgstr "✓ Installation complete"
+
+msgid "✓ 已满足所有条件"
+msgstr "✓ All requirements met"
+
+msgid "✗ 安装失败"
+msgstr "✗ Installation failed"
+
+msgid "1张卡片"
+msgstr "1 card"
+
+msgid "2张卡片"
+msgstr "2 cards"
+
+msgid "3张卡片"
+msgstr "3 cards"
+
+msgid "4张卡片"
+msgstr "4 cards"
+
+msgid "5张卡片"
+msgstr "5 cards"
+
+msgid "2层业绩后退出"
+msgstr "Exit after 2 performance stacks"
+
+msgid "3层业绩后退出"
+msgstr "Exit after 3 performance stacks"
+
+msgid "A及以下"
+msgstr "A and below"
+
+msgid "S及以下"
+msgstr "S and below"
+
+msgid "B服"
+msgstr "Bilibili server"
+
+msgid "GitHub主页右上角点一个星星是最简单直接的"
+msgstr "The simplest way to support us is to star the GitHub repository"
+
+msgid "HEAD 不存在且未开启强制更新"
+msgstr "HEAD does not exist and force update is disabled"
+
+msgid "PC 点击需 Alt"
+msgstr "Hold Alt to click on PC"
+
+msgid "{count} 项待配置 "
+msgstr "{count} items need configuration "
+
+msgid "ⓘ 代码版本 {version}"
+msgstr "ⓘ Code version {version}"
+
+msgid "ⓘ 代码版本 未知"
+msgstr "ⓘ Code version unknown"
+
+msgid "ⓘ 启动器版本 {version}"
+msgstr "ⓘ Launcher version {version}"
+
+msgid "ⓘ 启动器版本 未知"
+msgstr "ⓘ Launcher version unknown"
+
+msgid "ⓘ 问题反馈"
+msgstr "ⓘ Report an issue"
+
+msgid "一步可达时前往"
+msgstr "Go when reachable in one step"
+
+msgid "一直刷新"
+msgstr "Keep refreshing"
+
+msgid "下载 {count}"
+msgstr "Download {count}"
+
+msgid "丽都周纪 (领奖励)"
+msgstr "New Eridu Weekly (claim rewards)"
+
+msgid "优先途经点"
+msgstr "Preferred waypoints"
+
+msgid "体力刷本"
+msgstr "Spend battery charge on challenges"
+
+msgid "使用说明 · 功能介绍"
+msgstr "Instructions · Feature overview"
+
+msgid "偶遇事件"
+msgstr "Encounter event"
+
+msgid "切换后援"
+msgstr "Switch backup"
+
+msgid "删除已完成"
+msgstr "Delete completed"
+
+msgid "刮刮卡"
+msgstr "Scratch card"
+
+msgid "制造中"
+msgstr "Crafting"
+
+msgid "刷新0次"
+msgstr "Refresh 0 times"
+
+msgid "刷新1次(50硬币)"
+msgstr "Refresh once (50 coins)"
+
+msgid "刷新2次(100硬币)"
+msgstr "Refresh twice (100 coins)"
+
+msgid "刷新3次(200硬币)"
+msgstr "Refresh 3 times (200 coins)"
+
+msgid "刷新4次(300硬币)"
+msgstr "Refresh 4 times (300 coins)"
+
+msgid "刷满业绩点"
+msgstr "Earn maximum performance points"
+
+msgid "刷满周期奖励"
+msgstr "Earn all cycle rewards"
+
+msgid "加入官方交流频道"
+msgstr "Join the official community channel"
+
+msgid "区域类型优先级"
+msgstr "Area type priority"
+
+msgid "区域表格编辑"
+msgstr "Edit area table"
+
+msgid "压缩对象:"
+msgstr "Compressing objects:"
+
+msgid "同时使用储蓄电量和以太电池"
+msgstr "Use both reserved battery charge and Ether Batteries"
+
+msgid "售卖中"
+msgstr "Selling"
+
+msgid "外部编辑"
+msgstr "Edit externally"
+
+msgid "奖励优先级"
+msgstr "Reward priority"
+
+msgid "如何让AI打得更好？"
+msgstr "How can I improve AI combat?"
+
+msgid "如果喜欢本项目，你也可以为作者赞助一点维护费用~"
+msgstr "If you like this project, you can support its maintenance with a donation."
+
+msgid "委托助手"
+msgstr "Commission assistant"
+
+msgid "完成周计划次数"
+msgstr "Complete planned weekly runs"
+
+msgid "完成悬赏委托"
+msgstr "Complete bounty commissions"
+
+msgid "官方频道"
+msgstr "Official channel"
+
+msgid "录像店营业"
+msgstr "Run video store"
+
+msgid "恶名狩猎"
+msgstr "Notorious Hunt"
+
+msgid "情报板"
+msgstr "Bounty Board"
+
+msgid "战斗-武备"
+msgstr "Battle - Gear"
+
+msgid "战斗-硬币"
+msgstr "Battle - Coins"
+
+msgid "战斗-终结之役"
+msgstr "Battle - Final Battle"
+
+msgid "战斗-道中危机"
+msgstr "Battle - Roadside Crisis"
+
+msgid "战斗-鸣徽"
+msgstr "Battle - Resonia"
+
+msgid "战斗中-重新开始"
+msgstr "In battle - Restart"
+
+msgid "战斗中退出"
+msgstr "Exit during battle"
+
+msgid "战斗后选择"
+msgstr "Post-battle selection"
+
+msgid "挑战-收割"
+msgstr "Challenge - Harvest"
+
+msgid "挑战-无伤"
+msgstr "Challenge - No damage"
+
+msgid "挑战-限时"
+msgstr "Challenge - Time limit"
+
+msgid "新增体力计划"
+msgstr "Add battery charge plan"
+
+msgid "新增恶名狩猎计划"
+msgstr "Add Notorious Hunt plan"
+
+msgid "是否删除所有体力计划？"
+msgstr "Delete all battery charge plans?"
+
+msgid "是否删除所有已完成的体力计划？"
+msgstr "Delete all completed battery charge plans?"
+
+msgid "枚举对象:"
+msgstr "Enumerating objects:"
+
+msgid "枯萎之都"
+msgstr "Withering Garden"
+
+msgid "模式:"
+msgstr "Mode:"
+
+msgid "横"
+msgstr "Horizontal"
+
+msgid "横移"
+msgstr "Move horizontally"
+
+msgid "活跃度奖励"
+msgstr "Activity rewards"
+
+msgid "游历中"
+msgstr "Exploring"
+
+msgid "游戏内配队"
+msgstr "In-game team"
+
+msgid "源码 · 反馈 · Star⭐"
+msgstr "Source · Feedback · Star⭐"
+
+msgid "点位"
+msgstr "Point"
+
+msgid "第一个BUFF"
+msgstr "First buff"
+
+msgid "第二个BUFF"
+msgstr "Second buff"
+
+msgid "第三个BUFF"
+msgstr "Third buff"
+
+msgid "等待剧情自动播放"
+msgstr "Wait for story to play automatically"
+
+msgid "等级Lv.30"
+msgstr "Level 30"
+
+msgid "等级Lv.40"
+msgstr "Level 40"
+
+msgid "等级Lv.50"
+msgstr "Level 50"
+
+msgid "等级Lv.60"
+msgstr "Level 60"
+
+msgid "等级Lv.65"
+msgstr "Level 65"
+
+msgid "纵"
+msgstr "Vertical"
+
+msgid "纵移"
+msgstr "Move vertically"
+
+msgid "统计对象:"
+msgstr "Counting objects:"
+
+msgid "缩放比例:"
+msgstr "Zoom:"
+
+msgid "若再次卡住仍尝试脱困"
+msgstr "Keep trying to get unstuck if stuck again"
+
+msgid "若再次卡住则跳过脱困"
+msgstr "Skip recovery if stuck again"
+
+msgid "藏品第一优先级"
+msgstr "First collection priority"
+
+msgid "藏品第二优先级 (无刷新时考虑)"
+msgstr "Second collection priority (when no refreshes remain)"
+
+msgid "跳过剧情"
+msgstr "Skip story"
+
+msgid "迷失之地"
+msgstr "Lost Void"
+
+msgid "通关"
+msgstr "Complete stage"
+
+msgid "速通"
+msgstr "Speedrun"
+
+msgid "遇到问题？点这里找答案"
+msgstr "Having trouble? Find answers here"
+
+msgid "邦布商店"
+msgstr "Bangboo Shop"
+
+msgid "重开游戏并跳过路线"
+msgstr "Restart game and skip route"
+
+msgid "重开游戏并重试路线"
+msgstr "Restart game and retry route"
+
+msgid "锄大地"
+msgstr "Open-world farming"
+
+msgid "闪避助手"
+msgstr "Dodge assistant"
+
+msgid "闪避截图"
+msgstr "Dodge screenshot"
+
+msgid "预备编队角色识别"
+msgstr "Identify agents in preset teams"
+
+msgid "首次运行，正在同步代码仓库..."
+msgstr "First run: synchronizing code repository..."
+
+msgid "驱动盘拆解"
+msgstr "Dismantle Drive Discs"
+
+msgid "\"{name}\" 是第三方作者发布的插件，未经过官方审查。\n插件会以与本程序相同的权限运行，可以读写本机文件、访问网络，存在恶意代码、隐私泄露或损坏系统的风险。\n请只订阅你信任的作者发布的插件，确定要继续吗？"
+msgstr "\"{name}\" is a third-party plugin and has not been officially reviewed.\nPlugins run with the same permissions as this application. They can read and write local files and access the network, posing risks of malicious code, privacy leaks, or system damage.\nOnly subscribe to plugins from authors you trust. Continue?"
+
+msgid "本软件完全<font color='red'>开源 免费</font><br>\n不要在<font color='red'>第三方渠道</font>购买<br>\n谨防<font color='red'>诈骗 盗号</font>"
+msgstr "This software is completely <font color='red'>open source and free</font><br>\nDo not purchase it from <font color='red'>third parties</font><br>\nBeware of <font color='red'>fraud and account theft</font>"
+
+msgid "仅结束"
+msgstr "End only"
+
+msgid "开始和结束"
+msgstr "Start and end"
+
+msgid "仅失败"
+msgstr "Failures only"
+
+msgid "逐条"
+msgstr "Individual"
+
+msgid "合并"
+msgstr "Combined"
+
+msgid "不启用"
+msgstr "Disabled"
+
+msgid "矩形"
+msgstr "Rectangle"
+
+msgid "圆形"
+msgstr "Circle"
+
+msgid "四边形"
+msgstr "Quadrilateral"
+
+msgid "多边形"
+msgstr "Polygon"
+
+msgid "多个矩形"
+msgstr "Multiple rectangles"
+
+msgid "# 输入 Python 脚本"
+msgstr "# Enter a Python script"
+
+msgid "ⓘ 安装器版本 {version}"
+msgstr "ⓘ Installer version {version}"
+
+msgid "ⓘ 程序版本 {version}"
+msgstr "ⓘ Application version {version}"
+
+msgid "已复制版本号"
+msgstr "Version number copied"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "丽都城募"
+msgstr "New Eridu Fund"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "代价之间"
+msgstr "Price Room"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "休憩调息"
+msgstr "Rest and Recovery"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "挚交会谈"
+msgstr "Friendly Meeting"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "吼吼饼铺"
+msgstr "Howl Bakery"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "真·拿命验收[即将移除请转插件]"
+msgstr "Deadly Assault [being removed; use the plugin]"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "随便观"
+msgstr "Suibian Temple"
+
+# 暂用描述性译名，官方英文名待核实。
+msgid "卦象集录"
+msgstr "Trigram Collection"
+
+msgid "删除所有"
+msgstr "Delete all"
+
+msgid "代理人"
+msgstr "Agent"
+
+msgid "点击查看形状使用说明"
+msgstr "Click for shape instructions"
+
+msgid "色彩通道分析"
+msgstr "Color channel analysis"
+
+msgid "图标编辑器"
+msgstr "Icon editor"
+
+msgid "将主窗口当前计算坐标设置为选中图标的传送坐标"
+msgstr "Set the selected icon teleport coordinates to the coordinates currently calculated in the main window"
+
+msgid "删除选中的图标"
+msgstr "Delete selected icon"
+
+msgid "保存图标名称修改"
+msgstr "Save icon name changes"
+
+msgid "取消修改并关闭"
+msgstr "Discard changes and close"
+
+msgid "MCP 服务操作和运行状态消息会显示在这里"
+msgstr "MCP service actions and status messages appear here"
+
+msgid "编辑路线操作"
+msgstr "Edit route action"
+
+msgid "下载设置"
+msgstr "Download Settings"
+
+msgid "更新与下载"
+msgstr "Updates and Downloads"
+
+msgid "特别鸣谢"
+msgstr "Special Thanks"
+
+msgid "感谢您的支持与陪伴"
+msgstr "Thank you for your support"
+
+msgid "contributors.yaml文件不存在"
+msgstr "contributors.yaml was not found"
+
+msgid "未获取到贡献者信息"
+msgstr "No contributor information available"
+
+msgid "游历"
+msgstr "Adventure"
+
+msgid "制造"
+msgstr "Craft"
+
+msgid "售卖"
+msgstr "Sell"
+
+msgid "提示：点击表格行可在主窗口地图上高亮对应图标位置；选中行后可设置传送坐标或删除图标"
+msgstr "Select a row to highlight its icon on the main map, set teleport coordinates, or delete the icon."
+
+msgid "设置传送坐标"
+msgstr "Set Teleport Coordinates"
+
+msgid "删除图标"
+msgstr "Delete Icon"
+
+msgid "图标名称"
+msgstr "Icon Name"
+
+msgid "模板ID"
+msgstr "Template ID"
+
+msgid "X坐标"
+msgstr "X Coordinate"
+
+msgid "Y坐标"
+msgstr "Y Coordinate"
+
+msgid "传送X"
+msgstr "Teleport X"
+
+msgid "传送Y"
+msgstr "Teleport Y"
+
+msgid "MCP 服务"
+msgstr "MCP Service"
+
+msgid "服务操作"
+msgstr "Service Actions"
+
+msgid "当前运行状态"
+msgstr "Current Status"
+
+msgid "运行消息"
+msgstr "Runtime Messages"
+
+msgid "添加操作"
+msgstr "Add Action"
+
+msgid "删除选中"
+msgstr "Delete Selected"
+
+msgid "上移"
+msgstr "Move Up"
+
+msgid "下移"
+msgstr "Move Down"
+
+msgid "序号"
+msgstr "No."
+
+msgid "操作类型"
+msgstr "Action Type"
+
+msgid "数据1"
+msgstr "Data 1"
+
+msgid "数据2"
+msgstr "Data 2"
+
+msgid "确定要删除图标 \"{name}\" ({template_id}) 吗？\n此操作不可撤销。"
+msgstr "Delete icon \"{name}\" ({template_id})?\nThis cannot be undone."
+
+msgid "确定要删除第{index}个操作吗？"
+msgstr "Delete action {index}?"
+
+msgid "第{index}个操作的数据不完整"
+msgstr "Action {index} has incomplete data"
+
+msgid "第{index}个操作的坐标数据必须是数字"
+msgstr "The coordinates for action {index} must be numbers"
+
+msgid "历史记录"
+msgstr "History"
+
+msgid "Ctrl+Z 撤回，Ctrl+Shift+Z 恢复"
+msgstr "Ctrl+Z to undo, Ctrl+Shift+Z to redo"
+
+msgid "自动模式优先使用上次成功源"
+msgstr "In automatic mode, prefer the last successful source"
+
+msgid "资源下载源"
+msgstr "Resource download source"
+
+msgid "模型等资源的下载源 自动模式按系统语言推荐"
+msgstr "Download source for models and other resources. Automatic mode recommends a source based on the system language."
+
+msgid "资源"
+msgstr "Resources"
+
+msgid "代码源"
+msgstr "Code source"
+
+msgid "代码分支"
+msgstr "Code branch"
+
+msgid "主分支用于稳定版本，测试分支用于提前体验新功能"
+msgstr "Use the main branch for stable releases or the test branch for early access to new features."
+
+msgid "自动更新"
+msgstr "Automatic updates"
+
+msgid "使用exe启动时，自动检测并更新代码"
+msgstr "Automatically check for and update code when launched from the executable."
+
+msgid "强制更新"
+msgstr "Force update"
+
+msgid "不懂代码请开启，会将脚本更新到最新并将你的改动覆盖，不会使你的配置失效"
+msgstr "Enable this if you are unfamiliar with code. It updates the scripts to the latest version and overwrites your changes without affecting your settings."
+
+msgid "自动模式优先使用上次成功源，失败后继续尝试其他源"
+msgstr "In automatic mode, try the last successful source first, then try other sources if it fails."
+
+msgid "代理设置"
+msgstr "Proxy settings"
+
+msgid "为代码和资源下载配置网络代理"
+msgstr "Configure a network proxy for code and resource downloads."
+
+msgid "自动获取免费代理地址"
+msgstr "Automatically obtain a free proxy address"
+
+msgid "仅在使用 GitHub 代理时生效"
+msgstr "Only applies when using a GitHub proxy."
+
+msgid "资源自动下载"
+msgstr "Automatic resource downloads"
+
+msgid "发现资源缺失或有新版本时，跳过确认并自动下载"
+msgstr "Automatically download missing or updated resources without confirmation."
+
+msgid "点赞"
+msgstr "Like"
+
+msgid "图片拼接"
+msgstr "Image stitching"
+
+msgid "图像加载"
+msgstr "Load images"
+
+msgid "拼接方向"
+msgstr "Stitching direction"
+
+msgid "第二张图相对于底图的位置"
+msgstr "Position of the second image relative to the base image"
+
+msgid "重叠比例"
+msgstr "Overlap ratio"
+
+msgid "宽度和高度的重叠区域大小"
+msgstr "Size of the overlapping area in width and height"
+
+msgid "图像匹配"
+msgstr "Image matching"
+
+msgid "手动调整"
+msgstr "Manual adjustment"
+
+msgid "微调第二张图的位置（累积偏移）"
+msgstr "Fine-tune the second image's position (cumulative offset)."
+
+msgid "合并操作"
+msgstr "Merge images"
+
+msgid "图像扣图"
+msgstr "Image matting"
+
+msgid "颜色空间"
+msgstr "Color space"
+
+msgid "选择颜色过滤的颜色空间"
+msgstr "Select the color space for color filtering."
+
+msgid "颜色下限"
+msgstr "Lower color limit"
+
+msgid "设置颜色过滤的下限值 (R,G,B 或 H,S,V)"
+msgstr "Set the lower color filter limit (R,G,B or H,S,V)."
+
+msgid "颜色上限"
+msgstr "Upper color limit"
+
+msgid "设置颜色过滤的上限值 (R,G,B 或 H,S,V)"
+msgstr "Set the upper color filter limit (R,G,B or H,S,V)."
+
+msgid "执行颜色过滤"
+msgstr "Apply color filter"
+
+msgid "处理选项"
+msgstr "Processing options"
+
+msgid "自动裁剪到有效区域"
+msgstr "Automatically crop to the valid area"
+
+msgid "保存操作"
+msgstr "Save"
+
+msgid "图像处理"
+msgstr "Image processing"
+
+msgid "插件商店"
+msgstr "Plugin store"
+
+msgid "插件管理"
+msgstr "Plugin management"
+
+msgid "插件"
+msgstr "Plugins"
+
+msgid "图像分析"
+msgstr "Image analysis"
+
+msgid "模板管理"
+msgstr "Template management"
+
+msgid "画面"
+msgstr "Screen"
+
+msgid "模板名称"
+msgstr "Template name"
+
+msgid "微调"
+msgstr "Fine-tune"
+
+msgid "形状"
+msgstr "Shape"
+
+msgid "自动生成掩码"
+msgstr "Automatically generate mask"
+
+msgid "鼠标点击坐标"
+msgstr "Mouse click coordinates"
+
+msgid "图片左上角为(0, 0)"
+msgstr "The top-left corner of the image is (0, 0)."
+
+msgid "画面管理"
+msgstr "Screen management"
+
+msgid "更新合并配置文件"
+msgstr "Update merged configuration file"
+
+msgid "手动更改yml文件后 需要触发更新生效"
+msgstr "Run the update after manually changing a YAML file for the changes to take effect."
+
+msgid "脚本环境"
+msgstr "Script environment"
+
+msgid "截图方法"
+msgstr "Screenshot method"
+
+msgid "前台要求窗口无遮挡，后台要求窗口不被最小化"
+msgstr "Foreground capture requires an unobstructed window; background capture requires the window not to be minimized."
+
+msgid "开发者模式"
+msgstr "Developer mode"
+
+msgid "关闭后隐藏开发工具和实验功能，已有配置不会改变"
+msgstr "Disabling this hides developer tools and experimental features without changing existing settings."
+
+msgid "网络代理"
+msgstr "Network proxy"
+
+msgid "免费代理仅能加速工具和模型下载，无法加速代码同步"
+msgstr "The free proxy only accelerates tool and model downloads, not code synchronization."
+
+msgid "免费代理"
+msgstr "Free proxy"
+
+msgid "获取失败时 可前往 https://ghproxy.link/ 查看自行更新"
+msgstr "If retrieval fails, visit https://ghproxy.link/ to check and update it manually."
+
+msgid "开始、暂停、恢复某个应用"
+msgstr "Start, pause, or resume an application."
+
+msgid "停止正在运行的应用，不能恢复"
+msgstr "Stop the running application. It cannot be resumed."
+
+msgid "用于开发、提交bug。会自动对UID打码，保存在 .debug/images/ 文件夹中"
+msgstr "For development and bug reports. The UID is automatically obscured and the image is saved in .debug/images/."
+
+msgid "调试按钮"
+msgstr "Debug button"
+
+msgid "用于开发，部分应用开始调试"
+msgstr "For development; starts debugging in supported applications."
+
+msgid "多账户管理"
+msgstr "Multi-account management"
+
+msgid "自定义窗口标题"
+msgstr "Custom window title"
+
+msgid "B服用户名"
+msgstr "Bilibili server username"
+
+msgid "B服为选择已有登录记录的用户进行登录，需要先手动登录游戏"
+msgstr "For the Bilibili server, select a user from existing login records. You must first log in to the game manually."
+
+msgid "强制重新登录"
+msgstr "Force re-login"
+
+msgid "单账号运行且自动打开游戏时，开启后会使用当前账号配置重登，关闭时则直接使用游戏当前登录状态"
+msgstr "When running a single account with automatic game launch, enable this to log in again using the current account settings; otherwise, use the game's current login session."
+
+msgid "开启后可自定义主题色"
+msgstr "Enable to customize the theme color."
+
+msgid "主页背景类型"
+msgstr "Home page background type"
+
+msgid "选择主页显示的背景"
+msgstr "Choose the background displayed on the home page."
+
+msgid "合并模式失败节点立即通知"
+msgstr "Notify immediately of failed nodes in combined mode"
+
+msgid "节点通知为全部合并时，失败节点会额外立即推送"
+msgstr "When all node notifications are combined, failed nodes also trigger an immediate notification."
+
+msgid "测试通知方式"
+msgstr "Test notification method"
+
+msgid "发送测试消息验证通知配置"
+msgstr "Send a test message to verify the notification settings."
+
+msgid "生成 cURL 命令"
+msgstr "Generate cURL command"
+
+msgid "节点通知"
+msgstr "Node notifications"
+
+msgid "锄大地配置"
+msgstr "Open-world farming settings"
+
+msgid "恶名狩猎（周期挑战）开始日"
+msgstr "Notorious Hunt (periodic challenge) start day"
+
+msgid "从开始日起才会自动运行。当日未完成会顺延到次日，直到当周完成/结束"
+msgstr "Automatic runs begin on the start day. If unfinished, the task is postponed until the next day, until completed or the week ends."
+
+msgid "循环执行"
+msgstr "Repeat"
+
+msgid "开启后，除本次已跳过的特训目标外，其余计划均已完成时会重置全部计划"
+msgstr "When enabled, all plans are reset once every plan is complete, excluding special training targets skipped in this run."
+
+msgid "拆解等级"
+msgstr "Dismantling rank"
+
+msgid "传送地点"
+msgstr "Teleport destination"
+
+msgid "自动托管"
+msgstr "Automatic management"
+
+msgid "启用后选择游戏内自动托管经营随便观相关任务，随便观35级后可用"
+msgstr "When enabled, select in-game automatic management for Suibian Temple tasks. Available after Suibian Temple reaches level 35."
+
+msgid "饮茶仙"
+msgstr "Tea Immortal"
+
+msgid "饮茶仙-委托刷新"
+msgstr "Tea Immortal - Refresh commissions"
+
+msgid "派遣-时长"
+msgstr "Dispatch - Duration"
+
+msgid "派遣-副本优先级"
+msgstr "Dispatch - Stage priority"
+
+msgid "按优先级将剩余小队派遣"
+msgstr "Dispatch remaining squads in priority order."
+
+msgid "制造坊-最大下拉次数"
+msgstr "Workshop - Maximum scroll-down attempts"
+
+msgid "跳过底部的低级商品"
+msgstr "Skip low-level items at the bottom."
+
+msgid "好物铺购买"
+msgstr "Goods shop purchases"
+
+msgid "自动购买好物铺中的指定商品"
+msgstr "Automatically buy selected items from the goods shop."
+
+msgid "邦巢-购买"
+msgstr "Bangboo nest - Purchases"
+
+msgid "自动刷新购买S级别邦布。随便观25级后可用。"
+msgstr "Automatically refresh and purchase S-rank Bangboo. Available after Suibian Temple reaches level 25."
+
+msgid "邦巢-最低购买价格"
+msgstr "Bangboo nest - Minimum purchase price"
+
+msgid "枯萎之都配置"
+msgstr "Withering Garden settings"
+
+msgid "刷满经验"
+msgstr "Farm until EXP is full"
+
+msgid "选择签到商店"
+msgstr "Select check-in shop"
+
+msgid "每日次数"
+msgstr "Daily attempts"
+
+msgid "迷失之地配置"
+msgstr "Lost Void settings"
+
+msgid "选择前往的咖啡店"
+msgstr "Select the coffee shop to visit."
+
+msgid "咖啡店在体力计划后运行可开启"
+msgstr "Can be enabled when the coffee shop runs after the battery charge plan."
+
+msgid "战斗助手"
+msgstr "Combat assistant"
+
+msgid "GPU运算"
+msgstr "GPU processing"
+
+msgid "游戏画面掉帧的话 可以不启用"
+msgstr "Disable this if the game drops frames."
+
+msgid "截图间隔 (秒)"
+msgstr "Screenshot interval (seconds)"
+
+msgid "一般默认0.02，除非电脑很卡。优先通过设置游戏30帧和低画质给AI留算力"
+msgstr "The usual default is 0.02, unless the computer is very slow. First try setting the game to 30 FPS and low graphics to free up computing power for AI."
+
+msgid "先看说明 再使用与提问"
+msgstr "Read the instructions before using or asking questions."
+
+msgid "全配队通用会自动为您的队伍匹配专属配队，遇到问题请反馈。"
+msgstr "The universal team configuration automatically matches your team to a dedicated configuration. Please report any problems."
+
+msgid "终结技一好就放"
+msgstr "Use Ultimate as soon as available"
+
+msgid "终结技无视时机立刻释放"
+msgstr "Use the Ultimate immediately when available, regardless of timing."
+
+msgid "使用合并配置文件"
+msgstr "Use merged configuration file"
+
+msgid "关闭用于调试模板文件 正常开启即可"
+msgstr "Disable to debug template files; normally leave enabled."
+
+msgid "闪避方式"
+msgstr "Dodge method"
+
+msgid "大地图录制"
+msgstr "World map recording"
+
+msgid "区域"
+msgstr "Area"
+
+msgid "使用图标计算坐标"
+msgstr "Calculate coordinates using icons"
+
+msgid "图标匹配阈值"
+msgstr "Icon matching threshold"
+
+msgid "调整图标识别的匹配阈值，默认0.7"
+msgstr "Adjust the matching threshold for icon recognition. Default: 0.7."
+
+msgid "缩放"
+msgstr "Zoom"
+
+msgid "调整大地图的，只有第一次需要"
+msgstr "Adjust the world map zoom; only required the first time."
+
+msgid "角色坐标"
+msgstr "Character coordinates"
+
+msgid "点击大地图可更新坐标"
+msgstr "Click the world map to update the coordinates."
+
+msgid "界面消失预警时间"
+msgstr "UI disappearance warning time"
+
+msgid "UI完全消失持续到该秒数后判定为卡电梯"
+msgstr "If the UI remains completely absent for this many seconds, the character is considered stuck in an elevator."
+
+msgid "单条路线重试上限"
+msgstr "Retry limit per route"
+
+msgid "单条路线累计重试次数，超限后跳过该路线"
+msgstr "Maximum cumulative retries for a route; skip it when the limit is exceeded."
+
+msgid "锄地每日循环次数"
+msgstr "Daily farming cycles"
+
+msgid "一次任务执行内总共执行的轮数"
+msgstr "Total number of cycles in one task run."
+
+msgid "路线名单"
+msgstr "Route list"
+
+msgid "界面消失处理方式"
+msgstr "Action when UI disappears"
+
+msgid "判定为疑似卡电梯后的处理方式"
+msgstr "Action to take when the character is suspected to be stuck in an elevator."
+
+msgid "路线重试处理方式"
+msgstr "Route retry behavior"
+
+msgid "路线脱困失败，重试后再次卡住时的处理方式"
+msgstr "Action to take if recovery fails and the character gets stuck again after retrying the route."
+
+msgid "每轮最少占用时长（敌人刷新时间）"
+msgstr "Minimum cycle duration (enemy respawn time)"
+
+msgid "每轮跑完：不足则补等到该秒数，超过则立即开始下一轮"
+msgstr "After each cycle, wait until this duration has elapsed; if already exceeded, start the next cycle immediately."
+
+msgid "锄地路线录制"
+msgstr "Farming route recording"
+
+msgid "路线"
+msgstr "Route"
+
+msgid "编辑"
+msgstr "Edit"
+
+msgid "传送点"
+msgstr "Teleport point"
+
+msgid "选择路线起始传送点"
+msgstr "Select the route's starting teleport point."
+
+msgid "可选择从第几步开始, 0代表需要传送，1代表已完成第1步"
+msgstr "Choose the starting step: 0 means teleporting is required; 1 means step 1 is complete."
+
+msgid "点击后自动追加移动"
+msgstr "Automatically append a movement after clicking."
+
+msgid "路线列表"
+msgstr "Route list"
+
+msgid "名单选择"
+msgstr "Select list"
+
+msgid "区域选择"
+msgstr "Select area"
+
+msgid "添加路线"
+msgstr "Add route"
+
+msgid "顺序调整"
+msgstr "Change order"
+
+msgid "账户管理"
+msgstr "Account management"
+
+msgid "代理人模板生成"
+msgstr "Agent template generator"
+
+msgid "截图助手"
+msgstr "Screenshot assistant"
+
+msgid "截图间隔(秒)"
+msgstr "Screenshot interval (seconds)"
+
+msgid "持续时间(秒)"
+msgstr "Duration (seconds)"
+
+msgid "保存截图按键"
+msgstr "Save screenshots hotkey"
+
+msgid "按下后，保存 持续时间(秒) 内的截图，用于捕捉漏判"
+msgstr "Press to save screenshots for the specified duration, to capture missed detections."
+
+msgid "闪避检测"
+msgstr "Dodge detection"
+
+msgid "脚本识别黄光红光时，自动截图，用于捕捉误判"
+msgstr "Automatically take screenshots when the script detects a yellow or red flash, to capture false detections."
+
+msgid "按键前截图"
+msgstr "Screenshot before key press"
+
+msgid "开启时截图按键之前的画面，关闭时截图按键之后的画面"
+msgstr "When enabled, capture the screen before the key press; otherwise, capture it afterward."
+
+msgid "小地图朝向检测"
+msgstr "Minimap orientation detection"
+
+msgid "无法计算朝向时截图"
+msgstr "Take a screenshot when orientation cannot be calculated."
+
+msgid "端口"
+msgstr "Port"
+
+msgid "仅监听 127.0.0.1"
+msgstr "Listen on 127.0.0.1 only"
+
+msgid "服务状态"
+msgstr "Service status"
+
+msgid "尚未探测"
+msgstr "Not yet checked"
+
+msgid "MCP 地址"
+msgstr "MCP address"
+
+msgid "服务控制"
+msgstr "Service control"
+
+msgid "按当前端口管理本机 zzz_od.backend.entry.server 进程"
+msgstr "Manage the local zzz_od.backend.entry.server process on the current port."
+
+msgid "尚未读取"
+msgstr "Not yet read"
+
+msgid "在 config/auto_battle_operation 文件夹"
+msgstr "In the config/auto_battle_operation folder"
+
+msgid "不断重复指令 确保可以连贯执行"
+msgstr "Repeat commands continuously to ensure they can execute in sequence."
+
+msgid "挑战配置-枯"
+msgstr "Challenge configuration - Withering Garden"
+
+msgid "默认配置复制后可修改"
+msgstr "Copy the default configuration to modify it."
+
+msgid "目标配队"
+msgstr "Target team"
+
+msgid "按照自动战斗配置 选择角色位置"
+msgstr "Select character positions according to the auto-battle configuration."
+
+msgid "仅购买优先级"
+msgstr "Buy priority items only"
+
+msgid "邦布商人购买时只购买符合优先级的"
+msgstr "Only buy items matching the priority list from the Bangboo merchant."
+
+msgid "寻路方式"
+msgstr "Pathfinding method"
+
+msgid "选择空洞及难度等级"
+msgstr "Select the Hollow and difficulty level."
+
+msgid "每周基础次数"
+msgstr "Base weekly runs"
+
+msgid "完整通关，用于完成委托任务"
+msgstr "Complete full runs to finish commissions."
+
+msgid "额外刷取"
+msgstr "Extra farming"
+
+msgid "完成基础次数后，继续刷取"
+msgstr "Continue farming after completing the base runs."
+
+msgid "选择角色、鸣徽和事件"
+msgstr "Select characters, Resonia, and events."
+
+msgid "将空洞分摊到每天运行"
+msgstr "Spread Hollow runs across the week."
+
+msgid "额外刷取方式"
+msgstr "Extra farming method"
+
+msgid "额外刷取时，选择何时退出"
+msgstr "Choose when to exit during extra farming."
+
+msgid "挑战配置-迷"
+msgstr "Challenge configuration - Lost Void"
+
+msgid "当期UP代理人"
+msgstr "Current featured Agent"
+
+msgid "每周第1次 优先选择包含当期UP的编队"
+msgstr "On the first run each week, prefer a team containing the current featured Agent."
+
+msgid "矩阵行动 - 手动选择代理人"
+msgstr "Matrix Operation - Select Agents manually"
+
+msgid "需要在下框配置代理人 可用试用角色（矩阵行动无法保存默认配队）"
+msgstr "Configure Agents below; trial characters can be used. Matrix Operation cannot save a default team."
+
+msgid "预备编队使用游戏内配队时生效"
+msgstr "Applies when preset teams use the in-game team."
+
+msgid "追新模式"
+msgstr "Prioritize upgrades"
+
+msgid "优先选择未满级的调查战略，开启后将禁用下方的调查战略选项"
+msgstr "Prioritize Investigation Strategies that are not at maximum level. Enabling this disables the Investigation Strategy options below."
+
+msgid "调查战略"
+msgstr "Investigation Strategy"
+
+msgid "周期增益"
+msgstr "Cycle buff"
+
+msgid "商店-使用金币购买"
+msgstr "Shop - Purchase with coins"
+
+msgid "想不买东西速刷时或在刷取成就:「空洞金融大亨」时关闭"
+msgstr "Disable when speedrunning without purchases or farming the achievement \"Hollow Financial Tycoon\"."
+
+msgid "商店-使用血量购买"
+msgstr "Shop - Purchase with HP"
+
+msgid "练度低情况下 仅建议绝境武备开启"
+msgstr "For underdeveloped teams, enabling this is only recommended for Deadly Assault Armaments."
+
+msgid "血量 ≥ x% 时 才会进行购买"
+msgstr "Only purchase when HP is at least x%."
+
+msgid "优先选择NEW!藏品"
+msgstr "Prioritize NEW! collectibles"
+
+msgid "最高优先级 但不保证识别正确"
+msgstr "Highest priority, but recognition is not guaranteed to be accurate."
+
+msgid "x次内只买高优先级"
+msgstr "Buy only high-priority items for x rounds"
+
+msgid "到达第 x 轮（已刷新 x-1 次）后 才购买高优先级之外的藏品"
+msgstr "Only buy collectibles outside the high-priority list upon reaching round x (after x-1 refreshes)."
+
+msgid "选择副本"
+msgstr "Select stage"
+
+msgid "刷取目标"
+msgstr "Farming target"
+
+msgid "分摊到每天运行"
+msgstr "Spread runs across the week"
+
+msgid "体力计划"
+msgstr "Battery charge plan"
+
+msgid "跳过计划"
+msgstr "Skip plan"
+
+msgid "开启后，某项计划因电量不足且无法恢复达标时，会依次尝试后续计划"
+msgstr "When enabled, if a plan lacks sufficient battery charge and cannot restore enough, subsequent plans are tried in order."
+
+msgid "每日重置"
+msgstr "Daily reset"
+
+msgid "开启后，每天首次运行体力计划前，会将所有体力计划已运行次数清零"
+msgstr "When enabled, reset the completed run counts of all battery charge plans before the first run each day."
+
+msgid "恢复电量"
+msgstr "Restore battery charge"
+
+msgid "电量不足时尝试按所选方式有效补足缺口"
+msgstr "When battery charge is insufficient, try to make up the shortfall using the selected method."
+
+msgid "双倍活动"
+msgstr "Double rewards event"
+
+msgid "有活动时自动添加对应任务"
+msgstr "Automatically add the corresponding task during an event."
+
+msgid "启用双倍活动"
+msgstr "Enable double rewards event"
+
+msgid "删除体力计划"
+msgstr "Delete battery charge plan"
+
+msgid "灵敏度校准"
+msgstr "Sensitivity calibration"
+
+msgid "预备编队识别"
+msgstr "Preset team recognition"
+
+msgid "键盘按键"
+msgstr "Keyboard keys"
+
+msgid "游戏在后台时暂停"
+msgstr "Pause when the game is in the background"
+
+msgid "对话选项优先级"
+msgstr "Dialogue option priority"
+
+msgid "对话点击间隔(秒)"
+msgstr "Dialogue click interval (seconds)"
+
+msgid "剧情模式"
+msgstr "Story mode"
+
+msgid "无内容时等待时间(秒)"
+msgstr "Wait time when no content is detected (seconds)"
+
+msgid "当画面检测不到任何内容时, 开启下一轮检测的等待时间"
+msgstr "Time to wait before the next detection attempt when no content is detected on screen."
+
+msgid "自动闪避"
+msgstr "Auto-dodge"
+
+msgid "自动闪避开关"
+msgstr "Auto-dodge toggle"
+
+msgid "按键后，进入/退出自动闪避"
+msgstr "Press the key to start or stop auto-dodge."
+
+msgid "自动战斗开关"
+msgstr "Auto-battle toggle"
+
+msgid "按键后，进入/退出自动战斗"
+msgstr "Press the key to start or stop auto-battle."
+
+msgid "启动 F9"
+msgstr "Start F9"
+
+msgid "停止 F10"
+msgstr "Stop F10"
+
+msgid "重启 F11"
+msgstr "Restart F11"
+
+msgid "点此查看指南"
+msgstr "View Guide"
+
+msgid "加载图片"
+msgstr "Load Image"
+
+msgid "应用颜色过滤"
+msgstr "Apply Color Filter"
+
+msgid "保存扣图结果"
+msgstr "Save Extracted Image"
+
+msgid "保存掩码图"
+msgstr "Save Mask"
+
+msgid "清空图像"
+msgstr "Clear Images"
+
+msgid "加载底图"
+msgstr "Load Base Image"
+
+msgid "加载第二张图"
+msgstr "Load Second Image"
+
+msgid "自动匹配"
+msgstr "Auto Match"
+
+msgid "X偏移"
+msgstr "X Offset"
+
+msgid "Y偏移"
+msgstr "Y Offset"
+
+msgid "合并图像"
+msgstr "Merge Images"
+
+msgid "保存结果"
+msgstr "Save Result"
+
+msgid "设置说明"
+msgstr "Settings Guide"
+
+msgid "语言、主题和背景调整后，部分效果可能需要重启后生效"
+msgstr "Some language, theme, or background changes may require a restart."
+
+msgid "不清楚用途时建议保持默认，下载失败或无法截图时再按说明调整"
+msgstr "Keep the defaults unless downloads or screenshots fail, then follow the instructions."
+
+msgid "点击启用后到各模块进行设置，各账户之间的设置是独立的。"
+msgstr "Enable this account and configure each module. Settings are independent for each account."
+
+msgid "B服使用提示"
+msgstr "Bilibili Server Notice"
+
+msgid "B服在登录时会采用BitBlt的截图方法用于识别登录框，登录后还原。"
+msgstr "The Bilibili server uses BitBlt screenshots to recognize the login dialog, then restores the previous capture method."
+
+msgid "配置运行通知的推送方式或渠道，所有已配置的渠道都会启用"
+msgstr "Configure run notifications. All configured channels will be enabled."
+
+msgid "测试当前方式"
+msgstr "Test Current Method"
+
+msgid "测试全部"
+msgstr "Test All"
+
+msgid "PowerShell 风格"
+msgstr "PowerShell Style"
+
+msgid "Unix 风格"
+msgstr "Unix Style"
+
+msgid "绑定单聊"
+msgstr "Link Direct Chat"
+
+msgid "绑定群聊"
+msgstr "Link Group Chat"
+
+msgid "重置记录"
+msgstr "Reset Record"
+
+msgid "体力计划说明"
+msgstr "Battery Plan Guide"
+
+msgid "合理安排每日体力消耗，支持自定义优先级和循环执行"
+msgstr "Plan daily battery use with custom priorities and repeated runs."
+
+msgid "点击「开始」后将自动校准鼠标转向灵敏度，用于视角转动"
+msgstr "Select Start to automatically calibrate mouse sensitivity for turning the camera."
+
+msgid "游戏路径、输入方式等基础设置，建议首次使用前检查一遍"
+msgstr "Check basic settings such as the game path and input method before first use."
+
+msgid "应用运行说明"
+msgstr "Application Guide"
+
+msgid "从应用列表中选择单个功能模块独立运行，无需跑完整的一条龙流程"
+msgstr "Select a single application to run without starting the full OneDragon routine."
+
+msgid "截图(1)"
+msgstr "Screenshot (1)"
+
+msgid "定位(2)"
+msgstr "Locate (2)"
+
+msgid "重叠(3)"
+msgstr "Overlap (3)"
+
+msgid "合并(4)"
+msgstr "Merge (4)"
+
+msgid "回退"
+msgstr "Undo"
+
+msgid "编辑图标"
+msgstr "Edit Icons"
+
+msgid "添加整个区域"
+msgstr "Add Entire Area"
+
+msgid "添加单条路线"
+msgstr "Add Route"
+
+msgid "移除"
+msgstr "Remove"
+
+msgid "编辑操作"
+msgstr "Edit Actions"
+
+msgid "添加移动(4)"
+msgstr "Add Move (4)"
+
+msgid "回退(5)"
+msgstr "Undo (5)"
+
+msgid "请先加载图片并选择区域"
+msgstr "Load an image and select a region first."
+
+msgid "颜色值格式错误，请使用 \"R,G,B\" 或 \"H,S,V\" 格式"
+msgstr "Invalid color format. Use \"R,G,B\" or \"H,S,V\"."
+
+msgid "扣图结果已保存"
+msgstr "Extracted image saved."
+
+msgid "掩码图已保存"
+msgstr "Mask saved."
+
+msgid "颜色过滤失败: {error}"
+msgstr "Color filtering failed: {error}"
+
+msgid "加载图片失败: {error}"
+msgstr "Failed to load image: {error}"
+
+msgid "保存失败: {error}"
+msgstr "Save failed: {error}"
+
+msgid "左边"
+msgstr "Left"
+
+msgid "右边"
+msgstr "Right"
+
+msgid "上边"
+msgstr "Top"
+
+msgid "下边"
+msgstr "Bottom"
+
+msgid "确认清空"
+msgstr "Confirm Clear"
+
+msgid "确定要清空所有图像吗？"
+msgstr "Clear all images?"
+
+msgid "请先加载两张图像"
+msgstr "Load both images first."
+
+msgid "请先加载第二张图"
+msgstr "Load the second image first."
+
+msgid "没有可保存的图像"
+msgstr "There is no image to save."
+
+msgid "图像保存成功"
+msgstr "Image saved."
+
+msgid "自动匹配失败: {error}"
+msgstr "Automatic matching failed: {error}"
+
+msgid "图像合并失败: {error}"
+msgstr "Image merge failed: {error}"
+
+msgid "加载底图失败: {error}"
+msgstr "Failed to load base image: {error}"
+
+msgid "加载第二张图失败: {error}"
+msgstr "Failed to load second image: {error}"
+
+msgid "\nHSV中心: {center_hsv}"
+msgstr "\nHSV center: {center_hsv}"
+
+msgid "\nHSV差值: {diff_hsv}"
+msgstr "\nHSV difference: {diff_hsv}"
+
+msgid "像素颜色信息"
+msgstr "Pixel Color Information"
+
+msgid "点击位置: ({x}, {y})\nRGB: ({r}, {g}, {b})\nHSV: ({h}, {s}, {v})"
+msgstr "Position: ({x}, {y})\nRGB: ({r}, {g}, {b})\nHSV: ({h}, {s}, {v})"
+
+msgid "正在发送测试消息..."
+msgstr "Sending test message..."
+
+msgid "绑定 QQ 机器人"
+msgstr "Link QQ Bot"
+
+msgid "保存路线列表失败"
+msgstr "Failed to save route list"
+
+msgid "删除路线列表失败"
+msgstr "Failed to delete route list"
+
+msgid "当前区域没有可用路线"
+msgstr "No routes are available in the current area."
+
+msgid "选择底图"
+msgstr "Select Base Image"
+
+msgid "选择第二张图"
+msgstr "Select Second Image"
+
+msgid "保存图像"
+msgstr "Save Image"
+
+msgid "自动裁剪:"
+msgstr "Auto crop:"
+
+msgid "[ 新建流水线... ]"
+msgstr "[ Create new pipeline... ]"
+
+msgid "公告要闻"
+msgstr "Announcements"
+
+msgid "软件科研"
+msgstr "Software Research"
+
+msgid "游戏攻略"
+msgstr "Game Guides"
+
+msgid "画中画"
+msgstr "Picture-in-Picture"
+
+msgid "画中画已关闭，点击开启后游戏切到后台自动显示画中画"
+msgstr "Picture-in-Picture is off. Click to show it automatically when the game is in the background."
+
+msgid "画中画已开启，游戏切到后台会自动显示，点击画中画切回游戏"
+msgstr "Picture-in-Picture is on. It appears when the game is in the background; click it to return to the game."
+
+msgid "战斗-连携条"
+msgstr "Combat - Chain Attack Bar"
+
+msgid "调查战略等级分析"
+msgstr "Investigation Strategy Level Analysis"
+
+msgid "调查战略无等级圈圈"
+msgstr "Investigation Strategy No-Level Circle"
+
+msgid "调查战略等级圈圈"
+msgstr "Investigation Strategy Level Circle"
+
+msgid "防卫战倒计时-精英"
+msgstr "Defense Battle Countdown - Elite"
+
+msgid "防卫战倒计时"
+msgstr "Defense Battle Countdown"
+
+msgid "防卫战空洞传送点"
+msgstr "Defense Battle Hollow Teleport Point"
+
+msgid "迷失之地-武备列表检测"
+msgstr "Lost Land - Equipment List Detection"
+
+msgid "迷失之地-武备等级检测"
+msgstr "Lost Land - Equipment Level Detection"
+
+msgid "迷失之地-藏品类型识别"
+msgstr "Lost Land - Collection Type Recognition"
+
+msgid "电量检测"
+msgstr "Energy Detection"
+
+msgid "【支援反击】高级作战技巧"
+msgstr "[Defensive Assist] Advanced Combat Techniques"
+
+msgid "般岳小技巧与操作手法"
+msgstr "Banyue Tips and Techniques"
+
+msgid "省流版伊芙琳失衡输出轴"
+msgstr "Evelyn Stun Rotation: Quick Guide"
