@@ -241,7 +241,7 @@ class PhosTitleBar(SplitTitleBar):
         """
         self.launch_tag = tag
         if tag:
-            self.launchTagLabel.setText(tag)
+            self.launchTagLabel.setText(gt(tag))
             self.launchTagLabel.setVisible(True)
         else:
             self.launchTagLabel.setVisible(False)

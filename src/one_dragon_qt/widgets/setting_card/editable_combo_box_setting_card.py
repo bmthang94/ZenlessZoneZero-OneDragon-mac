@@ -12,6 +12,7 @@ from typing import Optional, List, Iterable
 from typing import Union
 
 from one_dragon.base.config.config_item import ConfigItem
+from one_dragon.utils.i18_utils import gt
 from one_dragon_qt.utils.layout_utils import Margins, IconSize
 from one_dragon_qt.widgets.adapter_init_mixin import AdapterInitMixin
 from one_dragon_qt.widgets.editable_combo_box import EditableComboBox
@@ -165,7 +166,7 @@ class EditableComboBoxSettingCard(SettingCardBase, AdapterInitMixin):
         """更新描述显示。"""
         if self.combo_box.currentIndex() >= 0:
             desc = self._opts_list[self.combo_box.currentIndex()].desc
-            self.setContent(desc)
+            self.setContent(gt(desc))
 
     def setValue(self, value: object, emit_signal: bool = True) -> None:
         """设置下拉框的值。"""

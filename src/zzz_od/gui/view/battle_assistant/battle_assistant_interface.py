@@ -115,11 +115,11 @@ class BattleAssistantInterface(AppRunInterface):
         # SegmentedWidget 模式切换
         self.mode_segment = SegmentedWidget()
         self.mode_segment.addItem(
-            routeKey=self.MODE_AUTO_BATTLE, text=self.MODE_AUTO_BATTLE,
+            routeKey=self.MODE_AUTO_BATTLE, text=gt(self.MODE_AUTO_BATTLE),
             onClick=lambda: self._apply_mode(self.MODE_AUTO_BATTLE),
         )
         self.mode_segment.addItem(
-            routeKey=self.MODE_DODGE_ASSISTANT, text=self.MODE_DODGE_ASSISTANT,
+            routeKey=self.MODE_DODGE_ASSISTANT, text=gt(self.MODE_DODGE_ASSISTANT),
             onClick=lambda: self._apply_mode(self.MODE_DODGE_ASSISTANT),
         )
         top.add_widget(self.mode_segment)

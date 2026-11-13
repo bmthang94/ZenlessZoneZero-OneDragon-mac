@@ -3885,3 +3885,237 @@ msgstr "Banyue Tips and Techniques"
 
 msgid "省流版伊芙琳失衡输出轴"
 msgstr "Evelyn Stun Rotation: Quick Guide"
+
+msgid "一条龙运行"
+msgstr "OneDragon Run"
+
+msgid "随机"
+msgstr "Random"
+
+msgid "源码"
+msgstr "Source"
+
+msgid "集成"
+msgstr "Bundled"
+
+msgid "六分街 - 咖啡店"
+msgstr "Sixth Street - Coffee Shop"
+
+msgid "澄辉坪 - 汀曼咖啡"
+msgstr "Chenghui Terrace - Tin Master Coffee"
+
+msgid "布亚斯特城区 - 片刻闲"
+msgstr "Buyasite District - Moment of Rest"
+
+msgid "录像店 - 柜台"
+msgstr "Video Store - Counter"
+
+msgid "澄辉坪 - 录像店营业点"
+msgstr "Chenghui Terrace - Video Store"
+
+msgid "布亚斯特城区 - 录像店营业点"
+msgstr "Buyasite District - Video Store"
+
+msgid "专属配队-艾莲"
+msgstr "Ellen Team"
+
+msgid "专属配队-莱卡恩"
+msgstr "Lycaon Team"
+
+msgid "专属配队-莱特"
+msgstr "Lighter Team"
+
+msgid "全配队通用"
+msgstr "Universal Team"
+
+msgid "击破站场-强攻速切"
+msgstr "Stun On-Field - Attack Quick Swap"
+
+msgid "异常站场-强攻速切"
+msgstr "Anomaly On-Field - Attack Quick Swap"
+
+msgid "强攻站场-击破支援速切"
+msgstr "Attack On-Field - Stun Support Quick Swap"
+
+msgid "自动守护"
+msgstr "Auto Guard"
+
+msgid "[触发器]"
+msgstr "[Trigger]"
+
+msgid "[条件集]"
+msgstr "[Conditions]"
+
+msgid "[持续时间]"
+msgstr "[Duration]"
+
+msgid "安比"
+msgstr "Anby"
+
+msgid "安东"
+msgstr "Anton"
+
+msgid "本"
+msgstr "Ben"
+
+msgid "比利"
+msgstr "Billy"
+
+msgid "可琳"
+msgstr "Corin"
+
+msgid "格莉丝"
+msgstr "Grace"
+
+msgid "珂蕾妲"
+msgstr "Koleda"
+
+msgid "露西"
+msgstr "Lucy"
+
+msgid "莱卡恩"
+msgstr "Lycaon"
+
+msgid "猫又"
+msgstr "Nekomata"
+
+msgid "派派"
+msgstr "Piper"
+
+msgid "丽娜"
+msgstr "Rina"
+
+msgid "11号"
+msgstr "Soldier 11"
+
+msgid "苍角"
+msgstr "Soukaku"
+
+msgid "朱鸢"
+msgstr "Zhu Yuan"
+
+msgid "青衣"
+msgstr "Qingyi"
+
+msgid "简"
+msgstr "Jane Doe"
+
+msgid "赛斯"
+msgstr "Seth Lowell"
+
+msgid "凯撒"
+msgstr "Caesar King"
+
+msgid "柏妮思"
+msgstr "Burnice White"
+
+msgid "柳"
+msgstr "Yanagi"
+
+msgid "莱特"
+msgstr "Lighter"
+
+msgid "悠真"
+msgstr "Asaba Harumasa"
+
+msgid "雅"
+msgstr "Hoshimi Miyabi"
+
+msgid "伊芙琳"
+msgstr "Evelyn Chevalier"
+
+msgid "零号安比"
+msgstr "Soldier 0 Anby"
+
+msgid "波可娜"
+msgstr "Pulchra"
+
+msgid "扳机"
+msgstr "Trigger"
+
+msgid "薇薇安"
+msgstr "Vivian"
+
+msgid "雨果"
+msgstr "Hugo Vlad"
+
+msgid "潘引壶"
+msgstr "Panyinhu"
+
+msgid "橘福福"
+msgstr "Ju Fufu"
+
+msgid "浮波柚叶"
+msgstr "Yuzuha"
+
+msgid "爱丽丝"
+msgstr "Alice"
+
+msgid "席德"
+msgstr "Seed"
+
+msgid "奥菲丝"
+msgstr "Orphie"
+
+msgid "卢西娅"
+msgstr "Lucia"
+
+msgid "真斗"
+msgstr "Manato"
+
+msgid "伊德海莉"
+msgstr "Yidhari"
+
+msgid "琉音"
+msgstr "Dialyn"
+
+msgid "般岳"
+msgstr "Banyue"
+
+msgid "照"
+msgstr "Zhao"
+
+msgid "千夏"
+msgstr "Sunna"
+
+msgid "叶瞬光"
+msgstr "Yeshunguang"
+
+msgid "爱芮"
+msgstr "Aria"
+
+msgid "南宫羽"
+msgstr "Nangongyu"
+
+msgid "希希芙"
+msgstr "Cissia"
+
+msgid "普罗米娅"
+msgstr "Promeia"
+
+msgid "维琳娜"
+msgstr "Velina"
+
+msgid "佩洛伊斯"
+msgstr "Pyrois Wise"
+
+msgid "星辉比利"
+msgstr "Starlight Billy Kid"
+
+msgid "诺姆"
+msgstr "Norma"
+
+msgid "蕾米埃尔"
+msgstr "Remielle"
+
+msgid "希格莉德"
+msgstr "Sigrid"
+
+msgid "克拉蕾"
+msgstr "Claret"
+
+msgid "洛克茜"
+msgstr "Roxy"
+
+msgid "菲欧妮"
+msgstr "Phoenix"

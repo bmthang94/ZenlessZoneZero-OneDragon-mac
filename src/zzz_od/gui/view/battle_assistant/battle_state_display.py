@@ -224,7 +224,7 @@ class TaskDisplay(TableWidget):
 
         for i, row in enumerate(data):
             for col in range(2):
-                self.setItem(i, col, QTableWidgetItem(row[col]))
+                self.setItem(i, col, QTableWidgetItem(gt(row[col]) if col == 0 else row[col]))
 
         # 设置表格高度为行高总和
         self.adjustTableHeight()
@@ -249,7 +249,7 @@ class TaskDisplay(TableWidget):
 
             for i, row in enumerate(data):
                 for col in range(2):
-                    self.setItem(i, col, QTableWidgetItem(row[col]))
+                    self.setItem(i, col, QTableWidgetItem(gt(row[col]) if col == 0 else row[col]))
 
             return
 
@@ -273,7 +273,7 @@ class TaskDisplay(TableWidget):
 
         for i, row in enumerate(data):
             for col in range(2):
-                self.setItem(i, col, QTableWidgetItem(row[col]))
+                self.setItem(i, col, QTableWidgetItem(gt(row[col]) if col == 0 else row[col]))
 
     def adjustTableHeight(self):
         total_height = 0
