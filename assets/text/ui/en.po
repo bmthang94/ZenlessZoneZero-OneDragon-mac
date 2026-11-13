@@ -4119,3 +4119,293 @@ msgstr "Roxy"
 
 msgid "菲欧妮"
 msgstr "Phoenix"
+
+# Battery charge plan
+msgid "实战模拟室"
+msgstr "Combat Simulation"
+
+msgid "基础材料"
+msgstr "Basic Materials"
+
+msgid "代理人经验"
+msgstr "Agent EXP"
+
+msgid "音擎经验"
+msgstr "W-Engine EXP"
+
+msgid "丁尼"
+msgstr "Dennies"
+
+msgid "驱动盘经验"
+msgstr "Drive Disc EXP"
+
+msgid "代理人晋升"
+msgstr "Agent Promotion"
+
+msgid "锋御"
+msgstr "Armorer"
+
+msgid "命破"
+msgstr "Rupture"
+
+msgid "强攻"
+msgstr "Attack"
+
+msgid "击破"
+msgstr "Stun"
+
+msgid "异常"
+msgstr "Anomaly"
+
+msgid "支援"
+msgstr "Support"
+
+msgid "防护"
+msgstr "Defense"
+
+msgid "音擎改装"
+msgstr "W-Engine Modification"
+
+msgid "代理人技能"
+msgstr "Agent Skills"
+
+msgid "物理"
+msgstr "Physical"
+
+msgid "火属性"
+msgstr "Fire"
+
+msgid "冰属性"
+msgstr "Ice"
+
+msgid "电属性"
+msgstr "Electric"
+
+msgid "风属性"
+msgstr "Wind"
+
+msgid "以太"
+msgstr "Ether"
+
+msgid "流明"
+msgstr "Lumen"
+
+msgid "自定义模板"
+msgstr "Custom Templates"
+
+msgid "自定义卡组1"
+msgstr "Custom Card Set 1"
+
+msgid "自定义卡组2"
+msgstr "Custom Card Set 2"
+
+msgid "自定义卡组3"
+msgstr "Custom Card Set 3"
+
+msgid "自定义卡组4"
+msgstr "Custom Card Set 4"
+
+msgid "自定义卡组5"
+msgstr "Custom Card Set 5"
+
+msgid "特训目标"
+msgstr "Special Training Target"
+
+msgid "区域巡防"
+msgstr "Routine Cleanup"
+
+msgid "摇摆爵士 混沌重金属"
+msgstr "Swing Jazz / Chaos Metal"
+
+msgid "激素朋克 獠牙重金属"
+msgstr "Hormone Punk / Fanged Metal"
+
+msgid "震星迪斯科 雷暴重金属"
+msgstr "Shockstar Disco / Thunder Metal"
+
+msgid "啄木鸟电音 灵魂摇滚"
+msgstr "Woodpecker Electro / Soul Rock"
+
+msgid "河豚电音 炎狱重金属"
+msgstr "Puffer Electro / Inferno Metal"
+
+msgid "自由蓝调 极地重金属"
+msgstr "Freedom Blues / Polar Metal"
+
+msgid "混沌爵士 原始朋克"
+msgstr "Chaos Jazz / Proto Punk"
+
+msgid "折枝剑歌 静听嘉音"
+msgstr "Branch & Blade Song / Astral Voice"
+
+msgid "如影相随 法厄同之歌"
+msgstr "Shadow Harmony / Phaethon's Melody"
+
+msgid "云岿如我 山大王"
+msgstr "Clouds Like Me / King of the Summit"
+
+msgid "拂晓生花 月光骑士颂"
+msgstr "Flowers at Dawn / Moonlight Knight's Hymn"
+
+msgid "沧浪行歌 流光咏叹"
+msgstr "Song of Waves / Aria of Light"
+
+msgid "雪兔梦游仙境 囚徒手记"
+msgstr "Snow Hare in Wonderland / Prisoner's Notes"
+
+msgid "呼啸沙龙 拂晓行纪"
+msgstr "Howling Salon / Journey at Dawn"
+
+msgid "谶羽之誓 荆棘玫瑰"
+msgstr "Oath of the Prophetic Feather / Thorny Rose"
+
+msgid "专业挑战室"
+msgstr "Expert Challenge"
+
+msgid "恶名·杜拉罕"
+msgstr "Notorious Dullahan"
+
+msgid "祸首·通缉打手"
+msgstr "Wanted Enforcer"
+
+msgid "恶名·装甲哈提"
+msgstr "Notorious Armored Hati"
+
+msgid "汉斯·蓄能型"
+msgstr "Hans - Energized Type"
+
+msgid "「提丰·重击者型」"
+msgstr "Typhon - Heavy Striker Type"
+
+msgid "蛮横力士"
+msgstr "Brutish Enforcer"
+
+msgid "多佩冈亚·简"
+msgstr "Doppelganger Jane"
+
+msgid "色雷斯人"
+msgstr "Thracian"
+
+msgid "伐木机"
+msgstr "Lumberjack"
+
+msgid "秽息蚀者·阿瓦鲁斯"
+msgstr "Corrupted Ethereal - Avarus"
+
+msgid "牲鬼·凶魁愚者"
+msgstr "Sacrifice - Foolish Chieftain"
+
+msgid "秽蚀·狛野真斗"
+msgstr "Corrupted Masato Kono"
+
+msgid "秽息行者·蝎骸"
+msgstr "Corrupted Wanderer - Scorpion Husk"
+
+msgid "牲鬼·卫律使者"
+msgstr "Sacrifice - Lawkeeper Envoy"
+
+msgid "空域戒戍者"
+msgstr "Airspace Sentinel"
+
+msgid "「征服者」"
+msgstr "The Conqueror"
+
+msgid "初生死路屠夫"
+msgstr "Dead End Butcher"
+
+msgid "未知复合侵蚀体"
+msgstr "Unknown Corruption Complex"
+
+msgid "冥宁芙·双子"
+msgstr "Twin Marionettes"
+
+msgid "「霸主侵蚀体·庞培」"
+msgstr "Overlord Ethereal - Pompey"
+
+msgid "牲鬼·布林格"
+msgstr "Sacrifice - Bringer"
+
+msgid "秽息司祭"
+msgstr "Corrupted Priest"
+
+msgid "彷徨猎手"
+msgstr "Wandering Hunter"
+
+msgid "魇缚者·叶释渊"
+msgstr "Nightmare Binder - Ye Shiyuan"
+
+msgid "猎血清道夫"
+msgstr "Bloodhunting Scavenger"
+
+msgid "基塔布鲁"
+msgstr "Kitabru"
+
+msgid "库萨里库"
+msgstr "Kusariku"
+
+msgid "合成电池"
+msgstr "Craft Batteries"
+
+msgid "恶名狩猎 深度追猎"
+msgstr "Notorious Hunt - Deep Pursuit"
+
+# Default team names
+msgid "编队1"
+msgstr "Team 1"
+
+msgid "编队2"
+msgstr "Team 2"
+
+msgid "编队3"
+msgstr "Team 3"
+
+msgid "编队4"
+msgstr "Team 4"
+
+msgid "编队5"
+msgstr "Team 5"
+
+msgid "编队6"
+msgstr "Team 6"
+
+msgid "编队7"
+msgstr "Team 7"
+
+msgid "编队8"
+msgstr "Team 8"
+
+msgid "编队9"
+msgstr "Team 9"
+
+msgid "编队10"
+msgstr "Team 10"
+
+msgid "编队11"
+msgstr "Team 11"
+
+msgid "编队12"
+msgstr "Team 12"
+
+msgid "编队13"
+msgstr "Team 13"
+
+msgid "编队14"
+msgstr "Team 14"
+
+msgid "编队15"
+msgstr "Team 15"
+
+msgid "编队16"
+msgstr "Team 16"
+
+msgid "编队17"
+msgstr "Team 17"
+
+msgid "编队18"
+msgstr "Team 18"
+
+msgid "编队19"
+msgstr "Team 19"
+
+msgid "编队20"
+msgstr "Team 20"
