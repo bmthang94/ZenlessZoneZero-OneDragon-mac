@@ -36,6 +36,8 @@ CLANGXX="$(xcrun --find clang++)"
 MACOS_SDK="$(xcrun --show-sdk-path)"
 
 if [[ ! -x "$CLIENT_BINARY" || "$CLIENT_SOURCE" -nt "$CLIENT_BINARY" ]]; then
+    tmp_binary="$CLIENT_BINARY.tmp.$$"
+    rm -f "$tmp_binary"
     "$CLANGXX" \
         -std=c++23 \
         -O2 \
@@ -45,10 +47,11 @@ if [[ ! -x "$CLIENT_BINARY" || "$CLIENT_SOURCE" -nt "$CLIENT_BINARY" ]]; then
         -I "$SOURCE_DIR/include" \
         -I "$SOURCE_DIR/vendor/vendor/include" \
         "$CLIENT_SOURCE" \
-        -o "$CLIENT_BINARY" \
+        -o "$tmp_binary" \
         -pthread
 
-    chmod 755 "$CLIENT_BINARY"
+    chmod 755 "$tmp_binary"
+    mv -f "$tmp_binary" "$CLIENT_BINARY"
     echo "已构建虚拟 HID 点击客户端：$CLIENT_BINARY"
 fi
 

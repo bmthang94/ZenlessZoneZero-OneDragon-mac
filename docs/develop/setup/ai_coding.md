@@ -1,163 +1,163 @@
-# AI 编码助手接入
+# AI Coding Assistant Integration
 
-本仓库支持多种 AI 编码助手（如 Claude Code、GitHub Copilot 等）协作开发。本文档说明如何把它们接入本项目，以及**新增的 AI 协作约定应该放到哪一级**。
+This repository supports collaborative development with multiple AI coding assistants, such as Claude Code and GitHub Copilot. This document explains how to integrate them into the project and **which level should hold new AI collaboration conventions**.
 
-## 核心原则：三级晋升
+## Core Principle: Three-Level Promotion
 
-新增任何"给 AI 看的约定"时，按下面的阶梯**从低到高**放——能放低就不放高：
+When adding any convention intended for AI assistants, start **from the lowest level and move upward** only when necessary:
 
-| 级别 | 位置 | 是否提交 | 适用 |
+| Level | Location | Committed? | Use case |
 |---|---|:---:|---|
-| **① 个人级** | `CLAUDE.local.md`（及各工具的本地文件） | ❌ gitignore | 只对自己有用的偏好、实验性约定。**先在这里试。** |
-| **② 项目级** | 工具的项目文件（如 `.claude/CLAUDE.md`、`.github/copilot-instructions.md`）或 `docs/develop/` 文档 | ✅ 提交 | 团队共享、但**某个工具特有**的内容。 |
-| **③ 统一源** | 根目录 `AGENTS.md` | ✅ 提交 | **跨工具通用**的项目知识（架构、硬约束、流程）。 |
+| **① Personal** | `CLAUDE.local.md` (and each tool's local files) | ❌ gitignored | Personal preferences and experimental conventions. **Try them here first.** |
+| **② Project** | Tool-specific project files, such as `.claude/CLAUDE.md` and `.github/copilot-instructions.md`, or documents in `docs/develop/` | ✅ Committed | Team-shared content that is **specific to one tool**. |
+| **③ Single source of truth** | Root-level `AGENTS.md` | ✅ Committed | Project knowledge that **applies across tools**, including architecture, hard constraints, and workflows. |
 
-**晋升路径**：① 个人级 →（证明对团队有用）→ ② 项目级 →（证明跨工具通用）→ ③ `AGENTS.md`。
+**Promotion path**: ① Personal → (proven useful to the team) → ② Project → (proven applicable across tools) → ③ `AGENTS.md`.
 
-- **工具特有**的内容（如 Claude 专属的 uv / context7 规则）**不进 `AGENTS.md`**，留在该工具的项目级文件里。
-- 只有"所有工具都该知道"的内容，才晋升到 `AGENTS.md`。
+- **Tool-specific** content, such as Claude-specific uv / context7 rules, **does not belong in `AGENTS.md`**. Keep it in that tool's project-level file.
+- Promote content to `AGENTS.md` only when every tool should know it.
 
-## AGENTS.md：统一源
+## AGENTS.md: The Single Source of Truth
 
-根目录 [AGENTS.md](../../../AGENTS.md) 是跨工具的单一信息源（项目架构、开发硬约束、提交流程）；详细编码规范见 [spec/agent_guidelines.md](../spec/agent_guidelines.md)。
+The root-level [AGENTS.md](../../../AGENTS.md) is the single source of truth across tools for project architecture, hard development constraints, and the commit workflow. See [spec/agent_guidelines.md](../spec/agent_guidelines.md) for detailed coding standards.
 
-> 修改这两份即等同于更新所有已接入工具的行为——前提是内容确实**跨工具通用**。否则按上面的阶梯放低一级。
+> Updating these two files effectively updates the behavior of every integrated tool, provided the content truly **applies across tools**. Otherwise, keep it one level lower in the hierarchy above.
 
-## 各工具接入
+## Tool Integration
 
-> **原则**：入口文件优先放该工具自己的**配置目录**（如 `.claude/`、`.github/`），而不是项目根目录，避免根目录堆积。最理想的是工具能直接读 `AGENTS.md`——这样根本不需要入口文件。
+> **Principle**: Prefer placing instruction entry files in each tool's own **configuration directory**, such as `.claude/` or `.github/`, rather than cluttering the project root. Ideally, the tool can read `AGENTS.md` directly, making an entry file unnecessary.
 
-### Claude Code（用 `@` 引用，不用硬链接）
+### Claude Code (Use `@` References, Not Hard Links)
 
-- 仓库已提交 `.claude/CLAUDE.md`，内部用 `@../AGENTS.md` **引入** `AGENTS.md`。Claude Code 启动时自动加载，无需配置。
-- **Claude 特有**的项目级规则写在 `.claude/CLAUDE.md` 里 `@` 引入的**下方**（提交、团队共享）。例如强制 `uv`、用 context7、Bash 后台等。
-- **个人**偏好写在仓库根 `CLAUDE.local.md`（gitignore），加载顺序在 `CLAUDE.md` 之后。
+- The repository includes a committed `.claude/CLAUDE.md` that **imports** `AGENTS.md` through `@../AGENTS.md`. Claude Code loads it automatically at startup; no configuration is needed.
+- Write **Claude-specific** project rules **below** the `@` import in `.claude/CLAUDE.md` (committed and shared with the team). Examples include requiring `uv`, using context7, and running Bash commands in the background.
+- Put **personal** preferences in the root-level `CLAUDE.local.md` (gitignored), which loads after `CLAUDE.md`.
 
 ### GitHub Copilot
 
-- 仓库已提交 `.github/copilot-instructions.md`（frontmatter `applyTo: '**'`，对所有文件生效）；每次会话自动注入，并 defer 到 `AGENTS.md` 取完整上下文。
+- The repository includes a committed `.github/copilot-instructions.md` with the frontmatter `applyTo: '**'`, applying to all files. It is automatically injected into each session and refers to `AGENTS.md` for the full context.
 
-### 其他工具（无原生引入机制时）
+### Other Tools (Without Native Import Support)
 
-若某工具既读不了 `AGENTS.md`、又没有 `@` 之类的引入语法，只能读它自己固定的入口文件，就用**硬链接**让该文件镜像 `AGENTS.md`。入口文件位置同样遵循上面的原则——优先配置目录，其次根目录。
+If a tool cannot read `AGENTS.md`, has no import syntax such as `@`, and only reads its own fixed entry file, use a **hard link** to mirror `AGENTS.md` through that file. Follow the same placement principle: prefer the tool's configuration directory, then the project root.
 
-示例（文件名依工具而定，此处以 `CLAUDE.md` 作占位演示命令形式）：
+Example (the filename depends on the tool; `CLAUDE.md` is only a placeholder to illustrate the command):
 
 ```powershell
 New-Item -ItemType HardLink -Path "CLAUDE.md" -Target "AGENTS.md"
 ```
 
-- 该入口文件应被 `.gitignore` 忽略，仅本地生效（个人级）。
-- 工具特有的项目级内容，另起一个**提交**的文件维护，不要塞进 `AGENTS.md`。
-- 将来某工具支持引入语法时，优先用引入、弃用硬链接。（Unix：`ln AGENTS.md CLAUDE.md`。）
+- The entry file should be excluded by `.gitignore` and remain local (personal level).
+- Maintain tool-specific project content in a separate **committed** file, not in `AGENTS.md`.
+- If the tool later supports imports, prefer imports and stop using hard links. (Unix: `ln AGENTS.md CLAUDE.md`.)
 
-## 内容该放哪（速查）
+## Where Content Belongs (Quick Reference)
 
-| 内容 | 放哪 |
+| Content | Location |
 |---|---|
-| 只对自己有用的偏好 / 实验 | ① 个人级：`CLAUDE.local.md` |
-| 团队共享、但某工具特有 | ② 项目级：该工具文件（如 `.claude/CLAUDE.md`） |
-| 跨所有工具通用 | ③ `AGENTS.md` |
+| Personal preferences / experiments | ① Personal: `CLAUDE.local.md` |
+| Team-shared but tool-specific content | ② Project: the tool's file, such as `.claude/CLAUDE.md` |
+| Content shared across all tools | ③ `AGENTS.md` |
 
 ## MCP
 
-- **推荐**：[context7](https://github.com/upstash/context7) — 查询库文档；已在本项目 `.claude/settings.json` 启用（Claude Code 场景）。
-- **项目自有 MCP（感知/操作 tool 已实现）**：把游戏感知/操作（窗口状态 / 截图 / OCR / 进游戏 + 运行态查/停）经 MCP 暴露给 agent，辅助开发与调试。传输 streamable-http（端点 `/mcp`，默认端口 23001）。先起服务（`uv run --env-file .env python -m zzz_od.backend.entry.server`），再 `claude mcp add --transport http zzz_od http://127.0.0.1:23001/mcp`。**工具清单见 [zzz/backend/mcp.md](../zzz/backend/mcp.md)**（不在此列举，避免随实现演进过时）；整体设计见 [zzz/backend/](../zzz/backend/)，路线图见 [harness/README.md](../harness/README.md)。
-- **浏览器（chrome-devtools-mcp）**：让 agent 经 CDP 驱动本机浏览器，读/操作 WebSearch 搜不到或抓不到的页面（米游社攻略、需登录活动页等）。connect 模式 + 调试 Edge，装法与会话坑见 [chrome-devtools-mcp.md](chrome-devtools-mcp.md)。
+- **Recommended**: [context7](https://github.com/upstash/context7) — look up library documentation. It is already enabled in this project's `.claude/settings.json` for Claude Code.
+- **Project MCP server (observation and action tools implemented)**: Exposes game observation and control to agents through MCP, including window status, screenshots, OCR, entering the game, and querying or stopping runs, to support development and debugging. It uses the streamable-http transport (endpoint `/mcp`, default port 23001). Start the server with `uv run --env-file .env python -m zzz_od.backend.entry.server`, then run `claude mcp add --transport http zzz_od http://127.0.0.1:23001/mcp`. **See [zzz/backend/mcp.md](../zzz/backend/mcp.md) for the tool list**; it is not duplicated here to avoid becoming outdated as the implementation evolves. See [zzz/backend/](../zzz/backend/) for the overall design and [harness/README.md](../harness/README.md) for the roadmap.
+- **Browser (chrome-devtools-mcp)**: Lets agents drive a local browser through CDP to read and interact with pages that WebSearch cannot find or retrieve, such as Miyoushe guides and event pages that require login. Use connect mode with Edge running in debugging mode. See [chrome-devtools-mcp.md](chrome-devtools-mcp.md) for installation and session pitfalls.
 
-## 测试仓
+## Test Repository
 
-测试代码在独立仓 `zzz-od-test/`(`.gitignore`,clone 到项目根目录),不在主仓。Claude Code 的 Grep/Glob 默认尊重 `.gitignore`,**不会自动搜** `zzz-od-test/`——查/改测试须 `Read`/`grep` 显式指定 `zzz-od-test/` 路径。clone 指引见 [quickstart §②](quickstart.md#②-跑测试可选),规范见 [spec/agent_guidelines.md](../spec/agent_guidelines.md#测试代码规范)。
+Test code lives in the separate `zzz-od-test/` repository (excluded by `.gitignore`; clone it into the project root), not in the main repository. Claude Code's Grep/Glob respect `.gitignore` by default and **do not automatically search** `zzz-od-test/`. When locating or editing tests, explicitly specify the `zzz-od-test/` path with `Read`/`grep`. See [quickstart §②](quickstart.md#②-跑测试可选) for cloning instructions and [spec/agent_guidelines.md](../spec/agent_guidelines.md#测试代码规范) for test standards.
 
 ## LSP
 
-项目用 **uv 方式 pyright** 做 LSP(代码导航:定义 / 引用 / 符号)——不用 Claude Code 官方的全局 pyright(走系统 PATH,解析不到项目 `.venv` 依赖,跟 uv 环境冲突)。pyright 在 dev 组、`[tool.pyright]` 配置(团队共享);Claude Code 的插件安装见 [claude-code/pyright-lsp.md](claude-code/pyright-lsp.md)。
+The project uses **pyright launched through uv** as its LSP for code navigation (definitions, references, and symbols), rather than Claude Code's official global pyright integration. The global integration uses the system PATH, cannot resolve dependencies in the project's `.venv`, and conflicts with the uv environment. pyright is in the dev dependency group, with team-shared configuration under `[tool.pyright]`. See [claude-code/pyright-lsp.md](claude-code/pyright-lsp.md) for Claude Code plugin installation.
 
 ## Skills
 
-Skill 是 Claude Code（及 Codex 等少数工具）的可调用能力。要点：**每个工具只读自己目录下的 skill**——Claude Code 读 `.claude/skills/`，**不读根目录 `skills/`**；且 skill 没有 `@import` 之类的引入逃逸口。
+A skill is a callable capability in Claude Code and a few other tools, such as Codex. The key point is that **each tool reads skills only from its own directory**: Claude Code reads `.claude/skills/`, **not the root-level `skills/` directory**. Skills also have no import mechanism such as `@import` to load content from elsewhere.
 
-### 推荐安装 superpowers
+### Recommended: Install superpowers
 
-**项目已统一采用 [superpowers](https://github.com/anthropics/superpowers)**（团队共识）—— 它是一整套**开发流程方法论**，指导从需求探索（`brainstorming`）、写计划（`writing-plans`）、TDD 实现（`test-driven-development`）、调试（`systematic-debugging`）、code review、到分支收尾合并（`finishing-a-development-branch`）的全链路；本项目按这套流程开发。
+**The project has standardized on [superpowers](https://github.com/anthropics/superpowers)** by team agreement. It provides a complete **development workflow methodology**, covering requirements exploration (`brainstorming`), planning (`writing-plans`), TDD implementation (`test-driven-development`), debugging (`systematic-debugging`), code review, and branch completion and merging (`finishing-a-development-branch`). Development in this project follows that workflow.
 
-本项目 dev skill（`zzz-od-dev-*`）是叠加在 superpowers 之上的**项目特定补充**（PR 收尾适配 CodeRabbit、本项目 skill 写作硬规范、修复决策框架等），非替代 —— 使用者需同时具备 superpowers。Claude Code 安装：插件市场搜 `superpowers`，或 `/plugin install superpowers`。
+The project's development skills (`zzz-od-dev-*`) are **project-specific additions** on top of superpowers, not replacements. They cover topics such as adapting PR completion to CodeRabbit, mandatory skill-writing rules, and the fix decision framework. Users need superpowers installed as well. In Claude Code, search for `superpowers` in the plugin marketplace or run `/plugin install superpowers`.
 
-### 推荐安装 mcp-server-dev（写 MCP tool 时）
+### Recommended: Install mcp-server-dev (When Writing MCP Tools)
 
-写本项目 backend MCP tool（`src/zzz_od/backend/mcp/`）时，**通用 MCP tool 设计方法论遵循 Anthropic 官方 `mcp-server-dev` plugin**（`claude-plugins-official` marketplace，专门 MCP 开发、3 个 skill 无杂烩）—— 尤其 `build-mcp-server/references/tool-design.md`（写好 tool：description 契约 / tight schema / annotations / 结构化返回 / actionable error / 读写分离 / token 经济）。本项目 [mcp-implementation.md](../zzz/backend/mcp-implementation.md) 只叠加**项目特化**（哪些 tool 标哪个 hint、MCP·HTTP 对称、screen_info CRUD、操作后 sleep 等），不重复通用知识。
+When writing backend MCP tools for this project (`src/zzz_od/backend/mcp/`), **follow Anthropic's official `mcp-server-dev` plugin for general MCP tool design methodology**. It is available in the `claude-plugins-official` marketplace and focuses exclusively on MCP development, with three skills and no unrelated extras. In particular, use `build-mcp-server/references/tool-design.md` for writing good tools: description contracts, tight schemas, annotations, structured returns, actionable errors, separation of reads and writes, and token efficiency. The project's [mcp-implementation.md](../zzz/backend/mcp-implementation.md) adds only **project-specific guidance**, such as which hints to assign to each tool, MCP/HTTP symmetry, screen_info CRUD, and sleeping after actions, without repeating general knowledge.
 
-Claude Code 安装（`claude-plugins-official` marketplace，两步）：
+Claude Code installation from the `claude-plugins-official` marketplace takes two steps:
 
 ```
 /plugin marketplace add anthropics/claude-plugins-official
-/plugin install mcp-server-dev@claude-plugins-official   # 3 个 MCP skill(build-mcp-server/app/mcpb)，专门 MCP 无杂烩
+/plugin install mcp-server-dev@claude-plugins-official   # 3 MCP skills (build-mcp-server/app/mcpb), focused exclusively on MCP
 ```
 
-### Skill 分类与命名
+### Skill Categories and Naming
 
-Skill 分两类，统一用 `zzz-od-` 项目前缀，开发类再加 `dev-`：
+Skills fall into two categories. Use the `zzz-od-` project prefix for new skills, with an additional `dev-` prefix for development skills:
 
-| 类别 | 前缀 | 用途 |
+| Category | Prefix | Purpose |
 |---|---|---|
-| **开发** | `zzz-od-dev-` | 指引 AI 在本项目开发/配置/构建（superpowers 风格） |
-| **历史遗留** | 无前缀 | 早期 skill，暂保留原名（迁移价值待评估） |
+| **Development** | `zzz-od-dev-` | Guide AI assistants in project development, configuration, and builds (superpowers-style) |
+| **Legacy** | No prefix | Early skills temporarily retain their original names; the value of migrating them is still to be evaluated |
 
-> 现有 skill 清单见 [`skills/` 目录](../../../skills/)（每个 SKILL.md frontmatter 有触发描述），不在此罗列以免随增减过时。
+> See the [`skills/` directory](../../../skills/) for the current skill list. Each SKILL.md includes a trigger description in its frontmatter. The list is not duplicated here to avoid becoming outdated as skills are added or removed.
 >
-> `zzz-od-` 兼作**项目命名空间**——避免和插件/个人 skill 撞名，`/` 列表里本项目 skill 聚一起。命名示例：`zzz-od-dev-character`（新增角色）、`zzz-od-dev-build`（构建配置）、`zzz-od-player`（安装使用）。将来若出现第 3 类（如调试），加对应中缀（`zzz-od-debug-*`）即可。
+> `zzz-od-` also serves as the **project namespace**, preventing collisions with plugin and personal skills and grouping project skills together in the `/` command list. Naming examples: `zzz-od-dev-character` (adding a character), `zzz-od-dev-build` (build configuration), and `zzz-od-player` (installation and usage). If a third category is needed later, such as debugging, add the corresponding segment, for example `zzz-od-debug-*`.
 
-### Skill 开发：三级晋升
+### Skill Development: Three-Level Promotion
 
-跟整体"三级晋升"一致，新增 skill 从低到高放：
+As with the overall three-level promotion model, start new skills at the lowest level:
 
-| 级别 | 位置 | 是否提交 | 说明 |
+| Level | Location | Committed? | Description |
 |---|---|:---:|---|
-| **① 个人级** | `.claude/skills/<name>/`（`.claude/*` 已 gitignore，天然不提交）或 `~/.claude/skills/` | ❌ | 先在这里试做、验证有用再升级。 |
-| **② 工具项目级** | `.claude/skills/<name>/`（**提交**：`.gitignore` 放行 `.claude/skills/`） | ✅ | 团队共享、Claude Code 特有。 |
-| **③ 项目级（跨工具源）** | 根目录 `skills/<name>/`（**提交**） | ✅ | 多个"skills 感知"工具都要用时，作单一源。 |
+| **① Personal** | `.claude/skills/<name>/` (`.claude/*` is already gitignored, so these are uncommitted by default) or `~/.claude/skills/` | ❌ | Experiment here first and promote the skill after proving it useful. |
+| **② Tool-specific project level** | `.claude/skills/<name>/` (**committed** by allowing `.claude/skills/` in `.gitignore`) | ✅ | Shared with the team and specific to Claude Code. |
+| **③ Project level (cross-tool source)** | Root-level `skills/<name>/` (**committed**) | ✅ | The single source of truth when multiple skill-aware tools need the skill. |
 
-**晋升路径**：① 个人试做 →（验证有用）→ ② 提交到 `.claude/skills/` →（多工具都要）→ ③ 根 `skills/` 作跨工具源。
+**Promotion path**: ① Personal experiment → (proven useful) → ② Commit to `.claude/skills/` → (needed by multiple tools) → ③ Use the root-level `skills/` as the cross-tool source.
 
-> ⚠️ 根 `skills/` 不会被工具自动发现，只是③的单一源；要**目录联接**（junction，`mklink /J`，目录级）进各工具目录（如 `.claude/skills/`）。Windows junction 免管理员（symlink 需特权/开发者模式）。只有 Claude Code 一个消费者时，停在②即可，不必上③。
+> ⚠️ Tools do not automatically discover the root-level `skills/` directory. It only serves as the single source of truth at level ③. Use **directory junctions** (`mklink /J`, at the directory level) to link it into each tool's directory, such as `.claude/skills/`. Windows junctions do not require administrator privileges; symlinks require elevated privileges or Developer Mode. If Claude Code is the only consumer, stop at level ②; level ③ is unnecessary.
 
-### 现状
+### Current Setup
 
-仓库根 [`skills/`](../../../skills/) 是 skill 的单一源（③）；开发类（`zzz-od-dev-*`，superpowers 风格）经 junction（`.claude/skills/<name>` → 根 `skills/<name>`）被 Claude Code 自动加载。**现有 skill 清单见目录本身**（每个 SKILL.md frontmatter 有触发描述），不在此罗列以免随增减过时。
+The root-level [`skills/`](../../../skills/) directory is the single source of truth for skills (③). Development skills (`zzz-od-dev-*`, superpowers-style) are automatically loaded by Claude Code through junctions (`.claude/skills/<name>` → root-level `skills/<name>`). **See the directory itself for the current skill list**; each SKILL.md includes a trigger description in its frontmatter. The list is not duplicated here to avoid becoming outdated as skills are added or removed.
 
-新 skill 按上面的命名规范用 `zzz-od-` 前缀。
+Use the `zzz-od-` prefix for new skills, following the naming rules above.
 
-## AI 辅助提交的署名（推荐）
+## Attribution for AI-Assisted Commits (Recommended)
 
-用 AI 编码工具协作时，**推荐在 commit 消息里用 `Co-Authored-By` trailer 标明 AI 参与**——让提交历史能看出哪些是 AI 协作的（透明、可追溯），GitHub 会识别该格式并把 co-author 显示在提交上。
+When collaborating with AI coding tools, **use a `Co-Authored-By` trailer in commit messages to acknowledge AI participation**. This is recommended for transparency and traceability: the commit history shows which changes involved AI assistance, and GitHub recognizes the format and displays the co-author on the commit.
 
 ```
-Co-Authored-By: <名字> <邮箱>
+Co-Authored-By: <name> <email>
 ```
 
-落地有两种做法，按“靠模型自觉 → 全自动”递进：
+There are two approaches, progressing from relying on the model to full automation:
 
-### 做法一：在指令文件里写指引
+### Approach 1: Add Guidance to the Instruction File
 
-在该 AI 工具的指令文件里写一条，让它自己加 trailer（例如“提交时在 message 末尾追加 `Co-Authored-By: <工具> (<模型>) <邮箱>`”）。
+Add a rule to the AI tool's instruction file asking it to append the trailer itself, for example: "When committing, append `Co-Authored-By: <tool> (<model>) <email>` to the end of the message."
 
-- ✅ 零配置、跨工具。
-- ❌ **靠模型自觉**：会忘、会漏，模型名也可能写错。
+- ✅ No configuration required; works across tools.
+- ❌ **Relies on the model remembering**: it may forget or omit the trailer, or write the wrong model name.
 
-### 做法二：用 git hook 自动注入（推荐）
+### Approach 2: Inject Automatically with a Git Hook (Recommended)
 
-用 git 的 `prepare-commit-msg` 钩子在每次提交时自动追加 trailer，不依赖模型记忆。git 每次提交都会调它，链式 `&&`、`git -C <dir>`、`--amend` 全覆盖。两种粒度：
+Use Git's `prepare-commit-msg` hook to append the trailer automatically on every commit, without relying on the model's memory. Git invokes it for every commit, including commands chained with `&&`, `git -C <dir>`, and `--amend`. There are two variants:
 
-- **2a. 钩子里写死内容（静态）**：硬编码固定 trailer。最简单、稳；但不反映实际模型。
-- **2b. git hook + AI 工具 hook 写入模型名（动态）**：git 钩子注入 trailer；再用 AI 工具自带的 hook 在每次 `git commit` 前把**当前模型名**写到侧信道文件，git 钩子读取 → trailer 反映实际模型，模型一换跟着变。需把工具默认的 co-author 指令关掉，避免重复。
+- **2a. Hard-code the content in the hook (static)**: Use a fixed trailer. This is the simplest and most reliable option, but it does not reflect the actual model used.
+- **2b. Combine a Git hook with an AI tool hook that writes the model name (dynamic)**: The Git hook injects the trailer, while the AI tool's own hook writes the **current model name** to an intermediary file before each `git commit`. The Git hook reads that file, so the trailer reflects the actual model and updates when the model changes. Disable the tool's default co-author instruction to avoid duplicates.
 
-各工具的具体实现不同——Claude Code 的做法见 [Claude Code：自动注入 commit trailer](claude-code/commit-trailer.md)；其他工具用各自等价的 hook 机制。
+The implementation differs by tool. See [Claude Code: Automatically Inject Commit Trailers](claude-code/commit-trailer.md) for the Claude Code approach; use the equivalent hook mechanism for other tools.
 
-> 注：部分工具/模型厂商没有官方 GitHub bot 邮箱，模型那行的邮箱只是占位（GitHub 上不出头像/contributor）；推荐用对应厂商**官网域名**（如 `noreply@<官网域名>`）作占位。
+> Note: Some tool or model vendors do not have an official GitHub bot email address. In that case, the email on the model's attribution line is only a placeholder and does not produce a GitHub avatar or contributor entry. Use the vendor's **official website domain**, such as `noreply@<official-domain>`, as the placeholder.
 
-## 相关文档
+## Related Documentation
 
-- [AGENTS.md](../../../AGENTS.md) — 统一 AI 编码协作入口
-- [spec/agent_guidelines.md](../spec/agent_guidelines.md) — 详细编码规范
-- [开发指南](../README.md)
-- [AI Coding Harness 工程](../harness/README.md)
+- [AGENTS.md](../../../AGENTS.md) — unified entry point for AI coding collaboration
+- [spec/agent_guidelines.md](../spec/agent_guidelines.md) — detailed coding standards
+- [Development Guide](../README.md)
+- [AI Coding Harness Engineering](../harness/README.md)

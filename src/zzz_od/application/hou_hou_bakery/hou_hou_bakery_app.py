@@ -98,6 +98,13 @@ class HouHouBakeryApp(ZApplication):
                 return self.round_wait(status='选择盲盒', wait=1)
             return self.round_retry(status='盲盒区域点击失败', wait=1)
 
+        # 领奖界面没打开，画面上还是吼吼先生：再按一次交互。
+        # 黑屏加载读不到这个名字，不在这里按键。
+        if self.round_by_ocr(self.last_screenshot, '吼吼先生').is_success:
+            time.sleep(1)  # 防止交互无效 issue #2405 #2395 #2328
+            self.ctx.controller.interact(press=True, press_time=0.2, release=True)
+            return self.round_retry(status='未打开领奖界面', wait=1)
+
         return self.round_retry(status='未识别目标文本', wait=1)
 
     @node_from(from_name='领取奖励')

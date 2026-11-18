@@ -736,7 +736,7 @@ class ZzzBackendContext:
             raise BackendNotReadyError('游戏窗口未就绪')
         controller.active_window()
         if press_time > 0:
-            controller.btn_controller.press(key, press_time=press_time)
+            controller.btn_press(key, press_time=press_time)
         else:
             controller.btn_tap(key)
         return {'success': True, 'key': key, 'press_time': press_time}

@@ -53,18 +53,19 @@ class EmailApp(ZApplication):
         :return:
         """
         screen = self.screenshot()
-        if screen is not None:
-            ocr_result_list = self.ctx.ocr_service.get_ocr_result_list(
-                image=screen,
-            )
-            screen_text = ''.join(
-                ''.join(result.data.split()) for result in ocr_result_list
-            )
-            if any(
-                warning in screen_text
-                for warning in ('确认删除', '确定删除', '是否删除', '删除')
-            ):
-                return self.round_fail(status='检测到删除确认弹窗，跳过自动确认')
+        if screen is None:
+            return self.round_fail(status='Unable to verify the confirmation screen')
+        ocr_result_list = self.ctx.ocr_service.get_ocr_result_list(
+            image=screen,
+        )
+        screen_text = ''.join(
+            ''.join(result.data.split()) for result in ocr_result_list
+        )
+        if any(
+            warning in screen_text
+            for warning in ('确认删除', '确定删除', '是否删除', '删除')
+        ):
+            return self.round_fail(status='Delete-related text detected; confirmation stopped')
 
         target_word_list = [
             '确认',  # 正常领取的情况
@@ -78,8 +79,6 @@ class EmailApp(ZApplication):
         )
 
     @node_from(from_name='确认')  # 确认之后返回
-    @node_from(from_name='确认', success=False)  # 没有确认 其实就是没有东西能领取 也返回
-    @node_from(from_name='全部领取', success=False)  # 没找到全部领取的话 也返回
     @operation_node(name='返回菜单')
     def back_to_menu(self) -> OperationRoundResult:
         """
@@ -87,7 +86,7 @@ class EmailApp(ZApplication):
         领取后的确认按钮可以不按 直接点击外层也可以返回
         :return:
         """
-        return self.round_by_find_and_click_area(self.last_screenshot, '菜单', '返回', success_wait=1, retry_wait=1)
+        return self.round_by_find_and_click_area(self.last_screenshot, '邮件', '按钮-返回', success_wait=1, retry_wait=1)
 
     @node_from(from_name='返回菜单')
     @node_from(from_name='返回菜单', success=False)

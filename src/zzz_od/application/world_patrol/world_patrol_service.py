@@ -40,9 +40,9 @@ def route_list_dir():
 
 class WorldPatrolService:
 
-    # 小地图相对于"地图"按钮的偏移量（通过开发工具测量得出）
-    # 小地图坐标 = "地图"坐标 - DELTA
-    MINI_MAP_DELTA = (169, 151)
+    # 小地图相对于「地图」按钮模板左上角的偏移（PlayCover 圆形小地图实测）
+    # 小地图坐标 = 「地图」坐标 - DELTA
+    MINI_MAP_DELTA = (184, 126)
 
     def __init__(self, ctx: ZContext):
         self.ctx: ZContext = ctx

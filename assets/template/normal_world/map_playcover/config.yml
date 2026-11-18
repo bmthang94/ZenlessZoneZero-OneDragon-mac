@@ -1,0 +1,8 @@
+sub_dir: normal_world
+template_id: map_playcover
+template_name: 地图 PlayCover
+template_shape: circle
+auto_mask: true
+point_list:
+- 1716, 358
+- 1767, 358

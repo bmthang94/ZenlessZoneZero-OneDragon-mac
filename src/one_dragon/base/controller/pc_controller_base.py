@@ -10,7 +10,10 @@ from cv2.typing import MatLike
 from pynput import keyboard
 
 from one_dragon.base.controller.controller_base import ControllerBase
-from one_dragon.base.controller.macos_vhid import MacVirtualHIDMouse
+from one_dragon.base.controller.macos_vhid import (
+    MacVirtualHIDMouse,
+    resolve_macos_hid_key,
+)
 from one_dragon.base.controller.pc_button import pc_button_utils
 from one_dragon.base.controller.pc_button.keyboard_mouse_controller import (
     KeyboardMouseController,
@@ -115,6 +118,9 @@ class PcControllerBase(ControllerBase):
                 button=pc_button_utils.get_mouse_button(key).name
             )
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'tap', None)
+            return
         self.btn_controller.tap(key)
 
     def btn_press(self, key: str, press_time: float | None = None) -> None:
@@ -129,6 +135,9 @@ class PcControllerBase(ControllerBase):
                 finally:
                     mouse.release(mouse_button)
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'press', press_time)
+            return
         self.btn_controller.press(key, press_time)
 
     def btn_release(self, key: str) -> None:
@@ -138,7 +147,36 @@ class PcControllerBase(ControllerBase):
                 pc_button_utils.get_mouse_button(key).name
             )
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'release', None)
+            return
         self.btn_controller.release(key)
+
+    def _mac_keyboard(self, key: str, action: str, press_time: float | None) -> None:
+        """用虚拟键盘把按键送进 PlayCover。窗口不在前台时先激活。"""
+        if not self.game_win.is_win_active:
+            self.game_win.active()
+            time.sleep(0.05)
+        try:
+            kind, code = resolve_macos_hid_key(key)
+        except ValueError as error:
+            log.error('macOS 键盘输入失败: %s', error)
+            raise
+        hid = self._get_mac_virtual_hid_mouse()
+        if kind == 'mod':
+            if action == 'release':
+                hid.modifier_up(code)
+            elif press_time is None and action == 'press':
+                hid.modifier_down(code)
+            else:
+                hid.modifier_tap(code, 0.02 if press_time is None else press_time)
+            return
+        if action == 'release':
+            hid.key_up(code)
+        elif press_time is None and action == 'press':
+            hid.key_down(code)
+        else:
+            hid.key_tap(code, 0.02 if press_time is None else press_time)
 
     def _get_mac_virtual_hid_mouse(self) -> MacVirtualHIDMouse:
         if self._mac_virtual_hid_mouse is None:

@@ -8,6 +8,11 @@ from one_dragon.utils import mini_map_angle_utils
 
 TOTAL_VIEW_ANGLE: int = 105  # 光映广场 - 喵吉长官 往南走有大块空地 在这里截图多个取的平均值
 RADIUS_RANGE: tuple[float, float] = (0.2, 0.4)  # 计算视野角度时使用的半价范围
+# 玩家箭头轮廓。PC 约周长 60-70、面积 240-300。
+# PlayCover 小地图上的箭头更大，同一张大世界画面实测周长 80.3、面积 395.5。
+# 面积下限仍高于同画面橙色噪点（约 68），避免把噪点当成箭头。
+PLAYER_ARROW_PERIMETER_RANGE: tuple[float, float] = (48, 110)
+PLAYER_ARROW_AREA_RANGE: tuple[float, float] = (160, 560)
 
 
 class MiniMapWrapper:
@@ -126,12 +131,12 @@ class MiniMapWrapper:
         for contour in contours:
             # 按周长过滤
             perimeter = cv2.arcLength(contour, True)
-            if not (60 <= perimeter <= 70):
+            if not (PLAYER_ARROW_PERIMETER_RANGE[0] <= perimeter <= PLAYER_ARROW_PERIMETER_RANGE[1]):
                 continue
 
             # 按面积过滤
             area = cv2.contourArea(contour)
-            if not (240 <= area <= 300):
+            if not (PLAYER_ARROW_AREA_RANGE[0] <= area <= PLAYER_ARROW_AREA_RANGE[1]):
                 continue
 
             # 如果所有检查都通过，则认为是目标轮廓
