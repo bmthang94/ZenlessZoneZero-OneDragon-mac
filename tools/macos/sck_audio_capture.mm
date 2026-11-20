@@ -163,7 +163,7 @@ dispatch_queue_t g_audio_queue = nil;
 
 extern "C" {
 
-int od_sck_audio_start(int sample_rate) {
+int od_sck_audio_start_for_window(int sample_rate, uint32_t window_id) {
     @autoreleasepool {
         {
             std::lock_guard<std::mutex> lock(g_mutex);
@@ -192,17 +192,35 @@ int od_sck_audio_start(int sample_rate) {
             set_error("获取 ScreenCaptureKit 共享内容超时");
             return -1;
         }
-        if (contentError || !shareableContent || shareableContent.displays.count == 0) {
+        if (contentError || !shareableContent) {
             std::string msg = contentError
                 ? ([[contentError localizedDescription] UTF8String] ?: "未知错误")
-                : "未找到可用显示器";
-            set_error("无法获取 ScreenCaptureKit 显示器: " + msg);
+                : "未找到可用共享内容";
+            set_error("无法获取 ScreenCaptureKit 共享内容: " + msg);
             return -2;
         }
 
-        SCDisplay *display = shareableContent.displays.firstObject;
-        SCContentFilter *filter = [[SCContentFilter alloc] initWithDisplay:display
-                                                          excludingWindows:@[]];
+        SCContentFilter *filter = nil;
+        if (window_id != 0) {
+            // ScreenCaptureKit 的窗口过滤器会录制该窗口所属应用的声音。
+            for (SCWindow *window in shareableContent.windows) {
+                if (window.windowID == window_id) {
+                    filter = [[SCContentFilter alloc] initWithDesktopIndependentWindow:window];
+                    break;
+                }
+            }
+            if (!filter) {
+                set_error("ScreenCaptureKit 未找到游戏窗口");
+                return -6;
+            }
+        } else {
+            SCDisplay *display = shareableContent.displays.firstObject;
+            if (!display) {
+                set_error("ScreenCaptureKit 未找到可用显示器");
+                return -2;
+            }
+            filter = [[SCContentFilter alloc] initWithDisplay:display excludingWindows:@[]];
+        }
 
         SCStreamConfiguration *config = [[SCStreamConfiguration alloc] init];
         config.capturesAudio = YES;
@@ -263,6 +281,10 @@ int od_sck_audio_start(int sample_rate) {
         }
         return 0;
     }
+}
+
+int od_sck_audio_start(int sample_rate) {
+    return od_sck_audio_start_for_window(sample_rate, 0);
 }
 
 int od_sck_audio_read(float* out_buffer, int num_frames, int timeout_ms) {

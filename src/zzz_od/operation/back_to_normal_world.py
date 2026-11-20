@@ -9,13 +9,15 @@ from zzz_od.context.zzz_context import ZContext
 from zzz_od.game_data.agent import AgentEnum
 from zzz_od.hollow_zero.event import hollow_event_utils
 from zzz_od.hollow_zero.hollow_exit_by_menu import HollowExitByMenu
+from zzz_od.operation.enter_game.enter_game import EnterGame
 from zzz_od.operation.map_transport import MapTransport
 from zzz_od.operation.zzz_operation import ZOperation
 
 
 class BackToNormalWorld(ZOperation):
 
-    def __init__(self, ctx: ZContext, ensure_normal_world: bool = False, allow_battle: bool = False):
+    def __init__(self, ctx: ZContext, ensure_normal_world: bool = False, allow_battle: bool = False,
+                 timeout_seconds: float = -1) -> None:
         """
         需要保证在任何情况下调用，都能返回大世界，让后续的应用可执行
 
@@ -24,8 +26,11 @@ class BackToNormalWorld(ZOperation):
             ensure_normal_world (bool): 是否回到普通大世界
             allow_battle (bool): 是否允许在战斗状态直接返回成功（锄大地传送后用，让调用方处理战斗）。
                 启用时调用方必须处理返回的 status='大世界-战斗'，否则角色将卡在战斗画面。
+            timeout_seconds (float): 操作超时时间（秒），默认-1不超时。
+                本指令内部有 WAIT 分支不受重试上限约束，作为嵌套指令同步执行时
+                会占用调用方的一轮，调用方应设置超时避免被拖住。
         """
-        ZOperation.__init__(self, ctx, op_name=gt('返回大世界'))
+        ZOperation.__init__(self, ctx, op_name=gt('返回大世界'), timeout_seconds=timeout_seconds)
 
         self.ensure_normal_world: bool = ensure_normal_world  # 是否回到普通大世界
         self.allow_battle: bool = allow_battle  # 是否允许战斗状态直接返回
@@ -67,6 +72,16 @@ class BackToNormalWorld(ZOperation):
         mini_map = self.ctx.world_patrol_service.cut_mini_map(self.last_screenshot)
         if mini_map.play_mask_found:
             return self.round_success(status='发现地图')
+
+        if EnterGame.is_login_screen(self.ctx, self.last_screenshot):
+            # 登录在当前轮内同步执行，也要遵守调用方传入的超时。
+            remaining = self.timeout_seconds
+            if remaining != -1:
+                remaining -= self.operation_usage_time
+                if remaining <= 0:
+                    return self.round_fail('返回大世界超时')
+            op = EnterGame(self.ctx, timeout_seconds=remaining)
+            return self.round_by_op_result(op.execute())
 
         # 核对完整入口词，避免把“迷宫诡域”的单个“域”当作返回入口。
         area = self.ctx.screen_loader.get_area('画面-通用', '左上角-区域')

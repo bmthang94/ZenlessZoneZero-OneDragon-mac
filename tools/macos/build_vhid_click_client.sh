@@ -56,6 +56,8 @@ if [[ ! -x "$CLIENT_BINARY" || "$CLIENT_SOURCE" -nt "$CLIENT_BINARY" ]]; then
 fi
 
 if [[ -f "$AUDIO_SOURCE" && ( ! -f "$AUDIO_DYLIB" || "$AUDIO_SOURCE" -nt "$AUDIO_DYLIB" ) ]]; then
+    tmp_audio="$AUDIO_DYLIB.tmp.$$"
+    trap 'rm -f "$tmp_audio"' EXIT
     "$CLANGXX" \
         -std=c++17 \
         -O2 \
@@ -69,8 +71,10 @@ if [[ -f "$AUDIO_SOURCE" && ( ! -f "$AUDIO_DYLIB" || "$AUDIO_SOURCE" -nt "$AUDIO
         -framework CoreAudio \
         -framework Foundation \
         "$AUDIO_SOURCE" \
-        -o "$AUDIO_DYLIB"
+        -o "$tmp_audio"
 
-    chmod 755 "$AUDIO_DYLIB"
+    chmod 755 "$tmp_audio"
+    mv -f "$tmp_audio" "$AUDIO_DYLIB"
+    trap - EXIT
     echo "已构建系统音频回环捕获库：$AUDIO_DYLIB"
 fi

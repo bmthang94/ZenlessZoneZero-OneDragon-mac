@@ -1,4 +1,5 @@
 import os
+import time
 
 import ApplicationServices as AS
 import Quartz
@@ -16,7 +17,7 @@ from one_dragon.utils.log_utils import log
 class MacGameWindowHandle:
     """macOS 游戏窗口的进程句柄。"""
 
-    def __init__(self, window_id: int, owner_pid: int, title: str):
+    def __init__(self, window_id: int, owner_pid: int, title: str) -> None:
         self.window_id: int = window_id
         self.owner_pid: int = owner_pid
         self.title: str = title
@@ -43,22 +44,33 @@ class MacGameWindowHandle:
             app.activateWithOptions_(NSApplicationActivateIgnoringOtherApps)
         )
 
+    def close(self) -> None:
+        """关闭游戏窗口所属应用。"""
+        app = NSRunningApplication.runningApplicationWithProcessIdentifier_(
+            self.owner_pid
+        )
+        if app is None:
+            return
+        app.terminate()
+        for _ in range(10):
+            if app.isTerminated():
+                return
+            time.sleep(0.1)
+        if not app.forceTerminate() and not app.isTerminated():
+            raise RuntimeError('无法关闭 PlayCover 游戏')
+
 
 class MacPcGameWindow:
     """通过 macOS 窗口列表定位 PlayCover 中的游戏窗口。"""
 
-    GAME_TITLE_ALIASES: dict[str, set[str]] = {
-        '绝区零': {'绝区零', '絕區零'},
-        '絕區零': {'绝区零', '絕區零'},
-        'ZenlessZoneZero': {'ZenlessZoneZero', 'Zenless Zone Zero'},
-        'Zenless Zone Zero': {'ZenlessZoneZero', 'Zenless Zone Zero'},
-    }
-
+    GAME_TITLE_ALIASES: frozenset[str] = frozenset({
+        '绝区零', '絕區零', 'ZenlessZoneZero', 'Zenless Zone Zero',
+    })
     def __init__(
         self,
         standard_width: int = 1920,
         standard_height: int = 1080,
-    ):
+    ) -> None:
         self.win_title: str | None = None
         self.standard_width: int = standard_width
         self.standard_height: int = standard_height
@@ -86,9 +98,11 @@ class MacPcGameWindow:
             return
 
         current_pid = os.getpid()
-        expected_titles = self.GAME_TITLE_ALIASES.get(
-            self.win_title, {self.win_title}
+        expected_titles = (
+            self.GAME_TITLE_ALIASES if self.win_title in self.GAME_TITLE_ALIASES
+            else {self.win_title}
         )
+        matched_window: MacGameWindowHandle | None = None
         for window in self._get_windows():
             window_id = window.get(Quartz.kCGWindowNumber)
             owner_pid = window.get(Quartz.kCGWindowOwnerPID)
@@ -101,22 +115,20 @@ class MacPcGameWindow:
 
             title = str(window.get(Quartz.kCGWindowName, '') or '').strip()
             owner_name = str(window.get(Quartz.kCGWindowOwnerName, '') or '').strip()
-            if not any(
-                candidate == expected
-                for expected in expected_titles
-                for candidate in (title, owner_name)
-            ):
+            if title not in expected_titles and owner_name not in expected_titles:
                 continue
 
-            self._window_id = int(window_id)
-            self._win = MacGameWindowHandle(
-                self._window_id,
-                int(owner_pid),
-                title or owner_name,
-            )
-            return
+            if title == self.win_title or owner_name == self.win_title:
+                matched_window = MacGameWindowHandle(int(window_id), int(owner_pid), title or owner_name)
+                break
+            if matched_window is None:
+                matched_window = MacGameWindowHandle(int(window_id), int(owner_pid), title or owner_name)
 
-        self._clear_cached_window()
+        if matched_window is None:
+            self._clear_cached_window()
+        else:
+            self._win = matched_window
+            self._window_id = matched_window.window_id
 
     def update_win_title(self, new_title: str) -> None:
         """更新窗口标题并清除缓存。"""
@@ -142,10 +154,11 @@ class MacPcGameWindow:
     def is_win_valid(self) -> bool:
         """检查缓存的游戏窗口是否仍然显示。"""
         window_id = self.get_hwnd()
-        if window_id is None:
+        if window_id is None or self._win is None:
             return False
         if any(
             int(window.get(Quartz.kCGWindowNumber, -1)) == window_id
+            and int(window.get(Quartz.kCGWindowOwnerPID, -1)) == self._win.owner_pid
             for window in self._get_windows()
         ):
             return True

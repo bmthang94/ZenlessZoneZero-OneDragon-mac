@@ -5979,6 +5979,45 @@
     - 924
     text: 可再次触发事件
     lcs_percent: 0.5
+  - area_name: 邦布插件-入口
+    area_type: none
+    pc_rect:
+    - 65
+    - 720
+    - 165
+    - 820
+  - area_name: 邦布插件-标题
+    area_type: text
+    pc_rect:
+    - 560
+    - 275
+    - 720
+    - 325
+    text: 邦布插件
+    lcs_percent: 0.5
+  - area_name: 邦布插件-槽位
+    area_type: none
+    pc_rect:
+    - 630
+    - 350
+    - 1290
+    - 495
+  - area_name: 邦布插件-名称
+    area_type: none
+    pc_rect:
+    - 596
+    - 498
+    - 1324
+    - 546
+  - area_name: 邦布插件-使用
+    area_type: text
+    pc_rect:
+    - 825
+    - 762
+    - 1095
+    - 816
+    text: 使用
+    lcs_percent: 1.0
 - screen_id: expert_challenge
   screen_name: 专业挑战室
   pc_alt: false

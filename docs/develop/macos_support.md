@@ -16,8 +16,10 @@ macOS 控制器只使用前台键鼠模式：发送键盘或鼠标输入时，�
 - PlayCover 内置 Keymapping（键位映射）当前关闭；自动化输入需要兼容用户安装的 PC 逻辑插件。
 - 插件 `InputManager::OnKeyChanged` 在对象偏移 `0x38` 的键盘开关不是 1 时，直接丢掉按键。`SetKeyboardInputEnable` 没有任何调用，这个字节一直是 0。所以物理键盘和脚本键盘一起失效，包括交互 F、移动 WASD、闪避 Shift、切换 Space / C、后援 R、特殊攻击 E、终结技 Q。鼠标左键和中键不走这里，点地图不受影响。仓库 `tools/macos/libUnityDesktopMode.dylib`、PlayCover 用户插件 `PlayTools/UserPlugins/com.HoYoverse.Nap/libUnityDesktopMode.dylib`，以及游戏包 `Frameworks/UserPlugins/libUnityDesktopMode.dylib`，都把文件偏移 `0x87e4` 的条件跳转（`a1 02 00 54`）改成了空指令（`1f 20 03 d5`）。正在运行的游戏要完全退出再打开，才会加载改过的插件。
 - macOS 使用 ONNX Runtime 的 CPU 执行提供程序。模型推理与自动化流程保持不变；若后续增加 Apple GPU 加速，须单独验证模型兼容性与推理结果。
-- 自动战斗的声音闪避识别通过 macOS 原生 `ScreenCaptureKit`（`tools/macos/sck_audio_capture.mm` 构建为 `.install/macos-vhid/libod_sck_audio.dylib`）直接捕获系统输出音频回环（复用屏幕与系统录音权限，无需将系统输出切换为虚拟声卡）；若 `ScreenCaptureKit` 音频流未就绪，则回退尝试 `BlackHole` 等虚拟音频输入设备。
-- PlayCover 中的游戏窗口标题由账号配置决定；窗口无法按标题匹配时，用户可设置自定义窗口标题。
+- 自动战斗的声音闪避识别通过 macOS 原生 `ScreenCaptureKit` 优先捕获 PlayCover 游戏应用的声音。无法按应用录制时，先尝试系统输出音频回环，再尝试 `BlackHole` 等虚拟音频设备。原生桥接库由 `tools/macos/sck_audio_capture.mm` 构建，使用屏幕与系统录音权限。[Apple ScreenCaptureKit 音频过滤说明](https://developer.apple.com/videos/play/wwdc2022/10155/)
+- PlayCover 窗口识别支持常见中英文游戏标题。自定义标题仍按原值精确匹配。
+- 在账户管理中选择 PlayCover 游戏的 `.app`，即可在需要时自动启动游戏。路径留空时仍可手动启动 PlayCover 游戏。请求关闭游戏时，一条龙通过 macOS 关闭已定位的游戏应用。
+- 游戏覆盖层使用同一个游戏内容区域跟随窗口。日志面板标题显示开始、暂停、继续及停止等快捷键。
 
 ## 发行与验证
 

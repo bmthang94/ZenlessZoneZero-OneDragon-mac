@@ -191,11 +191,10 @@ class PcControllerBase(ControllerBase):
         return self.game_win.is_win_valid
 
     def close_game(self) -> None:
+        if sys.platform == 'darwin' and not self.game_win.is_win_valid:
+            return
         win = self.game_win.get_win()
         if win is None:
-            return
-        if sys.platform == 'darwin':
-            log.error('macOS 暂不支持从一条龙关闭 PlayCover 中的游戏')
             return
         try:
             win.close()
