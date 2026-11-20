@@ -1,3 +1,4 @@
+import math
 import sys
 import time
 
@@ -8,6 +9,7 @@ from one_dragon.base.controller.pc_button.keyboard_mouse_controller import (
     KeyboardMouseController,
 )
 from one_dragon.base.controller.pc_controller_base import PcControllerBase
+from one_dragon.base.geometry.point import Point
 from one_dragon.utils import cv2_utils
 from zzz_od.config.game_config import GameConfig
 from zzz_od.const import game_const
@@ -15,6 +17,26 @@ from zzz_od.screen_area.screen_normal_world import ScreenNormalWorldEnum
 
 
 class ZPcController(PcControllerBase):
+
+    # ZZZ 3.3.1 的桌面模式 hook(libUnityDesktopMode.dylib)因指令不匹配失效,
+    # PlayCover 只能跑触屏布局:键盘按键进不了游戏,移动走虚拟摇杆、交互走屏幕按钮。
+    # 桌面模式修复后把 touch_ui_enabled 置 False 回到键盘鼠标。
+    TOUCH_MOVE_DIRECTIONS: dict[str, tuple[float, float]] = {
+        'move_w': (0.0, -1.0),
+        'move_s': (0.0, 1.0),
+        'move_a': (-1.0, 0.0),
+        'move_d': (1.0, 0.0),
+    }
+    TOUCH_KEY_ACTIONS: tuple[str, ...] = ('move_w', 'move_s', 'move_a', 'move_d', 'interact')
+
+    # 触屏布局坐标(1920×1080 游戏空间),已按实机截图校准:
+    # 摇杆中心在左下、交互按钮在右下按钮簇。
+    TOUCH_JOYSTICK_CENTER: Point = Point(403, 780)
+    TOUCH_JOYSTICK_RADIUS: float = 105.0
+    TOUCH_BUTTON_POS: dict[str, Point] = {
+        'interact': Point(1454, 967),
+    }
+    TOUCH_MOVE_TAP_SECONDS: float = 0.3
 
     def __init__(
             self,
@@ -34,6 +56,9 @@ class ZPcController(PcControllerBase):
         self.action_keys = self.game_config.get_action_keys()
 
         self.is_moving: bool = False  # 是否正在移动
+        self.touch_ui_enabled: bool = sys.platform == 'darwin'
+        self._touch_move_actions: set[str] = set()
+        self._touch_vec: Point = Point(0, 0)
 
     def sync_game_config(self, game_config: GameConfig) -> None:
         """切换实例后同步控制器持有的账号级配置"""
@@ -62,6 +87,132 @@ class ZPcController(PcControllerBase):
     def enable_keyboard(self):
         PcControllerBase.enable_keyboard(self)
         self.action_keys = self.game_config.get_action_keys()
+
+    def btn_tap(self, key: str) -> None:
+        """点按键:触屏模式下移动/交互键改走摇杆与屏幕按钮。"""
+        if self._route_touch_key(key, 'tap', None):
+            return
+        PcControllerBase.btn_tap(self, key)
+
+    def btn_press(self, key: str, press_time: float | None = None) -> None:
+        """按住键:触屏模式下移动键改为按住摇杆偏转。"""
+        if self._route_touch_key(key, 'press', press_time):
+            return
+        PcControllerBase.btn_press(self, key, press_time)
+
+    def btn_release(self, key: str) -> None:
+        """释放键:触屏模式下移动键松开摇杆回中。"""
+        if self._route_touch_key(key, 'release', None):
+            return
+        PcControllerBase.btn_release(self, key)
+
+    def _touch_action_for_key(self, key: str) -> str | None:
+        """把配置键名反查回动作名(仅触屏接管的动作)。"""
+        for action in self.TOUCH_KEY_ACTIONS:
+            if self.action_keys.get(action) == key:
+                return action
+        return None
+
+    def _route_touch_key(self, key: str, action: str, press_time: float | None) -> bool:
+        """触屏模式下把移动/交互键路由到摇杆与屏幕按钮。
+
+        Args:
+            key: 框架键名(如 'w'/'f',取自 game_config)
+            action: 'tap' / 'press' / 'release'
+            press_time: press 时的定时保持时长(秒)
+
+        Returns:
+            是否已被触屏路由处理;未处理返回 False 走原键盘路径
+        """
+        if not self.touch_ui_enabled:
+            return False
+        touch_action = self._touch_action_for_key(key)
+        if touch_action is None:
+            return False
+        if touch_action in self.TOUCH_MOVE_DIRECTIONS:
+            self._touch_move_action(touch_action, action, press_time)
+            return True
+        pos = self.TOUCH_BUTTON_POS.get(touch_action)
+        if pos is not None:
+            if action == 'release':
+                # 屏幕按钮是瞬时触发,没有按住态;release 只吞掉不重复触发
+                return True
+            # 屏幕按钮按 tap 处理;press/release 语义不区分(按钮为瞬时触发)
+            hold = press_time if press_time and press_time > 0 else 0.1
+            self.click(pos, press_time=hold, pc_alt=False)
+            return True
+        return False
+
+    def _touch_move_action(self, action: str, action_kind: str, press_time: float | None) -> None:
+        """执行一次摇杆移动动作:tap=短促偏转,press=按住(可定时),release=松开。"""
+        if action_kind == 'press':
+            self._touch_move_actions.add(action)
+            self._apply_touch_move()
+            if press_time is not None:
+                time.sleep(press_time)
+                self._touch_move_actions.discard(action)
+                self._apply_touch_move()
+        elif action_kind == 'release':
+            self._touch_move_actions.discard(action)
+            self._apply_touch_move()
+        else:
+            self._touch_move_tap(action)
+
+    def _touch_move_vector(self) -> Point:
+        """把按住的移动动作合成摇杆偏转量(相对摇杆中心的游戏坐标偏移)。"""
+        x = (1.0 if 'move_d' in self._touch_move_actions else 0.0) - (
+            1.0 if 'move_a' in self._touch_move_actions else 0.0)
+        y = (1.0 if 'move_s' in self._touch_move_actions else 0.0) - (
+            1.0 if 'move_w' in self._touch_move_actions else 0.0)
+        if x == 0.0 and y == 0.0:
+            return Point(0, 0)
+        # 斜向归一化到满偏转,避免合成向量超出摇杆半径
+        length = math.hypot(x, y)
+        scale = self.TOUCH_JOYSTICK_RADIUS / length
+        return Point(x * scale, y * scale)
+
+    def _touch_screen_delta(self, dx: float, dy: float) -> tuple[float, float]:
+        """把游戏坐标增量换算成屏幕像素增量(窗口缩放)。"""
+        rect = self.game_win.win_rect
+        if rect is None or rect.width <= 0 or rect.height <= 0:
+            return dx, dy
+        return (
+            dx * rect.width / self.standard_width,
+            dy * rect.height / self.standard_height,
+        )
+
+    def _apply_touch_move(self) -> None:
+        """按当前按住的移动键刷新摇杆偏转;全部松开时回中并抬起触点。"""
+        target = self._touch_move_vector()
+        if target.x == self._touch_vec.x and target.y == self._touch_vec.y:
+            return
+        if not self._touch_held:
+            if target.x == 0 and target.y == 0:
+                return
+            if not self.touch_down(self.TOUCH_JOYSTICK_CENTER):
+                self._touch_vec = Point(0, 0)
+                return
+        dx, dy = self._touch_screen_delta(
+            target.x - self._touch_vec.x, target.y - self._touch_vec.y)
+        self.touch_move_relative(dx, dy)
+        self._touch_vec = target
+        if target.x == 0 and target.y == 0:
+            self.touch_up()
+
+    def _touch_move_tap(self, action: str) -> None:
+        """短促摇杆偏转:按下→偏向该方向→保持→抬起。"""
+        if self._touch_held:
+            # 已有按住的移动(如 w 长按中),tap 会破坏按住状态,直接忽略
+            return
+        dir_x, dir_y = self.TOUCH_MOVE_DIRECTIONS[action]
+        if not self.touch_down(self.TOUCH_JOYSTICK_CENTER):
+            return
+        dx, dy = self._touch_screen_delta(
+            dir_x * self.TOUCH_JOYSTICK_RADIUS * 0.9,
+            dir_y * self.TOUCH_JOYSTICK_RADIUS * 0.9)
+        self.touch_move_relative(dx, dy)
+        time.sleep(self.TOUCH_MOVE_TAP_SECONDS)
+        self.touch_up()
 
     def _action_btn(self, key: str, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """通用按键动作：按下/释放/点按"""

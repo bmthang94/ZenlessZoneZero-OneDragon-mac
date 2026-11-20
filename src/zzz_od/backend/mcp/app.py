@@ -358,6 +358,31 @@ def create_mcp_server(backend: ZzzBackendContext, name: str = "zzz_od") -> MCPSe
         except Exception as e:  # noqa: BLE001 工具层兜底
             return {'success': False, 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2, 'duration': duration, 'error': str(e)}
 
+    @mcp.tool(annotations=ToolAnnotations(title="触屏按住拖拽"))  # 操作类:触屏拖拽(非破坏)
+    def touch_drag(
+        x1: float, y1: float, x2: float, y2: float,
+        move_time: Annotated[float, Field(description="拖动耗时(秒),默认 0.2")] = 0.2,
+        hold_time: Annotated[float, Field(description="终点保持按住时长(秒),默认 0.5;摇杆移动建议 0.5-2")] = 0.5,
+    ) -> dict:
+        """触屏按住拖拽((x1,y1)→(x2,y2),到达后保持 hold_time 秒)。操作类。
+
+        触屏模式(PlayCover 触屏布局)下模拟手指拖动:按下→拖到终点→保持→抬起。
+        用于虚拟摇杆偏转(移动)、镜头滑动等;普通点击用 ``click_game``、
+        一次性拖拽用 ``drag``、键盘按键用 ``key_tap``。
+        坐标为 1920×1080 游戏空间(同 screen_info pc_rect)。
+
+        ⚠️ 操作后建议 sleep:底层无内置等待,拖后画面变化(移动/转视角),
+        连续操作或 capture 前按需 sleep。
+
+        Returns:
+            ``{success, x1, y1, x2, y2, move_time, hold_time, error?}``;backend 抛错时 success=False + error。
+        """
+        try:
+            return backend.touch_drag(x1, y1, x2, y2, move_time, hold_time)
+        except Exception as e:  # noqa: BLE001 工具层兜底
+            return {'success': False, 'x1': x1, 'y1': y1, 'x2': x2, 'y2': y2,
+                    'move_time': move_time, 'hold_time': hold_time, 'error': str(e)}
+
     @mcp.tool(annotations=ToolAnnotations(title="输入文本"))  # 操作类:文本输入(非破坏)
     def input_text(
         text: Annotated[str, Field(description="要输入的文本(账号/密码/兑换码等)")],

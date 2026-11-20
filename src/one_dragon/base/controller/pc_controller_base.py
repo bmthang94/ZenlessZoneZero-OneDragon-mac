@@ -37,6 +37,7 @@ class PcControllerBase(ControllerBase):
     DRAG_MIN_DURATION: float = 0.1
     MAC_MOUSE_MOVE_SETTLE: float = 0.1
     MAC_ACTIVE_SETTLE: float = 0.1
+    TOUCH_PRESS_WAIT: float = 0.05
 
     def __init__(self,
                  screenshot_method: str,
@@ -58,6 +59,9 @@ class PcControllerBase(ControllerBase):
         self.screenshot_method: str = screenshot_method
         self._mac_virtual_hid_mouse: MacVirtualHIDMouse | None = None
         self._mac_virtual_hid_lock: threading.Lock = threading.Lock()
+        self._touch_held: bool = False
+        self._touch_float_pos: tuple[float, float] | None = None  # 触点浮点屏幕坐标(累计,防舍入漂移)
+        self._touch_sent_pos: Point | None = None  # 已下发的整数屏幕坐标
 
     def init_game_win(self) -> bool:
         """
@@ -90,6 +94,7 @@ class PcControllerBase(ControllerBase):
         清理资源
         """
         self.btn_controller.reset()
+        self.touch_up()
         with self._mac_virtual_hid_lock:
             if self._mac_virtual_hid_mouse is not None:
                 self._mac_virtual_hid_mouse.close()
@@ -365,6 +370,129 @@ class PcControllerBase(ControllerBase):
             )
         else:
             drag_mouse(from_pos, to_pos, duration=duration, timing=timing)
+
+    def touch_down(self, game_pos: Point) -> bool:
+        """在指定游戏坐标按下触点并保持(触屏拖拽的按下阶段)。
+
+        macOS 上走虚拟 HID 鼠标按下,PlayCover 触屏模式将其解释为触摸按下;
+        其他平台用 pyautogui.mouseDown。成功后记录按住状态,
+        需配合 touch_move_relative / touch_up 使用。
+
+        Args:
+            game_pos: 游戏内坐标(1920×1080 空间)
+
+        Returns:
+            是否成功按下
+        """
+        win_pos = self.game_win.game2win_pos(game_pos)
+        if win_pos is None:
+            log.error('触点不在游戏窗口区域 (%s)', game_pos)
+            return False
+        try:
+            if sys.platform == 'darwin':
+                if not self.game_win.is_win_active:
+                    self.game_win.active()
+                    time.sleep(self.MAC_ACTIVE_SETTLE)
+                mouse = self._get_mac_virtual_hid_mouse()
+                pyautogui.moveTo(win_pos.x, win_pos.y)
+                mouse.nudge_cursor()
+                time.sleep(self.MAC_MOUSE_MOVE_SETTLE)
+                mouse.press('left')
+            else:
+                pyautogui.moveTo(win_pos.x, win_pos.y)
+                pyautogui.mouseDown()
+        except (OSError, RuntimeError, TimeoutError) as e:
+            log.error('触点按下失败: %s', e)
+            return False
+        self._touch_held = True
+        self._touch_float_pos = (float(win_pos.x), float(win_pos.y))
+        self._touch_sent_pos = Point(win_pos.x, win_pos.y)
+        # 按下后短暂停顿再移动,确保 PlayCover 把后续位移识别为拖拽而非点击
+        time.sleep(self.TOUCH_PRESS_WAIT)
+        return True
+
+    def touch_move_relative(self, dx: float, dy: float) -> None:
+        """触点保持按下时的相对移动(拖拽路径),参数为屏幕像素。
+
+        未处于按住状态时忽略。与 drag_mouse 成功路径一致:先用
+        pyautogui.moveTo 同步真实光标位置(走 WindowServer 事件流),
+        再发虚拟 HID 相对位移,PlayCover 才能把两者识别为同一触点的拖拽。
+        位移按浮点累计、整数下发,避免逐步取整产生累计漂移。
+        """
+        if not self._touch_held or self._touch_float_pos is None or self._touch_sent_pos is None:
+            return
+        fx = self._touch_float_pos[0] + dx
+        fy = self._touch_float_pos[1] + dy
+        self._touch_float_pos = (fx, fy)
+        tx, ty = int(round(fx)), int(round(fy))
+        ddx, ddy = tx - self._touch_sent_pos.x, ty - self._touch_sent_pos.y
+        if ddx == 0 and ddy == 0:
+            return
+        pyautogui.moveTo(tx, ty)
+        if sys.platform == 'darwin':
+            self._get_mac_virtual_hid_mouse().move_relative(ddx, ddy)
+        self._touch_sent_pos = Point(tx, ty)
+
+    def touch_up(self) -> None:
+        """抬起触点;未按住时为空操作,重复调用安全。"""
+        if not self._touch_held:
+            return
+        self._touch_held = False
+        self._touch_float_pos = None
+        self._touch_sent_pos = None
+        try:
+            if sys.platform == 'darwin':
+                self._get_mac_virtual_hid_mouse().release('left')
+            else:
+                pyautogui.mouseUp()
+        except (OSError, RuntimeError, TimeoutError) as e:
+            log.warning('触点抬起失败: %s', e)
+
+    def touch_drag_hold(
+        self, start: Point, end: Point,
+        move_time: float = 0.2, hold_time: float = 0.5,
+    ) -> bool:
+        """按下→沿直线拖到 end→在 end 保持 hold_time→抬起。
+
+        用于摇杆偏转、镜头滑动等需要「按住-拖动-保持」的触屏操作。
+        坐标均为 1920×1080 游戏空间。
+
+        Args:
+            start: 触点起点(游戏坐标)
+            end: 触点终点(游戏坐标)
+            move_time: 从 start 拖到 end 的时长(秒)
+            hold_time: 到达 end 后保持按住的时长(秒)
+
+        Returns:
+            是否成功完成整段拖拽
+        """
+        from_pos = self.game_win.game2win_pos(start)
+        if from_pos is None:
+            log.error('触点起点不在游戏窗口区域 (%s)', start)
+            return False
+        to_pos = self.game_win.game2win_pos(end)
+        if to_pos is None:
+            log.error('触点终点不在游戏窗口区域 (%s)', end)
+            return False
+        if not self.touch_down(start):
+            return False
+        try:
+            steps = max(int(move_time / 0.02), 1)
+            prev_x, prev_y = from_pos.x, from_pos.y
+            for i in range(1, steps + 1):
+                t = i / steps
+                cx = int(from_pos.x + (to_pos.x - from_pos.x) * t)
+                cy = int(from_pos.y + (to_pos.y - from_pos.y) * t)
+                if sys.platform == 'darwin':
+                    pyautogui.moveTo(cx, cy)
+                self.touch_move_relative(cx - prev_x, cy - prev_y)
+                prev_x, prev_y = cx, cy
+                time.sleep(move_time / steps)
+            if hold_time > 0:
+                time.sleep(hold_time)
+        finally:
+            self.touch_up()
+        return True
 
     def scroll(self, down: int, pos: Point | None = None) -> None:
         """向下滚动。
