@@ -137,6 +137,10 @@ class MacVirtualHIDMouse:
             self.close()
             raise
 
+    def is_running(self) -> bool:
+        """判断客户端进程是否仍在运行。"""
+        return self._process.poll() is None
+
     def click(self, press_time: float = 0.1, button: str = 'left') -> None:
         """发送一次鼠标点击。"""
         duration_ms = min(60000, max(1, round(press_time * 1000)))

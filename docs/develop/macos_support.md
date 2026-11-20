@@ -4,7 +4,7 @@
 
 本仓库是专为 macOS 开发的 fork，不再支持 Windows。目标是在 Apple Silicon Mac 上运行一条龙，通过 PlayCover 运行绝区零；游戏注入 `tools/macos/libUnityDesktopMode.dylib` 插件以 PC 桌面模式逻辑接收键鼠输入，不依赖 PlayCover 内置键位映射。游戏流程、画面识别和自动化逻辑继续复用现有实现。
 
-macOS 控制器只使用前台键鼠模式：发送键盘或鼠标输入时，游戏窗口必须处于前台。截图按 PlayCover 游戏窗口 ID 获取，因此游戏窗口被其他窗口遮挡时仍可截图；窗口仍须可见，系统可能要求授予屏幕录制权限。系统级键鼠模拟需要用户授予辅助功能权限。权限未授予或游戏窗口未找到时，控制器应报告明确错误，不应假装操作成功。项目不提供手柄控制方案。
+macOS 控制器只使用前台键鼠模式：发送键盘或鼠标输入时，游戏窗口必须处于前台。判定前台状态时，除了要求游戏所属应用是前台应用，还要求游戏窗口是该应用的焦点窗口（PlayCover 可能有多个窗口，应用前台但焦点在别的窗口时键盘输入会落空）；辅助功能权限不可用时退回应用级判断。激活窗口时先激活应用，再通过 Accessibility 把目标窗口置为主窗口并执行 `AXRaise`，避免只激活应用却让错误的窗口持有焦点、造成反复激活抢焦点。截图按 PlayCover 游戏窗口 ID 获取，因此游戏窗口被其他窗口遮挡时仍可截图；窗口仍须可见，系统可能要求授予屏幕录制权限。系统级键鼠模拟需要用户授予辅助功能权限。权限未授予或游戏窗口未找到时，控制器应报告明确错误，不应假装操作成功。项目不提供手柄控制方案。
 
 ## 与 Windows 的区别
 
@@ -14,7 +14,7 @@ macOS 控制器只使用前台键鼠模式：发送键盘或鼠标输入时，�
 - 仅在游戏画面区域明确标记 `pc_alt` 的点击中按住 Option/Alt（例如大世界中需要解锁鼠标的按钮）；其他游戏内点击不按住 Option/Alt。
 - 后台点击和后台输入不适用于 macOS；本 fork 只提供前台键鼠控制，不提供后台运行模式或手柄控制。
 - PlayCover 内置 Keymapping（键位映射）当前关闭；自动化输入需要兼容用户安装的 PC 逻辑插件。
-- 插件 `InputManager::OnKeyChanged` 在对象偏移 `0x38` 的键盘开关不是 1 时，直接丢掉按键。`SetKeyboardInputEnable` 没有任何调用，这个字节一直是 0。所以物理键盘和脚本键盘一起失效，包括交互 F、移动 WASD、闪避 Shift、切换 Space / C、后援 R、特殊攻击 E、终结技 Q。鼠标左键和中键不走这里，点地图不受影响。仓库 `tools/macos/libUnityDesktopMode.dylib`、PlayCover 用户插件 `PlayTools/UserPlugins/com.HoYoverse.Nap/libUnityDesktopMode.dylib`，以及游戏包 `Frameworks/UserPlugins/libUnityDesktopMode.dylib`，都把文件偏移 `0x87e4` 的条件跳转（`a1 02 00 54`）改成了空指令（`1f 20 03 d5`）。正在运行的游戏要完全退出再打开，才会加载改过的插件。
+- 国际服 3.3.1 中，游戏的「UI布局」目前只显示「触屏」，物理键盘输入仍存在问题。2026-11-20 的 macOS 统一日志记录了 `LayoutPlatformSettingContext.IsShowOnUIInner instruction mismatch!`，表明插件对该游戏版本的界面布局处理未匹配；已有插件修改不足以证明键盘输入可用。MCP 虚拟鼠标点击与物理键盘输入是不同路径，点击成功不能证明键盘正常。
 - macOS 使用 ONNX Runtime 的 CPU 执行提供程序。模型推理与自动化流程保持不变；若后续增加 Apple GPU 加速，须单独验证模型兼容性与推理结果。
 - 自动战斗的声音闪避识别通过 macOS 原生 `ScreenCaptureKit` 优先捕获 PlayCover 游戏应用的声音。无法按应用录制时，先尝试系统输出音频回环，再尝试 `BlackHole` 等虚拟音频设备。原生桥接库由 `tools/macos/sck_audio_capture.mm` 构建，使用屏幕与系统录音权限。[Apple ScreenCaptureKit 音频过滤说明](https://developer.apple.com/videos/play/wwdc2022/10155/)
 - PlayCover 窗口识别支持常见中英文游戏标题。自定义标题仍按原值精确匹配。
@@ -33,4 +33,6 @@ macOS 本机开发使用 Python 3.11 和 `uv`，源码根目录为 `src/`。平�
 
 在仓库根目录双击 `启动一条龙.command`，以当前登录用户构建并运行 GUI；不要使用 `sudo` 启动整套程序。启动时会请求一次管理员授权，仅供独立的 Karabiner 虚拟 HID 点击客户端连接驱动使用；GUI 和截图仍由当前用户运行。macOS 的屏幕录制和辅助功能授权按实际进程身份管理，授权给 GitHub Copilot 不会授权给一条龙；首次运行时，应按系统提示为实际运行一条龙的程序授予权限。首次构建需要 Git、Xcode Command Line Tools 和网络连接，以获取官方 v8.7.0 客户端头文件；之后会复用 `.install/macos-vhid/` 下的构建结果。脚本沿用当前用户的 HOME 和项目虚拟环境；如果根目录存在 `.env`，启动时会加载其中的环境变量。
 
-鼠标和键盘都要求已安装并启动 Karabiner-DriverKit-VirtualHIDDevice 8.7.0。控制器使用官方客户端协议，并保持一个常驻客户端，避免每次点击或按键都重新初始化设备。键盘初始化失败不会让这个客户端退出，鼠标仍可用。仅 `pc_alt=True` 的点击会额外按住 Option；普通点击不按 Option。
+如果 MCP 能截图，但发送输入时提示虚拟 HID 客户端需要管理员授权，请在上述启动脚本完成验证后，从同一 GUI 的「开发工具 → MCP 服务」启动服务。如果服务已在另一个终端运行，请在该页面点「重启」，让 MCP 使用已验证的终端会话。
+
+鼠标和键盘都要求已安装并启动 Karabiner-DriverKit-VirtualHIDDevice 8.7.0。控制器使用官方客户端协议，在自动化初始化或首次输入时启动并复用客户端，客户端退出后会重新创建。键盘初始化失败不会让这个客户端退出，鼠标仍可用。仅 `pc_alt=True` 的点击会额外按住 Option；普通点击不按 Option。

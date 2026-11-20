@@ -1,4 +1,5 @@
 import sys
+import time
 
 import pyautogui
 from cv2.typing import MatLike
@@ -194,6 +195,7 @@ class ZPcController(PcControllerBase):
         if sys.platform == 'darwin':
             if not self.game_win.is_win_active:
                 self.game_win.active()
+                time.sleep(self.MAC_ACTIVE_SETTLE)
             self._get_mac_virtual_hid_mouse().move_relative(round(dx), round(dy))
             return
         pyautogui.moveRel(int(dx), int(dy), duration=0)

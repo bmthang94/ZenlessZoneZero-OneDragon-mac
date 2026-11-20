@@ -309,7 +309,7 @@ def create_mcp_server(backend: ZzzBackendContext, name: str = "zzz_od") -> MCPSe
         try:
             return backend.click_game(x, y, press_time, pc_alt)
         except Exception as e:  # noqa: BLE001 工具层兜底
-            return {'success': False, 'x': x, 'y': y, 'in_window': False, 'pc_alt': pc_alt, 'error': str(e)}
+            return {'success': False, 'x': x, 'y': y, 'pc_alt': pc_alt, 'error': str(e)}
 
     @mcp.tool(annotations=ToolAnnotations(title="键盘按键"))  # 操作类:键盘输入(非破坏)
     def key_tap(

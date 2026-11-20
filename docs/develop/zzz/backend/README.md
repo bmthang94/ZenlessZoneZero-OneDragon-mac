@@ -51,6 +51,12 @@ uv run --env-file .env python -m zzz_od.backend.entry.server --port 23001
 uv run python -m zzz_od.backend.entry.server --port 23001
 ```
 
+在 macOS 源码目录运行时，如果提示 `ModuleNotFoundError: No module named 'zzz_od'`，请在仓库根目录执行以下命令，让 Python 从 `src` 加载模块。
+
+```shell
+PYTHONPATH=src uv run python -m zzz_od.backend.entry.server --host 127.0.0.1 --port 23001
+```
+
 GUI 启动：打开「开发工具 -> MCP 服务」，使用同一条入口命令在本机启动 `zzz_od.backend.entry.server` 子进程。
 
 启动后：

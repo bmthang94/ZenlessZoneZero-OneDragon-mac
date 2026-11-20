@@ -1,4 +1,5 @@
 import os
+import subprocess
 import time
 
 import ApplicationServices as AS
@@ -8,6 +9,7 @@ from AppKit import (
     NSRunningApplication,
     NSWorkspace,
 )
+from CoreFoundation import kCFBooleanTrue
 
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
@@ -22,27 +24,93 @@ class MacGameWindowHandle:
         self.owner_pid: int = owner_pid
         self.title: str = title
 
+    def _is_frontmost(self) -> bool:
+        """游戏窗口所属进程当前是否是系统前台应用。"""
+        front = NSWorkspace.sharedWorkspace().frontmostApplication()
+        return front is not None and front.processIdentifier() == self.owner_pid
+
     @property
     def isActive(self) -> bool:
         """游戏窗口所属应用是否处于前台。"""
-        front = NSWorkspace.sharedWorkspace().frontmostApplication()
-        if front is not None and front.processIdentifier() == self.owner_pid:
+        if self._is_frontmost():
             return True
         app = NSRunningApplication.runningApplicationWithProcessIdentifier_(
             self.owner_pid
         )
         return app is not None and bool(app.isActive())
 
+    def _wait_frontmost(self, timeout: float = 0.15) -> bool:
+        """轮询等待进程成为前台应用；激活是异步的，立即查可能拿到旧状态。"""
+        deadline = time.monotonic() + timeout
+        while True:
+            if self._is_frontmost():
+                return True
+            if time.monotonic() >= deadline:
+                return False
+            time.sleep(0.02)
+
+    def _activate_via_system_events(self) -> bool:
+        """通过 AppleScript System Events 把进程切到前台。
+
+        进程从后台（如 MCP server 子进程）调用 activateWithOptions_ 时，
+        macOS 的焦点窃取防护会让命令返回 True 但实际不切换 frontmost，
+        需要 System Events 的 frontmost 赋值作为兜底。
+        """
+        script = (
+            'tell application "System Events" to '
+            f'set frontmost of (first process whose unix id is {self.owner_pid}) to true'
+        )
+        try:
+            result = subprocess.run(
+                ['/usr/bin/osascript', '-e', script],
+                capture_output=True, text=True, timeout=5,
+            )
+        except (OSError, subprocess.SubprocessError) as e:
+            log.warning('osascript 激活游戏窗口失败: %s', e)
+            return False
+        if result.returncode != 0:
+            log.warning(
+                'osascript 激活游戏窗口失败: %s', result.stderr.strip()
+            )
+            return False
+        return self._is_frontmost()
+
     def activate(self) -> bool:
-        """将游戏窗口所属应用切到前台。"""
+        """将游戏窗口所属应用切到前台，并确认 frontmost 真的切换了。"""
         app = NSRunningApplication.runningApplicationWithProcessIdentifier_(
             self.owner_pid
         )
         if app is None:
             return False
-        return bool(
-            app.activateWithOptions_(NSApplicationActivateIgnoringOtherApps)
-        )
+        if app.isHidden():
+            app.unhide()
+        if app.activateWithOptions_(NSApplicationActivateIgnoringOtherApps) and self._wait_frontmost():
+            return True
+        # 旧接口在部分 macOS 版本上可能失败，退回到不带选项的 activate
+        activate = getattr(app, 'activate', None)
+        if activate is not None and activate() and self._wait_frontmost():
+            return True
+        if self._activate_via_bundle_url(app):
+            return True
+        return self._activate_via_system_events()
+
+    def _activate_via_bundle_url(self, app: NSRunningApplication) -> bool:
+        """通过 /usr/bin/open 打开 app bundle 将容器应用拉到前台。"""
+        get_bundle = getattr(app, 'bundleURL', None)
+        bundle_url = get_bundle() if callable(get_bundle) else None
+        if bundle_url is None:
+            return False
+        bundle_path = getattr(bundle_url, 'path', None)
+        path_str = bundle_path() if callable(bundle_path) else str(bundle_url)
+        if not path_str:
+            return False
+        try:
+            res = subprocess.run(['/usr/bin/open', path_str], capture_output=True, timeout=5)
+            if res.returncode == 0 and self._wait_frontmost():
+                return True
+        except (OSError, subprocess.SubprocessError):
+            pass
+        return False
 
     def close(self) -> None:
         """关闭游戏窗口所属应用。"""
@@ -78,6 +146,7 @@ class MacPcGameWindow:
         self._win: MacGameWindowHandle | None = None
         self._window_id: int | None = None
         self._content_bounds_warning_logged: bool = False
+        self._activate_error_logged: bool = False
 
     def _clear_cached_window(self) -> None:
         self._win = None
@@ -167,8 +236,42 @@ class MacPcGameWindow:
 
     @property
     def is_win_active(self) -> bool:
+        """游戏窗口是否处于可接收输入的前台状态。
+
+        除了要求所属应用在前台，还要求目标窗口是该应用的焦点窗口；
+        PlayCover 可能有多个窗口，应用前台但焦点在别的窗口时键盘输入会落空。
+        AX 查询不可用（未授予辅助功能权限）时退回应用级判断。
+        """
         window = self.get_win()
-        return window.isActive if window is not None else False
+        if window is None or not window.isActive:
+            return False
+        focused_is_target = self._focused_window_is_target(window)
+        return True if focused_is_target is None else focused_is_target
+
+    def _focused_window_is_target(self, window: MacGameWindowHandle) -> bool | None:
+        """前台应用的焦点窗口是否就是目标游戏窗口；无法判定时返回 None。
+
+        Args:
+            window: 目标游戏窗口句柄
+
+        Returns:
+            焦点窗口与目标窗口一致返回 True，不一致返回 False，无法判定返回 None
+        """
+        outer = self.window_rect
+        if outer is None:
+            return None
+        app = AS.AXUIElementCreateApplication(window.owner_pid)
+        focused = self._ax_attribute(app, 'AXFocusedWindow')
+        if focused is None:
+            focused = self._ax_attribute(app, 'AXMainWindow')
+        if focused is None:
+            return None
+        bounds = self._ax_rect(focused)
+        if bounds is None:
+            return None
+        return (
+            bounds.x1, bounds.y1, bounds.x2, bounds.y2
+        ) == (outer.x1, outer.y1, outer.x2, outer.y2)
 
     @property
     def window_rect(self) -> Rect | None:
@@ -214,6 +317,28 @@ class MacPcGameWindow:
             round(point.x + dimensions.width), round(point.y + dimensions.height),
         )
 
+    @staticmethod
+    def _ax_bounds_key(rect: Rect) -> tuple[int, int, int, int]:
+        return rect.x1, rect.y1, rect.x2, rect.y2
+
+    def _find_ax_window(self, owner_pid: int, outer: Rect) -> object | None:
+        """在应用的 AXWindows 中按外框尺寸定位目标窗口元素。
+
+        Args:
+            owner_pid: 窗口所属进程 ID
+            outer: CGWindowList 返回的窗口完整外框（含标题栏）
+
+        Returns:
+            匹配的 AX 窗口元素，找不到返回 None
+        """
+        target = self._ax_bounds_key(outer)
+        app = AS.AXUIElementCreateApplication(owner_pid)
+        for ax_window in self._ax_attribute(app, 'AXWindows') or []:
+            bounds = self._ax_rect(ax_window)
+            if bounds is not None and self._ax_bounds_key(bounds) == target:
+                return ax_window
+        return None
+
     @property
     def win_rect(self) -> Rect | None:
         """Use the same content viewport for screenshots and click coordinates."""
@@ -221,13 +346,8 @@ class MacPcGameWindow:
         window = self.get_win()
         if outer is None or window is None:
             return None
-        app = AS.AXUIElementCreateApplication(window.owner_pid)
-        for ax_window in self._ax_attribute(app, 'AXWindows') or []:
-            bounds = self._ax_rect(ax_window)
-            if bounds is None or (
-                bounds.x1, bounds.y1, bounds.x2, bounds.y2
-            ) != (outer.x1, outer.y1, outer.x2, outer.y2):
-                continue
+        ax_window = self._find_ax_window(window.owner_pid, outer)
+        if ax_window is not None:
             for child in self._ax_attribute(ax_window, 'AXChildren') or []:
                 if self._ax_attribute(child, 'AXRole') != 'AXGroup':
                     continue
@@ -254,15 +374,44 @@ class MacPcGameWindow:
             rect.width != self.standard_width or rect.height != self.standard_height
         )
 
+    def _raise_game_window(self, window: MacGameWindowHandle) -> bool:
+        """用 Accessibility 把目标游戏窗口提为前台应用的主窗口。
+
+        仅激活应用（NSRunningApplication.activate）时，PlayCover 可能只把应用
+        切到前台而不让游戏窗口成为焦点窗口，键盘输入会落到别的窗口；
+        这里按外框尺寸找到对应 AX 窗口，置为主窗口与焦点窗口并执行 AXRaise。
+
+        Args:
+            window: 目标游戏窗口句柄
+
+        Returns:
+            是否成功对窗口执行了提起操作
+        """
+        outer = self.window_rect
+        if outer is None:
+            return False
+        ax_window = self._find_ax_window(window.owner_pid, outer)
+        if ax_window is None:
+            return False
+        AS.AXUIElementSetAttributeValue(ax_window, 'AXMain', kCFBooleanTrue)
+        AS.AXUIElementSetAttributeValue(ax_window, 'AXFocused', kCFBooleanTrue)
+        return AS.AXUIElementPerformAction(ax_window, 'AXRaise') == 0
+
     def active(self) -> bool:
         window = self.get_win()
         if window is None:
             return False
-        if window.isActive:
+        if self.is_win_active:
+            self._activate_error_logged = False
             return True
-        if not window.activate():
-            log.error('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限')
+        app_activated = window.activate()
+        window_raised = self._raise_game_window(window)
+        if not app_activated and not window_raised:
+            if not self._activate_error_logged:
+                log.error('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限')
+                self._activate_error_logged = True
             return False
+        self._activate_error_logged = False
         return True
 
     def get_scaled_game_pos(self, game_pos: Point) -> Point | None:

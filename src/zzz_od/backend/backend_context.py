@@ -13,6 +13,7 @@ game 切片方法（``check_window``/``capture``/``analyze``）从
 """
 
 import asyncio
+import sys
 import threading
 import time
 from collections.abc import Callable
@@ -711,7 +712,14 @@ class ZzzBackendContext:
         if controller is None or not controller.is_game_window_ready:
             raise BackendNotReadyError('游戏窗口未就绪')
         controller.active_window()
-        clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt)
+        if sys.platform == 'darwin':
+            from one_dragon.base.controller.pc_controller_base import PcControllerBase
+
+        if sys.platform == 'darwin' and isinstance(controller, PcControllerBase):
+            clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt,
+                                       raise_on_input_error=True)
+        else:
+            clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt)
         return {'success': clicked, 'x': int(x), 'y': int(y), 'in_window': clicked, 'pc_alt': pc_alt}
 
     def key_tap(self, key: str, press_time: float = 0.0) -> dict:
