@@ -1,5 +1,6 @@
 import math
 import sys
+import threading
 import time
 
 import pyautogui
@@ -64,7 +65,10 @@ class ZPcController(PcControllerBase):
         self.touch_ui_enabled: bool = sys.platform == 'darwin'
         self._touch_move_actions: set[str] = set()
         self._touch_vec: Point = Point(0, 0)
-        self._touch_attack_held: bool = False
+        self._touch_owner: str | None = None
+        self._touch_lock: threading.RLock = threading.RLock()
+        self._touch_generation: int = 0
+        self._touch_move_tokens: dict[str, object] = {}
 
     def sync_game_config(self, game_config: GameConfig) -> None:
         """切换实例后同步控制器持有的账号级配置"""
@@ -145,24 +149,41 @@ class ZPcController(PcControllerBase):
                 return True
             # 屏幕按钮按 tap 处理;press/release 语义不区分(按钮为瞬时触发)
             hold = press_time if press_time and press_time > 0 else 0.1
-            self.click(pos, press_time=hold, pc_alt=False)
+            with self._touch_lock:
+                if not self._touch_held:
+                    self.click(pos, press_time=hold, pc_alt=False)
             return True
         return False
 
     def _touch_move_action(self, action: str, action_kind: str, press_time: float | None) -> None:
-        """执行一次摇杆移动动作:tap=短促偏转,press=按住(可定时),release=松开。"""
-        if action_kind == 'press':
+        """执行摇杆动作，其他动作占用触点时忽略。"""
+        with self._touch_lock:
+            if action_kind == 'release':
+                if self._touch_owner == 'move':
+                    self._touch_move_tokens.pop(action, None)
+                    self._touch_move_actions.discard(action)
+                    self._apply_touch_move()
+                return
+            if self._touch_owner not in (None, 'move') or (self._touch_held and self._touch_owner is None):
+                return
+            if action_kind == 'tap':
+                self._touch_move_tap(action)
+                return
+            token = object()
+            self._touch_move_tokens[action] = token
             self._touch_move_actions.add(action)
             self._apply_touch_move()
-            if press_time is not None:
+            generation = self._touch_generation
+        if press_time is not None:
+            try:
                 time.sleep(press_time)
-                self._touch_move_actions.discard(action)
-                self._apply_touch_move()
-        elif action_kind == 'release':
-            self._touch_move_actions.discard(action)
-            self._apply_touch_move()
-        else:
-            self._touch_move_tap(action)
+            finally:
+                with self._touch_lock:
+                    if (self._touch_owner == 'move' and self._touch_generation == generation
+                            and self._touch_move_tokens.get(action) is token):
+                        self._touch_move_tokens.pop(action, None)
+                        self._touch_move_actions.discard(action)
+                        self._apply_touch_move()
 
     def _touch_move_vector(self) -> Point:
         """把按住的移动动作合成摇杆偏转量(相对摇杆中心的游戏坐标偏移)。"""
@@ -196,13 +217,18 @@ class ZPcController(PcControllerBase):
             if target.x == 0 and target.y == 0:
                 return
             if not self.touch_down(self.TOUCH_JOYSTICK_CENTER):
+                self._touch_move_actions.clear()
+                self._touch_move_tokens.clear()
                 self._touch_vec = Point(0, 0)
                 return
+            self._touch_owner = 'move'
+            self._touch_generation += 1
         dx, dy = self._touch_screen_delta(
             target.x - self._touch_vec.x, target.y - self._touch_vec.y)
         self.touch_move_relative(dx, dy)
         self._touch_vec = target
         if target.x == 0 and target.y == 0:
+            self._touch_owner = None
             self.touch_up()
 
     def _touch_move_tap(self, action: str) -> None:
@@ -216,9 +242,11 @@ class ZPcController(PcControllerBase):
         dx, dy = self._touch_screen_delta(
             dir_x * self.TOUCH_JOYSTICK_RADIUS * 0.9,
             dir_y * self.TOUCH_JOYSTICK_RADIUS * 0.9)
-        self.touch_move_relative(dx, dy)
-        time.sleep(self.TOUCH_MOVE_TAP_SECONDS)
-        self.touch_up()
+        try:
+            self.touch_move_relative(dx, dy)
+            time.sleep(self.TOUCH_MOVE_TAP_SECONDS)
+        finally:
+            self.touch_up()
 
     def _action_btn(self, key: str, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """通用按键动作：按下/释放/点按"""
@@ -236,10 +264,11 @@ class ZPcController(PcControllerBase):
         if self.touch_ui_enabled:
             # 屏幕按钮为瞬时触发,只处理点击;press/release 不区分,
             # 但摇杆按住(_touch_held)或 release 语义时不触发
-            if not self._touch_held and not release:
-                self.click(
-                    self.TOUCH_BUTTON_POS[touch_action],
-                    press_time=press_time or 0.1, pc_alt=False)
+            with self._touch_lock:
+                if not self._touch_held and not release:
+                    self.click(
+                        self.TOUCH_BUTTON_POS[touch_action],
+                        press_time=press_time or 0.1, pc_alt=False)
             return
         self._action_btn(key, press, press_time, release)
 
@@ -261,32 +290,57 @@ class ZPcController(PcControllerBase):
         """切换后援"""
         self._action_btn(self.action_keys['switch_backup'], press, press_time, release)
 
+    def _touch_attack(self, owner: str, pos: Point, press: bool,
+                      press_time: float | None, release: bool) -> None:
+        """按住或释放指定攻击，忽略其他动作占用的触点。"""
+        with self._touch_lock:
+            if press:
+                if self._touch_held or not self.touch_down(pos):
+                    return
+                self._touch_owner = owner
+                self._touch_generation += 1
+                generation = self._touch_generation
+            elif release:
+                if self._touch_owner == owner:
+                    self._touch_owner = None
+                    self.touch_up()
+                return
+            else:
+                if not self._touch_held:
+                    self.click(pos, press_time=0.1, pc_alt=False)
+                return
+        if press_time is not None:
+            try:
+                time.sleep(press_time)
+            finally:
+                with self._touch_lock:
+                    if self._touch_owner == owner and self._touch_generation == generation:
+                        self._touch_owner = None
+                        self.touch_up()
+
+    def touch_up(self) -> None:
+        """抬起触点并清除对应动作状态。"""
+        with self._touch_lock:
+            self._touch_owner = None
+            self._touch_move_actions.clear()
+            self._touch_move_tokens.clear()
+            self._touch_vec = Point(0, 0)
+            self._touch_generation += 1
+            PcControllerBase.touch_up(self)
+
     def normal_attack(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """普通攻击"""
         if self.touch_ui_enabled:
-            if press:
-                if self._touch_held:
-                    return
-                self._touch_attack_held = self.touch_down(self.TOUCH_NORMAL_ATTACK)
-                if self._touch_attack_held and press_time is not None:
-                    try:
-                        time.sleep(press_time)
-                    finally:
-                        self._touch_attack_held = False
-                        self.touch_up()
-            elif release:
-                if self._touch_attack_held:
-                    self._touch_attack_held = False
-                    self.touch_up()
-            elif not self._touch_held:
-                self.click(self.TOUCH_NORMAL_ATTACK, press_time=0.1, pc_alt=False)
+            self._touch_attack('normal_attack', self.TOUCH_NORMAL_ATTACK, press, press_time, release)
             return
         self._action_btn(self.action_keys['normal_attack'], press, press_time, release)
 
     def special_attack(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """特殊攻击"""
-        self._touch_btn_or_action_btn(
-            'special_attack', self.action_keys['special_attack'], press, press_time, release)
+        if self.touch_ui_enabled:
+            self._touch_attack('special_attack', self.TOUCH_BUTTON_POS['special_attack'], press, press_time, release)
+            return
+        self._action_btn(self.action_keys['special_attack'], press, press_time, release)
 
     def ultimate(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """终结技"""
@@ -361,7 +415,9 @@ class ZPcController(PcControllerBase):
             center_x, center_y = 1400, 500
             start = Point(center_x, center_y)
             end = Point(int(center_x - drag_dx), center_y)
-            self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
+            with self._touch_lock:
+                if not self._touch_held:
+                    self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
             return
         self.move_mouse_relative(d, 0)
 
@@ -390,7 +446,9 @@ class ZPcController(PcControllerBase):
             center_x, center_y = 1400, 500
             start = Point(center_x, center_y)
             end = Point(center_x, int(center_y - drag_dy))
-            self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
+            with self._touch_lock:
+                if not self._touch_held:
+                    self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
             return
         self.move_mouse_relative(0, d)
 
