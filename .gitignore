@@ -3,7 +3,6 @@ build/
 dist/
 .DS_Store
 zzz-od-test/
-/plans/
 .idea/
 .vscode/*
 !.vscode/launch.json
