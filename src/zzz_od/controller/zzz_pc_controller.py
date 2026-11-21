@@ -34,7 +34,7 @@ class ZPcController(PcControllerBase):
     TOUCH_JOYSTICK_CENTER: Point = Point(403, 780)
     TOUCH_JOYSTICK_RADIUS: float = 105.0
     TOUCH_BUTTON_POS: dict[str, Point] = {
-        'interact': Point(1454, 967),
+        'interact': Point(1577, 803),
     }
     TOUCH_MOVE_TAP_SECONDS: float = 0.3
 

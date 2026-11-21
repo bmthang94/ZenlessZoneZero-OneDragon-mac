@@ -86,7 +86,7 @@ def get_windows_build() -> int:
 
 def is_windows_build_supported(min_build: int = 19041) -> bool:
     if sys.platform == 'darwin':
-        return True
+        return False
     return get_windows_build() >= min_build
 
 
