@@ -927,6 +927,9 @@ class Operation(OperationBase):
         """
         if screen is None:
             screen = self.last_screenshot
+        if screen is None:
+            self.screenshot()
+            screen = self.last_screenshot
 
         if screen_name is None or area_name is None:
             return self.round_fail('未指定画面区域')
@@ -1260,6 +1263,9 @@ class Operation(OperationBase):
         """
         if screen is None:
             screen = self.last_screenshot
+        if screen is None:
+            self.screenshot()
+            screen = self.last_screenshot
 
         if color_range is None and area is not None:
             color_range = area.color_range
@@ -1327,6 +1333,9 @@ class Operation(OperationBase):
             OperationRoundResult: 根据匹配目标返回对应的结果类型。
         """
         if screen is None:
+            screen = self.last_screenshot
+        if screen is None:
+            self.screenshot()
             screen = self.last_screenshot
 
         if color_range is None and area is not None:
@@ -1418,6 +1427,9 @@ class Operation(OperationBase):
             OperationRoundResult: 导航结果。
         """
         if screen is None:
+            screen = self.last_screenshot
+        if screen is None:
+            self.screenshot()
             screen = self.last_screenshot
 
         debounce_source = self._goto_screen_debounce_source
@@ -1513,6 +1525,9 @@ class Operation(OperationBase):
             str: 画面名称。
         """
         if screen is None:
+            screen = self.last_screenshot
+        if screen is None:
+            self.screenshot()
             screen = self.last_screenshot
         current_screen_name = screen_utils.get_match_screen_name(
             self.ctx,

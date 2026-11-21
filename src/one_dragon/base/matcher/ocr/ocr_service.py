@@ -93,7 +93,7 @@ class OcrService:
             ValueError: 颜色过滤配置格式有误时抛出 附带具体配置 方便定位问题
                 （否则只会表现为「未能识别当前画面」，让人误以为字体/分辨率/代码过时）
         """
-        if color_range is None:
+        if image is None or color_range is None:
             return image
 
         if (not isinstance(color_range, (list, tuple)) or len(color_range) != 2
@@ -174,6 +174,9 @@ class OcrService:
         Returns:
             ocr_result_list: OCR识别结果列表
         """
+        if image is None:
+            return []
+
         # 生成缓存键
         image_id = id(image)
 

@@ -357,6 +357,8 @@ def get_match_screen_name(
     Returns:
         str | None: 画面名称
     """
+    if screen is None:
+        return None
     if screen_name_list is not None:
         for screen_info in ctx.screen_loader.screen_info_list:
             if screen_info.screen_name not in screen_name_list:
@@ -459,6 +461,8 @@ def is_target_screen(
     Returns:
         bool: 是否目标画面
     """
+    if screen is None:
+        return False
     if screen_info is None:
         if screen_name is None:
             return False

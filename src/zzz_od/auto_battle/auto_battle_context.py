@@ -1096,8 +1096,10 @@ class AutoBattleContext:
         :return:
         """
         mrl = self.ctx.tm.crop_and_match_template(
-            screen, self.area_btn_normal.rect, 'battle', 'btn_normal_attack',
-            threshold=0.9,
+            screen, self.area_btn_normal.rect,
+            self.area_btn_normal.template_sub_dir or 'battle',
+            self.area_btn_normal.template_id or 'btn_normal_attack',
+            threshold=self.area_btn_normal.template_match_threshold or 0.6,
         )
         return mrl.max is not None
 

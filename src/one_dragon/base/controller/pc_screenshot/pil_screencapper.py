@@ -1,5 +1,8 @@
+import subprocess
 import sys
+from pathlib import Path
 
+import cv2
 import numpy as np
 from cv2.typing import MatLike
 from pyautogui import screenshot as pyautogui_screenshot
@@ -58,6 +61,31 @@ class PilScreencapper(ScreencapperBase):
             and outer.y1 <= rect.y1 < rect.y2 <= outer.y2
         ):
             return None
+
+        # On macOS 14+ / 15+, CGWindowListCreateImage against PlayCover/Metal windows
+        # stalls for 30s or returns None. /usr/sbin/screencapture is Apple's native
+        # system utility that captures window ID without stall (~0.2s).
+        # -o avoids window shadow so cropped geometry matches outer window bounds exactly.
+        tmp_capture = Path('/tmp/od_screencap.png')
+        try:
+            res = subprocess.run(
+                ['/usr/sbin/screencapture', '-l', str(window_id), '-o', '-x', str(tmp_capture)],
+                capture_output=True,
+                timeout=2,
+            )
+            if res.returncode == 0 and tmp_capture.is_file():
+                img = cv2.imread(str(tmp_capture))
+                if img is not None and img.shape[0] > 0 and img.shape[1] > 0:
+                    height, width = img.shape[:2]
+                    x1 = round((rect.x1 - outer.x1) * width / outer.width)
+                    y1 = round((rect.y1 - outer.y1) * height / outer.height)
+                    x2 = round((rect.x2 - outer.x1) * width / outer.width)
+                    y2 = round((rect.y2 - outer.y1) * height / outer.height)
+                    if x2 > x1 and y2 > y1:
+                        cropped = img[y1:y2, x1:x2]
+                        return cv2.cvtColor(cropped, cv2.COLOR_BGR2RGB)
+        except Exception:
+            pass
 
         image_ref = Quartz.CGWindowListCreateImage(
             Quartz.CGRectNull,

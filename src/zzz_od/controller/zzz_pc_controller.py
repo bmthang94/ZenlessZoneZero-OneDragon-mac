@@ -35,7 +35,12 @@ class ZPcController(PcControllerBase):
     TOUCH_JOYSTICK_RADIUS: float = 105.0
     TOUCH_BUTTON_POS: dict[str, Point] = {
         'interact': Point(1577, 803),
+        'dodge': Point(1716, 907),
+        'special_attack': Point(1424, 907),
+        'ultimate': Point(1244, 897),
+        'switch_next': Point(1716, 724),
     }
+    TOUCH_NORMAL_ATTACK: Point = Point(1570, 805)
     TOUCH_MOVE_TAP_SECONDS: float = 0.3
 
     def __init__(
@@ -59,6 +64,7 @@ class ZPcController(PcControllerBase):
         self.touch_ui_enabled: bool = sys.platform == 'darwin'
         self._touch_move_actions: set[str] = set()
         self._touch_vec: Point = Point(0, 0)
+        self._touch_attack_held: bool = False
 
     def sync_game_config(self, game_config: GameConfig) -> None:
         """切换实例后同步控制器持有的账号级配置"""
@@ -223,13 +229,29 @@ class ZPcController(PcControllerBase):
         else:
             self.btn_tap(key)
 
+    def _touch_btn_or_action_btn(
+            self, touch_action: str, key: str,
+            press: bool, press_time: float | None, release: bool) -> None:
+        """触屏模式下把战斗按钮动作路由到屏幕坐标点击;否则走键盘键。"""
+        if self.touch_ui_enabled:
+            # 屏幕按钮为瞬时触发,只处理点击;press/release 不区分,
+            # 但摇杆按住(_touch_held)或 release 语义时不触发
+            if not self._touch_held and not release:
+                self.click(
+                    self.TOUCH_BUTTON_POS[touch_action],
+                    press_time=press_time or 0.1, pc_alt=False)
+            return
+        self._action_btn(key, press, press_time, release)
+
     def dodge(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """闪避"""
-        self._action_btn(self.action_keys['dodge'], press, press_time, release)
+        self._touch_btn_or_action_btn(
+            'dodge', self.action_keys['dodge'], press, press_time, release)
 
     def switch_next(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """切换角色-下一个"""
-        self._action_btn(self.action_keys['switch_next'], press, press_time, release)
+        self._touch_btn_or_action_btn(
+            'switch_next', self.action_keys['switch_next'], press, press_time, release)
 
     def switch_prev(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """切换角色-上一个"""
@@ -241,15 +263,35 @@ class ZPcController(PcControllerBase):
 
     def normal_attack(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """普通攻击"""
+        if self.touch_ui_enabled:
+            if press:
+                if self._touch_held:
+                    return
+                self._touch_attack_held = self.touch_down(self.TOUCH_NORMAL_ATTACK)
+                if self._touch_attack_held and press_time is not None:
+                    try:
+                        time.sleep(press_time)
+                    finally:
+                        self._touch_attack_held = False
+                        self.touch_up()
+            elif release:
+                if self._touch_attack_held:
+                    self._touch_attack_held = False
+                    self.touch_up()
+            elif not self._touch_held:
+                self.click(self.TOUCH_NORMAL_ATTACK, press_time=0.1, pc_alt=False)
+            return
         self._action_btn(self.action_keys['normal_attack'], press, press_time, release)
 
     def special_attack(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """特殊攻击"""
-        self._action_btn(self.action_keys['special_attack'], press, press_time, release)
+        self._touch_btn_or_action_btn(
+            'special_attack', self.action_keys['special_attack'], press, press_time, release)
 
     def ultimate(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """终结技"""
-        self._action_btn(self.action_keys['ultimate'], press, press_time, release)
+        self._touch_btn_or_action_btn(
+            'ultimate', self.action_keys['ultimate'], press, press_time, release)
 
     def chain_left(self, press: bool = False, press_time: float | None = None, release: bool = False) -> None:
         """连携技-左"""
