@@ -381,8 +381,14 @@ class ApplicationFactoryManager:
             name for name in sys.modules
             if name == pkg_name or name.startswith(f"{pkg_name}.")
         ]
-        for name in modules_to_remove:
-            del sys.modules[name]
+        if pkg_name.startswith("zzz_od.application"):
+            modules_to_remove.extend([
+                name for name in sys.modules
+                if name == "zzz_od.operation" or name.startswith("zzz_od.operation.")
+            ])
+        for name in set(modules_to_remove):
+            if name in sys.modules:
+                del sys.modules[name]
         log.debug(f"卸载插件模块: {modules_to_remove}")
 
     def _find_factory_in_module(

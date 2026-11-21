@@ -32,7 +32,18 @@ class EmailApp(ZApplication):
 
     @operation_node(name='打开邮件', is_start_node=True)
     def goto_email(self) -> OperationRoundResult:
-        return self.round_by_goto_screen(screen_name='邮件')
+        result = self.round_by_goto_screen(screen_name='邮件')
+        if result.is_success:
+            return result
+        if not result.is_fail and self.ctx.screen_loader.current_screen_name is not None:
+            return self.round_wait(result.status, wait=1)
+
+        # 无法直接从当前画面前往邮件（如上一任务停留在地图等子画面），先统一返回大世界
+        op = BackToNormalWorld(self.ctx)
+        op_result = op.execute()
+        if op_result.success:
+            return self.round_retry(status='返回大世界后重试', wait=1)
+        return result
 
     @node_from(from_name='打开邮件')
     @node_notify(when=NotifyTiming.CURRENT_SUCCESS)
@@ -79,6 +90,7 @@ class EmailApp(ZApplication):
         )
 
     @node_from(from_name='确认')  # 确认之后返回
+    @node_from(from_name='确认', success=False)  # 无弹窗确认（已领取过）时也返回菜单
     @operation_node(name='返回菜单')
     def back_to_menu(self) -> OperationRoundResult:
         """

@@ -78,7 +78,7 @@ area_list:
   goto_list: []
   gamepad_key: function_menu
 - area_name: 预备编队
-  id_mark: true
+  id_mark: false
   pc_rect:
   - 1185
   - 45

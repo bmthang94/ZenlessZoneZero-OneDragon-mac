@@ -1651,7 +1651,7 @@
     - 120
     template_sub_dir: menu
     template_id: back_playcover
-    template_match_threshold: 0.9
+    template_match_threshold: 0.7
     goto_list:
     - 大世界-普通
   - area_name: 底部-仓库
@@ -1700,7 +1700,6 @@
     - 绳网
   - area_name: 菜单-动态壁纸
     area_type: template
-    id_mark: true
     pc_rect:
     - 65
     - 745
@@ -1708,7 +1707,7 @@
     - 855
     template_sub_dir: menu
     template_id: dynamic_wallpaper_playcover
-    template_match_threshold: 0.9
+    template_match_threshold: 0.7
 - screen_id: lost_void_choose_common
   screen_name: 迷失之地-通用选择
   app_id: lost_void
@@ -2278,7 +2277,6 @@
     template_match_threshold: 0.7
   - area_name: 预备编队
     area_type: template
-    id_mark: true
     pc_rect:
     - 1185
     - 45
@@ -5048,7 +5046,7 @@
     - 120
     template_sub_dir: menu
     template_id: back_playcover
-    template_match_threshold: 0.9
+    template_match_threshold: 0.7
     goto_list:
     - 菜单
 - screen_id: lost_void_bangboo_store
