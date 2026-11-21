@@ -1,3 +1,4 @@
+from one_dragon.base.geometry.point import Point
 from one_dragon.utils import cal_utils
 from zzz_od.controller.zzz_pc_controller import ZPcController
 
@@ -60,7 +61,18 @@ class AngleTurnCompensator:
         effective_angle_diff = angle_diff * self.scale
         if max_abs_angle_diff is not None:
             effective_angle_diff = max(-max_abs_angle_diff, min(effective_angle_diff, max_abs_angle_diff))
-        self.controller.turn_by_angle_diff(effective_angle_diff)
+        if getattr(self.controller, 'touch_ui_enabled', False):
+            # 触屏模式下通过触摸滑动旋转镜头
+            # 顺时针（向右转）对应 angle_diff > 0，触点向左划
+            # 逆时针（向左转）对应 angle_diff < 0，触点向右划
+            max_drag = 300.0
+            drag_dx = max(-max_drag, min(max_drag, effective_angle_diff * 2.0))
+            center_x, center_y = 1400, 500
+            start = Point(center_x, center_y)
+            end = Point(int(center_x - drag_dx), center_y)
+            self.controller.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
+        else:
+            self.controller.turn_by_angle_diff(effective_angle_diff)
         return effective_angle_diff
 
     def _observed_angle_change(

@@ -385,6 +385,7 @@ class ApplicationFactoryManager:
             modules_to_remove.extend([
                 name for name in sys.modules
                 if name == "zzz_od.operation" or name.startswith("zzz_od.operation.")
+                or name == "zzz_od.controller" or name.startswith("zzz_od.controller.")
             ])
         for name in set(modules_to_remove):
             if name in sys.modules:

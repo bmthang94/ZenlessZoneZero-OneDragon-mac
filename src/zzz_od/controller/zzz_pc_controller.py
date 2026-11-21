@@ -310,6 +310,17 @@ class ZPcController(PcControllerBase):
         Args:
             d: 正数往右转 负数往左转
         """
+        if self.touch_ui_enabled:
+            # 触屏模式下通过触摸滑动旋转镜头
+            # d > 0 向右转 -> 视角向右，触点向左划
+            # d < 0 向左转 -> 视角向左，触点向右划
+            max_drag = 300.0
+            drag_dx = max(-max_drag, min(max_drag, float(d)))
+            center_x, center_y = 1400, 500
+            start = Point(center_x, center_y)
+            end = Point(int(center_x - drag_dx), center_y)
+            self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
+            return
         self.move_mouse_relative(d, 0)
 
     def turn_by_angle_diff(self, angle_diff: float) -> None:
@@ -331,6 +342,14 @@ class ZPcController(PcControllerBase):
         Args:
             d: 正数往下转 负数往上转
         """
+        if self.touch_ui_enabled:
+            max_drag = 200.0
+            drag_dy = max(-max_drag, min(max_drag, float(d)))
+            center_x, center_y = 1400, 500
+            start = Point(center_x, center_y)
+            end = Point(center_x, int(center_y - drag_dy))
+            self.touch_drag_hold(start, end, move_time=0.15, hold_time=0.05)
+            return
         self.move_mouse_relative(0, d)
 
     def move_mouse_relative(self, dx: float, dy: float):

@@ -15,6 +15,7 @@ from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
 from one_dragon.utils.i18_utils import gt
+from one_dragon.utils.log_utils import log
 from zzz_od.application.charge_plan import charge_plan_const
 from zzz_od.application.coffee import coffee_app_const
 from zzz_od.application.coffee.coffee_config import (
@@ -102,12 +103,15 @@ class CoffeeApp(ZApplication):
         :return:
         """
         if self.config.transport_point == CoffeeTransportPoint.POINT_1.value.value:
-            result = turn_to_angle(self, target_angle=180, turn_status='转向正西')
+            result = turn_to_angle(self, target_angle=180, turn_status='转向正西', angle_threshold=15.0)
             if not result.is_success:
-                return result
+                if self.node_retry_times >= self.node_max_retry_times - 1:
+                    log.warning('转向正西达到重试上限，尝试直接前移交互')
+                else:
+                    return result
             self.ctx.controller.move_w(press=True, press_time=1, release=True)
 
-        time.sleep(1) # 防止交互无效 issue #2405 #2395 #2328
+        time.sleep(1)  # 防止交互无效 issue #2405 #2395 #2328
         self.ctx.controller.interact(press=True, press_time=0.2, release=True)
         return self.round_success()
 
@@ -278,6 +282,13 @@ class CoffeeApp(ZApplication):
                 return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
             else:
                 return self.round_success(wait=1)
+
+        current_screen = self.check_and_update_current_screen(
+            self.last_screenshot, screen_name_list=['大世界-普通', '大世界-勘域']
+        )
+        if current_screen in ('大世界-普通', '大世界-勘域'):
+            log.info('已回到大世界，电量恢复完成')
+            return self.round_success(wait=1)
 
         return self.round_retry(wait=1)
 
