@@ -93,10 +93,13 @@ class RandomPlayApp(ZApplication):
         }:
             result = turn_to_angle(self, target_angle=0, turn_status='转向正东')
             if not result.is_success:
-                return result
+                if self.config.transport_point == RandomPlayTransportPoint.POINT_1.value.value:
+                    log.warning('录像店柜台室内无小地图朝向，直接前移交互')
+                else:
+                    return result
             self.ctx.controller.move_w(press=True, press_time=1, release=True)
 
-        time.sleep(1) # 防止交互无效 issue #2405 #2395 #2328
+        time.sleep(1)  # 防止交互无效 issue #2405 #2395 #2328
         self.ctx.controller.interact(press=True, press_time=0.2, release=True)
 
         return self.round_success(wait=1)
