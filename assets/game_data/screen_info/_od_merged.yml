@@ -1916,7 +1916,7 @@
   - area_name: 活跃度奖励-4
     area_type: template
     pc_rect:
-    - 1532
+    - 1500
     - 250
     - 1602
     - 350
@@ -1929,7 +1929,7 @@
     - 882
     - 704
     - 1086
-    - 754
+    - 815
     text: 确认
     lcs_percent: 0.5
   - area_name: 活跃度奖励-奖励预览
@@ -1941,6 +1941,16 @@
     - 303
     text: 奖励预览
     lcs_percent: 0.5
+  - area_name: 活跃度奖励-关闭预览
+    area_type: template
+    pc_rect:
+    - 1400
+    - 125
+    - 1560
+    - 235
+    template_sub_dir: menu
+    template_id: btn_close
+    template_match_threshold: 0.55
   - area_name: 今日最大活跃度
     area_type: text
     pc_rect:
@@ -2249,10 +2259,10 @@
     - 1440
     - 29
     - 1679
-    - 113
+    - 140
     template_sub_dir: normal_world
     template_id: compendium
-    template_match_threshold: 0.7
+    template_match_threshold: 0.6
     goto_list:
     - 快捷手册-训练
   - area_name: 星期
@@ -2274,7 +2284,7 @@
     - 140
     template_sub_dir: normal_world
     template_id: function_menu_playcover
-    template_match_threshold: 0.7
+    template_match_threshold: 0.9
   - area_name: 预备编队
     area_type: template
     pc_rect:

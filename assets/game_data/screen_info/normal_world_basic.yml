@@ -38,12 +38,12 @@ area_list:
   - 1440
   - 29
   - 1679
-  - 113
+  - 140
   text: ''
   lcs_percent: 0.5
   template_sub_dir: normal_world
   template_id: compendium
-  template_match_threshold: 0.7
+  template_match_threshold: 0.6
   color_range: null
   goto_list:
   - 快捷手册-训练
@@ -73,7 +73,7 @@ area_list:
   lcs_percent: 0.5
   template_sub_dir: normal_world
   template_id: function_menu_playcover
-  template_match_threshold: 0.7
+  template_match_threshold: 0.9
   color_range: null
   goto_list: []
   gamepad_key: function_menu
