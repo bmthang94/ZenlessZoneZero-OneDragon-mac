@@ -74,9 +74,9 @@ class EmailApp(ZApplication):
         )
         if any(
             warning in screen_text
-            for warning in ('确认删除', '确定删除', '是否删除', '删除')
+            for warning in ('确认删除', '确定删除', '是否删除')
         ):
-            return self.round_fail(status='Delete-related text detected; confirmation stopped')
+            return self.round_fail(status='Delete confirmation dialog detected; confirmation stopped')
 
         target_word_list = [
             '确认',  # 正常领取的情况
