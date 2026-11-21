@@ -3055,13 +3055,13 @@
   - area_name: 左上角返回
     area_type: template
     pc_rect:
-    - 65
-    - 10
-    - 205
-    - 120
+    - 82
+    - 13
+    - 150
+    - 90
     template_sub_dir: menu
-    template_id: back_playcover
-    template_match_threshold: 0.9
+    template_id: back
+    template_match_threshold: 0.7
   - area_name: 主区域名称
     area_type: none
     pc_rect:
