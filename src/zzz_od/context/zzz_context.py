@@ -3,6 +3,7 @@ from __future__ import annotations
 from functools import cached_property
 
 from one_dragon.base.operation.one_dragon_context import OneDragonContext
+from zzz_od.context.zzz_screen_context import ZScreenContext
 
 
 class ZContext(OneDragonContext):
@@ -11,9 +12,15 @@ class ZContext(OneDragonContext):
 
         OneDragonContext.__init__(self)
 
+        self.screen_loader = ZScreenContext(lambda: self.is_playcover_touch_ui)
+
         # 后续所有用到自动战斗的 都统一设置到这个里面
         from zzz_od.auto_battle.auto_battle_context import AutoBattleContext
         self.auto_battle_context: AutoBattleContext = AutoBattleContext(self)
+
+    @property
+    def is_playcover_touch_ui(self) -> bool:
+        return getattr(self.controller, 'touch_ui_enabled', False) is True
 
     #------------------- 需要懒加载的都使用 @cached_property -------------------#
 

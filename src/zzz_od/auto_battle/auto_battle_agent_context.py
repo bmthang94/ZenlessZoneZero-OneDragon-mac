@@ -5,6 +5,7 @@ from collections.abc import Callable
 from concurrent.futures import Future, ThreadPoolExecutor
 from typing import TYPE_CHECKING
 
+import cv2
 from cv2.typing import MatLike
 
 from one_dragon.base.conditional_operation.state_recorder import (
@@ -316,6 +317,10 @@ class AutoBattleAgentContext:
         self.area_agent_3_3: ScreenArea | None = None
         self.area_agent_2_2: ScreenArea | None = None
 
+        # PlayCover 触控布局下 代理人状态区与桌面布局不一致 识别前先归一化到桌面坐标
+        self._playcover_hud_rect: Rect | None = None
+        self._standard_hud_rect: Rect | None = None
+
         # 识别间隔
         self._check_agent_interval: float = 0.5
 
@@ -330,6 +335,9 @@ class AutoBattleAgentContext:
         self.area_agent_3_2: ScreenArea = self.ctx.screen_loader.get_area('战斗画面', '头像-3-2')
         self.area_agent_3_3: ScreenArea = self.ctx.screen_loader.get_area('战斗画面', '头像-3-3')
         self.area_agent_2_2: ScreenArea = self.ctx.screen_loader.get_area('战斗画面', '头像-2-2')
+
+        self._playcover_hud_rect = self.ctx.screen_loader.get_area('战斗画面', '代理人状态-PlayCover').rect
+        self._standard_hud_rect = self.ctx.screen_loader.get_area('战斗画面', '代理人状态-标准布局').rect
 
     def init_auto_op(
             self,
@@ -382,6 +390,9 @@ class AutoBattleAgentContext:
                 return
             self._last_check_agent_time = screenshot_time
 
+            if self.ctx.is_playcover_touch_ui is True:
+                screen = self._normalize_playcover_hud(screen)
+
             screen_agent_list = self._check_agent_in_parallel(screen)
             if self._should_force_check_all_agents(screen_agent_list):
                 self.team_info.request_check_all_agents()
@@ -410,6 +421,21 @@ class AutoBattleAgentContext:
             log.error('识别画面角色失败', exc_info=True)
         finally:
             self._check_agent_lock.release()
+
+    def _normalize_playcover_hud(self, screen: MatLike) -> MatLike:
+        """
+        PlayCover 触控布局的代理人状态区在画面左上角 尺寸与桌面布局不同
+        把它缩放后写回桌面布局的位置 复用现成的头像与资源识别区域
+        只在副本上修改 其他识别仍用原始画面坐标
+        """
+        src, dst = self._playcover_hud_rect, self._standard_hud_rect
+        if src is None or dst is None:
+            return screen
+        normalized = screen.copy()
+        normalized[dst.y1:dst.y2, dst.x1:dst.x2] = cv2.resize(
+            screen[src.y1:src.y2, src.x1:src.x2], (dst.width, dst.height),
+        )
+        return normalized
 
     def _should_force_check_all_agents(self, screen_agent_list: list[tuple[Agent | None, str | None]]) -> bool:
         """

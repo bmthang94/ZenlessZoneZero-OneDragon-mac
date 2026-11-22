@@ -79,8 +79,8 @@ DETECTION_TASKS: list[DetectionTask] = [
     DetectionTask(
         task_id="abnormal_statuses",
         pipeline_name="ocr-abnormal",
-        enabled = False,  # 禁用
-        interval = 0,     # 默认不检测，由yml配置 > 0 的值来启用
+        enabled=True,  # 间隔为0默认不检测，由yml配置 > 0 的值来启用
+        interval=0,
         is_async = True,
         state_definitions=[
             TargetStateDef(

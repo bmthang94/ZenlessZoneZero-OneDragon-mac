@@ -47,6 +47,16 @@ area_list:
 - area_name: 按键-普通攻击
   area_type: template
   pc_rect:
+  - 1403
+  - 916
+  - 1505
+  - 1017
+  template_sub_dir: battle
+  template_id: btn_normal_attack
+  template_match_threshold: 0.7
+- area_name: 按键-普通攻击-PlayCover
+  area_type: template
+  pc_rect:
   - 1470
   - 715
   - 1670
@@ -54,6 +64,20 @@ area_list:
   template_sub_dir: battle
   template_id: btn_normal_attack_playcover
   template_match_threshold: 0.6
+- area_name: 代理人状态-标准布局
+  area_type: none
+  pc_rect:
+  - 10
+  - 0
+  - 950
+  - 180
+- area_name: 代理人状态-PlayCover
+  area_type: none
+  pc_rect:
+  - 2
+  - 2
+  - 1017
+  - 218
 - area_name: 代理人阵亡
   area_type: template
   pc_rect:

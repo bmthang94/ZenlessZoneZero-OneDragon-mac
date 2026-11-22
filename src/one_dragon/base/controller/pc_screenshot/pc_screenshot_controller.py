@@ -50,6 +50,7 @@ class PcScreenshotController:
             })
         self.active_strategy_name: str | None = None
         self._mac_screenshot_permission_warning_logged: bool = False
+        self._mac_capture_failure_logged: bool = False
 
     def get_screenshot(self, independent: bool = False, resize: bool = True) -> MatLike | None:
         """根据初始化的方法获取截图
@@ -109,12 +110,14 @@ class PcScreenshotController:
                 ):
                     result = cv2.resize(result, (self.standard_width, self.standard_height))
 
+                self._mac_capture_failure_logged = False
                 return result
 
             except Exception:
                 continue
-        if sys.platform == 'darwin':
-            log.error('macOS 截图失败，请在“系统设置 → 隐私与安全性 → 屏幕录制”中授权')
+        if sys.platform == 'darwin' and not self._mac_capture_failure_logged:
+            log.warning('macOS 本次未能获取游戏窗口截图，将在下一轮重试')
+            self._mac_capture_failure_logged = True
         return None
 
     def init_screenshot(self, method: str) -> str | None:

@@ -11,6 +11,7 @@ check_quick_interval: 0.5
 auto_lock_interval: 0
 auto_turn_interval: 0
 fallback_attack_enabled: false
+abnormal_status_interval: 1
 
 scenes:
   - triggers: ["按键可用-连携技"]

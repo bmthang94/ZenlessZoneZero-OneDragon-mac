@@ -1,5 +1,24 @@
 # 自动战斗补充说明
 
+## PlayCover 触控布局适配
+
+macOS 上通过 PlayCover 运行时，游戏使用触控布局，战斗画面有两处与桌面布局不同：
+
+- **普通攻击按钮**：位置与图标不同。`ZContext.is_playcover_touch_ui`（读 `ZPcController.touch_ui_enabled`）为真时，`ZScreenContext.get_area` 把「战斗画面 / 按键-普通攻击」的查找改到 `按键-普通攻击-PlayCover` 区域（模板 `battle/btn_normal_attack_playcover`，阈值 0.6）。其他平台仍用 `按键-普通攻击` 区域（模板 `battle/btn_normal_attack`，运行阈值 0.9）。所有按名字取区域的调用方不用改。
+- **代理人状态区（左上角头像/资源栏）**：触控布局下位置与尺寸不同，直接按桌面坐标截不到头像。`AutoBattleAgentContext.check_agent_related` 在触控布局下先把 `代理人状态-PlayCover` 区域缩放后写回 `代理人状态-标准布局` 位置，只对这帧副本做归一化，头像/能量/资源识别全部沿用桌面配置；其他识别仍用原始画面。
+
+触控按键坐标见 `ZPcController.TOUCH_BUTTON_POS` 与 `TOUCH_NORMAL_ATTACK`。
+
+## 截图缺失帧
+
+截图控制器某一轮拿不到画面时返回 `None`：
+
+- `AutoBattleContext.check_battle_state` 收到 `None` 直接返回上一次的 `last_check_in_battle`，不做任何识别和状态变更，缺失帧不会被误判为离开战斗。
+- `AreaPatrol.wait_battle_screen` 等节点在 `last_screenshot is None` 时走重试，不把 `None` 传给模板匹配。
+- macOS 上截图策略全部失败时只打一次 `macOS 本次未能获取游戏窗口截图` 警告，恢复成功后重置；与屏幕录制权限的预检日志是两条独立的路径。
+
+限制：连续多帧缺失期间战斗状态停留在最后一次识别结果；恢复后继续正常识别。
+
 ## 队伍角色识别兜底
 
 自动战斗中的队伍角色识别，原本会在连续多次识别结果一致后，停止全量匹配，转为基于当前队伍信息的低成本识别。
