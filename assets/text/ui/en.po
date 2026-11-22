@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -25,7 +26,9 @@ msgid "语言切换"
 msgstr "Language Switch"
 
 msgid "语言切换成功，需要重启应用程序以生效"
-msgstr "Language changed successfully. Please restart the application for changes to take effect."
+msgstr ""
+"Language changed successfully. Please restart the application for changes to"
+" take effect."
 
 msgid "界面语言"
 msgstr "UI Language"
@@ -230,7 +233,6 @@ msgstr "UI Theme"
 msgid "主页公告"
 msgstr "Homepage Announcement"
 
-
 msgid "版本海报"
 msgstr "Version Poster"
 
@@ -337,10 +339,13 @@ msgstr "Start Recording"
 
 # 游戏设置
 msgid "使用默认队伍名称出现错选时 可更改名字解决"
-msgstr "Change team names to resolve wrong selection when using default team names"
+msgstr ""
+"Change team names to resolve wrong selection when using default team names"
 
 msgid "本页代理人可在游戏助手中自动识别，设置仅作用于避免式舆防卫战选择配队冲突"
-msgstr "Agents on this page can be auto-recognized in game assistant, settings only work to avoid team selection conflicts in Shiyu Defense"
+msgstr ""
+"Agents on this page can be auto-recognized in game assistant, settings only "
+"work to avoid team selection conflicts in Shiyu Defense"
 
 msgid "！设置皮肤以正常使用自动战斗功能 ！"
 msgstr "! Set outfits to use auto-battle function properly !"
@@ -349,7 +354,9 @@ msgid "切换 HDR 状态"
 msgstr "Toggle HDR Status"
 
 msgid "仅影响手动启动游戏，一条龙启动游戏会自动禁用 HDR"
-msgstr "Only affects manual game launch, OneDragon will auto-disable HDR when launching"
+msgstr ""
+"Only affects manual game launch, OneDragon will auto-disable HDR when "
+"launching"
 
 msgid "窗口尺寸"
 msgstr "Window Size"
@@ -644,7 +651,9 @@ msgid "已同步代码"
 msgstr "Code Synced"
 
 msgid "更新后需重启脚本生效。如不能运行，尝试使用安装器更新运行依赖，或更新安装器"
-msgstr "Restart required after update. If unable to run, try updating dependencies with installer or update installer itself"
+msgstr ""
+"Restart required after update. If unable to run, try updating dependencies "
+"with installer or update installer itself"
 
 # 安装相关
 msgid "安装指南"
@@ -664,7 +673,8 @@ msgid "复制截图到剪贴板"
 msgstr "Copy Screenshot to Clipboard"
 
 msgid "按下截图按键时，自动将截图复制到剪贴板"
-msgstr "Automatically copy screenshot to clipboard when screenshot key is pressed"
+msgstr ""
+"Automatically copy screenshot to clipboard when screenshot key is pressed"
 
 msgid "Git相关"
 msgstr "Git Related"
@@ -744,7 +754,6 @@ msgstr "Custom Homepage Background"
 
 msgid "设置后重启脚本生效"
 msgstr "Restart script for changes to take effect"
-
 
 msgid "游戏助手"
 msgstr "Game Assistant"
@@ -1047,7 +1056,8 @@ msgid "另存为失败"
 msgstr "Save as failed"
 
 msgid "只能用小写字母、数字和下划线，以字母开头"
-msgstr "Use lowercase letters, numbers and underscores only; start with a letter"
+msgstr ""
+"Use lowercase letters, numbers and underscores only; start with a letter"
 
 msgid "可下载"
 msgstr "Available to download"
@@ -1110,7 +1120,9 @@ msgid "咖啡店"
 msgstr "Coffee Shop"
 
 msgid "商店中的第三方插件未经官方审查，订阅前请确认来源可信，风险自负"
-msgstr "Third-party plugins in the store are not officially reviewed. Verify the source before subscribing; use them at your own risk."
+msgstr ""
+"Third-party plugins in the store are not officially reviewed. Verify the "
+"source before subscribing; use them at your own risk."
 
 msgid "商店共 {count} 个插件"
 msgstr "{count} plugins in store"
@@ -1146,7 +1158,9 @@ msgid "失败"
 msgstr "Failed"
 
 msgid "安装 Python 失败 请尝试到「设置」更改 Python 下载源"
-msgstr "Python installation failed. Try changing the Python download source in Settings."
+msgstr ""
+"Python installation failed. Try changing the Python download source in "
+"Settings."
 
 msgid "安装 UV 失败"
 msgstr "UV installation failed"
@@ -1191,7 +1205,9 @@ msgid "官方社区"
 msgstr "Official community"
 
 msgid "官方资源以后自动下载，不再询问（插件更新仍需确认）"
-msgstr "Automatically download official resources without asking (plugin updates still require confirmation)"
+msgstr ""
+"Automatically download official resources without asking (plugin updates "
+"still require confirmation)"
 
 msgid "官网"
 msgstr "Official website"
@@ -1374,7 +1390,9 @@ msgid "成功导入 {count} 个插件"
 msgstr "Successfully imported {count} plugins"
 
 msgid "我们匿名收集你的信息用于改进我们的产品，感谢您的参与！"
-msgstr "We collect information anonymously to improve our product. Thank you for participating!"
+msgstr ""
+"We collect information anonymously to improve our product. Thank you for "
+"participating!"
 
 msgid "我已了解风险，继续订阅"
 msgstr "I understand the risks; continue subscribing"
@@ -1437,13 +1455,16 @@ msgid "推荐"
 msgstr "Recommended"
 
 msgid "插件仓库长期无法访问，可能已停止维护"
-msgstr "The plugin repository has been unavailable for a long time and may no longer be maintained"
+msgstr ""
+"The plugin repository has been unavailable for a long time and may no longer"
+" be maintained"
 
 msgid "插件商店暂时没有可订阅的插件"
 msgstr "No plugins are currently available to subscribe to"
 
 msgid "插件商店读取失败，请检查网络后点击刷新"
-msgstr "Failed to load the plugin store. Check your network and click Refresh."
+msgstr ""
+"Failed to load the plugin store. Check your network and click Refresh."
 
 msgid "插件已存在"
 msgstr "Plugin already exists"
@@ -1512,7 +1533,9 @@ msgid "无法{action}"
 msgstr "Cannot {action}"
 
 msgid "无法定位插件目录，只能删除 plugins 目录下的插件"
-msgstr "Cannot locate the plugin directory; only plugins in the plugins directory can be deleted"
+msgstr ""
+"Cannot locate the plugin directory; only plugins in the plugins directory "
+"can be deleted"
 
 msgid "无法获取 Python 版本"
 msgstr "Cannot determine Python version"
@@ -1557,7 +1580,8 @@ msgid "更新到 v{version}"
 msgstr "Update to v{version}"
 
 msgid "更新后需重启脚本生效。如不能运行，请更新启动器"
-msgstr "Restart the script after updating. If it cannot run, update the launcher."
+msgstr ""
+"Restart the script after updating. If it cannot run, update the launcher."
 
 msgid "更新完成"
 msgstr "Update complete"
@@ -1809,7 +1833,9 @@ msgid "目标版本"
 msgstr "Target version"
 
 msgid "目标版本的运行环境与当前不兼容"
-msgstr "The target version's runtime environment is incompatible with the current one"
+msgstr ""
+"The target version's runtime environment is incompatible with the current "
+"one"
 
 msgid "睡眠"
 msgstr "Sleep"
@@ -1977,7 +2003,9 @@ msgid "设置失败"
 msgstr "Setting failed"
 
 msgid "该插件位于源码仓库目录中，请在 plugins 目录里手动处理仓库：{path}"
-msgstr "This plugin is in a source repository. Manage the repository manually in the plugins directory: {path}"
+msgstr ""
+"This plugin is in a source repository. Manage the repository manually in the"
+" plugins directory: {path}"
 
 msgid "该插件暂无可展示的说明"
 msgstr "No description is available for this plugin"
@@ -1986,10 +2014,13 @@ msgid "该插件没有可下载的版本"
 msgstr "No downloadable version is available for this plugin"
 
 msgid "该插件没有提供校验值，无法确认安装包未被篡改"
-msgstr "This plugin provides no checksum, so the package integrity cannot be verified"
+msgstr ""
+"This plugin provides no checksum, so the package integrity cannot be "
+"verified"
 
 msgid "该插件目录含 git 仓库，请用 git 管理：{path}"
-msgstr "This plugin directory contains a Git repository. Manage it with Git: {path}"
+msgstr ""
+"This plugin directory contains a Git repository. Manage it with Git: {path}"
 
 msgid "请先打开一张图片"
 msgstr "Open an image first"
@@ -2268,7 +2299,9 @@ msgid "{name} 已移除"
 msgstr "{name} removed"
 
 msgid "{name} 的更新不再在启动时弹窗提示，卡片上仍会显示可更新"
-msgstr "Updates for {name} will no longer prompt at startup; available updates will still appear on its card"
+msgstr ""
+"Updates for {name} will no longer prompt at startup; available updates will "
+"still appear on its card"
 
 msgid "{name} 的更新会在启动时提示"
 msgstr "Updates for {name} will be announced at startup"
@@ -2427,7 +2460,8 @@ msgid "如何让AI打得更好？"
 msgstr "How can I improve AI combat?"
 
 msgid "如果喜欢本项目，你也可以为作者赞助一点维护费用~"
-msgstr "If you like this project, you can support its maintenance with a donation."
+msgstr ""
+"If you like this project, you can support its maintenance with a donation."
 
 msgid "委托助手"
 msgstr "Commission assistant"
@@ -2618,11 +2652,23 @@ msgstr "First run: synchronizing code repository..."
 msgid "驱动盘拆解"
 msgstr "Dismantle Drive Discs"
 
-msgid "\"{name}\" 是第三方作者发布的插件，未经过官方审查。\n插件会以与本程序相同的权限运行，可以读写本机文件、访问网络，存在恶意代码、隐私泄露或损坏系统的风险。\n请只订阅你信任的作者发布的插件，确定要继续吗？"
-msgstr "\"{name}\" is a third-party plugin and has not been officially reviewed.\nPlugins run with the same permissions as this application. They can read and write local files and access the network, posing risks of malicious code, privacy leaks, or system damage.\nOnly subscribe to plugins from authors you trust. Continue?"
+msgid ""
+"\"{name}\" 是第三方作者发布的插件，未经过官方审查。\n"
+"插件会以与本程序相同的权限运行，可以读写本机文件、访问网络，存在恶意代码、隐私泄露或损坏系统的风险。\n"
+"请只订阅你信任的作者发布的插件，确定要继续吗？"
+msgstr ""
+"\"{name}\" is a third-party plugin and has not been officially reviewed.\n"
+"Plugins run with the same permissions as this application. They can read and write local files and access the network, posing risks of malicious code, privacy leaks, or system damage.\n"
+"Only subscribe to plugins from authors you trust. Continue?"
 
-msgid "本软件完全<font color='red'>开源 免费</font><br>\n不要在<font color='red'>第三方渠道</font>购买<br>\n谨防<font color='red'>诈骗 盗号</font>"
-msgstr "This software is completely <font color='red'>open source and free</font><br>\nDo not purchase it from <font color='red'>third parties</font><br>\nBeware of <font color='red'>fraud and account theft</font>"
+msgid ""
+"本软件完全<font color='red'>开源 免费</font><br>\n"
+"不要在<font color='red'>第三方渠道</font>购买<br>\n"
+"谨防<font color='red'>诈骗 盗号</font>"
+msgstr ""
+"This software is completely <font color='red'>open source and free</font><br>\n"
+"Do not purchase it from <font color='red'>third parties</font><br>\n"
+"Beware of <font color='red'>fraud and account theft</font>"
 
 msgid "仅结束"
 msgstr "End only"
@@ -2717,7 +2763,9 @@ msgid "图标编辑器"
 msgstr "Icon editor"
 
 msgid "将主窗口当前计算坐标设置为选中图标的传送坐标"
-msgstr "Set the selected icon teleport coordinates to the coordinates currently calculated in the main window"
+msgstr ""
+"Set the selected icon teleport coordinates to the coordinates currently "
+"calculated in the main window"
 
 msgid "删除选中的图标"
 msgstr "Delete selected icon"
@@ -2762,7 +2810,9 @@ msgid "售卖"
 msgstr "Sell"
 
 msgid "提示：点击表格行可在主窗口地图上高亮对应图标位置；选中行后可设置传送坐标或删除图标"
-msgstr "Select a row to highlight its icon on the main map, set teleport coordinates, or delete the icon."
+msgstr ""
+"Select a row to highlight its icon on the main map, set teleport "
+"coordinates, or delete the icon."
 
 msgid "设置传送坐标"
 msgstr "Set Teleport Coordinates"
@@ -2824,8 +2874,12 @@ msgstr "Data 1"
 msgid "数据2"
 msgstr "Data 2"
 
-msgid "确定要删除图标 \"{name}\" ({template_id}) 吗？\n此操作不可撤销。"
-msgstr "Delete icon \"{name}\" ({template_id})?\nThis cannot be undone."
+msgid ""
+"确定要删除图标 \"{name}\" ({template_id}) 吗？\n"
+"此操作不可撤销。"
+msgstr ""
+"Delete icon \"{name}\" ({template_id})?\n"
+"This cannot be undone."
 
 msgid "确定要删除第{index}个操作吗？"
 msgstr "Delete action {index}?"
@@ -2849,7 +2903,9 @@ msgid "资源下载源"
 msgstr "Resource download source"
 
 msgid "模型等资源的下载源 自动模式按系统语言推荐"
-msgstr "Download source for models and other resources. Automatic mode recommends a source based on the system language."
+msgstr ""
+"Download source for models and other resources. Automatic mode recommends a "
+"source based on the system language."
 
 msgid "资源"
 msgstr "Resources"
@@ -2861,22 +2917,29 @@ msgid "代码分支"
 msgstr "Code branch"
 
 msgid "主分支用于稳定版本，测试分支用于提前体验新功能"
-msgstr "Use the main branch for stable releases or the test branch for early access to new features."
+msgstr ""
+"Use the main branch for stable releases or the test branch for early access "
+"to new features."
 
 msgid "自动更新"
 msgstr "Automatic updates"
 
 msgid "使用exe启动时，自动检测并更新代码"
-msgstr "Automatically check for and update code when launched from the executable."
+msgstr ""
+"Automatically check for and update code when launched from the executable."
 
 msgid "强制更新"
 msgstr "Force update"
 
 msgid "不懂代码请开启，会将脚本更新到最新并将你的改动覆盖，不会使你的配置失效"
-msgstr "Enable this if you are unfamiliar with code. It updates the scripts to the latest version and overwrites your changes without affecting your settings."
+msgstr ""
+"Enable this if you are unfamiliar with code. It updates the scripts to the "
+"latest version and overwrites your changes without affecting your settings."
 
 msgid "自动模式优先使用上次成功源，失败后继续尝试其他源"
-msgstr "In automatic mode, try the last successful source first, then try other sources if it fails."
+msgstr ""
+"In automatic mode, try the last successful source first, then try other "
+"sources if it fails."
 
 msgid "代理设置"
 msgstr "Proxy settings"
@@ -2894,7 +2957,8 @@ msgid "资源自动下载"
 msgstr "Automatic resource downloads"
 
 msgid "发现资源缺失或有新版本时，跳过确认并自动下载"
-msgstr "Automatically download missing or updated resources without confirmation."
+msgstr ""
+"Automatically download missing or updated resources without confirmation."
 
 msgid "点赞"
 msgstr "Like"
@@ -3008,7 +3072,9 @@ msgid "更新合并配置文件"
 msgstr "Update merged configuration file"
 
 msgid "手动更改yml文件后 需要触发更新生效"
-msgstr "Run the update after manually changing a YAML file for the changes to take effect."
+msgstr ""
+"Run the update after manually changing a YAML file for the changes to take "
+"effect."
 
 msgid "脚本环境"
 msgstr "Script environment"
@@ -3017,25 +3083,33 @@ msgid "截图方法"
 msgstr "Screenshot method"
 
 msgid "前台要求窗口无遮挡，后台要求窗口不被最小化"
-msgstr "Foreground capture requires an unobstructed window; background capture requires the window not to be minimized."
+msgstr ""
+"Foreground capture requires an unobstructed window; background capture "
+"requires the window not to be minimized."
 
 msgid "开发者模式"
 msgstr "Developer mode"
 
 msgid "关闭后隐藏开发工具和实验功能，已有配置不会改变"
-msgstr "Disabling this hides developer tools and experimental features without changing existing settings."
+msgstr ""
+"Disabling this hides developer tools and experimental features without "
+"changing existing settings."
 
 msgid "网络代理"
 msgstr "Network proxy"
 
 msgid "免费代理仅能加速工具和模型下载，无法加速代码同步"
-msgstr "The free proxy only accelerates tool and model downloads, not code synchronization."
+msgstr ""
+"The free proxy only accelerates tool and model downloads, not code "
+"synchronization."
 
 msgid "免费代理"
 msgstr "Free proxy"
 
 msgid "获取失败时 可前往 https://ghproxy.link/ 查看自行更新"
-msgstr "If retrieval fails, visit https://ghproxy.link/ to check and update it manually."
+msgstr ""
+"If retrieval fails, visit https://ghproxy.link/ to check and update it "
+"manually."
 
 msgid "开始、暂停、恢复某个应用"
 msgstr "Start, pause, or resume an application."
@@ -3044,7 +3118,9 @@ msgid "停止正在运行的应用，不能恢复"
 msgstr "Stop the running application. It cannot be resumed."
 
 msgid "用于开发、提交bug。会自动对UID打码，保存在 .debug/images/ 文件夹中"
-msgstr "For development and bug reports. The UID is automatically obscured and the image is saved in .debug/images/."
+msgstr ""
+"For development and bug reports. The UID is automatically obscured and the "
+"image is saved in .debug/images/."
 
 msgid "调试按钮"
 msgstr "Debug button"
@@ -3062,13 +3138,18 @@ msgid "B服用户名"
 msgstr "Bilibili server username"
 
 msgid "B服为选择已有登录记录的用户进行登录，需要先手动登录游戏"
-msgstr "For the Bilibili server, select a user from existing login records. You must first log in to the game manually."
+msgstr ""
+"For the Bilibili server, select a user from existing login records. You must"
+" first log in to the game manually."
 
 msgid "强制重新登录"
 msgstr "Force re-login"
 
 msgid "单账号运行且自动打开游戏时，开启后会使用当前账号配置重登，关闭时则直接使用游戏当前登录状态"
-msgstr "When running a single account with automatic game launch, enable this to log in again using the current account settings; otherwise, use the game's current login session."
+msgstr ""
+"When running a single account with automatic game launch, enable this to log"
+" in again using the current account settings; otherwise, use the game's "
+"current login session."
 
 msgid "开启后可自定义主题色"
 msgstr "Enable to customize the theme color."
@@ -3083,7 +3164,9 @@ msgid "合并模式失败节点立即通知"
 msgstr "Notify immediately of failed nodes in combined mode"
 
 msgid "节点通知为全部合并时，失败节点会额外立即推送"
-msgstr "When all node notifications are combined, failed nodes also trigger an immediate notification."
+msgstr ""
+"When all node notifications are combined, failed nodes also trigger an "
+"immediate notification."
 
 msgid "测试通知方式"
 msgstr "Test notification method"
@@ -3104,13 +3187,17 @@ msgid "恶名狩猎（周期挑战）开始日"
 msgstr "Notorious Hunt (periodic challenge) start day"
 
 msgid "从开始日起才会自动运行。当日未完成会顺延到次日，直到当周完成/结束"
-msgstr "Automatic runs begin on the start day. If unfinished, the task is postponed until the next day, until completed or the week ends."
+msgstr ""
+"Automatic runs begin on the start day. If unfinished, the task is postponed "
+"until the next day, until completed or the week ends."
 
 msgid "循环执行"
 msgstr "Repeat"
 
 msgid "开启后，除本次已跳过的特训目标外，其余计划均已完成时会重置全部计划"
-msgstr "When enabled, all plans are reset once every plan is complete, excluding special training targets skipped in this run."
+msgstr ""
+"When enabled, all plans are reset once every plan is complete, excluding "
+"special training targets skipped in this run."
 
 msgid "拆解等级"
 msgstr "Dismantling rank"
@@ -3122,7 +3209,9 @@ msgid "自动托管"
 msgstr "Automatic management"
 
 msgid "启用后选择游戏内自动托管经营随便观相关任务，随便观35级后可用"
-msgstr "When enabled, select in-game automatic management for Suibian Temple tasks. Available after Suibian Temple reaches level 35."
+msgstr ""
+"When enabled, select in-game automatic management for Suibian Temple tasks. "
+"Available after Suibian Temple reaches level 35."
 
 msgid "饮茶仙"
 msgstr "Tea Immortal"
@@ -3155,7 +3244,9 @@ msgid "邦巢-购买"
 msgstr "Bangboo nest - Purchases"
 
 msgid "自动刷新购买S级别邦布。随便观25级后可用。"
-msgstr "Automatically refresh and purchase S-rank Bangboo. Available after Suibian Temple reaches level 25."
+msgstr ""
+"Automatically refresh and purchase S-rank Bangboo. Available after Suibian "
+"Temple reaches level 25."
 
 msgid "邦巢-最低购买价格"
 msgstr "Bangboo nest - Minimum purchase price"
@@ -3179,7 +3270,8 @@ msgid "选择前往的咖啡店"
 msgstr "Select the coffee shop to visit."
 
 msgid "咖啡店在体力计划后运行可开启"
-msgstr "Can be enabled when the coffee shop runs after the battery charge plan."
+msgstr ""
+"Can be enabled when the coffee shop runs after the battery charge plan."
 
 msgid "战斗助手"
 msgstr "Combat assistant"
@@ -3194,13 +3286,18 @@ msgid "截图间隔 (秒)"
 msgstr "Screenshot interval (seconds)"
 
 msgid "一般默认0.02，除非电脑很卡。优先通过设置游戏30帧和低画质给AI留算力"
-msgstr "The usual default is 0.02, unless the computer is very slow. First try setting the game to 30 FPS and low graphics to free up computing power for AI."
+msgstr ""
+"The usual default is 0.02, unless the computer is very slow. First try "
+"setting the game to 30 FPS and low graphics to free up computing power for "
+"AI."
 
 msgid "先看说明 再使用与提问"
 msgstr "Read the instructions before using or asking questions."
 
 msgid "全配队通用会自动为您的队伍匹配专属配队，遇到问题请反馈。"
-msgstr "The universal team configuration automatically matches your team to a dedicated configuration. Please report any problems."
+msgstr ""
+"The universal team configuration automatically matches your team to a "
+"dedicated configuration. Please report any problems."
 
 msgid "终结技一好就放"
 msgstr "Use Ultimate as soon as available"
@@ -3248,13 +3345,16 @@ msgid "界面消失预警时间"
 msgstr "UI disappearance warning time"
 
 msgid "UI完全消失持续到该秒数后判定为卡电梯"
-msgstr "If the UI remains completely absent for this many seconds, the character is considered stuck in an elevator."
+msgstr ""
+"If the UI remains completely absent for this many seconds, the character is "
+"considered stuck in an elevator."
 
 msgid "单条路线重试上限"
 msgstr "Retry limit per route"
 
 msgid "单条路线累计重试次数，超限后跳过该路线"
-msgstr "Maximum cumulative retries for a route; skip it when the limit is exceeded."
+msgstr ""
+"Maximum cumulative retries for a route; skip it when the limit is exceeded."
 
 msgid "锄地每日循环次数"
 msgstr "Daily farming cycles"
@@ -3269,19 +3369,24 @@ msgid "界面消失处理方式"
 msgstr "Action when UI disappears"
 
 msgid "判定为疑似卡电梯后的处理方式"
-msgstr "Action to take when the character is suspected to be stuck in an elevator."
+msgstr ""
+"Action to take when the character is suspected to be stuck in an elevator."
 
 msgid "路线重试处理方式"
 msgstr "Route retry behavior"
 
 msgid "路线脱困失败，重试后再次卡住时的处理方式"
-msgstr "Action to take if recovery fails and the character gets stuck again after retrying the route."
+msgstr ""
+"Action to take if recovery fails and the character gets stuck again after "
+"retrying the route."
 
 msgid "每轮最少占用时长（敌人刷新时间）"
 msgstr "Minimum cycle duration (enemy respawn time)"
 
 msgid "每轮跑完：不足则补等到该秒数，超过则立即开始下一轮"
-msgstr "After each cycle, wait until this duration has elapsed; if already exceeded, start the next cycle immediately."
+msgstr ""
+"After each cycle, wait until this duration has elapsed; if already exceeded,"
+" start the next cycle immediately."
 
 msgid "锄地路线录制"
 msgstr "Farming route recording"
@@ -3299,7 +3404,9 @@ msgid "选择路线起始传送点"
 msgstr "Select the route's starting teleport point."
 
 msgid "可选择从第几步开始, 0代表需要传送，1代表已完成第1步"
-msgstr "Choose the starting step: 0 means teleporting is required; 1 means step 1 is complete."
+msgstr ""
+"Choose the starting step: 0 means teleporting is required; 1 means step 1 is"
+" complete."
 
 msgid "点击后自动追加移动"
 msgstr "Automatically append a movement after clicking."
@@ -3338,19 +3445,25 @@ msgid "保存截图按键"
 msgstr "Save screenshots hotkey"
 
 msgid "按下后，保存 持续时间(秒) 内的截图，用于捕捉漏判"
-msgstr "Press to save screenshots for the specified duration, to capture missed detections."
+msgstr ""
+"Press to save screenshots for the specified duration, to capture missed "
+"detections."
 
 msgid "闪避检测"
 msgstr "Dodge detection"
 
 msgid "脚本识别黄光红光时，自动截图，用于捕捉误判"
-msgstr "Automatically take screenshots when the script detects a yellow or red flash, to capture false detections."
+msgstr ""
+"Automatically take screenshots when the script detects a yellow or red "
+"flash, to capture false detections."
 
 msgid "按键前截图"
 msgstr "Screenshot before key press"
 
 msgid "开启时截图按键之前的画面，关闭时截图按键之后的画面"
-msgstr "When enabled, capture the screen before the key press; otherwise, capture it afterward."
+msgstr ""
+"When enabled, capture the screen before the key press; otherwise, capture it"
+" afterward."
 
 msgid "小地图朝向检测"
 msgstr "Minimap orientation detection"
@@ -3377,7 +3490,8 @@ msgid "服务控制"
 msgstr "Service control"
 
 msgid "按当前端口管理本机 zzz_od.backend.entry.server 进程"
-msgstr "Manage the local zzz_od.backend.entry.server process on the current port."
+msgstr ""
+"Manage the local zzz_od.backend.entry.server process on the current port."
 
 msgid "尚未读取"
 msgstr "Not yet read"
@@ -3398,7 +3512,8 @@ msgid "目标配队"
 msgstr "Target team"
 
 msgid "按照自动战斗配置 选择角色位置"
-msgstr "Select character positions according to the auto-battle configuration."
+msgstr ""
+"Select character positions according to the auto-battle configuration."
 
 msgid "仅购买优先级"
 msgstr "Buy priority items only"
@@ -3443,13 +3558,17 @@ msgid "当期UP代理人"
 msgstr "Current featured Agent"
 
 msgid "每周第1次 优先选择包含当期UP的编队"
-msgstr "On the first run each week, prefer a team containing the current featured Agent."
+msgstr ""
+"On the first run each week, prefer a team containing the current featured "
+"Agent."
 
 msgid "矩阵行动 - 手动选择代理人"
 msgstr "Matrix Operation - Select Agents manually"
 
 msgid "需要在下框配置代理人 可用试用角色（矩阵行动无法保存默认配队）"
-msgstr "Configure Agents below; trial characters can be used. Matrix Operation cannot save a default team."
+msgstr ""
+"Configure Agents below; trial characters can be used. Matrix Operation "
+"cannot save a default team."
 
 msgid "预备编队使用游戏内配队时生效"
 msgstr "Applies when preset teams use the in-game team."
@@ -3458,7 +3577,9 @@ msgid "追新模式"
 msgstr "Prioritize upgrades"
 
 msgid "优先选择未满级的调查战略，开启后将禁用下方的调查战略选项"
-msgstr "Prioritize Investigation Strategies that are not at maximum level. Enabling this disables the Investigation Strategy options below."
+msgstr ""
+"Prioritize Investigation Strategies that are not at maximum level. Enabling "
+"this disables the Investigation Strategy options below."
 
 msgid "调查战略"
 msgstr "Investigation Strategy"
@@ -3470,13 +3591,17 @@ msgid "商店-使用金币购买"
 msgstr "Shop - Purchase with coins"
 
 msgid "想不买东西速刷时或在刷取成就:「空洞金融大亨」时关闭"
-msgstr "Disable when speedrunning without purchases or farming the achievement \"Hollow Financial Tycoon\"."
+msgstr ""
+"Disable when speedrunning without purchases or farming the achievement "
+"\"Hollow Financial Tycoon\"."
 
 msgid "商店-使用血量购买"
 msgstr "Shop - Purchase with HP"
 
 msgid "练度低情况下 仅建议绝境武备开启"
-msgstr "For underdeveloped teams, enabling this is only recommended for Deadly Assault Armaments."
+msgstr ""
+"For underdeveloped teams, enabling this is only recommended for Deadly "
+"Assault Armaments."
 
 msgid "血量 ≥ x% 时 才会进行购买"
 msgstr "Only purchase when HP is at least x%."
@@ -3491,7 +3616,9 @@ msgid "x次内只买高优先级"
 msgstr "Buy only high-priority items for x rounds"
 
 msgid "到达第 x 轮（已刷新 x-1 次）后 才购买高优先级之外的藏品"
-msgstr "Only buy collectibles outside the high-priority list upon reaching round x (after x-1 refreshes)."
+msgstr ""
+"Only buy collectibles outside the high-priority list upon reaching round x "
+"(after x-1 refreshes)."
 
 msgid "选择副本"
 msgstr "Select stage"
@@ -3509,19 +3636,25 @@ msgid "跳过计划"
 msgstr "Skip plan"
 
 msgid "开启后，某项计划因电量不足且无法恢复达标时，会依次尝试后续计划"
-msgstr "When enabled, if a plan lacks sufficient battery charge and cannot restore enough, subsequent plans are tried in order."
+msgstr ""
+"When enabled, if a plan lacks sufficient battery charge and cannot restore "
+"enough, subsequent plans are tried in order."
 
 msgid "每日重置"
 msgstr "Daily reset"
 
 msgid "开启后，每天首次运行体力计划前，会将所有体力计划已运行次数清零"
-msgstr "When enabled, reset the completed run counts of all battery charge plans before the first run each day."
+msgstr ""
+"When enabled, reset the completed run counts of all battery charge plans "
+"before the first run each day."
 
 msgid "恢复电量"
 msgstr "Restore battery charge"
 
 msgid "电量不足时尝试按所选方式有效补足缺口"
-msgstr "When battery charge is insufficient, try to make up the shortfall using the selected method."
+msgstr ""
+"When battery charge is insufficient, try to make up the shortfall using the "
+"selected method."
 
 msgid "双倍活动"
 msgstr "Double rewards event"
@@ -3560,7 +3693,9 @@ msgid "无内容时等待时间(秒)"
 msgstr "Wait time when no content is detected (seconds)"
 
 msgid "当画面检测不到任何内容时, 开启下一轮检测的等待时间"
-msgstr "Time to wait before the next detection attempt when no content is detected on screen."
+msgstr ""
+"Time to wait before the next detection attempt when no content is detected "
+"on screen."
 
 msgid "自动闪避"
 msgstr "Auto-dodge"
@@ -3632,16 +3767,22 @@ msgid "语言、主题和背景调整后，部分效果可能需要重启后生�
 msgstr "Some language, theme, or background changes may require a restart."
 
 msgid "不清楚用途时建议保持默认，下载失败或无法截图时再按说明调整"
-msgstr "Keep the defaults unless downloads or screenshots fail, then follow the instructions."
+msgstr ""
+"Keep the defaults unless downloads or screenshots fail, then follow the "
+"instructions."
 
 msgid "点击启用后到各模块进行设置，各账户之间的设置是独立的。"
-msgstr "Enable this account and configure each module. Settings are independent for each account."
+msgstr ""
+"Enable this account and configure each module. Settings are independent for "
+"each account."
 
 msgid "B服使用提示"
 msgstr "Bilibili Server Notice"
 
 msgid "B服在登录时会采用BitBlt的截图方法用于识别登录框，登录后还原。"
-msgstr "The Bilibili server uses BitBlt screenshots to recognize the login dialog, then restores the previous capture method."
+msgstr ""
+"The Bilibili server uses BitBlt screenshots to recognize the login dialog, "
+"then restores the previous capture method."
 
 msgid "配置运行通知的推送方式或渠道，所有已配置的渠道都会启用"
 msgstr "Configure run notifications. All configured channels will be enabled."
@@ -3674,16 +3815,22 @@ msgid "合理安排每日体力消耗，支持自定义优先级和循环执行"
 msgstr "Plan daily battery use with custom priorities and repeated runs."
 
 msgid "点击「开始」后将自动校准鼠标转向灵敏度，用于视角转动"
-msgstr "Select Start to automatically calibrate mouse sensitivity for turning the camera."
+msgstr ""
+"Select Start to automatically calibrate mouse sensitivity for turning the "
+"camera."
 
 msgid "游戏路径、输入方式等基础设置，建议首次使用前检查一遍"
-msgstr "Check basic settings such as the game path and input method before first use."
+msgstr ""
+"Check basic settings such as the game path and input method before first "
+"use."
 
 msgid "应用运行说明"
 msgstr "Application Guide"
 
 msgid "从应用列表中选择单个功能模块独立运行，无需跑完整的一条龙流程"
-msgstr "Select a single application to run without starting the full OneDragon routine."
+msgstr ""
+"Select a single application to run without starting the full OneDragon "
+"routine."
 
 msgid "截图(1)"
 msgstr "Screenshot (1)"
@@ -3784,17 +3931,31 @@ msgstr "Failed to load base image: {error}"
 msgid "加载第二张图失败: {error}"
 msgstr "Failed to load second image: {error}"
 
-msgid "\nHSV中心: {center_hsv}"
-msgstr "\nHSV center: {center_hsv}"
+msgid ""
+"\n"
+"HSV中心: {center_hsv}"
+msgstr ""
+"\n"
+"HSV center: {center_hsv}"
 
-msgid "\nHSV差值: {diff_hsv}"
-msgstr "\nHSV difference: {diff_hsv}"
+msgid ""
+"\n"
+"HSV差值: {diff_hsv}"
+msgstr ""
+"\n"
+"HSV difference: {diff_hsv}"
 
 msgid "像素颜色信息"
 msgstr "Pixel Color Information"
 
-msgid "点击位置: ({x}, {y})\nRGB: ({r}, {g}, {b})\nHSV: ({h}, {s}, {v})"
-msgstr "Position: ({x}, {y})\nRGB: ({r}, {g}, {b})\nHSV: ({h}, {s}, {v})"
+msgid ""
+"点击位置: ({x}, {y})\n"
+"RGB: ({r}, {g}, {b})\n"
+"HSV: ({h}, {s}, {v})"
+msgstr ""
+"Position: ({x}, {y})\n"
+"RGB: ({r}, {g}, {b})\n"
+"HSV: ({h}, {s}, {v})"
 
 msgid "正在发送测试消息..."
 msgstr "Sending test message..."
@@ -3839,10 +4000,14 @@ msgid "画中画"
 msgstr "Picture-in-Picture"
 
 msgid "画中画已关闭，点击开启后游戏切到后台自动显示画中画"
-msgstr "Picture-in-Picture is off. Click to show it automatically when the game is in the background."
+msgstr ""
+"Picture-in-Picture is off. Click to show it automatically when the game is "
+"in the background."
 
 msgid "画中画已开启，游戏切到后台会自动显示，点击画中画切回游戏"
-msgstr "Picture-in-Picture is on. It appears when the game is in the background; click it to return to the game."
+msgstr ""
+"Picture-in-Picture is on. It appears when the game is in the background; "
+"click it to return to the game."
 
 msgid "战斗-连携条"
 msgstr "Combat - Chain Attack Bar"
@@ -4409,3 +4574,2653 @@ msgstr "Team 19"
 
 msgid "编队20"
 msgstr "Team 20"
+
+msgid ""
+"为了让您的自动战斗体验更加顺畅，这里有一些温馨的小建议给到您：\n"
+"\n"
+"1. 关于画面设置：建议您将游戏帧数限制在 30 帧，并适当降低画质设置。如果您的电脑配置非常强大，尝试 60 帧也是可以的，但请务必不要开启「无限帧率」哦。\n"
+"\n"
+"2. 释放电脑性能：自动战斗功能依托于 AI 视觉识别技术，需要消耗一定的计算资源。建议您在使用时尽量关闭不必要的后台程序，电脑运行越流畅，AI 的表现也会越出色。\n"
+"\n"
+"3. 截图间隔设置：为了不让 AI 错过每一个精彩瞬间，请确保截图频率至少达到每秒 20 次。毕竟，我们不能强求 AI 在 1 帧的画面里完成电竞级的操作呀。\n"
+"\n"
+"4. 按键设置建议：强烈建议您将连携技的「左」、「右」和「取消」设置为独立的按键，避免与普攻、闪避或终结技共用键位。特别需要强调的是，几乎所有的连携技释放错误都源自于使用了同一个按键。默认键位下，连携技出现时很容易被普攻误触，导致操作失误，分开设置会让战斗更精准。\n"
+"\n"
+"比如把连携左设置为1，连携右设置为3，取消设置为2\n"
+"\n"
+"5. 应对特殊情况：目前的 AI 还在学习中，暂时无法完美应对 BOSS 的转阶段或特殊状态攻击。遇到这种情况时，可能需要您稍微费心，暂停自动战斗并手动应对一下。\n"
+"\n"
+"6. 最佳显示环境：为了保证识别准确，请将游戏分辨率设置为 1920x1080，并关闭 HDR 功能。同时，请确保游戏画面没有被其他窗口遮挡，让 AI 能看清全局。\n"
+"\n"
+"祝您游戏愉快！"
+msgstr ""
+"To make your auto battle experience smoother, here are some helpful tips for you:\n"
+"\n"
+"1. Graphics Settings: It is recommended to limit the game frame rate to 30 FPS and lower graphics settings appropriately. If your PC configuration is very powerful, 60 FPS is also fine, but please be sure not to enable \"Unlimited Frame Rate\".\n"
+"\n"
+"2. Free Up PC Performance: Auto battle relies on AI computer vision technology and consumes certain computing resources. It is recommended to close unnecessary background applications while using it. The smoother your PC runs, the better the AI will perform.\n"
+"\n"
+"3. Screenshot Interval Settings: To ensure the AI never misses any critical moment, please make sure the screenshot capture frequency reaches at least 20 times per second. After all, we cannot expect the AI to perform esports-level operations within a 1-frame window.\n"
+"\n"
+"4. Keybinding Recommendations: It is strongly recommended to set Chain Attack \"Left\", \"Right\", and \"Cancel\" to independent keys, avoiding sharing keybindings with Basic Attack, Dodge, or Ultimate. It is especially emphasized that almost all Chain Attack errors stem from using the same key. Under default keybindings, Chain Attack prompts are easily triggered accidentally by Basic Attack, causing misoperations. Setting separate keys will make combat much more precise.\n"
+"\n"
+"For example, set Chain Left to 1, Chain Right to 3, and Cancel to 2.\n"
+"\n"
+"5. Handling Special Situations: The current AI is still learning and temporarily cannot perfectly handle BOSS phase transitions or special attack states. When encountering these situations, you may need to pause auto battle and handle them manually.\n"
+"\n"
+"6. Optimal Display Environment: To ensure recognition accuracy, please set the game resolution to 1920x1080 and disable HDR. Meanwhile, ensure the game window is not occluded by other windows so that the AI can see the entire screen.\n"
+"\n"
+"Have fun playing!"
+
+msgid "11号-支援攻击"
+msgstr "Soldier 11 - Assist Attack"
+
+msgid "11号–支援攻击"
+msgstr "Soldier 11 - Assist Attack"
+
+msgid "11号-火刀八连"
+msgstr "Soldier 11 - 8-Hit Fire Infusion"
+
+msgid "11号–火刀八连"
+msgstr "Soldier 11 - 8-Hit Fire Infusion"
+
+msgid "仪玄-凸"
+msgstr "Yixuan - Strike"
+
+msgid "仪玄–凸"
+msgstr "Yixuan - Strike"
+
+msgid "仪玄–喧嚣终结技"
+msgstr "Yixuan - Ruckus Ultimate"
+
+msgid "仪玄-喧嚣终结技"
+msgstr "Yixuan - Ruckus Ultimate"
+
+msgid "仪玄-太极合轴"
+msgstr "Yixuan - Tai Chi Quick Swap"
+
+msgid "仪玄–太极合轴"
+msgstr "Yixuan - Tai Chi Quick Swap"
+
+msgid "仪玄-强化特殊技三连"
+msgstr "Yixuan - Triple EX Special Attack"
+
+msgid "仪玄–强化特殊技三连"
+msgstr "Yixuan - Triple EX Special Attack"
+
+msgid "仪玄–支援攻击"
+msgstr "Yixuan - Assist Attack"
+
+msgid "仪玄-支援攻击"
+msgstr "Yixuan - Assist Attack"
+
+msgid "仪玄-普通攻击"
+msgstr "Yixuan - Basic Attack"
+
+msgid "仪玄–普通攻击"
+msgstr "Yixuan - Basic Attack"
+
+msgid "仪玄–法术终结技"
+msgstr "Yixuan - Sorcery Ultimate"
+
+msgid "仪玄-法术终结技"
+msgstr "Yixuan - Sorcery Ultimate"
+
+msgid "仪玄-满蓄瞬大"
+msgstr "Yixuan - Fully Charged Instant Ultimate"
+
+msgid "仪玄–满蓄瞬大"
+msgstr "Yixuan - Fully Charged Instant Ultimate"
+
+msgid "仪玄–瞬大"
+msgstr "Yixuan - Instant Ultimate"
+
+msgid "仪玄-瞬大"
+msgstr "Yixuan - Instant Ultimate"
+
+msgid "仪玄–连携攻击"
+msgstr "Yixuan - Chain Attack"
+
+msgid "仪玄-连携攻击"
+msgstr "Yixuan - Chain Attack"
+
+msgid "仪玄-闪A"
+msgstr "Yixuan - Dash Attack"
+
+msgid "仪玄–闪A"
+msgstr "Yixuan - Dash Attack"
+
+msgid "伊德海莉-强化特殊技-极寒重碾"
+msgstr "Yidhari - EX Special Attack - Glacial Crush"
+
+msgid "伊德海莉–强化特殊技–极寒重碾"
+msgstr "Yidhari - EX Special Attack - Glacial Crush"
+
+msgid "伊德海莉-强化特殊技-缠霜"
+msgstr "Yidhari - EX Special Attack - Frost Entangle"
+
+msgid "伊德海莉–强化特殊技–缠霜"
+msgstr "Yidhari - EX Special Attack - Frost Entangle"
+
+msgid "伊德海莉–支援攻击"
+msgstr "Yidhari - Assist Attack"
+
+msgid "伊德海莉-支援攻击"
+msgstr "Yidhari - Assist Attack"
+
+msgid "伊德海莉–普通攻击"
+msgstr "Yidhari - Basic Attack"
+
+msgid "伊德海莉-普通攻击"
+msgstr "Yidhari - Basic Attack"
+
+msgid "伊德海莉–极寒重碾连招"
+msgstr "Yidhari - Glacial Crush Combo"
+
+msgid "伊德海莉-极寒重碾连招"
+msgstr "Yidhari - Glacial Crush Combo"
+
+msgid "伊德海莉–溯寒下砸"
+msgstr "Yidhari - Permafrost Smash"
+
+msgid "伊德海莉-溯寒下砸"
+msgstr "Yidhari - Permafrost Smash"
+
+msgid "伊德海莉-终结技"
+msgstr "Yidhari - Ultimate"
+
+msgid "伊德海莉–终结技"
+msgstr "Yidhari - Ultimate"
+
+msgid "伊德海莉-蓄力提前下砸"
+msgstr "Yidhari - Early Charged Slam"
+
+msgid "伊德海莉–蓄力提前下砸"
+msgstr "Yidhari - Early Charged Slam"
+
+msgid "伊德海莉–蓄力攻击"
+msgstr "Yidhari - Charged Attack"
+
+msgid "伊德海莉-蓄力攻击"
+msgstr "Yidhari - Charged Attack"
+
+msgid "伊德海莉-连携攻击"
+msgstr "Yidhari - Chain Attack"
+
+msgid "伊德海莉–连携攻击"
+msgstr "Yidhari - Chain Attack"
+
+msgid "伊德海莉–追碾连招"
+msgstr "Yidhari - Pursuit Crush Combo"
+
+msgid "伊德海莉-追碾连招"
+msgstr "Yidhari - Pursuit Crush Combo"
+
+msgid "伊德海莉–闪A"
+msgstr "Yidhari - Dash Attack"
+
+msgid "伊德海莉-闪A"
+msgstr "Yidhari - Dash Attack"
+
+msgid "伊芙琳-支援攻击"
+msgstr "Evelyn - Assist Attack"
+
+msgid "伊芙琳–支援攻击"
+msgstr "Evelyn - Assist Attack"
+
+msgid "伊芙琳–无脑EA"
+msgstr "Evelyn - Spam EA"
+
+msgid "伊芙琳-无脑EA"
+msgstr "Evelyn - Spam EA"
+
+msgid "伊芙琳-普通攻击"
+msgstr "Evelyn - Basic Attack"
+
+msgid "伊芙琳–普通攻击"
+msgstr "Evelyn - Basic Attack"
+
+msgid "伊芙琳-终结技"
+msgstr "Evelyn - Ultimate"
+
+msgid "伊芙琳–终结技"
+msgstr "Evelyn - Ultimate"
+
+msgid "伊芙琳–连携攻击"
+msgstr "Evelyn - Chain Attack"
+
+msgid "伊芙琳-连携攻击"
+msgstr "Evelyn - Chain Attack"
+
+msgid "伊芙琳-长按A"
+msgstr "Evelyn - Hold Basic Attack"
+
+msgid "伊芙琳–长按A"
+msgstr "Evelyn - Hold Basic Attack"
+
+msgid "伊芙琳-长按A二连"
+msgstr "Evelyn - Double Hold Basic Attack"
+
+msgid "伊芙琳–长按A二连"
+msgstr "Evelyn - Double Hold Basic Attack"
+
+msgid "伊芙琳–长按A二连合轴连携技"
+msgstr "Evelyn - Double Hold Basic Attack into Chain Quick Swap"
+
+msgid "伊芙琳-长按A二连合轴连携技"
+msgstr "Evelyn - Double Hold Basic Attack into Chain Quick Swap"
+
+msgid "伊芙琳–长按A合轴连携技"
+msgstr "Evelyn - Hold Basic Attack into Chain Quick Swap"
+
+msgid "伊芙琳-长按A合轴连携技"
+msgstr "Evelyn - Hold Basic Attack into Chain Quick Swap"
+
+msgid "伊芙琳-长按E"
+msgstr "Evelyn - Hold Special Attack"
+
+msgid "伊芙琳–长按E"
+msgstr "Evelyn - Hold Special Attack"
+
+msgid "伊芙琳–长按E二连"
+msgstr "Evelyn - Double Hold Special Attack"
+
+msgid "伊芙琳-长按E二连"
+msgstr "Evelyn - Double Hold Special Attack"
+
+msgid "伊芙琳-长按E二连合轴连携技"
+msgstr "Evelyn - Double Hold Special Attack into Chain Quick Swap"
+
+msgid "伊芙琳–长按E二连合轴连携技"
+msgstr "Evelyn - Double Hold Special Attack into Chain Quick Swap"
+
+msgid "伊芙琳–长按E合轴连携技"
+msgstr "Evelyn - Hold Special Attack into Chain Quick Swap"
+
+msgid "伊芙琳-长按E合轴连携技"
+msgstr "Evelyn - Hold Special Attack into Chain Quick Swap"
+
+msgid "伊芙琳-闪A"
+msgstr "Evelyn - Dash Attack"
+
+msgid "伊芙琳–闪A"
+msgstr "Evelyn - Dash Attack"
+
+msgid "佩洛伊斯–强化特殊技"
+msgstr "Pyrois - EX Special Attack"
+
+msgid "佩洛伊斯-强化特殊技"
+msgstr "Pyrois - EX Special Attack"
+
+msgid "佩洛伊斯–快速长按普攻"
+msgstr "Pyrois - Quick Hold Basic Attack"
+
+msgid "佩洛伊斯-快速长按普攻"
+msgstr "Pyrois - Quick Hold Basic Attack"
+
+msgid "佩洛伊斯-终结技-上"
+msgstr "Pyrois - Ultimate - High"
+
+msgid "佩洛伊斯–终结技–上"
+msgstr "Pyrois - Ultimate - High"
+
+msgid "佩洛伊斯-终结技-下"
+msgstr "Pyrois - Ultimate - Low"
+
+msgid "佩洛伊斯–终结技–下"
+msgstr "Pyrois - Ultimate - Low"
+
+msgid "佩洛伊斯-连携攻击"
+msgstr "Pyrois - Chain Attack"
+
+msgid "佩洛伊斯–连携攻击"
+msgstr "Pyrois - Chain Attack"
+
+msgid "佩洛伊斯–长按普攻"
+msgstr "Pyrois - Hold Basic Attack"
+
+msgid "佩洛伊斯-长按普攻"
+msgstr "Pyrois - Hold Basic Attack"
+
+msgid "克拉蕾–强化连段"
+msgstr "Claret - Enhanced Combo"
+
+msgid "克拉蕾-强化连段"
+msgstr "Claret - Enhanced Combo"
+
+msgid "克拉蕾–支援攻击"
+msgstr "Claret - Assist Attack"
+
+msgid "克拉蕾-支援攻击"
+msgstr "Claret - Assist Attack"
+
+msgid "克拉蕾–普攻连段"
+msgstr "Claret - Basic Attack Combo"
+
+msgid "克拉蕾-普攻连段"
+msgstr "Claret - Basic Attack Combo"
+
+msgid "克拉蕾-终爆"
+msgstr "Claret - Ultimate Detonation"
+
+msgid "克拉蕾–终爆"
+msgstr "Claret - Ultimate Detonation"
+
+msgid "克拉蕾–终结技"
+msgstr "Claret - Ultimate"
+
+msgid "克拉蕾-终结技"
+msgstr "Claret - Ultimate"
+
+msgid "克拉蕾-进入猩红铭刻"
+msgstr "Claret - Enter Scarlet Inscription"
+
+msgid "克拉蕾–进入猩红铭刻"
+msgstr "Claret - Enter Scarlet Inscription"
+
+msgid "克拉蕾–连携攻击"
+msgstr "Claret - Chain Attack"
+
+msgid "克拉蕾-连携攻击"
+msgstr "Claret - Chain Attack"
+
+msgid "克拉蕾–铭刻循环"
+msgstr "Claret - Inscription Loop"
+
+msgid "克拉蕾-铭刻循环"
+msgstr "Claret - Inscription Loop"
+
+msgid "克拉蕾-闪避反击"
+msgstr "Claret - Dodge Counter"
+
+msgid "克拉蕾–闪避反击"
+msgstr "Claret - Dodge Counter"
+
+msgid "凯撒–支援攻击"
+msgstr "Caesar - Assist Attack"
+
+msgid "凯撒-支援攻击"
+msgstr "Caesar - Assist Attack"
+
+msgid "凯撒-普通攻击"
+msgstr "Caesar - Basic Attack"
+
+msgid "凯撒–普通攻击"
+msgstr "Caesar - Basic Attack"
+
+msgid "凯撒-普通攻击合轴"
+msgstr "Caesar - Basic Attack Quick Swap"
+
+msgid "凯撒–普通攻击合轴"
+msgstr "Caesar - Basic Attack Quick Swap"
+
+msgid "凯撒-特殊技合轴"
+msgstr "Caesar - Special Attack Quick Swap"
+
+msgid "凯撒–特殊技合轴"
+msgstr "Caesar - Special Attack Quick Swap"
+
+msgid "凯撒-特殊技格挡"
+msgstr "Caesar - Special Attack Block"
+
+msgid "凯撒–特殊技格挡"
+msgstr "Caesar - Special Attack Block"
+
+msgid "凯撒-终结技"
+msgstr "Caesar - Ultimate"
+
+msgid "凯撒–终结技"
+msgstr "Caesar - Ultimate"
+
+msgid "凯撒-连携攻击"
+msgstr "Caesar - Chain Attack"
+
+msgid "凯撒–连携攻击"
+msgstr "Caesar - Chain Attack"
+
+msgid "凯撒-闪A"
+msgstr "Caesar - Dash Attack"
+
+msgid "凯撒–闪A"
+msgstr "Caesar - Dash Attack"
+
+msgid "千夏-特殊攻击"
+msgstr "Chinatsu - Special Attack"
+
+msgid "千夏–特殊攻击"
+msgstr "Chinatsu - Special Attack"
+
+msgid "千夏-终结技"
+msgstr "Chinatsu - Ultimate"
+
+msgid "千夏–终结技"
+msgstr "Chinatsu - Ultimate"
+
+msgid "南宫羽–强化特殊技"
+msgstr "Nangong Yu - EX Special Attack"
+
+msgid "南宫羽-强化特殊技"
+msgstr "Nangong Yu - EX Special Attack"
+
+msgid "南宫羽–终结技"
+msgstr "Nangong Yu - Ultimate"
+
+msgid "南宫羽-终结技"
+msgstr "Nangong Yu - Ultimate"
+
+msgid "南宫羽-长按普攻"
+msgstr "Nangong Yu - Hold Basic Attack"
+
+msgid "南宫羽–长按普攻"
+msgstr "Nangong Yu - Hold Basic Attack"
+
+msgid "卢西娅–强化特殊技合轴"
+msgstr "Lucia - EX Special Attack Quick Swap"
+
+msgid "卢西娅-强化特殊技合轴"
+msgstr "Lucia - EX Special Attack Quick Swap"
+
+msgid "卢西娅–支援攻击"
+msgstr "Lucia - Assist Attack"
+
+msgid "卢西娅-支援攻击"
+msgstr "Lucia - Assist Attack"
+
+msgid "卢西娅-普通攻击"
+msgstr "Lucia - Basic Attack"
+
+msgid "卢西娅–普通攻击"
+msgstr "Lucia - Basic Attack"
+
+msgid "卢西娅-普通攻击合轴"
+msgstr "Lucia - Basic Attack Quick Swap"
+
+msgid "卢西娅–普通攻击合轴"
+msgstr "Lucia - Basic Attack Quick Swap"
+
+msgid "卢西娅–终结技"
+msgstr "Lucia - Ultimate"
+
+msgid "卢西娅-终结技"
+msgstr "Lucia - Ultimate"
+
+msgid "双反-上一个"
+msgstr "Double Counter - Previous"
+
+msgid "双反–上一个"
+msgstr "Double Counter - Previous"
+
+msgid "双反-下一个"
+msgstr "Double Counter - Next"
+
+msgid "双反–下一个"
+msgstr "Double Counter - Next"
+
+msgid "可琳–强化特殊技"
+msgstr "Corin - EX Special Attack"
+
+msgid "可琳-强化特殊技"
+msgstr "Corin - EX Special Attack"
+
+msgid "可琳-快速支援"
+msgstr "Corin - Quick Assist"
+
+msgid "可琳–快速支援"
+msgstr "Corin - Quick Assist"
+
+msgid "可琳–支援攻击"
+msgstr "Corin - Assist Attack"
+
+msgid "可琳-支援攻击"
+msgstr "Corin - Assist Attack"
+
+msgid "可琳–连携攻击"
+msgstr "Corin - Chain Attack"
+
+msgid "可琳-连携攻击"
+msgstr "Corin - Chain Attack"
+
+msgid "叶瞬光–eaeeeaE"
+msgstr "Ye Shunguang - EAEEEAE"
+
+msgid "叶瞬光-eaeeeaE"
+msgstr "Ye Shunguang - EAEEEAE"
+
+msgid "叶瞬光–乱砍"
+msgstr "Ye Shunguang - Wild Slash"
+
+msgid "叶瞬光-乱砍"
+msgstr "Ye Shunguang - Wild Slash"
+
+msgid "叶瞬光-变身"
+msgstr "Ye Shunguang - Transform"
+
+msgid "叶瞬光–变身"
+msgstr "Ye Shunguang - Transform"
+
+msgid "叶瞬光–强化特殊攻击"
+msgstr "Ye Shunguang - EX Special Attack"
+
+msgid "叶瞬光-强化特殊攻击"
+msgstr "Ye Shunguang - EX Special Attack"
+
+msgid "叶瞬光–支援攻击"
+msgstr "Ye Shunguang - Assist Attack"
+
+msgid "叶瞬光-支援攻击"
+msgstr "Ye Shunguang - Assist Attack"
+
+msgid "叶瞬光-普通攻击"
+msgstr "Ye Shunguang - Basic Attack"
+
+msgid "叶瞬光–普通攻击"
+msgstr "Ye Shunguang - Basic Attack"
+
+msgid "叶瞬光–格挡"
+msgstr "Ye Shunguang - Block"
+
+msgid "叶瞬光-格挡"
+msgstr "Ye Shunguang - Block"
+
+msgid "叶瞬光–终结技–收"
+msgstr "Ye Shunguang - Ultimate - Finish"
+
+msgid "叶瞬光-终结技-收"
+msgstr "Ye Shunguang - Ultimate - Finish"
+
+msgid "叶瞬光–终结技–起"
+msgstr "Ye Shunguang - Ultimate - Start"
+
+msgid "叶瞬光-终结技-起"
+msgstr "Ye Shunguang - Ultimate - Start"
+
+msgid "叶瞬光–连携攻击"
+msgstr "Ye Shunguang - Chain Attack"
+
+msgid "叶瞬光-连携攻击"
+msgstr "Ye Shunguang - Chain Attack"
+
+msgid "叶瞬光-闪A"
+msgstr "Ye Shunguang - Dash Attack"
+
+msgid "叶瞬光–闪A"
+msgstr "Ye Shunguang - Dash Attack"
+
+msgid "叶瞬光-飞天连段"
+msgstr "Ye Shunguang - Aerial Combo"
+
+msgid "叶瞬光–飞天连段"
+msgstr "Ye Shunguang - Aerial Combo"
+
+msgid "奥菲丝-普通攻击"
+msgstr "Orphie - Basic Attack"
+
+msgid "奥菲丝–普通攻击"
+msgstr "Orphie - Basic Attack"
+
+msgid "奥菲丝–特殊攻击合轴"
+msgstr "Orphie - Special Attack Quick Swap"
+
+msgid "奥菲丝-特殊攻击合轴"
+msgstr "Orphie - Special Attack Quick Swap"
+
+msgid "奥菲丝-终结技"
+msgstr "Orphie - Ultimate"
+
+msgid "奥菲丝–终结技"
+msgstr "Orphie - Ultimate"
+
+msgid "妮可-2a接快速蓄力炮"
+msgstr "Nicole - 2A into Quick Charged Cannon"
+
+msgid "妮可–2a接快速蓄力炮"
+msgstr "Nicole - 2A into Quick Charged Cannon"
+
+msgid "妮可-2a接蓄力坐箱炮"
+msgstr "Nicole - 2A into Charged Box Cannon"
+
+msgid "妮可–2a接蓄力坐箱炮"
+msgstr "Nicole - 2A into Charged Box Cannon"
+
+msgid "妮可-快速蓄力炮合轴"
+msgstr "Nicole - Quick Charged Cannon Quick Swap"
+
+msgid "妮可–快速蓄力炮合轴"
+msgstr "Nicole - Quick Charged Cannon Quick Swap"
+
+msgid "妮可–支援攻击"
+msgstr "Nicole - Assist Attack"
+
+msgid "妮可-支援攻击"
+msgstr "Nicole - Assist Attack"
+
+msgid "妮可–终结技"
+msgstr "Nicole - Ultimate"
+
+msgid "妮可-终结技"
+msgstr "Nicole - Ultimate"
+
+msgid "妮可-蓄力坐箱炮"
+msgstr "Nicole - Charged Box Cannon"
+
+msgid "妮可–蓄力坐箱炮"
+msgstr "Nicole - Charged Box Cannon"
+
+msgid "妮可–蓄力特殊攻击"
+msgstr "Nicole - Charged Special Attack"
+
+msgid "妮可-蓄力特殊攻击"
+msgstr "Nicole - Charged Special Attack"
+
+msgid "妮可-连携攻击"
+msgstr "Nicole - Chain Attack"
+
+msgid "妮可–连携攻击"
+msgstr "Nicole - Chain Attack"
+
+msgid "妮可–闪A上弹普攻二连"
+msgstr "Nicole - Dash Attack Reload 2-Hit Basic"
+
+msgid "妮可-闪A上弹普攻二连"
+msgstr "Nicole - Dash Attack Reload 2-Hit Basic"
+
+msgid "妮可-闪A普攻"
+msgstr "Nicole - Dash Attack Basic"
+
+msgid "妮可–闪A普攻"
+msgstr "Nicole - Dash Attack Basic"
+
+msgid "妮可–闪A普攻二连"
+msgstr "Nicole - Dash Attack 2-Hit Basic"
+
+msgid "妮可-闪A普攻二连"
+msgstr "Nicole - Dash Attack 2-Hit Basic"
+
+msgid "安东-支援攻击"
+msgstr "Anton - Assist Attack"
+
+msgid "安东–支援攻击"
+msgstr "Anton - Assist Attack"
+
+msgid "安比–3A普E"
+msgstr "Anby - 3A Normal E"
+
+msgid "安比-3A普E"
+msgstr "Anby - 3A Normal E"
+
+msgid "安比-3A特殊攻击"
+msgstr "Anby - 3A Special Attack"
+
+msgid "安比–3A特殊攻击"
+msgstr "Anby - 3A Special Attack"
+
+msgid "安比–3A重击"
+msgstr "Anby - 3A Heavy Attack"
+
+msgid "安比-3A重击"
+msgstr "Anby - 3A Heavy Attack"
+
+msgid "安比-支援攻击"
+msgstr "Anby - Assist Attack"
+
+msgid "安比–支援攻击"
+msgstr "Anby - Assist Attack"
+
+msgid "希希芙-EA"
+msgstr "Cissia - EA"
+
+msgid "希希芙–EA"
+msgstr "Cissia - EA"
+
+msgid "希希芙-支援攻击"
+msgstr "Cissia - Assist Attack"
+
+msgid "希希芙–支援攻击"
+msgstr "Cissia - Assist Attack"
+
+msgid "希希芙-普通普攻"
+msgstr "Cissia - Standard Basic Attack"
+
+msgid "希希芙–普通普攻"
+msgstr "Cissia - Standard Basic Attack"
+
+msgid "希希芙-终结技"
+msgstr "Cissia - Ultimate"
+
+msgid "希希芙–终结技"
+msgstr "Cissia - Ultimate"
+
+msgid "希希芙-连携攻击"
+msgstr "Cissia - Chain Attack"
+
+msgid "希希芙–连携攻击"
+msgstr "Cissia - Chain Attack"
+
+msgid "希希芙-长按普攻"
+msgstr "Cissia - Hold Basic Attack"
+
+msgid "希希芙–长按普攻"
+msgstr "Cissia - Hold Basic Attack"
+
+msgid "希希芙–闪A"
+msgstr "Cissia - Dash Attack"
+
+msgid "希希芙-闪A"
+msgstr "Cissia - Dash Attack"
+
+msgid "希格莉德-强化特殊技"
+msgstr "Sigrid - EX Special Attack"
+
+msgid "希格莉德–强化特殊技"
+msgstr "Sigrid - EX Special Attack"
+
+msgid "希格莉德-普通攻击"
+msgstr "Sigrid - Basic Attack"
+
+msgid "希格莉德–普通攻击"
+msgstr "Sigrid - Basic Attack"
+
+msgid "希格莉德-终结技"
+msgstr "Sigrid - Ultimate"
+
+msgid "希格莉德–终结技"
+msgstr "Sigrid - Ultimate"
+
+msgid "希格莉德-长按普攻"
+msgstr "Sigrid - Hold Basic Attack"
+
+msgid "希格莉德–长按普攻"
+msgstr "Sigrid - Hold Basic Attack"
+
+msgid "席德-强化特殊技"
+msgstr "Seed - EX Special Attack"
+
+msgid "席德–强化特殊技"
+msgstr "Seed - EX Special Attack"
+
+msgid "席德-终结技"
+msgstr "Seed - Ultimate"
+
+msgid "席德–终结技"
+msgstr "Seed - Ultimate"
+
+msgid "悠真-射箭三刀"
+msgstr "Harumasa - Bow and 3-Hit Slash"
+
+msgid "悠真–射箭三刀"
+msgstr "Harumasa - Bow and 3-Hit Slash"
+
+msgid "悠真-射箭四刀"
+msgstr "Harumasa - Bow and 4-Hit Slash"
+
+msgid "悠真–射箭四刀"
+msgstr "Harumasa - Bow and 4-Hit Slash"
+
+msgid "悠真–强化特殊技"
+msgstr "Harumasa - EX Special Attack"
+
+msgid "悠真-强化特殊技"
+msgstr "Harumasa - EX Special Attack"
+
+msgid "悠真–强化特殊技合轴"
+msgstr "Harumasa - EX Special Attack Quick Swap"
+
+msgid "悠真-强化特殊技合轴"
+msgstr "Harumasa - EX Special Attack Quick Swap"
+
+msgid "悠真–强化特殊技速接普攻"
+msgstr "Harumasa - EX Special Attack into Quick Basic"
+
+msgid "悠真-强化特殊技速接普攻"
+msgstr "Harumasa - EX Special Attack into Quick Basic"
+
+msgid "悠真–强化特殊攻击"
+msgstr "Harumasa - EX Special Attack"
+
+msgid "悠真-强化特殊攻击"
+msgstr "Harumasa - EX Special Attack"
+
+msgid "悠真-强化特殊攻击接闪A四刀"
+msgstr "Harumasa - EX Special Attack into Dash Attack 4-Hit"
+
+msgid "悠真–强化特殊攻击接闪A四刀"
+msgstr "Harumasa - EX Special Attack into Dash Attack 4-Hit"
+
+msgid "悠真–强化特殊攻击速接普攻"
+msgstr "Harumasa - EX Special Attack into Quick Basic"
+
+msgid "悠真-强化特殊攻击速接普攻"
+msgstr "Harumasa - EX Special Attack into Quick Basic"
+
+msgid "悠真–支援攻击"
+msgstr "Harumasa - Assist Attack"
+
+msgid "悠真-支援攻击"
+msgstr "Harumasa - Assist Attack"
+
+msgid "悠真–普通攻击"
+msgstr "Harumasa - Basic Attack"
+
+msgid "悠真-普通攻击"
+msgstr "Harumasa - Basic Attack"
+
+msgid "悠真–终结技"
+msgstr "Harumasa - Ultimate"
+
+msgid "悠真-终结技"
+msgstr "Harumasa - Ultimate"
+
+msgid "悠真-自动EA"
+msgstr "Harumasa - Auto EA"
+
+msgid "悠真–自动EA"
+msgstr "Harumasa - Auto EA"
+
+msgid "悠真-连携攻击"
+msgstr "Harumasa - Chain Attack"
+
+msgid "悠真–连携攻击"
+msgstr "Harumasa - Chain Attack"
+
+msgid "悠真–连携普攻产电壶"
+msgstr "Harumasa - Chain Basic into Shock Pot"
+
+msgid "悠真-连携普攻产电壶"
+msgstr "Harumasa - Chain Basic into Shock Pot"
+
+msgid "悠真-闪A三刀"
+msgstr "Harumasa - Dash Attack 3-Hit Slash"
+
+msgid "悠真–闪A三刀"
+msgstr "Harumasa - Dash Attack 3-Hit Slash"
+
+msgid "悠真-闪A四刀"
+msgstr "Harumasa - Dash Attack 4-Hit Slash"
+
+msgid "悠真–闪A四刀"
+msgstr "Harumasa - Dash Attack 4-Hit Slash"
+
+msgid "扳机–强化特殊技"
+msgstr "Trigger - EX Special Attack"
+
+msgid "扳机-强化特殊技"
+msgstr "Trigger - EX Special Attack"
+
+msgid "扳机–快速狙击"
+msgstr "Trigger - Quick Snipe"
+
+msgid "扳机-快速狙击"
+msgstr "Trigger - Quick Snipe"
+
+msgid "扳机-支援攻击"
+msgstr "Trigger - Assist Attack"
+
+msgid "扳机–支援攻击"
+msgstr "Trigger - Assist Attack"
+
+msgid "扳机–狙击四连"
+msgstr "Trigger - 4-Hit Snipe"
+
+msgid "扳机-狙击四连"
+msgstr "Trigger - 4-Hit Snipe"
+
+msgid "扳机–终结技"
+msgstr "Trigger - Ultimate"
+
+msgid "扳机-终结技"
+msgstr "Trigger - Ultimate"
+
+msgid "扳机-连携攻击"
+msgstr "Trigger - Chain Attack"
+
+msgid "扳机–连携攻击"
+msgstr "Trigger - Chain Attack"
+
+msgid "掉血闪避"
+msgstr "HP Loss Dodge"
+
+msgid "星辉比利-终结技"
+msgstr "Starlight Billy - Ultimate"
+
+msgid "星辉比利–终结技"
+msgstr "Starlight Billy - Ultimate"
+
+msgid "普罗米娅–支援攻击"
+msgstr "Promeia - Assist Attack"
+
+msgid "普罗米娅-支援攻击"
+msgstr "Promeia - Assist Attack"
+
+msgid "普罗米娅-普通攻击"
+msgstr "Promeia - Basic Attack"
+
+msgid "普罗米娅–普通攻击"
+msgstr "Promeia - Basic Attack"
+
+msgid "普罗米娅-特殊攻击"
+msgstr "Promeia - Special Attack"
+
+msgid "普罗米娅–特殊攻击"
+msgstr "Promeia - Special Attack"
+
+msgid "普罗米娅-终结技"
+msgstr "Promeia - Ultimate"
+
+msgid "普罗米娅–终结技"
+msgstr "Promeia - Ultimate"
+
+msgid "普罗米娅-连携攻击"
+msgstr "Promeia - Chain Attack"
+
+msgid "普罗米娅–连携攻击"
+msgstr "Promeia - Chain Attack"
+
+msgid "普罗米娅–长按普攻"
+msgstr "Promeia - Hold Basic Attack"
+
+msgid "普罗米娅-长按普攻"
+msgstr "Promeia - Hold Basic Attack"
+
+msgid "普罗米娅-闪A"
+msgstr "Promeia - Dash Attack"
+
+msgid "普罗米娅–闪A"
+msgstr "Promeia - Dash Attack"
+
+msgid "本-支援攻击"
+msgstr "Ben - Assist Attack"
+
+msgid "本–支援攻击"
+msgstr "Ben - Assist Attack"
+
+msgid "朱鸢-5A"
+msgstr "Zhu Yuan - 5A"
+
+msgid "朱鸢–5A"
+msgstr "Zhu Yuan - 5A"
+
+msgid "朱鸢-5A接4A"
+msgstr "Zhu Yuan - 5A into 4A"
+
+msgid "朱鸢–5A接4A"
+msgstr "Zhu Yuan - 5A into 4A"
+
+msgid "朱鸢–后4A"
+msgstr "Zhu Yuan - Back 4A"
+
+msgid "朱鸢-后4A"
+msgstr "Zhu Yuan - Back 4A"
+
+msgid "朱鸢–强化特殊攻击"
+msgstr "Zhu Yuan - EX Special Attack"
+
+msgid "朱鸢-强化特殊攻击"
+msgstr "Zhu Yuan - EX Special Attack"
+
+msgid "朱鸢-支援攻击"
+msgstr "Zhu Yuan - Assist Attack"
+
+msgid "朱鸢–支援攻击"
+msgstr "Zhu Yuan - Assist Attack"
+
+msgid "朱鸢-普通攻击"
+msgstr "Zhu Yuan - Basic Attack"
+
+msgid "朱鸢–普通攻击"
+msgstr "Zhu Yuan - Basic Attack"
+
+msgid "朱鸢-终结技"
+msgstr "Zhu Yuan - Ultimate"
+
+msgid "朱鸢–终结技"
+msgstr "Zhu Yuan - Ultimate"
+
+msgid "朱鸢-蓄力3A"
+msgstr "Zhu Yuan - Charged 3A"
+
+msgid "朱鸢–蓄力3A"
+msgstr "Zhu Yuan - Charged 3A"
+
+msgid "朱鸢–连携攻击"
+msgstr "Zhu Yuan - Chain Attack"
+
+msgid "朱鸢-连携攻击"
+msgstr "Zhu Yuan - Chain Attack"
+
+msgid "朱鸢–长按A"
+msgstr "Zhu Yuan - Hold Basic Attack"
+
+msgid "朱鸢-长按A"
+msgstr "Zhu Yuan - Hold Basic Attack"
+
+msgid "朱鸢-闪A"
+msgstr "Zhu Yuan - Dash Attack"
+
+msgid "朱鸢–闪A"
+msgstr "Zhu Yuan - Dash Attack"
+
+msgid "朱鸢-闪前A"
+msgstr "Zhu Yuan - Forward Dash Attack"
+
+msgid "朱鸢–闪前A"
+msgstr "Zhu Yuan - Forward Dash Attack"
+
+msgid "柏妮思-普通攻击"
+msgstr "Burnice - Basic Attack"
+
+msgid "柏妮思–普通攻击"
+msgstr "Burnice - Basic Attack"
+
+msgid "柏妮思-格挡攻击"
+msgstr "Burnice - Block Attack"
+
+msgid "柏妮思–格挡攻击"
+msgstr "Burnice - Block Attack"
+
+msgid "柏妮思-直接长按特殊攻击"
+msgstr "Burnice - Direct Hold Special Attack"
+
+msgid "柏妮思–直接长按特殊攻击"
+msgstr "Burnice - Direct Hold Special Attack"
+
+msgid "柏妮思-短喷"
+msgstr "Burnice - Short Burst Spray"
+
+msgid "柏妮思–短喷"
+msgstr "Burnice - Short Burst Spray"
+
+msgid "柏妮思-终结技"
+msgstr "Burnice - Ultimate"
+
+msgid "柏妮思–终结技"
+msgstr "Burnice - Ultimate"
+
+msgid "柏妮思-连携攻击"
+msgstr "Burnice - Chain Attack"
+
+msgid "柏妮思–连携攻击"
+msgstr "Burnice - Chain Attack"
+
+msgid "柏妮思-长按普通攻击"
+msgstr "Burnice - Hold Basic Attack"
+
+msgid "柏妮思–长按普通攻击"
+msgstr "Burnice - Hold Basic Attack"
+
+msgid "柏妮思–闪A"
+msgstr "Burnice - Dash Attack"
+
+msgid "柏妮思-闪A"
+msgstr "Burnice - Dash Attack"
+
+msgid "柳–强化特殊攻击"
+msgstr "Yanagi - EX Special Attack"
+
+msgid "柳-强化特殊攻击"
+msgstr "Yanagi - EX Special Attack"
+
+msgid "柳-强化特殊攻击-上弦"
+msgstr "Yanagi - EX Special Attack - Upper Moon"
+
+msgid "柳–强化特殊攻击–上弦"
+msgstr "Yanagi - EX Special Attack - Upper Moon"
+
+msgid "柳-强化特殊攻击-下弦"
+msgstr "Yanagi - EX Special Attack - Lower Moon"
+
+msgid "柳–强化特殊攻击–下弦"
+msgstr "Yanagi - EX Special Attack - Lower Moon"
+
+msgid "柳–支援攻击"
+msgstr "Yanagi - Assist Attack"
+
+msgid "柳-支援攻击"
+msgstr "Yanagi - Assist Attack"
+
+msgid "柳–普通攻击"
+msgstr "Yanagi - Basic Attack"
+
+msgid "柳-普通攻击"
+msgstr "Yanagi - Basic Attack"
+
+msgid "柳–普通攻击–上弦"
+msgstr "Yanagi - Basic Attack - Upper Moon"
+
+msgid "柳-普通攻击-上弦"
+msgstr "Yanagi - Basic Attack - Upper Moon"
+
+msgid "柳-普通攻击-下弦"
+msgstr "Yanagi - Basic Attack - Lower Moon"
+
+msgid "柳–普通攻击–下弦"
+msgstr "Yanagi - Basic Attack - Lower Moon"
+
+msgid "柳-普通攻击合轴"
+msgstr "Yanagi - Basic Attack Quick Swap"
+
+msgid "柳–普通攻击合轴"
+msgstr "Yanagi - Basic Attack Quick Swap"
+
+msgid "柳-格挡攻击"
+msgstr "Yanagi - Block Attack"
+
+msgid "柳–格挡攻击"
+msgstr "Yanagi - Block Attack"
+
+msgid "柳–流转攻击"
+msgstr "Yanagi - Flow Attack"
+
+msgid "柳-流转攻击"
+msgstr "Yanagi - Flow Attack"
+
+msgid "柳–流转攻击–上弦"
+msgstr "Yanagi - Flow Attack - Upper Moon"
+
+msgid "柳-流转攻击-上弦"
+msgstr "Yanagi - Flow Attack - Upper Moon"
+
+msgid "柳-流转攻击-上弦合轴"
+msgstr "Yanagi - Flow Attack - Upper Moon Quick Swap"
+
+msgid "柳–流转攻击–上弦合轴"
+msgstr "Yanagi - Flow Attack - Upper Moon Quick Swap"
+
+msgid "柳-流转攻击-下弦"
+msgstr "Yanagi - Flow Attack - Lower Moon"
+
+msgid "柳–流转攻击–下弦"
+msgstr "Yanagi - Flow Attack - Lower Moon"
+
+msgid "柳–流转攻击–下弦合轴"
+msgstr "Yanagi - Flow Attack - Lower Moon Quick Swap"
+
+msgid "柳-流转攻击-下弦合轴"
+msgstr "Yanagi - Flow Attack - Lower Moon Quick Swap"
+
+msgid "柳–终结技"
+msgstr "Yanagi - Ultimate"
+
+msgid "柳-终结技"
+msgstr "Yanagi - Ultimate"
+
+msgid "柳-连携攻击"
+msgstr "Yanagi - Chain Attack"
+
+msgid "柳–连携攻击"
+msgstr "Yanagi - Chain Attack"
+
+msgid "柳-闪A"
+msgstr "Yanagi - Dash Attack"
+
+msgid "柳–闪A"
+msgstr "Yanagi - Dash Attack"
+
+msgid "标准–支援攻击模板"
+msgstr "Standard - Assist Attack Template"
+
+msgid "标准-支援攻击模板"
+msgstr "Standard - Assist Attack Template"
+
+msgid "格莉丝–3AEAE"
+msgstr "Grace - 3AEAE"
+
+msgid "格莉丝-3AEAE"
+msgstr "Grace - 3AEAE"
+
+msgid "格莉丝–支援攻击"
+msgstr "Grace - Assist Attack"
+
+msgid "格莉丝-支援攻击"
+msgstr "Grace - Assist Attack"
+
+msgid "格莉丝–终结技"
+msgstr "Grace - Ultimate"
+
+msgid "格莉丝-终结技"
+msgstr "Grace - Ultimate"
+
+msgid "格莉丝-连携攻击"
+msgstr "Grace - Chain Attack"
+
+msgid "格莉丝–连携攻击"
+msgstr "Grace - Chain Attack"
+
+msgid "橘福福-强化特殊攻击合轴"
+msgstr "Ju Fufu - EX Special Attack Quick Swap"
+
+msgid "橘福福–强化特殊攻击合轴"
+msgstr "Ju Fufu - EX Special Attack Quick Swap"
+
+msgid "橘福福-支援攻击"
+msgstr "Ju Fufu - Assist Attack"
+
+msgid "橘福福–支援攻击"
+msgstr "Ju Fufu - Assist Attack"
+
+msgid "橘福福–普通攻击合轴"
+msgstr "Ju Fufu - Basic Attack Quick Swap"
+
+msgid "橘福福-普通攻击合轴"
+msgstr "Ju Fufu - Basic Attack Quick Swap"
+
+msgid "橘福福-终结技"
+msgstr "Ju Fufu - Ultimate"
+
+msgid "橘福福–终结技"
+msgstr "Ju Fufu - Ultimate"
+
+msgid "橘福福-连携攻击"
+msgstr "Ju Fufu - Chain Attack"
+
+msgid "橘福福–连携攻击"
+msgstr "Ju Fufu - Chain Attack"
+
+msgid "比利-支援攻击"
+msgstr "Billy - Assist Attack"
+
+msgid "比利–支援攻击"
+msgstr "Billy - Assist Attack"
+
+msgid "洛克茜-强化特殊技-攒满"
+msgstr "Roxy - EX Special Attack - Full Charge"
+
+msgid "洛克茜–强化特殊技–攒满"
+msgstr "Roxy - EX Special Attack - Full Charge"
+
+msgid "洛克茜-支援攻击"
+msgstr "Roxy - Assist Attack"
+
+msgid "洛克茜–支援攻击"
+msgstr "Roxy - Assist Attack"
+
+msgid "洛克茜-普攻连段"
+msgstr "Roxy - Basic Attack Combo"
+
+msgid "洛克茜–普攻连段"
+msgstr "Roxy - Basic Attack Combo"
+
+msgid "洛克茜–终结技"
+msgstr "Roxy - Ultimate"
+
+msgid "洛克茜-终结技"
+msgstr "Roxy - Ultimate"
+
+msgid "洛克茜–连携攻击"
+msgstr "Roxy - Chain Attack"
+
+msgid "洛克茜-连携攻击"
+msgstr "Roxy - Chain Attack"
+
+msgid "洛克茜–闪避反击"
+msgstr "Roxy - Dodge Counter"
+
+msgid "洛克茜-闪避反击"
+msgstr "Roxy - Dodge Counter"
+
+msgid "派派-2A"
+msgstr "Piper - 2A"
+
+msgid "派派–2A"
+msgstr "Piper - 2A"
+
+msgid "派派–3A速启强化特殊技"
+msgstr "Piper - 3A Quick EX Special Attack"
+
+msgid "派派-3A速启强化特殊技"
+msgstr "Piper - 3A Quick EX Special Attack"
+
+msgid "派派-3A速启强化特殊技合轴"
+msgstr "Piper - 3A Quick EX Special Attack Quick Swap"
+
+msgid "派派–3A速启强化特殊技合轴"
+msgstr "Piper - 3A Quick EX Special Attack Quick Swap"
+
+msgid "派派-3A速启特殊技"
+msgstr "Piper - 3A Quick Special Attack"
+
+msgid "派派–3A速启特殊技"
+msgstr "Piper - 3A Quick Special Attack"
+
+msgid "派派-3A速启特殊技合轴"
+msgstr "Piper - 3A Quick Special Attack Quick Swap"
+
+msgid "派派–3A速启特殊技合轴"
+msgstr "Piper - 3A Quick Special Attack Quick Swap"
+
+msgid "派派–支援攻击"
+msgstr "Piper - Assist Attack"
+
+msgid "派派-支援攻击"
+msgstr "Piper - Assist Attack"
+
+msgid "派派-终结技"
+msgstr "Piper - Ultimate"
+
+msgid "派派–终结技"
+msgstr "Piper - Ultimate"
+
+msgid "派派–连携攻击"
+msgstr "Piper - Chain Attack"
+
+msgid "派派-连携攻击"
+msgstr "Piper - Chain Attack"
+
+msgid "派派-速启轮胎转"
+msgstr "Piper - Quick Tire Spin"
+
+msgid "派派–速启轮胎转"
+msgstr "Piper - Quick Tire Spin"
+
+msgid "派派-闪A"
+msgstr "Piper - Dash Attack"
+
+msgid "派派–闪A"
+msgstr "Piper - Dash Attack"
+
+msgid "浮波柚叶-强化特殊技合轴"
+msgstr "Yuzuha - EX Special Attack Quick Swap"
+
+msgid "浮波柚叶–强化特殊技合轴"
+msgstr "Yuzuha - EX Special Attack Quick Swap"
+
+msgid "浮波柚叶-普攻合轴"
+msgstr "Yuzuha - Basic Attack Quick Swap"
+
+msgid "浮波柚叶–普攻合轴"
+msgstr "Yuzuha - Basic Attack Quick Swap"
+
+msgid "浮波柚叶–普攻格挡"
+msgstr "Yuzuha - Basic Attack Block"
+
+msgid "浮波柚叶-普攻格挡"
+msgstr "Yuzuha - Basic Attack Block"
+
+msgid "浮波柚叶–特殊技合轴"
+msgstr "Yuzuha - Special Attack Quick Swap"
+
+msgid "浮波柚叶-特殊技合轴"
+msgstr "Yuzuha - Special Attack Quick Swap"
+
+msgid "浮波柚叶-终结技"
+msgstr "Yuzuha - Ultimate"
+
+msgid "浮波柚叶–终结技"
+msgstr "Yuzuha - Ultimate"
+
+msgid "浮波柚叶-闪A"
+msgstr "Yuzuha - Dash Attack"
+
+msgid "浮波柚叶–闪A"
+msgstr "Yuzuha - Dash Attack"
+
+msgid "潘引壶–支援攻击"
+msgstr "Pan Yinhu - Assist Attack"
+
+msgid "潘引壶-支援攻击"
+msgstr "Pan Yinhu - Assist Attack"
+
+msgid "潘引壶-特殊攻击合轴"
+msgstr "Pan Yinhu - Special Attack Quick Swap"
+
+msgid "潘引壶–特殊攻击合轴"
+msgstr "Pan Yinhu - Special Attack Quick Swap"
+
+msgid "潘引壶–终结技"
+msgstr "Pan Yinhu - Ultimate"
+
+msgid "潘引壶-终结技"
+msgstr "Pan Yinhu - Ultimate"
+
+msgid "潘引壶-连携攻击"
+msgstr "Pan Yinhu - Chain Attack"
+
+msgid "潘引壶–连携攻击"
+msgstr "Pan Yinhu - Chain Attack"
+
+msgid "照-强化特殊攻击"
+msgstr "Zhao - EX Special Attack"
+
+msgid "照–强化特殊攻击"
+msgstr "Zhao - EX Special Attack"
+
+msgid "照–登场技"
+msgstr "Zhao - Switch-In Skill"
+
+msgid "照-登场技"
+msgstr "Zhao - Switch-In Skill"
+
+msgid "照–终结技"
+msgstr "Zhao - Ultimate"
+
+msgid "照-终结技"
+msgstr "Zhao - Ultimate"
+
+msgid "照-连携攻击"
+msgstr "Zhao - Chain Attack"
+
+msgid "照–连携攻击"
+msgstr "Zhao - Chain Attack"
+
+msgid "爱丽丝–强化特殊技"
+msgstr "Alice - EX Special Attack"
+
+msgid "爱丽丝-强化特殊技"
+msgstr "Alice - EX Special Attack"
+
+msgid "爱丽丝–支援攻击"
+msgstr "Alice - Assist Attack"
+
+msgid "爱丽丝-支援攻击"
+msgstr "Alice - Assist Attack"
+
+msgid "爱丽丝-普通攻击"
+msgstr "Alice - Basic Attack"
+
+msgid "爱丽丝–普通攻击"
+msgstr "Alice - Basic Attack"
+
+msgid "爱丽丝-终结技"
+msgstr "Alice - Ultimate"
+
+msgid "爱丽丝–终结技"
+msgstr "Alice - Ultimate"
+
+msgid "爱丽丝-连携攻击"
+msgstr "Alice - Chain Attack"
+
+msgid "爱丽丝–连携攻击"
+msgstr "Alice - Chain Attack"
+
+msgid "爱丽丝–长按普攻合轴"
+msgstr "Alice - Hold Basic Attack Quick Swap"
+
+msgid "爱丽丝-长按普攻合轴"
+msgstr "Alice - Hold Basic Attack Quick Swap"
+
+msgid "爱丽丝-闪A"
+msgstr "Alice - Dash Attack"
+
+msgid "爱丽丝–闪A"
+msgstr "Alice - Dash Attack"
+
+msgid "爱芮-强化特殊技"
+msgstr "Aria - EX Special Attack"
+
+msgid "爱芮–强化特殊技"
+msgstr "Aria - EX Special Attack"
+
+msgid "爱芮-强化特殊技二连"
+msgstr "Aria - Double EX Special Attack"
+
+msgid "爱芮–强化特殊技二连"
+msgstr "Aria - Double EX Special Attack"
+
+msgid "爱芮-支援攻击"
+msgstr "Aria - Assist Attack"
+
+msgid "爱芮–支援攻击"
+msgstr "Aria - Assist Attack"
+
+msgid "爱芮–普攻循环"
+msgstr "Aria - Basic Attack Loop"
+
+msgid "爱芮-普攻循环"
+msgstr "Aria - Basic Attack Loop"
+
+msgid "爱芮–普通攻击"
+msgstr "Aria - Basic Attack"
+
+msgid "爱芮-普通攻击"
+msgstr "Aria - Basic Attack"
+
+msgid "爱芮-终结技"
+msgstr "Aria - Ultimate"
+
+msgid "爱芮–终结技"
+msgstr "Aria - Ultimate"
+
+msgid "爱芮–绝对音准"
+msgstr "Aria - Absolute Pitch"
+
+msgid "爱芮-绝对音准"
+msgstr "Aria - Absolute Pitch"
+
+msgid "爱芮-连携攻击"
+msgstr "Aria - Chain Attack"
+
+msgid "爱芮–连携攻击"
+msgstr "Aria - Chain Attack"
+
+msgid "爱芮–长按攻击"
+msgstr "Aria - Hold Attack"
+
+msgid "爱芮-长按攻击"
+msgstr "Aria - Hold Attack"
+
+msgid "爱芮–闪A"
+msgstr "Aria - Dash Attack"
+
+msgid "爱芮-闪A"
+msgstr "Aria - Dash Attack"
+
+msgid "猫又-支援攻击"
+msgstr "Nekomata - Assist Attack"
+
+msgid "猫又–支援攻击"
+msgstr "Nekomata - Assist Attack"
+
+msgid "猫又-穿刺普攻E"
+msgstr "Nekomata - Pierce Basic Attack into E"
+
+msgid "猫又–穿刺普攻E"
+msgstr "Nekomata - Pierce Basic Attack into E"
+
+msgid "猫又-终结技"
+msgstr "Nekomata - Ultimate"
+
+msgid "猫又–终结技"
+msgstr "Nekomata - Ultimate"
+
+msgid "猫又-连携攻击"
+msgstr "Nekomata - Chain Attack"
+
+msgid "猫又–连携攻击"
+msgstr "Nekomata - Chain Attack"
+
+msgid "珂蕾妲-强化普攻接特殊技"
+msgstr "Koleda - Enhanced Basic into Special Attack"
+
+msgid "珂蕾妲–强化普攻接特殊技"
+msgstr "Koleda - Enhanced Basic into Special Attack"
+
+msgid "珂蕾妲–强化普攻接特殊技合轴"
+msgstr "Koleda - Enhanced Basic into Special Attack Quick Swap"
+
+msgid "珂蕾妲-强化普攻接特殊技合轴"
+msgstr "Koleda - Enhanced Basic into Special Attack Quick Swap"
+
+msgid "珂蕾妲–支援攻击"
+msgstr "Koleda - Assist Attack"
+
+msgid "珂蕾妲-支援攻击"
+msgstr "Koleda - Assist Attack"
+
+msgid "珂蕾妲-特殊技合轴"
+msgstr "Koleda - Special Attack Quick Swap"
+
+msgid "珂蕾妲–特殊技合轴"
+msgstr "Koleda - Special Attack Quick Swap"
+
+msgid "琉音–找投诉"
+msgstr "Dialyn - File Complaint"
+
+msgid "琉音-找投诉"
+msgstr "Dialyn - File Complaint"
+
+msgid "琉音-支援攻击"
+msgstr "Dialyn - Assist Attack"
+
+msgid "琉音–支援攻击"
+msgstr "Dialyn - Assist Attack"
+
+msgid "琉音-石头剪刀布"
+msgstr "Dialyn - Rock Paper Scissors"
+
+msgid "琉音–石头剪刀布"
+msgstr "Dialyn - Rock Paper Scissors"
+
+msgid "琉音–石头剪刀布(连点特殊技)"
+msgstr "Dialyn - Rock Paper Scissors (Rapid Special)"
+
+msgid "琉音-石头剪刀布(连点特殊技)"
+msgstr "Dialyn - Rock Paper Scissors (Rapid Special)"
+
+msgid "琉音-终结技"
+msgstr "Dialyn - Ultimate"
+
+msgid "琉音–终结技"
+msgstr "Dialyn - Ultimate"
+
+msgid "琉音-连携攻击"
+msgstr "Dialyn - Chain Attack"
+
+msgid "琉音–连携攻击"
+msgstr "Dialyn - Chain Attack"
+
+msgid "琉音-送客(长按强化特殊技)"
+msgstr "Dialyn - Send-Off (Hold EX Special Attack)"
+
+msgid "琉音–送客(长按强化特殊技)"
+msgstr "Dialyn - Send-Off (Hold EX Special Attack)"
+
+msgid "琉音–闪A"
+msgstr "Dialyn - Dash Attack"
+
+msgid "琉音-闪A"
+msgstr "Dialyn - Dash Attack"
+
+msgid "真斗-基础连段"
+msgstr "Manato - Basic Combo"
+
+msgid "真斗–基础连段"
+msgstr "Manato - Basic Combo"
+
+msgid "真斗-强化特殊技"
+msgstr "Manato - EX Special Attack"
+
+msgid "真斗–强化特殊技"
+msgstr "Manato - EX Special Attack"
+
+msgid "真斗-拜年剑法"
+msgstr "Manato - Overhead Cleave"
+
+msgid "真斗–拜年剑法"
+msgstr "Manato - Overhead Cleave"
+
+msgid "真斗-擦火刀"
+msgstr "Manato - Flint Ignition"
+
+msgid "真斗–擦火刀"
+msgstr "Manato - Flint Ignition"
+
+msgid "真斗-支援攻击"
+msgstr "Manato - Assist Attack"
+
+msgid "真斗–支援攻击"
+msgstr "Manato - Assist Attack"
+
+msgid "真斗-格挡"
+msgstr "Manato - Block"
+
+msgid "真斗–格挡"
+msgstr "Manato - Block"
+
+msgid "真斗-终结技"
+msgstr "Manato - Ultimate"
+
+msgid "真斗–终结技"
+msgstr "Manato - Ultimate"
+
+msgid "真斗-连携攻击"
+msgstr "Manato - Chain Attack"
+
+msgid "真斗–连携攻击"
+msgstr "Manato - Chain Attack"
+
+msgid "简–强化特殊攻击"
+msgstr "Jane - EX Special Attack"
+
+msgid "简-强化特殊攻击"
+msgstr "Jane - EX Special Attack"
+
+msgid "简-普通攻击"
+msgstr "Jane - Basic Attack"
+
+msgid "简–普通攻击"
+msgstr "Jane - Basic Attack"
+
+msgid "简-普通攻击合轴"
+msgstr "Jane - Basic Attack Quick Swap"
+
+msgid "简–普通攻击合轴"
+msgstr "Jane - Basic Attack Quick Swap"
+
+msgid "简–格挡攻击"
+msgstr "Jane - Block Attack"
+
+msgid "简-格挡攻击"
+msgstr "Jane - Block Attack"
+
+msgid "简-终结技"
+msgstr "Jane - Ultimate"
+
+msgid "简–终结技"
+msgstr "Jane - Ultimate"
+
+msgid "简-萨霍夫跳"
+msgstr "Jane - Salchow Jump"
+
+msgid "简–萨霍夫跳"
+msgstr "Jane - Salchow Jump"
+
+msgid "简–萨霍夫跳合轴"
+msgstr "Jane - Salchow Jump Quick Swap"
+
+msgid "简-萨霍夫跳合轴"
+msgstr "Jane - Salchow Jump Quick Swap"
+
+msgid "简–连携攻击"
+msgstr "Jane - Chain Attack"
+
+msgid "简-连携攻击"
+msgstr "Jane - Chain Attack"
+
+msgid "简-闪A"
+msgstr "Jane - Dash Attack"
+
+msgid "简–闪A"
+msgstr "Jane - Dash Attack"
+
+msgid "维琳娜–强化特殊技"
+msgstr "Velina - EX Special Attack"
+
+msgid "维琳娜-强化特殊技"
+msgstr "Velina - EX Special Attack"
+
+msgid "维琳娜–强化特殊技合轴"
+msgstr "Velina - EX Special Attack Quick Swap"
+
+msgid "维琳娜-强化特殊技合轴"
+msgstr "Velina - EX Special Attack Quick Swap"
+
+msgid "维琳娜-支援攻击"
+msgstr "Velina - Assist Attack"
+
+msgid "维琳娜–支援攻击"
+msgstr "Velina - Assist Attack"
+
+msgid "维琳娜–普通攻击"
+msgstr "Velina - Basic Attack"
+
+msgid "维琳娜-普通攻击"
+msgstr "Velina - Basic Attack"
+
+msgid "维琳娜–特殊攻击"
+msgstr "Velina - Special Attack"
+
+msgid "维琳娜-特殊攻击"
+msgstr "Velina - Special Attack"
+
+msgid "维琳娜-终结技"
+msgstr "Velina - Ultimate"
+
+msgid "维琳娜–终结技"
+msgstr "Velina - Ultimate"
+
+msgid "维琳娜-连携攻击"
+msgstr "Velina - Chain Attack"
+
+msgid "维琳娜–连携攻击"
+msgstr "Velina - Chain Attack"
+
+msgid "维琳娜-长按普攻"
+msgstr "Velina - Hold Basic Attack"
+
+msgid "维琳娜–长按普攻"
+msgstr "Velina - Hold Basic Attack"
+
+msgid "维琳娜–闪A"
+msgstr "Velina - Dash Attack"
+
+msgid "维琳娜-闪A"
+msgstr "Velina - Dash Attack"
+
+msgid "耀嘉音–强化特殊技"
+msgstr "Astra Yao - EX Special Attack"
+
+msgid "耀嘉音-强化特殊技"
+msgstr "Astra Yao - EX Special Attack"
+
+msgid "耀嘉音–终结技"
+msgstr "Astra Yao - Ultimate"
+
+msgid "耀嘉音-终结技"
+msgstr "Astra Yao - Ultimate"
+
+msgid "耀嘉音-连携攻击"
+msgstr "Astra Yao - Chain Attack"
+
+msgid "耀嘉音–连携攻击"
+msgstr "Astra Yao - Chain Attack"
+
+msgid "般岳-冲刺攻击-飞砂"
+msgstr "Banyue - Dash Attack - Flying Sand"
+
+msgid "般岳–冲刺攻击–飞砂"
+msgstr "Banyue - Dash Attack - Flying Sand"
+
+msgid "般岳–快速支援–磐岩"
+msgstr "Banyue - Quick Assist - Monolith"
+
+msgid "般岳-快速支援-磐岩"
+msgstr "Banyue - Quick Assist - Monolith"
+
+msgid "般岳–招架支援–铁壁"
+msgstr "Banyue - Defensive Assist - Iron Wall"
+
+msgid "般岳-招架支援-铁壁"
+msgstr "Banyue - Defensive Assist - Iron Wall"
+
+msgid "般岳–支援突击–冲霄"
+msgstr "Banyue - Assist Assault - Soaring Sky"
+
+msgid "般岳-支援突击-冲霄"
+msgstr "Banyue - Assist Assault - Soaring Sky"
+
+msgid "般岳–支援突击–昂霄"
+msgstr "Banyue - Assist Assault - Towering Sky"
+
+msgid "般岳-支援突击-昂霄"
+msgstr "Banyue - Assist Assault - Towering Sky"
+
+msgid "般岳-普通攻击-倾山"
+msgstr "Banyue - Basic Attack - Mountain Topple"
+
+msgid "般岳–普通攻击–倾山"
+msgstr "Banyue - Basic Attack - Mountain Topple"
+
+msgid "般岳–普通攻击–峥嵘"
+msgstr "Banyue - Basic Attack - Craggy Peak"
+
+msgid "般岳-普通攻击-峥嵘"
+msgstr "Banyue - Basic Attack - Craggy Peak"
+
+msgid "般岳–普通攻击–崔巍"
+msgstr "Banyue - Basic Attack - Lofty Range"
+
+msgid "般岳-普通攻击-崔巍"
+msgstr "Banyue - Basic Attack - Lofty Range"
+
+msgid "般岳-普通攻击-引火"
+msgstr "Banyue - Basic Attack - Kindle"
+
+msgid "般岳–普通攻击–引火"
+msgstr "Banyue - Basic Attack - Kindle"
+
+msgid "般岳-普通攻击-摧岳"
+msgstr "Banyue - Basic Attack - Peak Crusher"
+
+msgid "般岳–普通攻击–摧岳"
+msgstr "Banyue - Basic Attack - Peak Crusher"
+
+msgid "般岳–普通攻击–焚身"
+msgstr "Banyue - Basic Attack - Incinerate"
+
+msgid "般岳-普通攻击-焚身"
+msgstr "Banyue - Basic Attack - Incinerate"
+
+msgid "般岳-特殊技-地动"
+msgstr "Banyue - Special Attack - Earth Tremor"
+
+msgid "般岳–特殊技–地动"
+msgstr "Banyue - Special Attack - Earth Tremor"
+
+msgid "般岳-特殊技-山摇"
+msgstr "Banyue - Special Attack - Mountain Shake"
+
+msgid "般岳–特殊技–山摇"
+msgstr "Banyue - Special Attack - Mountain Shake"
+
+msgid "般岳–特殊技–山摇怒"
+msgstr "Banyue - Special Attack - Mountain Shake Fury"
+
+msgid "般岳-特殊技-山摇怒"
+msgstr "Banyue - Special Attack - Mountain Shake Fury"
+
+msgid "般岳–特殊技–狮子吼"
+msgstr "Banyue - Special Attack - Lion Roar"
+
+msgid "般岳-特殊技-狮子吼"
+msgstr "Banyue - Special Attack - Lion Roar"
+
+msgid "般岳–特殊技–狮子吼怒"
+msgstr "Banyue - Special Attack - Lion Roar Fury"
+
+msgid "般岳-特殊技-狮子吼怒"
+msgstr "Banyue - Special Attack - Lion Roar Fury"
+
+msgid "般岳-特殊技-论道"
+msgstr "Banyue - Special Attack - Discourse"
+
+msgid "般岳–特殊技–论道"
+msgstr "Banyue - Special Attack - Discourse"
+
+msgid "般岳-终结技-撼天动地"
+msgstr "Banyue - Ultimate - Heaven and Earth Shaker"
+
+msgid "般岳–终结技–撼天动地"
+msgstr "Banyue - Ultimate - Heaven and Earth Shaker"
+
+msgid "般岳-连招-地动山摇"
+msgstr "Banyue - Combo - Earth Tremor Mountain Shake"
+
+msgid "般岳–连招–地动山摇"
+msgstr "Banyue - Combo - Earth Tremor Mountain Shake"
+
+msgid "般岳-连招-完整循环"
+msgstr "Banyue - Combo - Full Loop"
+
+msgid "般岳–连招–完整循环"
+msgstr "Banyue - Combo - Full Loop"
+
+msgid "般岳–连招–怒相爆发"
+msgstr "Banyue - Combo - Wrath Burst"
+
+msgid "般岳-连招-怒相爆发"
+msgstr "Banyue - Combo - Wrath Burst"
+
+msgid "般岳–连招–怒相连招"
+msgstr "Banyue - Combo - Wrath Combo"
+
+msgid "般岳-连招-怒相连招"
+msgstr "Banyue - Combo - Wrath Combo"
+
+msgid "般岳–连招–论道狮吼"
+msgstr "Banyue - Combo - Discourse Lion Roar"
+
+msgid "般岳-连招-论道狮吼"
+msgstr "Banyue - Combo - Discourse Lion Roar"
+
+msgid "般岳-连携技-怒焰"
+msgstr "Banyue - Chain Attack - Wrath Flame"
+
+msgid "般岳–连携技–怒焰"
+msgstr "Banyue - Chain Attack - Wrath Flame"
+
+msgid "般岳-闪避-不动如山"
+msgstr "Banyue - Dodge - Immovable Mountain"
+
+msgid "般岳–闪避–不动如山"
+msgstr "Banyue - Dodge - Immovable Mountain"
+
+msgid "般岳–闪避–叫阵"
+msgstr "Banyue - Dodge - Provocation"
+
+msgid "般岳-闪避-叫阵"
+msgstr "Banyue - Dodge - Provocation"
+
+msgid "般岳–闪避–越岭"
+msgstr "Banyue - Dodge - Ridge Crossing"
+
+msgid "般岳-闪避-越岭"
+msgstr "Banyue - Dodge - Ridge Crossing"
+
+msgid "般岳-闪避反击-扬砾"
+msgstr "Banyue - Dodge Counter - Flying Gravel"
+
+msgid "般岳–闪避反击–扬砾"
+msgstr "Banyue - Dodge Counter - Flying Gravel"
+
+msgid "艾莲-3A"
+msgstr "Ellen - 3A"
+
+msgid "艾莲–3A"
+msgstr "Ellen - 3A"
+
+msgid "艾莲–EA连击"
+msgstr "Ellen - EA Combo"
+
+msgid "艾莲-EA连击"
+msgstr "Ellen - EA Combo"
+
+msgid "艾莲-冲刺蓄力攻击"
+msgstr "Ellen - Dash Charged Attack"
+
+msgid "艾莲–冲刺蓄力攻击"
+msgstr "Ellen - Dash Charged Attack"
+
+msgid "艾莲-冲刺蓄力攻击-慢"
+msgstr "Ellen - Dash Charged Attack - Slow"
+
+msgid "艾莲–冲刺蓄力攻击–慢"
+msgstr "Ellen - Dash Charged Attack - Slow"
+
+msgid "艾莲–冲蓄3A"
+msgstr "Ellen - Dash Charged 3A"
+
+msgid "艾莲-冲蓄3A"
+msgstr "Ellen - Dash Charged 3A"
+
+msgid "艾莲–支援攻击"
+msgstr "Ellen - Assist Attack"
+
+msgid "艾莲-支援攻击"
+msgstr "Ellen - Assist Attack"
+
+msgid "艾莲–新冲刺剪刀一套快速"
+msgstr "Ellen - New Dash Scissors Fast Combo"
+
+msgid "艾莲-新冲刺剪刀一套快速"
+msgstr "Ellen - New Dash Scissors Fast Combo"
+
+msgid "艾莲–新冲刺剪刀一套慢速"
+msgstr "Ellen - New Dash Scissors Slow Combo"
+
+msgid "艾莲-新冲刺剪刀一套慢速"
+msgstr "Ellen - New Dash Scissors Slow Combo"
+
+msgid "艾莲–新双E连招"
+msgstr "Ellen - New Double E Combo"
+
+msgid "艾莲-新双E连招"
+msgstr "Ellen - New Double E Combo"
+
+msgid "艾莲-普通攻击"
+msgstr "Ellen - Basic Attack"
+
+msgid "艾莲–普通攻击"
+msgstr "Ellen - Basic Attack"
+
+msgid "艾莲–特殊攻击"
+msgstr "Ellen - Special Attack"
+
+msgid "艾莲-特殊攻击"
+msgstr "Ellen - Special Attack"
+
+msgid "艾莲–终结技"
+msgstr "Ellen - Ultimate"
+
+msgid "艾莲-终结技"
+msgstr "Ellen - Ultimate"
+
+msgid "艾莲-连携攻击"
+msgstr "Ellen - Chain Attack"
+
+msgid "艾莲–连携攻击"
+msgstr "Ellen - Chain Attack"
+
+msgid "艾莲–闪A"
+msgstr "Ellen - Dash Attack"
+
+msgid "艾莲-闪A"
+msgstr "Ellen - Dash Attack"
+
+msgid "苍角-1E展旗合轴"
+msgstr "Soukaku - 1E Banner Quick Swap"
+
+msgid "苍角–1E展旗合轴"
+msgstr "Soukaku - 1E Banner Quick Swap"
+
+msgid "苍角-2E展旗合轴"
+msgstr "Soukaku - 2E Banner Quick Swap"
+
+msgid "苍角–2E展旗合轴"
+msgstr "Soukaku - 2E Banner Quick Swap"
+
+msgid "苍角-3E展旗合轴"
+msgstr "Soukaku - 3E Banner Quick Swap"
+
+msgid "苍角–3E展旗合轴"
+msgstr "Soukaku - 3E Banner Quick Swap"
+
+msgid "苍角-EA连击"
+msgstr "Soukaku - EA Combo"
+
+msgid "苍角–EA连击"
+msgstr "Soukaku - EA Combo"
+
+msgid "苍角-展旗"
+msgstr "Soukaku - Raise Banner"
+
+msgid "苍角–展旗"
+msgstr "Soukaku - Raise Banner"
+
+msgid "苍角–支援攻击"
+msgstr "Soukaku - Assist Attack"
+
+msgid "苍角-支援攻击"
+msgstr "Soukaku - Assist Attack"
+
+msgid "苍角–普通攻击"
+msgstr "Soukaku - Basic Attack"
+
+msgid "苍角-普通攻击"
+msgstr "Soukaku - Basic Attack"
+
+msgid "苍角-特殊攻击"
+msgstr "Soukaku - Special Attack"
+
+msgid "苍角–特殊攻击"
+msgstr "Soukaku - Special Attack"
+
+msgid "苍角–特殊攻击合轴"
+msgstr "Soukaku - Special Attack Quick Swap"
+
+msgid "苍角-特殊攻击合轴"
+msgstr "Soukaku - Special Attack Quick Swap"
+
+msgid "苍角-终结技"
+msgstr "Soukaku - Ultimate"
+
+msgid "苍角–终结技"
+msgstr "Soukaku - Ultimate"
+
+msgid "苍角–连携攻击"
+msgstr "Soukaku - Chain Attack"
+
+msgid "苍角-连携攻击"
+msgstr "Soukaku - Chain Attack"
+
+msgid "苍角–闪2A合轴"
+msgstr "Soukaku - Dash 2A Quick Swap"
+
+msgid "苍角-闪2A合轴"
+msgstr "Soukaku - Dash 2A Quick Swap"
+
+msgid "莱卡恩-支援攻击"
+msgstr "Lycaon - Assist Attack"
+
+msgid "莱卡恩–支援攻击"
+msgstr "Lycaon - Assist Attack"
+
+msgid "莱卡恩-普通攻击"
+msgstr "Lycaon - Basic Attack"
+
+msgid "莱卡恩–普通攻击"
+msgstr "Lycaon - Basic Attack"
+
+msgid "莱卡恩–特殊技合轴"
+msgstr "Lycaon - Special Attack Quick Swap"
+
+msgid "莱卡恩-特殊技合轴"
+msgstr "Lycaon - Special Attack Quick Swap"
+
+msgid "莱卡恩-终结技"
+msgstr "Lycaon - Ultimate"
+
+msgid "莱卡恩–终结技"
+msgstr "Lycaon - Ultimate"
+
+msgid "莱卡恩–蓄力普通攻击"
+msgstr "Lycaon - Charged Basic Attack"
+
+msgid "莱卡恩-蓄力普通攻击"
+msgstr "Lycaon - Charged Basic Attack"
+
+msgid "莱卡恩–闪A"
+msgstr "Lycaon - Dash Attack"
+
+msgid "莱卡恩-闪A"
+msgstr "Lycaon - Dash Attack"
+
+msgid "菲欧妮–特殊技"
+msgstr "Phoenix - Special Attack"
+
+msgid "菲欧妮-特殊技"
+msgstr "Phoenix - Special Attack"
+
+msgid "菲欧妮–长按普攻–焚罪"
+msgstr "Phoenix - Hold Basic Attack - Burn Sin"
+
+msgid "菲欧妮-长按普攻-焚罪"
+msgstr "Phoenix - Hold Basic Attack - Burn Sin"
+
+msgid "蕾米埃尔-入场技"
+msgstr "Remielle - Entry Skill"
+
+msgid "蕾米埃尔–入场技"
+msgstr "Remielle - Entry Skill"
+
+msgid "蕾米埃尔–普通攻击"
+msgstr "Remielle - Basic Attack"
+
+msgid "蕾米埃尔-普通攻击"
+msgstr "Remielle - Basic Attack"
+
+msgid "蕾米埃尔–点按接蓄力"
+msgstr "Remielle - Tap into Hold"
+
+msgid "蕾米埃尔-点按接蓄力"
+msgstr "Remielle - Tap into Hold"
+
+msgid "蕾米埃尔-终结技"
+msgstr "Remielle - Ultimate"
+
+msgid "蕾米埃尔–终结技"
+msgstr "Remielle - Ultimate"
+
+msgid "蕾米埃尔-连携攻击"
+msgstr "Remielle - Chain Attack"
+
+msgid "蕾米埃尔–连携攻击"
+msgstr "Remielle - Chain Attack"
+
+msgid "蕾米埃尔–长按强化特殊技"
+msgstr "Remielle - Hold EX Special Attack"
+
+msgid "蕾米埃尔-长按强化特殊技"
+msgstr "Remielle - Hold EX Special Attack"
+
+msgid "蕾米埃尔-长按普攻"
+msgstr "Remielle - Hold Basic Attack"
+
+msgid "蕾米埃尔–长按普攻"
+msgstr "Remielle - Hold Basic Attack"
+
+msgid "薇薇安–3A"
+msgstr "Vivian - 3A"
+
+msgid "薇薇安-3A"
+msgstr "Vivian - 3A"
+
+msgid "薇薇安-4A突刺"
+msgstr "Vivian - 4A Thrust"
+
+msgid "薇薇安–4A突刺"
+msgstr "Vivian - 4A Thrust"
+
+msgid "薇薇安-4A突刺强化特殊攻击"
+msgstr "Vivian - 4A Thrust EX Special Attack"
+
+msgid "薇薇安–4A突刺强化特殊攻击"
+msgstr "Vivian - 4A Thrust EX Special Attack"
+
+msgid "薇薇安–5A悬落"
+msgstr "Vivian - 5A Plunge"
+
+msgid "薇薇安-5A悬落"
+msgstr "Vivian - 5A Plunge"
+
+msgid "薇薇安–强化特殊技合轴"
+msgstr "Vivian - EX Special Attack Quick Swap"
+
+msgid "薇薇安-强化特殊技合轴"
+msgstr "Vivian - EX Special Attack Quick Swap"
+
+msgid "薇薇安–快速支援"
+msgstr "Vivian - Quick Assist"
+
+msgid "薇薇安-快速支援"
+msgstr "Vivian - Quick Assist"
+
+msgid "薇薇安–快速支援强化特殊技"
+msgstr "Vivian - Quick Assist EX Special Attack"
+
+msgid "薇薇安-快速支援强化特殊技"
+msgstr "Vivian - Quick Assist EX Special Attack"
+
+msgid "薇薇安-支援攻击"
+msgstr "Vivian - Assist Attack"
+
+msgid "薇薇安–支援攻击"
+msgstr "Vivian - Assist Attack"
+
+msgid "薇薇安–终结技"
+msgstr "Vivian - Ultimate"
+
+msgid "薇薇安-终结技"
+msgstr "Vivian - Ultimate"
+
+msgid "薇薇安–连携攻击"
+msgstr "Vivian - Chain Attack"
+
+msgid "薇薇安-连携攻击"
+msgstr "Vivian - Chain Attack"
+
+msgid "薇薇安–闪A"
+msgstr "Vivian - Dash Attack"
+
+msgid "薇薇安-闪A"
+msgstr "Vivian - Dash Attack"
+
+msgid "诺姆–强化特殊攻击"
+msgstr "Norma - EX Special Attack"
+
+msgid "诺姆-强化特殊攻击"
+msgstr "Norma - EX Special Attack"
+
+msgid "诺姆-支援攻击"
+msgstr "Norma - Assist Attack"
+
+msgid "诺姆–支援攻击"
+msgstr "Norma - Assist Attack"
+
+msgid "诺姆–普通攻击合轴"
+msgstr "Norma - Basic Attack Quick Swap"
+
+msgid "诺姆-普通攻击合轴"
+msgstr "Norma - Basic Attack Quick Swap"
+
+msgid "诺姆-终结技"
+msgstr "Norma - Ultimate"
+
+msgid "诺姆–终结技"
+msgstr "Norma - Ultimate"
+
+msgid "诺姆–连携攻击"
+msgstr "Norma - Chain Attack"
+
+msgid "诺姆-连携攻击"
+msgstr "Norma - Chain Attack"
+
+msgid "诺姆–长按普攻"
+msgstr "Norma - Hold Basic Attack"
+
+msgid "诺姆-长按普攻"
+msgstr "Norma - Hold Basic Attack"
+
+msgid "连携–取消"
+msgstr "Chain - Cancel"
+
+msgid "连携-取消"
+msgstr "Chain - Cancel"
+
+msgid "连携–右"
+msgstr "Chain - Right"
+
+msgid "连携-右"
+msgstr "Chain - Right"
+
+msgid "连携-左"
+msgstr "Chain - Left"
+
+msgid "连携–左"
+msgstr "Chain - Left"
+
+msgid "通用–切人普通攻击"
+msgstr "General - Switch Normal Attack"
+
+msgid "通用-切人普通攻击"
+msgstr "General - Switch Normal Attack"
+
+msgid "通用–强化特殊技"
+msgstr "General - EX Special Attack"
+
+msgid "通用-强化特殊技"
+msgstr "General - EX Special Attack"
+
+msgid "通用–快速支援"
+msgstr "General - Quick Assist"
+
+msgid "通用-快速支援"
+msgstr "General - Quick Assist"
+
+msgid "通用-支援攻击"
+msgstr "General - Assist Attack"
+
+msgid "通用–支援攻击"
+msgstr "General - Assist Attack"
+
+msgid "通用-普通攻击"
+msgstr "General - Basic Attack"
+
+msgid "通用–普通攻击"
+msgstr "General - Basic Attack"
+
+msgid "通用-特殊攻击合轴"
+msgstr "General - Special Attack Quick Swap"
+
+msgid "通用–特殊攻击合轴"
+msgstr "General - Special Attack Quick Swap"
+
+msgid "通用-终结技"
+msgstr "General - Ultimate"
+
+msgid "通用–终结技"
+msgstr "General - Ultimate"
+
+msgid "通用–连携攻击"
+msgstr "General - Chain Attack"
+
+msgid "通用-连携攻击"
+msgstr "General - Chain Attack"
+
+msgid "通用–长按普攻"
+msgstr "General - Hold Basic Attack"
+
+msgid "通用-长按普攻"
+msgstr "General - Hold Basic Attack"
+
+msgid "通用-长按特殊攻击"
+msgstr "General - Hold Special Attack"
+
+msgid "通用–长按特殊攻击"
+msgstr "General - Hold Special Attack"
+
+msgid "通用–闪A"
+msgstr "General - Dash Attack"
+
+msgid "通用-闪A"
+msgstr "General - Dash Attack"
+
+msgid "通用-闪避-前"
+msgstr "General - Forward Dodge"
+
+msgid "通用–闪避–前"
+msgstr "General - Forward Dodge"
+
+msgid "通用–闪避–左"
+msgstr "General - Left Dodge"
+
+msgid "通用-闪避-左"
+msgstr "General - Left Dodge"
+
+msgid "雅-拔刀斩"
+msgstr "Miyabi - Iaido Slash"
+
+msgid "雅–拔刀斩"
+msgstr "Miyabi - Iaido Slash"
+
+msgid "雅–支援攻击"
+msgstr "Miyabi - Assist Attack"
+
+msgid "雅-支援攻击"
+msgstr "Miyabi - Assist Attack"
+
+msgid "雅–普通攻击"
+msgstr "Miyabi - Basic Attack"
+
+msgid "雅-普通攻击"
+msgstr "Miyabi - Basic Attack"
+
+msgid "雅–特殊攻击"
+msgstr "Miyabi - Special Attack"
+
+msgid "雅-特殊攻击"
+msgstr "Miyabi - Special Attack"
+
+msgid "雅–特殊攻击二连"
+msgstr "Miyabi - Double Special Attack"
+
+msgid "雅-特殊攻击二连"
+msgstr "Miyabi - Double Special Attack"
+
+msgid "雅–终结技"
+msgstr "Miyabi - Ultimate"
+
+msgid "雅-终结技"
+msgstr "Miyabi - Ultimate"
+
+msgid "雅–连携攻击"
+msgstr "Miyabi - Chain Attack"
+
+msgid "雅-连携攻击"
+msgstr "Miyabi - Chain Attack"
+
+msgid "雅-闪A"
+msgstr "Miyabi - Dash Attack"
+
+msgid "雅–闪A"
+msgstr "Miyabi - Dash Attack"
+
+msgid "雨果-强化特殊攻击"
+msgstr "Hugo - EX Special Attack"
+
+msgid "雨果–强化特殊攻击"
+msgstr "Hugo - EX Special Attack"
+
+msgid "雨果–快速支援"
+msgstr "Hugo - Quick Assist"
+
+msgid "雨果-快速支援"
+msgstr "Hugo - Quick Assist"
+
+msgid "雨果–支援攻击"
+msgstr "Hugo - Assist Attack"
+
+msgid "雨果-支援攻击"
+msgstr "Hugo - Assist Attack"
+
+msgid "雨果–普通攻击"
+msgstr "Hugo - Basic Attack"
+
+msgid "雨果-普通攻击"
+msgstr "Hugo - Basic Attack"
+
+msgid "雨果–普通攻击A4"
+msgstr "Hugo - Basic Attack A4"
+
+msgid "雨果-普通攻击A4"
+msgstr "Hugo - Basic Attack A4"
+
+msgid "雨果–终结技"
+msgstr "Hugo - Ultimate"
+
+msgid "雨果-终结技"
+msgstr "Hugo - Ultimate"
+
+msgid "雨果-连携攻击"
+msgstr "Hugo - Chain Attack"
+
+msgid "雨果–连携攻击"
+msgstr "Hugo - Chain Attack"
+
+msgid "雨果-闪A"
+msgstr "Hugo - Dash Attack"
+
+msgid "雨果–闪A"
+msgstr "Hugo - Dash Attack"
+
+msgid "零号安比–强化特殊技"
+msgstr "Soldier 0 Anby - EX Special Attack"
+
+msgid "零号安比-强化特殊技"
+msgstr "Soldier 0 Anby - EX Special Attack"
+
+msgid "零号安比-强化特殊技合轴"
+msgstr "Soldier 0 Anby - EX Special Attack Quick Swap"
+
+msgid "零号安比–强化特殊技合轴"
+msgstr "Soldier 0 Anby - EX Special Attack Quick Swap"
+
+msgid "零号安比–快速支援"
+msgstr "Soldier 0 Anby - Quick Assist"
+
+msgid "零号安比-快速支援"
+msgstr "Soldier 0 Anby - Quick Assist"
+
+msgid "零号安比–支援攻击"
+msgstr "Soldier 0 Anby - Assist Attack"
+
+msgid "零号安比-支援攻击"
+msgstr "Soldier 0 Anby - Assist Attack"
+
+msgid "零号安比–普通攻击"
+msgstr "Soldier 0 Anby - Basic Attack"
+
+msgid "零号安比-普通攻击"
+msgstr "Soldier 0 Anby - Basic Attack"
+
+msgid "零号安比–普通攻击合轴"
+msgstr "Soldier 0 Anby - Basic Attack Quick Swap"
+
+msgid "零号安比-普通攻击合轴"
+msgstr "Soldier 0 Anby - Basic Attack Quick Swap"
+
+msgid "零号安比–特殊技突进"
+msgstr "Soldier 0 Anby - Special Attack Rush"
+
+msgid "零号安比-特殊技突进"
+msgstr "Soldier 0 Anby - Special Attack Rush"
+
+msgid "零号安比–终结技"
+msgstr "Soldier 0 Anby - Ultimate"
+
+msgid "零号安比-终结技"
+msgstr "Soldier 0 Anby - Ultimate"
+
+msgid "零号安比-给席德的专属强化特殊技合轴"
+msgstr "Soldier 0 Anby - Seed Exclusive EX Special Quick Swap"
+
+msgid "零号安比–给席德的专属强化特殊技合轴"
+msgstr "Soldier 0 Anby - Seed Exclusive EX Special Quick Swap"
+
+msgid "零号安比–连携攻击"
+msgstr "Soldier 0 Anby - Chain Attack"
+
+msgid "零号安比-连携攻击"
+msgstr "Soldier 0 Anby - Chain Attack"
+
+msgid "零号安比-闪A"
+msgstr "Soldier 0 Anby - Dash Attack"
+
+msgid "零号安比–闪A"
+msgstr "Soldier 0 Anby - Dash Attack"
+
+msgid "露西-平直球合轴"
+msgstr "Lucy - Line Drive Quick Swap"
+
+msgid "露西–平直球合轴"
+msgstr "Lucy - Line Drive Quick Swap"
+
+msgid "露西–支援攻击"
+msgstr "Lucy - Assist Attack"
+
+msgid "露西-支援攻击"
+msgstr "Lucy - Assist Attack"
+
+msgid "露西–高飞球合轴"
+msgstr "Lucy - Fly Ball Quick Swap"
+
+msgid "露西-高飞球合轴"
+msgstr "Lucy - Fly Ball Quick Swap"
+
+msgid "青衣–支援攻击"
+msgstr "Qingyi - Assist Attack"
+
+msgid "青衣-支援攻击"
+msgstr "Qingyi - Assist Attack"
+
+msgid "青衣–普通攻击"
+msgstr "Qingyi - Basic Attack"
+
+msgid "青衣-普通攻击"
+msgstr "Qingyi - Basic Attack"
+
+msgid "青衣-特殊技"
+msgstr "Qingyi - Special Attack"
+
+msgid "青衣–特殊技"
+msgstr "Qingyi - Special Attack"
+
+msgid "青衣-特殊攻击接普通攻击"
+msgstr "Qingyi - Special Attack into Basic Attack"
+
+msgid "青衣–特殊攻击接普通攻击"
+msgstr "Qingyi - Special Attack into Basic Attack"
+
+msgid "青衣-终结技"
+msgstr "Qingyi - Ultimate"
+
+msgid "青衣–终结技"
+msgstr "Qingyi - Ultimate"
+
+msgid "青衣–续普攻"
+msgstr "Qingyi - Chain Basic Attack"
+
+msgid "青衣-续普攻"
+msgstr "Qingyi - Chain Basic Attack"
+
+msgid "青衣-续普通攻击"
+msgstr "Qingyi - Chain Basic Attack"
+
+msgid "青衣–续普通攻击"
+msgstr "Qingyi - Chain Basic Attack"
+
+msgid "青衣–醉花云月转"
+msgstr "Qingyi - Drunken Flower Spinning Moon"
+
+msgid "青衣-醉花云月转"
+msgstr "Qingyi - Drunken Flower Spinning Moon"
+
+msgid "青衣-闪电鞭"
+msgstr "Qingyi - Lightning Whip"
+
+msgid "青衣–闪电鞭"
+msgstr "Qingyi - Lightning Whip"
+
+msgid "青衣-闪避后衔接接普通攻击"
+msgstr "Qingyi - Dodge into Basic Attack"
+
+msgid "青衣–闪避后衔接接普通攻击"
+msgstr "Qingyi - Dodge into Basic Attack"
