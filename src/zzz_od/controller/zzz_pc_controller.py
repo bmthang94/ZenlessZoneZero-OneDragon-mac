@@ -38,7 +38,7 @@ class ZPcController(PcControllerBase):
         'interact': Point(1577, 803),
         'dodge': Point(1716, 907),
         'special_attack': Point(1424, 907),
-        'ultimate': Point(1244, 897),
+        'ultimate': Point(1716, 518),
         'switch_next': Point(1716, 724),
     }
     TOUCH_NORMAL_ATTACK: Point = Point(1570, 805)
