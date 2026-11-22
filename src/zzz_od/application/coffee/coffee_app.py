@@ -251,7 +251,9 @@ class CoffeeApp(ZApplication):
     @node_from(from_name='对话选咖啡', status='点单后跳过')  # 片刻闲首次点单后的动画可在此跳过
     @operation_node(name='点单后跳过')
     def skip_after_order(self) -> OperationRoundResult:
-        result = self.round_by_find_area(self.last_screenshot, '咖啡店', '电量确认')
+        result = self.round_by_find_area(self.last_screenshot, '道具处理-获得', '按钮-确认')
+        if not result.is_success:
+            result = self.round_by_find_area(self.last_screenshot, '咖啡店', '电量确认')
         if result.is_success:
             return self.round_success(result.status)
 
@@ -275,10 +277,23 @@ class CoffeeApp(ZApplication):
     @node_notify(when=NotifyTiming.CURRENT_SUCCESS)
     @operation_node(name='电量确认')
     def charge_confirm(self) -> OperationRoundResult:
-        result = self.round_by_find_and_click_area(self.last_screenshot, '咖啡店', '电量确认')
+        result = self.round_by_find_and_click_area(self.last_screenshot, '道具处理-获得', '按钮-确认')
+        if not result.is_success:
+            result = self.round_by_find_and_click_area(self.last_screenshot, '咖啡店', '电量确认')
 
         if result.is_success:
-            if self.chosen_coffee.extra:
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
+                return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
+            else:
+                return self.round_success(wait=1)
+
+        # 兜底：识别到获得弹窗或电量文本，说明奖励已到账但按钮文字微偏，直接点击弹窗确认区域
+        obtained_title = self.round_by_find_area(self.last_screenshot, '道具处理-获得', '标题-获得')
+        energy_ocr = self.round_by_ocr(self.last_screenshot, '电量')
+        if obtained_title.is_success or energy_ocr.is_success:
+            log.info('识别到电量奖励弹窗，点击确认关闭')
+            self.ctx.controller.click(Point(990, 751))
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
                 return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
             else:
                 return self.round_success(wait=1)
@@ -288,6 +303,8 @@ class CoffeeApp(ZApplication):
         )
         if current_screen in ('大世界-普通', '大世界-勘域'):
             log.info('已回到大世界，电量恢复完成')
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
+                return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
             return self.round_success(wait=1)
 
         return self.round_retry(wait=1)

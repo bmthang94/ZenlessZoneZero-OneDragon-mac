@@ -24,6 +24,9 @@ nul
 /.agentkit/
 /.agents/
 /.codex/
+.devin/skills/
+.grok/
+skills-lock.json
 
 # superpowers
 docs/superpowers/
