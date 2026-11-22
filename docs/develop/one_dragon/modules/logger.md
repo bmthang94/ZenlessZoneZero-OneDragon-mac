@@ -182,6 +182,7 @@ log.info(gt('加载模型 %(path)s', model='log'), {'path': onnx_path})
 - msgid 保留完整中文模板，先翻译再插值；动态值、精度、`!r`、字面 `%%` 语义不变。
 - `log` 域只查询、不注册全局 gettext 函数，不影响 `ui` / `game` 域。
 - 英文翻译在 `assets/text/log/en.po`，编译产物 `assets/text/output/en/LC_MESSAGES/log.mo`，由 `devtools/compile_po.py` 与现有 ui/game 目录一起生成。
+- 启动器打包时包含英文日志翻译文件。查找时优先使用工作目录中的对应文件；尚未下载代码或工作目录缺少该文件时，使用包内的英文日志翻译文件。
 - `zh`、未知语言或缺失条目一律回退为 msgid 原文（中文）。
 
 ### 生效时机
@@ -189,9 +190,9 @@ log.info(gt('加载模型 %(path)s', model='log'), {'path': onnx_path})
 `OneDragonContext` 构造早期调用 `apply_ui_language()`，读取 `config/custom.yml` 的 `ui_language`：
 
 - `en` / `zh`：直接使用配置语言。
-- `auto` 或未配置：跟随系统语言（`locale.getdefaultlocale`）。
+- `auto`、未配置、空白或非字符串值：跟随系统语言（`locale.getdefaultlocale`）。
 
-`runtime_launcher.py` / `python_launcher.py` 在各自第一条日志前用同一解析器应用语言，保证启动器日志也走同一选择。语言变更只影响新启动的进程，不重建运行中的 handler、不改写历史日志。
+`runtime_launcher.py` / `python_launcher.py` 在各自第一条日志前用同一解析器应用语言，保证启动器日志也走同一选择。独立安装器在选定工作目录后，也读取该目录的语言配置。语言变更只影响新启动的进程，不重建运行中的 handler、不改写历史日志。
 
 ### 边界
 

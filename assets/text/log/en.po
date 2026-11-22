@@ -2638,6 +2638,10 @@ msgstr "new route: {full_name} - teleport point: {tp_name} (idx: {next_idx})"
 msgid "新建路线列表: {name}"
 msgstr "new route list: {name}"
 
+#. src/one_dragon/envs/git_service.py:62
+msgid "新版本需要更新启动器才能使用"
+msgstr "the new version requires an updated launcher"
+
 #. src/one_dragon/launcher/application_launcher.py:34
 #, python-brace-format
 msgid "无效的参数值: {value}"
@@ -2727,11 +2731,19 @@ msgstr "failed to update Overlay window"
 msgid "更新代码时发生未处理异常"
 msgstr "unhandled exception while updating code"
 
+#. src/one_dragon/envs/git_service.py:67
+msgid "更新失败"
+msgstr "update failed"
+
 #. src/one_dragon/envs/git_service.py:1617
 #. src/one_dragon/envs/git_service.py:1662
 #. src/one_dragon/envs/git_service.py:1548
 msgid "更新完成"
 msgstr "update complete"
+
+#. src/one_dragon/envs/git_service.py:66
+msgid "更新没有完成"
+msgstr "the update did not complete"
 
 #. src/one_dragon/envs/git_service.py:635
 #, python-brace-format
@@ -3021,6 +3033,10 @@ msgstr ""
 #. src/one_dragon/envs/git_service.py:1349
 msgid "检测到程序文件有改动"
 msgstr "program file changes detected"
+
+#. src/one_dragon/envs/git_service.py:65
+msgid "检测到程序文件有改动，未自动更新"
+msgstr "program files have local changes; auto-update skipped"
 
 #. src/one_dragon/envs/git_service.py:807
 #, python-brace-format
