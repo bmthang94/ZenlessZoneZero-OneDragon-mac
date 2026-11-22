@@ -1,0 +1,491 @@
+author: "BMTD"
+version: "1.0.0"
+team_list:
+  - ["蕾米埃尔", "菲欧妮", "维琳娜"]
+introduction: "Remielle M2 / Phoenix / Velina: Opener, Main Loop, Burst/Reset, Stun Sequence"
+
+check_dodge_interval: 0.02
+check_agent_interval: 0.2
+check_chain_interval: 0.5
+check_quick_interval: 0.5
+auto_lock_interval: 0
+auto_turn_interval: 0
+fallback_attack_enabled: false
+
+scenes:
+  - triggers: ["按键可用-连携技"]
+    priority: 98
+    interval: 0.5
+    handlers:
+      # Stun Branch: Prioritize Velina or Phoenix if Remielle is holding 3 Voidflare to preserve Phase Flow
+      # Remielle is strictly excluded from selection; no unconditional fallback.
+      # Bounded wait; does not mark chained/stunned merely on key emission.
+      - states: "[蕾米埃尔-虚曜]{3, 3}"
+        debug_name: "Chain: Remielle holds 3 Voidflare -> Velina/Phoenix priority"
+        sub_handlers:
+          - states: "[连携技-1-维琳娜]"
+            operations:
+              - op_name: "按键-连携技-左"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-2-维琳娜]"
+            operations:
+              - op_name: "按键-连携技-右"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-1-菲欧妮]"
+            operations:
+              - op_name: "按键-连携技-左"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-2-菲欧妮]"
+            operations:
+              - op_name: "按键-连携技-右"
+              - op_name: "等待秒数"
+                seconds: 0.5
+
+      # Standard chain only when Remielle does NOT hold 3 Voidflare
+      - states: "![蕾米埃尔-虚曜]{3, 3}"
+        debug_name: "Chain: Standard chain (Remielle < 3 Voidflare)"
+        sub_handlers:
+          - states: "[连携技-1-蕾米埃尔]"
+            operations:
+              - op_name: "按键-连携技-左"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-2-蕾米埃尔]"
+            operations:
+              - op_name: "按键-连携技-右"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-1-菲欧妮]"
+            operations:
+              - op_name: "按键-连携技-左"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-2-菲欧妮]"
+            operations:
+              - op_name: "按键-连携技-右"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-1-维琳娜]"
+            operations:
+              - op_name: "按键-连携技-左"
+              - op_name: "等待秒数"
+                seconds: 0.5
+          - states: "[连携技-2-维琳娜]"
+            operations:
+              - op_name: "按键-连携技-右"
+              - op_name: "等待秒数"
+                seconds: 0.5
+
+  - triggers: ["按键可用-快速支援"]
+    priority: 95
+    interval: 0.5
+    handlers:
+      - states: "[按键可用-快速支援]"
+        debug_name: "Quick Assist trigger"
+        operations:
+          - op_name: "按键-快速支援"
+          - op_name: "等待秒数"
+            seconds: 0.5
+
+  - triggers: []
+    priority: 10
+    interval: 0.05
+    handlers:
+      # ==========================================
+      # 1. OPENER PHASE (Only runs once at start)
+      # ==========================================
+      - states: "![自定义-开场连招完成, 0, 999999]"
+        debug_name: "Opener Phase"
+        sub_handlers:
+          # Step 1: Remielle starts on field (Hold Basic 2s -> Hold Special 1s -> Next Swap Phoenix -> Next Swap Velina)
+          - states: "[前台-蕾米埃尔] & ![自定义-开场-维琳娜, 0, 999999]"
+            debug_name: "Opener Step 1: Remielle Hold Basic 2s -> Hold Special 1s -> Next Swap Phoenix -> Next Swap Velina"
+            operations:
+              - op_name: "按键-普通攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-普通攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-普通攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-普通攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-普通攻击-松开"
+              - op_name: "按键-特殊攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-松开"
+              - op_name: "按键-切换角色-下一个"
+              - op_name: "等待秒数"
+                seconds: 0.2
+              - op_name: "按键-切换角色-下一个"
+              - op_name: "等待秒数"
+                seconds: 0.3
+              - op_name: "设置状态"
+                state: "自定义-开场-维琳娜"
+
+          # Step 2: Velina on field (Tap EX Wind Shear -> Hold EX 1.5s Eye of the Storm -> Quick Assist Phoenix)
+          # Does NOT mark opener complete until Phoenix is verified on field!
+          - states: "[前台-维琳娜] & [自定义-开场-维琳娜, 0, 999999] & ![自定义-开场-维琳娜EX完成, 0, 999999]"
+            debug_name: "Opener Step 2: Velina Tap EX -> Hold EX 1.5s -> Quick Assist Phoenix"
+            operations:
+              - op_name: "按键-特殊攻击"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-按下"
+              - op_name: "等待秒数"
+                seconds: 0.5
+              - op_name: "按键-特殊攻击-松开"
+              - op_name: "设置状态"
+                state: "自定义-开场-维琳娜EX完成"
+              - op_name: "按键-快速支援"
+              - op_name: "等待秒数"
+                seconds: 0.5
+
+          # Step 2b: Bounded wait / retry Quick Assist prompt if Velina remains on field (preserves Phase Flow, NO double next)
+          - states: "[前台-维琳娜] & [自定义-开场-维琳娜EX完成, 0, 999999] & [按键可用-快速支援]"
+            debug_name: "Opener Step 2b: Velina Retry Quick Assist on Prompt"
+            operations:
+              - op_name: "按键-快速支援"
+              - op_name: "等待秒数"
+                seconds: 0.5
+
+          - states: "[前台-维琳娜] & [自定义-开场-维琳娜EX完成, 0, 999999]"
+            debug_name: "Opener Step 2c: Velina Awaiting Quick Assist Transition"
+            operations:
+              - op_name: "等待秒数"
+                seconds: 0.2
+
+          # Step 3: Phoenix is confirmed on field -> Formally complete Opener
+          - states: "[前台-菲欧妮]"
+            debug_name: "Opener Step 3: Phoenix Confirmed on Field -> Complete Opener"
+            operations:
+              - op_name: "清除状态"
+                state: "自定义-开场-维琳娜"
+              - op_name: "清除状态"
+                state: "自定义-开场-维琳娜EX完成"
+              - op_name: "设置状态"
+                state: "自定义-开场连招完成"
+
+          - states: ""
+            debug_name: "Opener Waiting: Character on field unrecognized"
+            operations:
+              - op_name: "等待秒数"
+                seconds: 0.1
+
+      # ==========================================
+      # 2. STUN WINDOW SEQUENCE (0:00 - 0:10 after Chain/Stun)
+      # ==========================================
+      - states: "[自定义-开场连招完成, 0, 999999] & [自定义-失衡时间, 0, 10]"
+        debug_name: "Stun Window Sequence"
+        sub_handlers:
+          # Stun Phase 1 (0.5-2.5s): Phoenix on field
+          - states: "[前台-菲欧妮] & [自定义-失衡时间, 0, 2.5]"
+            debug_name: "Stun Phase 1: Phoenix Ult/Hold Basic -> Switch Remielle"
+            sub_handlers:
+              # Priority 1: Ultimate if available
+              - states: "[菲欧妮-终结技可用] | [按键可用-终结技]"
+                debug_name: "Phoenix Stun Ultimate"
+                operations:
+                  - op_name: "按键-终结技"
+                  - op_name: "等待秒数"
+                    seconds: 1.5
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              # Priority 2: Stun fallback Purifying Flame requires ONLY Pyre >= 90 when Ultimate not ready
+              - states: "[菲欧妮-燔焰]{90, 120}"
+                debug_name: "Phoenix Stun Purifying Flame (Hold Basic 1.5s) -> Switch Remielle"
+                operations:
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              # Priority 3: Direct transition to Remielle
+              - states: ""
+                debug_name: "Phoenix Stun Transition to Remielle"
+                operations:
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+          # Stun Phase 2 (2.5-6.5s): Remielle on field
+          - states: "[前台-蕾米埃尔] & [自定义-失衡时间, 0, 10]"
+            debug_name: "Stun Phase 2: Remielle Entry -> Ult -> Hold Basic 2s -> Hold Special 1s -> Next Swap Phoenix"
+            sub_handlers:
+              - states: "[蕾米埃尔-终结技可用] | [按键可用-终结技]"
+                debug_name: "Remielle Stun Ultimate"
+                operations:
+                  - op_name: "按键-终结技"
+                  - op_name: "等待秒数"
+                    seconds: 1.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-松开"
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              - states: ""
+                debug_name: "Remielle Stun Burst (Hold Basic 2s -> Hold Special 1s -> Next Swap Phoenix)"
+                operations:
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-松开"
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+      # ==========================================
+      # 3. MAIN LOOP & BURST (Opener Completed, Not in Stun)
+      # ==========================================
+      - states: "[自定义-开场连招完成, 0, 999999]"
+        debug_name: "Main Loop & Burst"
+        sub_handlers:
+          # ----------------------------------------
+          # ACTOR 1: PHOENIX
+          # ----------------------------------------
+          - states: "[前台-菲欧妮]"
+            debug_name: "Phoenix on Field"
+            sub_handlers:
+              # Priority 1: Ultimate if available
+              - states: "[菲欧妮-终结技可用] | [按键可用-终结技]"
+                debug_name: "Phoenix Ultimate"
+                operations:
+                  - op_name: "按键-终结技"
+                  - op_name: "等待秒数"
+                    seconds: 1.5
+
+              # Priority 2: Pyre >= 90 Hold Basic (Purifying Flame 1.5s) -> Next Swap Velina
+              # Guarded: requires Pyre >= 90 AND (Burn OR Windswept) from genuine target state
+              - states: "[菲欧妮-燔焰]{90, 120} & ([目标-异常-灼烧] | [目标-异常-风蚀] | [目标-异常-风化])"
+                debug_name: "Phoenix Purifying Flame: Hold Basic 1.5s -> Next Swap Velina"
+                operations:
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "设置状态"
+                    state: "自定义-失衡时间"
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              # Priority 3: Remielle 3 Voidflare ready -> Transition to Remielle
+              # Using double Next Swap on touch transport: Phoenix (slot 2) -> Velina (slot 3) -> Remielle (slot 1)
+              - states: "[蕾米埃尔-虚曜]{3, 3} & [后台-蕾米埃尔]"
+                debug_name: "Phoenix Transition to Remielle (Remielle has 3 Voidflare)"
+                operations:
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              # Priority 4: Phoenix EX Special sequence (Dazzling Flare / Falling Sun / Ascension)
+              - states: "[菲欧妮-特殊技可用] | [前台-能量]{40, 120} | [菲欧妮-升变]{1, 99}"
+                debug_name: "Phoenix EX Special Chain"
+                operations:
+                  - op_name: "按键-特殊攻击"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+
+              # Priority 5: Phoenix Basic x4 fallback
+              - states: ""
+                debug_name: "Phoenix Basic Attack x4"
+                operations:
+                  - op_name: "按键-普通攻击"
+                    repeat: 4
+                    post_delay: 0.1
+
+          # ----------------------------------------
+          # ACTOR 2: VELINA
+          # ----------------------------------------
+          - states: "[前台-维琳娜]"
+            debug_name: "Velina on Field"
+            sub_handlers:
+              # Priority 1: High Windbite Hold Basic -> Attempt Quick Assist
+              - states: "[维琳娜-风华]{85, 135}"
+                debug_name: "Velina High Windbite Hold Basic -> Quick Assist Phoenix"
+                operations:
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "按键-快速支援"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+
+              # Priority 2: Tap EX Special -> Attempt Quick Assist
+              - states: "[维琳娜-特殊技可用] | [前台-能量]{40, 120}"
+                debug_name: "Velina Tap EX Special -> Quick Assist Phoenix"
+                operations:
+                  - op_name: "按键-特殊攻击"
+                  - op_name: "等待秒数"
+                    seconds: 0.3
+                  - op_name: "按键-快速支援"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+
+              # Priority 3: Quick Assist prompt available -> Retry Quick Assist
+              - states: "[按键可用-快速支援]"
+                debug_name: "Velina Retry Quick Assist on Prompt"
+                operations:
+                  - op_name: "按键-快速支援"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+
+              # Priority 4: Fallback Basic
+              - states: ""
+                debug_name: "Velina Fallback Basic"
+                operations:
+                  - op_name: "按键-普通攻击"
+                    repeat: 3
+                    post_delay: 0.1
+
+          # ----------------------------------------
+          # ACTOR 3: REMIELLE (BURST / RESET)
+          # ----------------------------------------
+          - states: "[前台-蕾米埃尔]"
+            debug_name: "Remielle Burst & Reset"
+            sub_handlers:
+              # Priority 1: Ultimate if available
+              - states: "[蕾米埃尔-终结技可用] | [按键可用-终结技]"
+                debug_name: "Remielle Ultimate"
+                operations:
+                  - op_name: "按键-终结技"
+                  - op_name: "等待秒数"
+                    seconds: 1.5
+
+              # Priority 2: Hold Basic 2s discharge 3 Voidflare -> Hold Special -> Next Swap Phoenix
+              - states: "[蕾米埃尔-虚曜]{3, 3} | [蕾米埃尔-浮晖]{90, 100}"
+                debug_name: "Remielle Discharge 3 Voidflare -> Hold Special -> Next Swap Phoenix"
+                operations:
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-普通攻击-松开"
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-按下"
+                  - op_name: "等待秒数"
+                    seconds: 0.5
+                  - op_name: "按键-特殊攻击-松开"
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2
+
+              # Priority 3: Fallback Basic -> Next Swap Phoenix
+              - states: ""
+                debug_name: "Remielle Fallback Basic -> Next Swap Phoenix"
+                operations:
+                  - op_name: "按键-普通攻击"
+                    repeat: 3
+                    post_delay: 0.1
+                  - op_name: "按键-切换角色-下一个"
+                  - op_name: "等待秒数"
+                    seconds: 0.2

@@ -1,6 +1,6 @@
 from dataclasses import dataclass, field
 from enum import Enum
-from typing import List, Dict, Any
+from typing import Any
 
 
 class TargetCheckWay(Enum):
@@ -28,7 +28,7 @@ class TargetStateDef:
 
     state_name: str
     check_way: TargetCheckWay
-    check_params: Dict[str, Any] = field(default_factory=dict)
+    check_params: dict[str, Any] = field(default_factory=dict)
     # 当状态未命中时，是否发送False来清除状态
     clear_on_miss: bool = False
 
@@ -41,7 +41,7 @@ class DetectionTask:
 
     task_id: str
     pipeline_name: str | None  # 为空表示不跑CV流水线 直接在 area_name 区域上做多模板匹配
-    state_definitions: List[TargetStateDef]
+    state_definitions: list[TargetStateDef]
     enabled: bool = True
     interval: float = 1.0
     is_async: bool = False
@@ -53,7 +53,7 @@ class DetectionTask:
 
 # 状态检测任务注册表
 # 这是未来扩展的唯一修改点
-DETECTION_TASKS: List[DetectionTask] = [
+DETECTION_TASKS: list[DetectionTask] = [
     # 任务1: 锁定检测
     DetectionTask(
         task_id="lock_on",
@@ -123,6 +123,18 @@ DETECTION_TASKS: List[DetectionTask] = [
                 "目标-异常-强击",
                 TargetCheckWay.OCR_TEXT_SIMILARITY,
                 {"expected_texts": ["强击"], "threshold": 0.5},
+                clear_on_miss=False,
+            ),
+            TargetStateDef(
+                "目标-异常-风蚀",
+                TargetCheckWay.OCR_TEXT_SIMILARITY,
+                {"expected_texts": ["风蚀", "风化"], "threshold": 0.5},
+                clear_on_miss=False,
+            ),
+            TargetStateDef(
+                "目标-异常-风化",
+                TargetCheckWay.OCR_TEXT_SIMILARITY,
+                {"expected_texts": ["风化", "风蚀"], "threshold": 0.5},
                 clear_on_miss=False,
             ),
         ],

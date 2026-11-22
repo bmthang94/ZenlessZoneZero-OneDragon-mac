@@ -1,0 +1,27 @@
+"author": "BMTD"
+"auto_lock_interval": 0
+"auto_turn_interval": 0
+"check_agent_interval": 0.5
+"check_chain_interval": 1.0
+"check_dodge_interval": 0.02
+"check_quick_interval": 0.5
+"fallback_attack_enabled": false
+"introduction": "Remielle tap normal attack, wait 0.5s, hold normal attack 2s and\
+  \ release"
+"scenes":
+- "handlers":
+  - "debug_name": "Remielle tap and 2s hold"
+    "operations":
+    - "op_name": "按键-普通攻击"
+    - "op_name": "等待秒数"
+      "seconds": 0.5
+    - "op_name": "按键-普通攻击-按下"
+      "press": 2.0
+    - "op_name": "按键-普通攻击-松开"
+    - "op_name": "设置状态"
+      "seconds": 0
+      "state": "自定义-蕾米埃尔-连招完成"
+    "states": "[前台-蕾米埃尔] & ![自定义-蕾米埃尔-连招完成, 0, 999999]"
+  "priority": 10
+  "triggers": []
+"version": "1.0.0"
