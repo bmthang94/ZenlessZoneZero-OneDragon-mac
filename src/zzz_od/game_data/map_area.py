@@ -1,5 +1,4 @@
 import difflib
-
 import os
 from typing import List, Optional
 
@@ -62,7 +61,7 @@ class MapAreaService:
                     self.area_list.append(area)
                     self.area_name_map[area.area_name] = area
         except Exception:
-            log.error(f'文件读取失败 {file_path}', exc_info=True)
+            log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def get_best_match_area(self, ocr_result: str) -> Optional[MapArea]:
         """

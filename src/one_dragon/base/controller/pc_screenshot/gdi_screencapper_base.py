@@ -9,6 +9,7 @@ from cv2.typing import MatLike
 from one_dragon.base.controller.pc_game_window import PcGameWindow
 from one_dragon.base.controller.pc_screenshot.screencapper_base import ScreencapperBase
 from one_dragon.base.geometry.rectangle import Rect
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -65,7 +66,7 @@ class GdiScreencapperBase(ScreencapperBase):
                 # 立即释放临时 DC
                 ctypes.windll.user32.ReleaseDC(0, temp_dc)
         except Exception:
-            log.debug(f"初始化 {self.__class__.__name__} 失败", exc_info=True)
+            log.debug(gt('初始化 {__name__} 失败', model='log').format(__name__=self.__class__.__name__), exc_info=True)
             self.cleanup()
             return False
 
@@ -82,14 +83,14 @@ class GdiScreencapperBase(ScreencapperBase):
                 try:
                     ctypes.windll.gdi32.DeleteObject(self.ctx.saveBitMap)
                 except Exception:
-                    log.debug("删除 saveBitMap 失败", exc_info=True)
+                    log.debug(gt('删除 saveBitMap 失败', model='log'), exc_info=True)
 
             # 删除兼容 DC
             if self.ctx.mfcDC:
                 try:
                     ctypes.windll.gdi32.DeleteDC(self.ctx.mfcDC)
                 except Exception:
-                    log.debug("删除 mfcDC 失败", exc_info=True)
+                    log.debug(gt('删除 mfcDC 失败', model='log'), exc_info=True)
 
             self._clear_fields()
 
@@ -150,7 +151,7 @@ class GdiScreencapperBase(ScreencapperBase):
                 try:
                     ctypes.windll.user32.ReleaseDC(hwnd, hwndDC)
                 except Exception:
-                    log.debug("ReleaseDC 失败", exc_info=True)
+                    log.debug(gt('ReleaseDC 失败', model='log'), exc_info=True)
 
     def _capture_with_retry(self, width: int, height: int) -> MatLike | None:
         """尝试执行截图操作，失败时自动重新初始化 mfcDC 并重试一次
@@ -197,7 +198,7 @@ class GdiScreencapperBase(ScreencapperBase):
             try:
                 ctypes.windll.gdi32.DeleteObject(self.ctx.saveBitMap)
             except Exception:
-                log.debug("删除旧 saveBitMap 失败", exc_info=True)
+                log.debug(gt('删除旧 saveBitMap 失败', model='log'), exc_info=True)
         self.ctx.saveBitMap = 0
         self.ctx.buffer = None
         self.ctx.bmpinfo_buffer = None
@@ -208,13 +209,13 @@ class GdiScreencapperBase(ScreencapperBase):
         # 避免因为 hwndDC 与 mfcDC 不兼容导致 SelectObject 失败
         screen_dc = ctypes.windll.user32.GetDC(0)
         if not screen_dc:
-            log.error("无法获取屏幕 DC")
+            log.error(gt('无法获取屏幕 DC', model='log'))
             return False
 
         try:
             saveBitMap, buffer, bmpinfo_buffer = self._create_bitmap_resources(width, height, screen_dc)
         except Exception as e:
-            log.debug("创建位图资源失败: %s", e, exc_info=True)
+            log.debug(gt('创建位图资源失败: %(v)s', model='log'), {'v': e}, exc_info=True)
             return False
         finally:
             ctypes.windll.user32.ReleaseDC(0, screen_dc)
@@ -300,14 +301,14 @@ class GdiScreencapperBase(ScreencapperBase):
 
             return screenshot
         except Exception:
-            log.debug("从位图构建截图失败", exc_info=True)
+            log.debug(gt('从位图构建截图失败', model='log'), exc_info=True)
             return None
         finally:
             try:
                 if prev_obj is not None:
                     ctypes.windll.gdi32.SelectObject(ctx.mfcDC, prev_obj)
             except Exception:
-                log.debug("恢复原始 DC 对象失败", exc_info=True)
+                log.debug(gt('恢复原始 DC 对象失败', model='log'), exc_info=True)
 
     def capture(self, rect: Rect, independent: bool = False) -> MatLike | None:
         """获取全屏截图并裁剪到窗口区域
@@ -379,7 +380,7 @@ class GdiScreencapperBase(ScreencapperBase):
 
             return self._capture_and_convert_bitmap(ctx)
         except Exception:
-            log.debug("独立模式截图失败", exc_info=True)
+            log.debug(gt('独立模式截图失败', model='log'), exc_info=True)
             return None
         finally:
             try:
@@ -390,4 +391,4 @@ class GdiScreencapperBase(ScreencapperBase):
                 if hwndDC:
                     ctypes.windll.user32.ReleaseDC(hwnd, hwndDC)
             except Exception:
-                log.debug("独立模式资源释放失败", exc_info=True)
+                log.debug(gt('独立模式资源释放失败', model='log'), exc_info=True)

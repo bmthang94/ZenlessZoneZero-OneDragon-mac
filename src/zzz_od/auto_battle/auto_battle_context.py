@@ -16,6 +16,7 @@ from one_dragon.base.screen import screen_utils
 from one_dragon.base.screen.screen_area import ScreenArea
 from one_dragon.base.screen.screen_utils import FindAreaResultEnum
 from one_dragon.utils import cal_utils, cv2_utils, gpu_executor, str_utils, thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.auto_battle.atomic_op.atomic_op_factory import AtomicOpFactory
 from zzz_od.auto_battle.auto_battle_agent_context import AutoBattleAgentContext
@@ -176,12 +177,12 @@ class AutoBattleContext:
         self._btn_ban_first_time = {}
 
         # 遍历所有当前策略使用的状态，并将其重置为初始状态
-        log.info(f"正在清空 {len(usage_states)} 个状态...")
+        log.info(gt('正在清空 {len} 个状态...', model='log').format(len=len(usage_states)))
         for state_id in usage_states:
             recorder = self.state_record_service.get_state_recorder(state_id)
             if recorder is not None:
                 recorder.reset_to_initial()
-        log.info("所有状态已重置为初始值。")
+        log.info(gt('所有状态已重置为初始值。', model='log'))
 
     def stop_auto_battle(self) -> None:
         """
@@ -668,7 +669,7 @@ class AutoBattleContext:
 
             self._check_chain_attack_in_parallel(screen, screenshot_time)
         except Exception:
-            log.error('识别连携技出错', exc_info=True)
+            log.error(gt('识别连携技出错', model='log'), exc_info=True)
         finally:
             self._check_chain_lock.release()
 
@@ -696,7 +697,7 @@ class AutoBattleContext:
                 result = future.result()
                 result_agent_list.append(result)
             except Exception:
-                log.error('识别连携技角色头像失败', exc_info=True)
+                log.error(gt('识别连携技角色头像失败', model='log'), exc_info=True)
                 result_agent_list.append(None)
 
         state_records: list[StateRecord] = []
@@ -744,7 +745,7 @@ class AutoBattleContext:
                         back_agent = team_info.agent_list[i].agent
                         if back_agent and back_agent.agent_name not in chain_agent_names:
                             # 切换到这个后台角色
-                            log.info(f'前台角色 {front_agent_name} 在连携技中，切换到 {back_agent.agent_name}')
+                            log.info(gt('前台角色 {front_agent_name} 在连携技中，切换到 {agent_name}', model='log').format(front_agent_name=front_agent_name, agent_name=back_agent.agent_name))
                             self.switch_by_name(back_agent.agent_name)
                             break
 
@@ -807,7 +808,7 @@ class AutoBattleContext:
                 # 没有检测到轮廓，不更新状态
                 return False
         except Exception:
-            log.error('检测连携条轮廓失败', exc_info=True)
+            log.error(gt('检测连携条轮廓失败', model='log'), exc_info=True)
             return False
 
     def check_quick_assist(self, screen: MatLike, screenshot_time: float) -> None:
@@ -837,7 +838,7 @@ class AutoBattleContext:
                 ]
                 self.state_record_service.batch_update_states(state_records)
         except Exception:
-            log.error('识别快速支援失败', exc_info=True)
+            log.error(gt('识别快速支援失败', model='log'), exc_info=True)
         finally:
             self._check_quick_lock.release()
 
@@ -859,7 +860,7 @@ class AutoBattleContext:
                     StateRecord(BattleStateEnum.STATUS_SWITCH_BACKUP_READY.value, screenshot_time)
                 )
         except Exception:
-            log.error('识别切换后援失败', exc_info=True)
+            log.error(gt('识别切换后援失败', model='log'), exc_info=True)
         finally:
             self._check_switch_backup_lock.release()
 
@@ -1009,7 +1010,7 @@ class AutoBattleContext:
 
             self.last_check_end_result = None
         except Exception:
-            log.error('识别战斗结束失败', exc_info=True)
+            log.error(gt('识别战斗结束失败', model='log'), exc_info=True)
         finally:
             self._check_end_lock.release()
 
@@ -1026,7 +1027,7 @@ class AutoBattleContext:
 
             self.check_battle_distance(screen)
         except Exception:
-            log.error('识别距离失败', exc_info=True)
+            log.error(gt('识别距离失败', model='log'), exc_info=True)
         finally:
             self._check_distance_lock.release()
 
@@ -1125,7 +1126,7 @@ class AutoBattleContext:
             try:
                 result[state_name] = future.result()
             except Exception:
-                log.error('识别按键禁用状态失败 %s', state_name, exc_info=True)
+                log.error(gt('识别按键禁用状态失败 %(v)s', model='log'), {'v': state_name}, exc_info=True)
 
         self._last_btn_ban_result = result
         return result
@@ -1194,7 +1195,7 @@ class AutoBattleContext:
         """
         self.dodge_context.stop_context()
 
-        log.info('松开所有按键')
+        log.info(gt('松开所有按键', model='log'))
         self._release_keys()
         self.switch_next(release=True)
         self.switch_prev(release=True)

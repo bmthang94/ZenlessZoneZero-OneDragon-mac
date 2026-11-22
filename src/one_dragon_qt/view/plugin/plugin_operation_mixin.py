@@ -136,7 +136,7 @@ class PluginImportRunner(QThread):
         try:
             result = self._task()
         except Exception as e:
-            log.error(f"插件操作异常: {e}", exc_info=True)
+            log.error(gt('插件操作异常: {e}', model='log').format(e=e), exc_info=True)
             self.task_failed.emit(str(e))
             return
         self.task_finished.emit(result)

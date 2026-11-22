@@ -94,7 +94,7 @@ class OcrReloadRunner(QThread):
         try:
             self.ctx.init_ocr()
         except Exception:
-            log.error('后台重新加载 OCR 模型失败', exc_info=True)
+            log.error(gt('后台重新加载 OCR 模型失败', model='log'), exc_info=True)
 
 
 class ResourceManagementInterface(VerticalScrollInterface):

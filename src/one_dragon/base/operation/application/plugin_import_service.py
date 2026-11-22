@@ -36,6 +36,7 @@ from one_dragon.base.operation.application.plugin_manifest import (
     read_manifest_file,
 )
 from one_dragon.utils.file_utils import find_src_dir
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon.utils.plugin_module_loader import (
     FACTORY_FILE_NAME,
@@ -252,7 +253,7 @@ class PluginImportService:
                 )
             ]
         except Exception as e:
-            log.error(f"导入 ZIP 来源失败: {e}", exc_info=True)
+            log.error(gt('导入 ZIP 来源失败: {e}', model='log').format(e=e), exc_info=True)
             return [
                 ImportResult(
                     success=False,
@@ -285,7 +286,7 @@ class PluginImportService:
             self._find_primary_const_file(staging_dir)
             self._replace_plugin_dir(staging_dir, target_dir, overwrite)
 
-            log.info(f"插件导入成功: {plugin_name}")
+            log.info(gt('插件导入成功: {plugin_name}', model='log').format(plugin_name=plugin_name))
             return ImportResult(
                 success=True,
                 plugin_name=plugin_name,
@@ -293,7 +294,7 @@ class PluginImportService:
                 plugin_dir=target_dir,
             )
         except Exception as e:
-            log.error(f"导入插件失败: {plugin_name}, {e}", exc_info=True)
+            log.error(gt('导入插件失败: {plugin_name}, {e}', model='log').format(plugin_name=plugin_name, e=e), exc_info=True)
             return ImportResult(
                 success=False,
                 plugin_name=plugin_name,
@@ -304,7 +305,7 @@ class PluginImportService:
                 try:
                     self._remove_path(staging_dir)
                 except Exception as e:
-                    log.warning(f"清理插件临时目录失败: {staging_dir}, {e}")
+                    log.warning(gt('清理插件临时目录失败: {staging_dir}, {e}', model='log').format(staging_dir=staging_dir, e=e))
 
     def preview_plugin(self, zip_path: str | Path) -> PluginPreviewInfo | None:
         """按旧单插件语义预览一个 ZIP 文件。"""
@@ -623,7 +624,7 @@ class PluginImportService:
             shutil.copytree(layout.source_dir, staging_dir)
             self._find_primary_const_file(staging_dir)
             self._replace_plugin_dir(staging_dir, target_dir, overwrite)
-            log.info(f"目录插件导入成功: {plugin_name}")
+            log.info(gt('目录插件导入成功: {plugin_name}', model='log').format(plugin_name=plugin_name))
             return ImportResult(
                 success=True,
                 plugin_name=plugin_name,
@@ -631,7 +632,7 @@ class PluginImportService:
                 plugin_dir=target_dir,
             )
         except Exception as e:
-            log.error(f"导入目录插件失败: {plugin_name}, {e}", exc_info=True)
+            log.error(gt('导入目录插件失败: {plugin_name}, {e}', model='log').format(plugin_name=plugin_name, e=e), exc_info=True)
             return ImportResult(
                 success=False,
                 plugin_name=plugin_name,
@@ -642,7 +643,7 @@ class PluginImportService:
                 try:
                     self._remove_path(staging_dir)
                 except Exception as e:
-                    log.warning(f"清理插件临时目录失败: {staging_dir}, {e}")
+                    log.warning(gt('清理插件临时目录失败: {staging_dir}, {e}', model='log').format(staging_dir=staging_dir, e=e))
 
     def preview_directory(self, dir_path: str | Path) -> PluginPreviewInfo | None:
         """按旧单插件语义预览所选目录本身。"""
@@ -871,7 +872,7 @@ class PluginImportService:
                 try:
                     self._remove_path(backup_dir)
                 except Exception as e:
-                    log.warning(f"清理插件备份目录失败: {backup_dir}, {e}")
+                    log.warning(gt('清理插件备份目录失败: {backup_dir}, {e}', model='log').format(backup_dir=backup_dir, e=e))
 
     def delete_plugin(self, plugin_dir: str | Path) -> ImportResult:
         """删除 plugins 根目录下的一个插件目录。"""
@@ -928,14 +929,14 @@ class PluginImportService:
 
         try:
             self._remove_path(plugin_dir_resolved)
-            log.info(f"插件已删除: {plugin_name}")
+            log.info(gt('插件已删除: {plugin_name}', model='log').format(plugin_name=plugin_name))
             return ImportResult(
                 success=True,
                 plugin_name=plugin_name,
                 message="删除成功",
             )
         except Exception as e:
-            log.error(f"删除插件失败: {e}", exc_info=True)
+            log.error(gt('删除插件失败: {e}', model='log').format(e=e), exc_info=True)
             return ImportResult(
                 success=False,
                 plugin_name=plugin_name,

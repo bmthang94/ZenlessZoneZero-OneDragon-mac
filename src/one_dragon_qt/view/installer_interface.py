@@ -319,8 +319,8 @@ class InstallStepWidget(QWidget):
             if ctx and hasattr(ctx, 'project_config'):
                 webbrowser.open(ctx.project_config.doc_link)
             else:
-                log.warning("未找到可用的 ctx，无法打开帮助文档")
-            log.info("步骤安装失败，已自动打开帮助文档")
+                log.warning(gt('未找到可用的 ctx，无法打开帮助文档', model='log'))
+            log.info(gt('步骤安装失败，已自动打开帮助文档', model='log'))
 
             self.step_completed.emit(False)
         else:
@@ -649,7 +649,7 @@ class InstallerInterface(VerticalScrollInterface):
         else:
             # 安装失败时自动打开帮助文档
             webbrowser.open(self.ctx.project_config.doc_link)
-            log.info("安装失败，已自动打开帮助文档")
+            log.info(gt('安装失败，已自动打开帮助文档', model='log'))
             # 更新进度标签显示文档已打开的信息
             self.progress_label.setText(gt('安装失败！已自动打开排障文档'))
             self.progress_label.setStyleSheet("color: #d13438;")

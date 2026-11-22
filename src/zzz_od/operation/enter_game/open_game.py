@@ -35,7 +35,7 @@ class OpenGame(Operation):
                     break
             if not app_path.exists():
                 return self.round_fail(f'游戏路径不存在: {app_path}')
-            log.info('尝试自动启动游戏 路径为 %s', app_path)
+            log.info(gt('尝试自动启动游戏 路径为 %(v)s', model='log'), {'v': app_path})
             subprocess.Popen(['open', '-a', str(app_path)])
             return self.round_success(wait=5)
 
@@ -43,7 +43,7 @@ class OpenGame(Operation):
         hdr_op.execute()
         dir_path = os.path.dirname(full_path)
         exe_name = os.path.basename(full_path)
-        log.info('尝试自动启动游戏 路径为 %s', full_path)
+        log.info(gt('尝试自动启动游戏 路径为 %(v)s', model='log'), {'v': full_path})
         command = f'cmd /c "start "" /d "{dir_path}" "{exe_name}"'
         if self.ctx.game_config.launch_argument:
             screen_size = self.ctx.game_config.screen_size
@@ -57,7 +57,7 @@ class OpenGame(Operation):
                          f' -screen-fullscreen {full_screen} {popup_window} -monitor {monitor}')
             command = f'{command} {arguement}'
         command = f'{command} & exit"'
-        log.info('命令行指令 %s', command)
+        log.info(gt('命令行指令 %(v)s', model='log'), {'v': command})
 
         if not getattr(sys, 'frozen', False):
             # CREATE_BREAKAWAY_FROM_JOB:启动器用进程组管理时,使子进程逃离 jobobject,

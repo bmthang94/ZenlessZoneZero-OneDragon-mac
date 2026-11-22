@@ -5,7 +5,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -78,7 +82,7 @@ class Gotify(PushChannel):
 
             # Gotify 目前不支持图片推送，忽略图片参数
             if image is not None:
-                log.info("Gotify 暂不支持图片推送，仅发送文本消息")
+                log.info(gt('Gotify 暂不支持图片推送，仅发送文本消息', model='log'))
 
             # 构建请求数据
             data = {
@@ -96,19 +100,19 @@ class Gotify(PushChannel):
                 result = response.json()
 
                 if result.get("id"):
-                    log.info("gotify 推送成功！")
+                    log.info(gt('gotify 推送成功！', model='log'))
                     return True, "推送成功"
                 else:
-                    error_msg = f"gotify 推送失败！"
+                    error_msg = gt('gotify 推送失败！', model='log')
                     log.error(error_msg)
                     return False, error_msg
 
             except requests.RequestException as e:
-                error_msg = f"gotify 请求异常: {str(e)}"
+                error_msg = gt('gotify 请求异常: {str}', model='log').format(str=str(e))
                 log.error(error_msg)
                 return False, error_msg
             except Exception as e:
-                error_msg = f"gotify 推送异常: {str(e)}"
+                error_msg = gt('gotify 推送异常: {str}', model='log').format(str=str(e))
                 log.error(error_msg)
                 return False, error_msg
 

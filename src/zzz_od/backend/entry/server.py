@@ -11,6 +11,7 @@ from typing import TYPE_CHECKING
 
 import uvicorn
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.backend.backend_context import ZzzBackendContext
 from zzz_od.backend.http.routes import register_http_routes
@@ -57,13 +58,13 @@ async def _serve(host: str, port: int) -> None:
     ctx = ZContext()
     backend = ZzzBackendContext(ctx)
     try:
-        log.info("ZZZ 后端：初始化 ZContext（线程池，不阻塞事件循环）……")
+        log.info(gt('ZZZ 后端：初始化 ZContext（线程池，不阻塞事件循环）……', model='log'))
         await backend.start()
         app = create_app(backend)
         # GUI 会主动轮询 /health 和 /game/status；关闭 access log，避免日志被访问记录刷屏。
         config = uvicorn.Config(app, host=host, port=port, log_level="info", access_log=False)
         server = uvicorn.Server(config)
-        log.info(f"ZZZ 后端监听: http://{host}:{port}/mcp 与 /game/*")
+        log.info(gt('ZZZ 后端监听: http://{host}:{port}/mcp 与 /game/*', model='log').format(host=host, port=port))
         await server.serve()
     finally:
         await backend.shutdown()

@@ -13,6 +13,7 @@ from one_dragon.base.conditional_operation.state_recorder import (
 )
 from one_dragon.base.screen.screen_area import ScreenArea
 from one_dragon.utils import cal_utils, cv2_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.auto_battle.agent_state import agent_state_checker
 from zzz_od.auto_battle.auto_battle_state import BattleStateEnum
@@ -109,7 +110,7 @@ class TeamInfo:
                 if same_as_confirmed:
                     # 名单跟已确认的一致 说明认准了 直接退出全量
                     self.should_check_all_agents = False
-                    log.debug("停止识别新角色")
+                    log.debug(gt('停止识别新角色', model='log'))
             else:
                 if not same_as_confirmed:
                     if self.agent_list_diff_since == 0:
@@ -121,7 +122,7 @@ class TeamInfo:
                             self.should_check_all_agents = True
                             self.agent_list_diff_since = 0
                             self.agent_count_max = 0
-                            log.warning('代理人名单持续 %.1f 秒对不上，下一次识别重新全量识别所有角色', diff_seconds)
+                            log.warning(gt('代理人名单持续 %(v).1f 秒对不上，下一次识别重新全量识别所有角色', model='log'), {'v': diff_seconds})
                 else:
                     self.agent_list_diff_since = 0
 
@@ -407,7 +408,7 @@ class AutoBattleAgentContext:
 
             self.ctx.auto_battle_context.state_record_service.batch_update_states(update_state_record_list)
         except Exception:
-            log.error('识别画面角色失败', exc_info=True)
+            log.error(gt('识别画面角色失败', model='log'), exc_info=True)
         finally:
             self._check_agent_lock.release()
 
@@ -423,7 +424,7 @@ class AutoBattleAgentContext:
             if agent is not None:
                 return False
 
-        log.debug('当前识别不到任何角色，下一次截图强制重新识别所有角色')
+        log.debug(gt('当前识别不到任何角色，下一次截图强制重新识别所有角色', model='log'))
         return True
 
     def _check_agent_in_parallel(self, screen: MatLike) -> list[tuple[Agent, str | None]]:
@@ -469,7 +470,7 @@ class AutoBattleAgentContext:
                 result_agent, result_template_id = future.result()
                 result_agent_list.append((result_agent, result_template_id))
             except Exception:
-                log.error('识别角色头像失败', exc_info=True)
+                log.error(gt('识别角色头像失败', model='log'), exc_info=True)
                 result_agent_list.append((None, None))
 
         if result_agent_list[1][0] is not None and result_agent_list[2][0] is not None:  # 3人
@@ -562,7 +563,7 @@ class AutoBattleAgentContext:
                 if record is not None:
                     result_list.append(record)
             except Exception:
-                log.error('识别角色状态失败', exc_info=True)
+                log.error(gt('识别角色状态失败', model='log'), exc_info=True)
 
         return result_list
 
@@ -930,7 +931,7 @@ class AutoBattleAgentContext:
                     self.ctx.auto_battle_context.auto_op.is_running):
                     # 前台角色终结技可用，且配置已开启，且自动战斗正在运行
                     if update_time - self._last_ultimate_time > 2.0:  # 冷却时间2秒，防止重复释放
-                        log.info(f'检测到前台角色 {agent.agent_name} 终结技可用，增加状态[自定义-终结技被强制释放]')
+                        log.info(gt('检测到前台角色 {agent_name} 终结技可用，增加状态[自定义-终结技被强制释放]', model='log').format(agent_name=agent.agent_name))
                         state_records.append(StateRecord('自定义-终结技被强制释放', update_time, is_clear=False))
                         self._last_ultimate_time = update_time
 

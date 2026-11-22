@@ -10,6 +10,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cal_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon.yolo.detect_utils import DetectFrameResult, DetectObjectResult
 from zzz_od.application.hollow_zero.lost_void.context.lost_void_detector import (
@@ -225,8 +226,8 @@ class LostVoidMoveByDet(ZOperation):
 
         frame_result = self.ctx.lost_void.detect_to_go(self.last_screenshot, screenshot_time=self.last_screenshot_time,
                                                        ignore_list=self.ignore_entry_list)
-        log.info('寻路节点[%s] 当前目标=%s 检测结果=%s',
-                 '移动前转向', self.target_type, self._get_detected_class_summary(frame_result))
+        log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 检测结果=%(v_3)s', model='log'),
+                 {'v': '移动前转向', 'v_2': self.target_type, 'v_3': self._get_detected_class_summary(frame_result)})
 
         if self.check_interact_stop(self.last_screenshot, frame_result):
             return self.round_success(LostVoidMoveByDet.STATUS_ARRIVAL, data=self.last_target_name)
@@ -237,16 +238,16 @@ class LostVoidMoveByDet(ZOperation):
             if self.target_type == LostVoidDetector.CLASS_ENTRY:
                 detected_class_name_list = self._get_detected_class_names(frame_result)
                 if LostVoidDetector.CLASS_INTERACT in detected_class_name_list:
-                    log.info('寻路节点[%s] 当前目标=%s 未检测到入口，但检测到更高优先级目标=%s，返回上层重识别',
-                             '移动前转向', self.target_type, LostVoidDetector.CLASS_INTERACT)
+                    log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未检测到入口，但检测到更高优先级目标=%(v_3)s，返回上层重识别', model='log'),
+                             {'v': '移动前转向', 'v_2': self.target_type, 'v_3': LostVoidDetector.CLASS_INTERACT})
                     return self.round_success(LostVoidMoveByDet.STATUS_NEED_DETECT)
                 if LostVoidDetector.CLASS_DISTANCE in detected_class_name_list:
-                    log.info('寻路节点[%s] 当前目标=%s 未检测到入口，但检测到更高优先级目标=%s，返回上层重识别',
-                             '移动前转向', self.target_type, LostVoidDetector.CLASS_DISTANCE)
+                    log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未检测到入口，但检测到更高优先级目标=%(v_3)s，返回上层重识别', model='log'),
+                             {'v': '移动前转向', 'v_2': self.target_type, 'v_3': LostVoidDetector.CLASS_DISTANCE})
                     return self.round_success(LostVoidMoveByDet.STATUS_NEED_DETECT)
 
-            log.info('寻路节点[%s] 当前目标=%s 未识别到可追踪目标，检测结果=%s',
-                     '移动前转向', self.target_type, self._get_detected_class_summary(frame_result))
+            log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未识别到可追踪目标，检测结果=%(v_3)s', model='log'),
+                     {'v': '移动前转向', 'v_2': self.target_type, 'v_3': self._get_detected_class_summary(frame_result)})
             if self.last_target_result is not None:
                 self._reset_turn_calibration_status()  # 丢失目标，重置校准
                 self._reset_stuck_status()
@@ -275,8 +276,8 @@ class LostVoidMoveByDet(ZOperation):
         frame_result: DetectFrameResult = self.ctx.lost_void.detect_to_go(
             self.last_screenshot, screenshot_time=self.last_screenshot_time,
             ignore_list=self.ignore_entry_list)
-        log.info('寻路节点[%s] 当前目标=%s 检测结果=%s',
-                 '移动', self.target_type, self._get_detected_class_summary(frame_result))
+        log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 检测结果=%(v_3)s', model='log'),
+                 {'v': '移动', 'v_2': self.target_type, 'v_3': self._get_detected_class_summary(frame_result)})
 
         if self.check_interact_stop(self.last_screenshot, frame_result):
             self.ctx.controller.stop_moving_forward()
@@ -297,18 +298,18 @@ class LostVoidMoveByDet(ZOperation):
                 # 调用的时候识别的是入口 但进入之后发现有其他优先级更高的 退出执行
                 another_result = self.ctx.lost_void.detector.get_result_by_x(frame_result, LostVoidDetector.CLASS_DISTANCE)
                 if another_result is not None:
-                    log.info('寻路节点[%s] 当前目标=%s 未检测到入口，但检测到更高优先级目标=%s，返回上层重识别',
-                             '移动', self.target_type, LostVoidDetector.CLASS_DISTANCE)
+                    log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未检测到入口，但检测到更高优先级目标=%(v_3)s，返回上层重识别', model='log'),
+                             {'v': '移动', 'v_2': self.target_type, 'v_3': LostVoidDetector.CLASS_DISTANCE})
                     return self.round_success(status=LostVoidMoveByDet.STATUS_NEED_DETECT)
 
                 another_result = self.ctx.lost_void.detector.get_result_by_x(frame_result, LostVoidDetector.CLASS_INTERACT)
                 if another_result is not None:
-                    log.info('寻路节点[%s] 当前目标=%s 未检测到入口，但检测到更高优先级目标=%s，返回上层重识别',
-                             '移动', self.target_type, LostVoidDetector.CLASS_INTERACT)
+                    log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未检测到入口，但检测到更高优先级目标=%(v_3)s，返回上层重识别', model='log'),
+                             {'v': '移动', 'v_2': self.target_type, 'v_3': LostVoidDetector.CLASS_INTERACT})
                     return self.round_success(status=LostVoidMoveByDet.STATUS_NEED_DETECT)
 
-            log.info('寻路节点[%s] 当前目标=%s 未识别到可追踪目标，检测结果=%s',
-                     '移动', self.target_type, self._get_detected_class_summary(frame_result))
+            log.info(gt('寻路节点[%(v)s] 当前目标=%(v_2)s 未识别到可追踪目标，检测结果=%(v_3)s', model='log'),
+                     {'v': '移动', 'v_2': self.target_type, 'v_3': self._get_detected_class_summary(frame_result)})
             self.lost_target_during_move_times += 1
             # 移动过程中多次丢失目标 通常是因为识别不准
             # 游戏1.6版本出现了可以因为丢失目标转动镜头而一直无法进入脱困 issues #867
@@ -426,7 +427,7 @@ class LostVoidMoveByDet(ZOperation):
 
         # --- 执行转向并更新状态 ---
         if self.ctx.env_config.is_debug:
-            log.debug(f'转向指令: X={turn_distance_x}, Y={turn_distance_y}, 当前X比例: {self.estimated_turn_ratio:.4f}, 移动中: {is_moving}, 校准轴: {calibration_axis}')
+            log.debug(gt('转向指令: X={turn_distance_x}, Y={turn_distance_y}, 当前X比例: {estimated_turn_ratio:.4f}, 移动中: {is_moving}, 校准轴: {calibration_axis}', model='log').format(turn_distance_x=turn_distance_x, turn_distance_y=turn_distance_y, estimated_turn_ratio=self.estimated_turn_ratio, is_moving=is_moving, calibration_axis=calibration_axis))
 
         # 使用新的统一方法执行移动
         self.ctx.controller.move_mouse_relative(turn_distance_x, turn_distance_y)

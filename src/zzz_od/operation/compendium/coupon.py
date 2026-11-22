@@ -6,6 +6,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.charge_plan import charge_plan_const
 from zzz_od.application.charge_plan.charge_plan_config import (
@@ -44,13 +45,13 @@ class Coupon(ZOperation):
         ocr_result = self.ctx.ocr.run_ocr_single_line(part)
         self.coupon_num = str_utils.get_positive_digits(ocr_result, None)
         if self.coupon_num is None:
-            log.error('未识别到家政券数量')
+            log.error(gt('未识别到家政券数量', model='log'))
             return self.round_success(Coupon.STATUS_CONTINUE_RUN_WITH_CHARGE)
         if self.coupon_num == 0:
-            log.info('家政券数量为 0')
+            log.info(gt('家政券数量为 0', model='log'))
             return self.round_success(Coupon.STATUS_CONTINUE_RUN_WITH_CHARGE)
 
-        log.info('家政券数量 %d', self.coupon_num)
+        log.info(gt('家政券数量 %(v)d', model='log'), {'v': self.coupon_num})
 
         max_need_use_times = self.plan.plan_times - self.plan.run_times
 

@@ -24,6 +24,7 @@ from one_dragon.base.debug.debug_trace_bus import (
 )
 from one_dragon.thread.atomic_int import AtomicInt
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 # 当前运行的场景一个 打断的新场景一个 处理事件更新状态一个
@@ -117,7 +118,7 @@ class ConditionalOperator(ConditionalOperatorLoader):
         :return:
         """
         if not self._inited:
-            log.error('未完成初始化 无法运行')
+            log.error(gt('未完成初始化 无法运行', model='log'))
             return False
         if self.is_running:
             return False
@@ -160,7 +161,7 @@ class ConditionalOperator(ConditionalOperatorLoader):
                 else:
                     new_execution_info = self.normal_scene.match_execution(trigger_time)
                     if new_execution_info is not None:
-                        log.debug(f'当前场景 主循环 当前条件 {new_execution_info.expr_display}')
+                        log.debug(gt('当前场景 主循环 当前条件 {expr_display}', model='log').format(expr_display=new_execution_info.expr_display))
                         new_execution_info.priority = self.normal_scene.priority
                         self._emit_debug_decision(
                             trigger="主循环",
@@ -230,7 +231,7 @@ class ConditionalOperator(ConditionalOperatorLoader):
             # 停止已有的操作
             self._stop_running_task()
 
-            log.debug(f'当前场景 {state_name} 当前条件 {new_execution_info.expr_display}')
+            log.debug(gt('当前场景 {state_name} 当前条件 {expr_display}', model='log').format(state_name=state_name, expr_display=new_execution_info.expr_display))
             self._emit_debug_decision(
                 trigger=state_name,
                 expression=new_execution_info.expr_display,
@@ -353,7 +354,7 @@ class ConditionalOperator(ConditionalOperatorLoader):
                     if self.current_execution_info.interrupt_cal_tree.in_time_range(now):
                         interrupt = True
                         snapshot = self._state_snapshot(self.current_execution_info.interrupt_cal_tree, now)
-                        log.debug('复合中断条件满足，执行中断\n%s', '\n'.join(snapshot))
+                        log.debug(gt('复合中断条件满足，执行中断\n%(v)s', model='log'), {'v': '\n'.join(snapshot)})
                 if interrupt:
                     self._stop_running_task()
                     bus = self._get_debug_trace_bus()

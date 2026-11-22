@@ -8,6 +8,7 @@ from one_dragon.base.controller.pc_screenshot.pil_screencapper import PilScreenc
 from one_dragon.base.controller.pc_screenshot.screencapper_base import ScreencapperBase
 from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.envs.env_config import ScreenshotMethodEnum
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 if sys.platform == 'win32':
@@ -62,15 +63,14 @@ class PcScreenshotController:
             截图数组，失败返回 None
         """
         if not self.active_strategy_name and not independent:
-            log.error("截图方法尚未初始化，请先调用 init_screenshot()")
+            log.error(gt('截图方法尚未初始化，请先调用 init_screenshot()', model='log'))
             return None
 
         if sys.platform == 'darwin':
             if not Quartz.CGPreflightScreenCaptureAccess():
                 if not self._mac_screenshot_permission_warning_logged:
                     log.error(
-                        'macOS 当前运行的一条龙进程没有屏幕录制权限；'
-                        '请在“系统设置 → 隐私权与安全性 → 屏幕与系统录音”中授权实际运行程序'
+                        gt('macOS 当前运行的一条龙进程没有屏幕录制权限；请在“系统设置 → 隐私权与安全性 → 屏幕与系统录音”中授权实际运行程序', model='log')
                     )
                     self._mac_screenshot_permission_warning_logged = True
                 return None
@@ -114,7 +114,7 @@ class PcScreenshotController:
             except Exception:
                 continue
         if sys.platform == 'darwin':
-            log.error('macOS 截图失败，请在“系统设置 → 隐私与安全性 → 屏幕录制”中授权')
+            log.error(gt('macOS 截图失败，请在“系统设置 → 隐私与安全性 → 屏幕录制”中授权', model='log'))
         return None
 
     def init_screenshot(self, method: str) -> str | None:

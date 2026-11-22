@@ -38,6 +38,7 @@ from one_dragon.base.push.push_channel import PushChannel
 from one_dragon.base.push.push_channel_config import PushChannelConfigField
 from one_dragon.base.push.push_config import PushConfig, PushProxy
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 if TYPE_CHECKING:
@@ -167,12 +168,12 @@ class PushService:
                     proxy_url=self.get_proxy(),
                 )
                 if not ok:
-                    log.error(f'推送失败: {channel_id} {msg}')
+                    log.error(gt('推送失败: {channel_id} {msg}', model='log').format(channel_id=channel_id, msg=msg))
                     err_msg += f'{channel_id} {msg}\n'
                     continue
 
                 any_ok = True
-                log.info(f'推送成功: {channel_id}')
+                log.info(gt('推送成功: {channel_id}', model='log').format(channel_id=channel_id))
 
             if not any_push:
                 return False, '没有可用的推送渠道'
@@ -286,12 +287,12 @@ class PushService:
                     proxy_url=self.get_proxy(),
                 )
                 if not ok:
-                    log.error(f'合并推送失败: {cid} {msg}')
+                    log.error(gt('合并推送失败: {cid} {msg}', model='log').format(cid=cid, msg=msg))
                     err_msg += f'{cid} {msg}\n'
                     continue
 
                 any_ok = True
-                log.info(f'合并推送成功: {cid}')
+                log.info(gt('合并推送成功: {cid}', model='log').format(cid=cid))
 
             if not any_push:
                 return False, '没有可用的推送渠道'

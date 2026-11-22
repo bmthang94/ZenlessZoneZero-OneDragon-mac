@@ -10,6 +10,7 @@ from AppKit import (
 
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -215,7 +216,7 @@ class MacPcGameWindow:
         if window.isActive:
             return True
         if not window.activate():
-            log.error('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限')
+            log.error(gt('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限', model='log'))
             return False
         return True
 

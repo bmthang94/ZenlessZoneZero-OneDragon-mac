@@ -5,6 +5,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.world_patrol import world_patrol_const
 from zzz_od.application.world_patrol.operation.world_patrol_run_route import (
@@ -81,7 +82,7 @@ class WorldPatrolApp(ZApplication):
         # 仅清本轮的计时字段，保留 finished 以支持任务中途停止后的续跑
         self.run_record.reset_round_timing()
         if self.run_record.current_round > self.run_record.total_rounds:
-            log.info(f'锄大地当日已完成 {self.run_record.completed_rounds}/{self.run_record.total_rounds} 轮，无需再跑')
+            log.info(gt('锄大地当日已完成 {completed_rounds}/{total_rounds} 轮，无需再跑', model='log').format(completed_rounds=self.run_record.completed_rounds, total_rounds=self.run_record.total_rounds))
         return self.round_success(status=f'加载路线 {len(self.route_list)}')
 
     @node_from(from_name='初始化')
@@ -135,7 +136,7 @@ class WorldPatrolApp(ZApplication):
         # 轮次首次进入：记录起始时间并打印开场日志
         if self.run_record.round_start_time is None:
             self.run_record.round_start_time = time.monotonic()
-            log.info(f'开始第 {self.run_record.current_round}/{self.run_record.total_rounds} 轮锄大地')
+            log.info(gt('开始第 {current_round}/{total_rounds} 轮锄大地', model='log').format(current_round=self.run_record.current_round, total_rounds=self.run_record.total_rounds))
 
         if self.route_idx >= len(self.route_list):
             return self.round_success(status='路线已全部完成')
@@ -167,8 +168,7 @@ class WorldPatrolApp(ZApplication):
                 action = self.config.ui_disappear_action
                 if action == WorldPatrolConfig.UI_DISAPPEAR_SILENT_FAIL:
                     log.warning(
-                        f'第 {self.run_record.current_round}/{self.run_record.total_rounds} 轮因界面消失静默失败终止任务 '
-                        f'路线 {route.full_id}'
+                        gt('第 {current_round}/{total_rounds} 轮因界面消失静默失败终止任务 路线 {full_id}', model='log').format(current_round=self.run_record.current_round, total_rounds=self.run_record.total_rounds, full_id=route.full_id)
                     )
                     self._stop_route_actions()
                     return self.round_fail(status=f'{WorldPatrolRunRoute.STATUS_UI_DISAPPEARED} {route.full_id}')
@@ -220,14 +220,14 @@ class WorldPatrolApp(ZApplication):
         - 还有下一轮 → 计入当日已完成轮数后按配置间隔算出还要等多久
         """
         if self.run_record.current_round > self.run_record.total_rounds:
-            log.info(f'锄大地当日已完成 {self.run_record.completed_rounds}/{self.run_record.total_rounds} 轮，无需再跑')
+            log.info(gt('锄大地当日已完成 {completed_rounds}/{total_rounds} 轮，无需再跑', model='log').format(completed_rounds=self.run_record.completed_rounds, total_rounds=self.run_record.total_rounds))
             return self.round_success(status='全部完成')
 
         # 本轮真实跑完，加入当日已完成轮数
         self.run_record.inc_completed_rounds()
 
         if self.run_record.current_round >= self.run_record.total_rounds:
-            log.info(f'锄大地全部循环已完成 共 {self.run_record.total_rounds} 轮')
+            log.info(gt('锄大地全部循环已完成 共 {total_rounds} 轮', model='log').format(total_rounds=self.run_record.total_rounds))
             return self.round_success(status='全部完成')
 
         loop_interval_seconds = self.config.loop_interval_seconds
@@ -236,8 +236,7 @@ class WorldPatrolApp(ZApplication):
 
         if self.run_record.round_wait_seconds > 0:
             log.info(
-                f'第 {self.run_record.current_round}/{self.run_record.total_rounds} 轮耗时 {round_duration:.0f}s '
-                f'最少占用 {loop_interval_seconds}s 将等待 {self.run_record.round_wait_seconds:.0f}s'
+                gt('第 {current_round}/{total_rounds} 轮耗时 {round_duration:.0f}s 最少占用 {loop_interval_seconds}s 将等待 {round_wait_seconds:.0f}s', model='log').format(current_round=self.run_record.current_round, total_rounds=self.run_record.total_rounds, round_duration=round_duration, loop_interval_seconds=loop_interval_seconds, round_wait_seconds=self.run_record.round_wait_seconds)
             )
         return self.round_success(status='进入轮间等待')
 

@@ -441,7 +441,7 @@ class LostVoidContext:
         display_text = ', '.join([i.artifact.display_name for i in artifact_pos_list]) if len(artifact_pos_list) > 0 else '无'
         primary_cnt = len([i for i in artifact_pos_list if i.is_primary_name])
         secondary_cnt = len(artifact_pos_list) - primary_cnt
-        log.info(f'当前识别藏品 主选={primary_cnt} 次选={secondary_cnt} {display_text}')
+        log.info(gt('当前识别藏品 主选={primary_cnt} 次选={secondary_cnt} {display_text}', model='log').format(primary_cnt=primary_cnt, secondary_cnt=secondary_cnt, display_text=display_text))
 
         return artifact_pos_list
 
@@ -459,7 +459,7 @@ class LostVoidContext:
         try:
             area = self.ctx.screen_loader.get_area(screen_name, '区域-藏品名称')
         except Exception as e:
-            log.warning(f'获取区域失败 screen={screen_name} area=区域-藏品名称 err={e}')
+            log.warning(gt('获取区域失败 screen={screen_name} area=区域-藏品名称 err={e}', model='log').format(screen_name=screen_name, e=e))
             return []
 
         ocr_result_map = self.ctx.ocr_service.get_ocr_result_map(
@@ -713,14 +713,14 @@ class LostVoidContext:
 
         raw_artifact_list = list(artifact_list)
         raw_text = '; '.join([fmt_artifact(pos, idx) for idx, pos in enumerate(raw_artifact_list)]) if len(raw_artifact_list) > 0 else '无'
-        log.debug(f'优先级输入候选(去重前) 共{len(raw_artifact_list)}个: {raw_text}')
+        log.debug(gt('优先级输入候选(去重前) 共{len}个: {raw_text}', model='log').format(len=len(raw_artifact_list), raw_text=raw_text))
 
         artifact_list = self.remove_overlapping_artifacts(artifact_list)
         artifact_list = sorted(artifact_list, key=lambda i: (i.rect.center.x, i.rect.center.y))
 
-        log.debug(f'当前考虑优先级 数量={choose_num} NEW!={consider_priority_new} 第一优先级={consider_priority_1} 第二优先级={consider_priority_2} 其他={consider_not_in_priority}')
+        log.debug(gt('当前考虑优先级 数量={choose_num} NEW!={consider_priority_new} 第一优先级={consider_priority_1} 第二优先级={consider_priority_2} 其他={consider_not_in_priority}', model='log').format(choose_num=choose_num, consider_priority_new=consider_priority_new, consider_priority_1=consider_priority_1, consider_priority_2=consider_priority_2, consider_not_in_priority=consider_not_in_priority))
         dedup_text = '; '.join([fmt_artifact(pos, idx) for idx, pos in enumerate(artifact_list)]) if len(artifact_list) > 0 else '无'
-        log.debug(f'优先级输入候选(去重后) 共{len(artifact_list)}个: {dedup_text}')
+        log.debug(gt('优先级输入候选(去重后) 共{len}个: {dedup_text}', model='log').format(len=len(artifact_list), dedup_text=dedup_text))
 
         # 六级优先级模型，按顺序匹配：
         # 第1级 动态优先级 / 第2级 配置第一 / 第3级 配置第二 / 第4级 战斗组
@@ -757,8 +757,8 @@ class LostVoidContext:
         abandon_text = ', '.join(self.dynamic_abandon_list) if len(self.dynamic_abandon_list) > 0 else '空'
         primary_cnt = len([i for i in artifact_list if i.is_primary_name])
         secondary_cnt = len(artifact_list) - primary_cnt
-        log.info(f'优先级决策 | 候选={len(artifact_list)}(主选={primary_cnt} 次选={secondary_cnt}) 需选={choose_num} | 放行=第1,2级:{consider_priority_1} 第3,4级:{consider_priority_2} 补位:{consider_not_in_priority} NEW:{consider_priority_new}')
-        log.debug(f'优先级规则 | {level_text} 放弃组={abandon_text}')
+        log.info(gt('优先级决策 | 候选={len}(主选={primary_cnt} 次选={secondary_cnt}) 需选={choose_num} | 放行=第1,2级:{consider_priority_1} 第3,4级:{consider_priority_2} 补位:{consider_not_in_priority} NEW:{consider_priority_new}', model='log').format(len=len(artifact_list), primary_cnt=primary_cnt, secondary_cnt=secondary_cnt, choose_num=choose_num, consider_priority_1=consider_priority_1, consider_priority_2=consider_priority_2, consider_not_in_priority=consider_not_in_priority, consider_priority_new=consider_priority_new))
+        log.debug(gt('优先级规则 | {level_text} 放弃组={abandon_text}', model='log').format(level_text=level_text, abandon_text=abandon_text))
 
         priority_idx_list: list[int] = []  # 优先级排序的下标
         choose_reason_map: dict[int, str] = {}
@@ -767,14 +767,14 @@ class LostVoidContext:
         primary_idx_list = [i for i in all_idx_list if artifact_list[i].is_primary_name]
         secondary_idx_list = [i for i in all_idx_list if not artifact_list[i].is_primary_name]
         ignored_text = ', '.join([str(i) for i in sorted(ignored_idx_set)]) if len(ignored_idx_set) > 0 else '无'
-        log.debug(f'优先级分组 忽略下标={ignored_text} 主选下标={primary_idx_list} 次选下标={secondary_idx_list}')
+        log.debug(gt('优先级分组 忽略下标={ignored_text} 主选下标={primary_idx_list} 次选下标={secondary_idx_list}', model='log').format(ignored_text=ignored_text, primary_idx_list=primary_idx_list, secondary_idx_list=secondary_idx_list))
 
         def add_idx_if_absent(target_idx: int, reason: str) -> None:
             if target_idx in priority_idx_list:
                 return
             priority_idx_list.append(target_idx)
             choose_reason_map[target_idx] = reason
-            log.debug(f'候选入队 {fmt_artifact(artifact_list[target_idx], target_idx)} 原因={reason}')
+            log.debug(gt('候选入队 {fmt_artifact} 原因={reason}', model='log').format(fmt_artifact=fmt_artifact(artifact_list[target_idx], target_idx), reason=reason))
 
         # 规则：先主选，再次选
         for group_name, group_idx_list in [('主选', primary_idx_list), ('次选', secondary_idx_list)]:
@@ -813,7 +813,7 @@ class LostVoidContext:
                 if len(rule_parts) > 0:
                     level_hit_parts.append(f'{level_name}: ' + '; '.join(rule_parts))
             if len(level_hit_parts) > 0:
-                log.debug(f'优先级匹配 | {group_name}组 | ' + ' || '.join(level_hit_parts))
+                log.debug(gt('{v}{join}', model='log').format(v=f'优先级匹配 | {group_name}组 | ', join=' || '.join(level_hit_parts)))
 
             # 3) 其余候选按坐标顺序补齐：先普通（第5级），再放弃组（第6级）
             if consider_not_in_priority:
@@ -853,16 +853,16 @@ class LostVoidContext:
             selected_detail.append(f'{fmt_artifact(pos, idx)} 原因={reason}')
         selected_text = '; '.join(selected_detail) if len(selected_detail) > 0 else '无'
         queue_text = ', '.join([str(i) for i in priority_idx_list]) if len(priority_idx_list) > 0 else '空'
-        log.debug(f'优先级入队顺序 下标={queue_text}')
-        log.debug(f'当前符合优先级列表 {display_text}')
-        log.debug(f'最终选择明细 {selected_text}')
+        log.debug(gt('优先级入队顺序 下标={queue_text}', model='log').format(queue_text=queue_text))
+        log.debug(gt('当前符合优先级列表 {display_text}', model='log').format(display_text=display_text))
+        log.debug(gt('最终选择明细 {selected_text}', model='log').format(selected_text=selected_text))
 
         if len(result_list) > 0:
-            log.info(f'优先级决策 | 结果 | 选中={len(result_list)} | {selected_text}')
+            log.info(gt('优先级决策 | 结果 | 选中={len} | {selected_text}', model='log').format(len=len(result_list), selected_text=selected_text))
         elif consider_not_in_priority:
-            log.info('优先级决策 | 结果 | 未选中 | 原因=候选为空或全部被忽略')
+            log.info(gt('优先级决策 | 结果 | 未选中 | 原因=候选为空或全部被忽略', model='log'))
         else:
-            log.info('优先级决策 | 结果 | 未选中 | 原因=优先级规则未命中任何候选 且 非优先级未开启')
+            log.info(gt('优先级决策 | 结果 | 未选中 | 原因=优先级规则未命中任何候选 且 非优先级未开启', model='log'))
 
         return result_list
 
@@ -893,7 +893,7 @@ class LostVoidContext:
 
                 if x_distance < 100:  # 横坐标太近
                     overlapping_arts.append(next_art)
-                    log.debug(f'发现重叠藏品: {current_art.artifact.display_name} 和 {next_art.artifact.display_name}, 距离: {x_distance}')
+                    log.debug(gt('发现重叠藏品: {display_name} 和 {display_name_2}, 距离: {x_distance}', model='log').format(display_name=current_art.artifact.display_name, display_name_2=next_art.artifact.display_name, x_distance=x_distance))
                     j += 1
                 else:
                     break  # 由于已排序，后面的距离只会更大
@@ -904,7 +904,7 @@ class LostVoidContext:
 
             if len(overlapping_arts) > 1:
                 removed_arts = [art.artifact.display_name for art in overlapping_arts if art != best_art]
-                log.debug(f'保留 {best_art.artifact.display_name}，移除 {", ".join(removed_arts)}')
+                log.debug(gt('保留 {display_name}，移除 {join}', model='log').format(display_name=best_art.artifact.display_name, join=", ".join(removed_arts)))
 
             # 跳过所有重叠的藏品
             i = j

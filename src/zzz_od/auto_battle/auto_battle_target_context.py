@@ -1,12 +1,13 @@
 from __future__ import annotations
 
 import threading
-from concurrent.futures import ThreadPoolExecutor, Future
-from typing import List, Any, Tuple, Dict, TYPE_CHECKING
+from concurrent.futures import Future, ThreadPoolExecutor
+from typing import TYPE_CHECKING, Any, Dict, List, Tuple
 
 from cv2.typing import MatLike
 
 from one_dragon.base.conditional_operation.state_recorder import StateRecord
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.auto_battle.target_state.target_state_checker import TargetStateChecker
 from zzz_od.context.zzz_context import ZContext
@@ -64,11 +65,11 @@ class AutoBattleTargetContext:
                 # 同时更新动态间隔配置，以确保非锁定时使用新频率
                 if 'interval_if_not_state' in task.dynamic_interval_config:
                     task.dynamic_interval_config['interval_if_not_state'] = target_lock_interval
-                log.info(f"已从配置加载 [目标锁定] 检测间隔: {target_lock_interval}s")
+                log.info(gt('已从配置加载 [目标锁定] 检测间隔: {target_lock_interval}s', model='log').format(target_lock_interval=target_lock_interval))
 
             elif task.task_id == 'abnormal_statuses' and abnormal_status_interval > 0:
                 task.interval = abnormal_status_interval
-                log.info(f"已从配置加载 [异常状态] 检测间隔: {abnormal_status_interval}s")
+                log.info(gt('已从配置加载 [异常状态] 检测间隔: {abnormal_status_interval}s', model='log').format(abnormal_status_interval=abnormal_status_interval))
 
         # 更新当前的计时器间隔
         self._current_intervals: Dict[str, float] = {task.task_id: task.interval for task in self.tasks}
@@ -107,7 +108,7 @@ class AutoBattleTargetContext:
                     _cv_ctx, async_results = future.result(timeout=1)
                     self._handle_results(records_to_update, async_results, screenshot_time, task)
                 except Exception:
-                    log.error(f"异步检测任务失败 [task_id={task.task_id}]", exc_info=True)
+                    log.error(gt('异步检测任务失败 [task_id={task_id}]', model='log').format(task_id=task.task_id), exc_info=True)
 
             # 批量提交状态更新
             if records_to_update:

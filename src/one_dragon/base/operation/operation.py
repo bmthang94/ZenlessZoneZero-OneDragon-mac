@@ -418,7 +418,7 @@ class Operation(OperationBase):
         try:
             self._init_before_execute()
         except Exception:
-            log.error('初始化失败', exc_info=True)
+            log.error(gt('初始化失败', model='log'), exc_info=True)
             return self.op_fail('初始化失败')
 
         op_result: OperationResult | None = None
@@ -448,7 +448,7 @@ class Operation(OperationBase):
                         pass
                     else:
                         arrow = f"{from_node_name} -> {node_name}" if self._previous_node is not None else node_name
-                        log.info('%s 节点 %s 返回状态 %s', self.display_name, arrow, round_result_status)
+                        log.info(gt('%(v)s 节点 %(v_2)s 返回状态 %(v_3)s', model='log'), {'v': self.display_name, 'v_2': arrow, 'v_3': round_result_status})
                     self._emit_debug_round_trace(
                         from_node_name=from_node_name,
                         node_name=node_name,
@@ -460,9 +460,9 @@ class Operation(OperationBase):
                 round_result: OperationRoundResult = self.round_retry('异常')
                 if self.last_screenshot is not None:
                     file_name = self.save_screenshot()
-                    log.error('%s 执行出错 相关截图保存至 %s', self.display_name, file_name, exc_info=True)
+                    log.error(gt('%(v)s 执行出错 相关截图保存至 %(v_2)s', model='log'), {'v': self.display_name, 'v_2': file_name}, exc_info=True)
                 else:
-                    log.error('%s 执行出错', self.display_name, exc_info=True)
+                    log.error(gt('%(v)s 执行出错', model='log'), {'v': self.display_name}, exc_info=True)
                 self._emit_debug_timeline(
                     category="node",
                     title=self.display_name,
@@ -498,7 +498,7 @@ class Operation(OperationBase):
                     op_result = self.op_fail(round_result.status, round_result.data)
                     break
                 else:
-                    log.error('%s 执行返回结果错误 %s', self.display_name, op_result)
+                    log.error(gt('%(v)s 执行返回结果错误 %(v_2)s', model='log'), {'v': self.display_name, 'v_2': op_result})
                     op_result = self.op_fail(round_result.status)
                     break
             else:  # 继续下一个节点
@@ -697,9 +697,9 @@ class Operation(OperationBase):
         """
         self.ctx.unlisten_all_event(self)
         if result.success:
-            log.info('%s 执行成功 返回状态 %s', self.display_name, coalesce_gt(result.status, '成功', model='ui'))
+            log.info(gt('%(v)s 执行成功 返回状态 %(v_2)s', model='log'), {'v': self.display_name, 'v_2': coalesce_gt(result.status, '成功', model='ui')})
         else:
-            log.error('%s 执行失败 返回状态 %s', self.display_name, coalesce_gt(result.status, '失败', model='ui'))
+            log.error(gt('%(v)s 执行失败 返回状态 %(v_2)s', model='log'), {'v': self.display_name, 'v_2': coalesce_gt(result.status, '失败', model='ui')})
         self._emit_debug_timeline(
             category="operation",
             title=self.display_name,
@@ -1466,7 +1466,7 @@ class Operation(OperationBase):
         self._goto_screen_debounce_start_time = 0
         self._goto_screen_loading = False
         self._goto_screen_loading_start_time = 0
-        log.debug(f'当前识别画面 {current_screen_name}')
+        log.debug(gt('当前识别画面 {current_screen_name}', model='log').format(current_screen_name=current_screen_name))
         if current_screen_name == screen_name:
             return self.round_success(current_screen_name, wait=success_wait, wait_round_time=success_wait_round)
 

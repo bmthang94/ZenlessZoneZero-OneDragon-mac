@@ -1,0 +1,4485 @@
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:161
+#, python-brace-format
+msgid ""
+"  !!! 发现重叠: 武备[{i}] ({gear_x1},{gear_y1},{gear_x2},{gear_y2}) 与 等级[{j}] "
+"({level_x1},{level_y1},{level_x2},{level_y2}) 匹配成功 !!!"
+msgstr ""
+"  !!! Overlap found: gear[{i}] ({gear_x1},{gear_y1},{gear_x2},{gear_y2}) "
+"matched with level[{j}] ({level_x1},{level_y1},{level_x2},{level_y2}) !!!"
+
+#. src/zzz_od/hollow_zero/event/bamboo_merchant.py:106
+#, python-format
+msgid "%(v)s 匹配鸣徽 %(v_2)s"
+msgstr "%(v)s matched resonium %(v_2)s"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:211
+#, python-format
+msgid "%(v)s 弱点:%(v_2)s 抗性:%(v_3)s"
+msgstr "%(v)s weakness: %(v_2)s resistance: %(v_3)s"
+
+#. src/one_dragon/base/operation/operation.py:465
+#, python-format
+msgid "%(v)s 执行出错"
+msgstr "%(v)s execution error"
+
+#. src/one_dragon/base/operation/operation.py:463
+#, python-format
+msgid "%(v)s 执行出错 相关截图保存至 %(v_2)s"
+msgstr "%(v)s execution error, related screenshot saved to %(v_2)s"
+
+#. src/one_dragon/base/operation/operation.py:702
+#, python-format
+msgid "%(v)s 执行失败 返回状态 %(v_2)s"
+msgstr "%(v)s execution failed, returned status %(v_2)s"
+
+#. src/one_dragon/base/operation/operation.py:700
+#, python-format
+msgid "%(v)s 执行成功 返回状态 %(v_2)s"
+msgstr "%(v)s execution succeeded, returned status %(v_2)s"
+
+#. src/one_dragon/base/operation/operation.py:501
+#, python-format
+msgid "%(v)s 执行返回结果错误 %(v_2)s"
+msgstr "%(v)s execution returned bad result %(v_2)s"
+
+#. src/one_dragon/base/operation/operation.py:451
+#, python-format
+msgid "%(v)s 节点 %(v_2)s 返回状态 %(v_3)s"
+msgstr "%(v)s node %(v_2)s returned status %(v_3)s"
+
+#. src/zzz_od/operation/enter_game/switch_account.py:81
+#. src/zzz_od/operation/enter_game/enter_game.py:746
+#, python-brace-format
+msgid "B服登录结束, 恢复原来的截图方式: {screenshot_func}"
+msgstr ""
+"B-server login finished, restored previous screenshot method: "
+"{screenshot_func}"
+
+#. src/one_dragon/base/push/channel/chronocat.py:124
+#, python-brace-format
+msgid "Chronocat QQ个人消息:{user_id} 推送失败"
+msgstr "Chronocat QQ private message:{user_id} push failed"
+
+#. src/one_dragon/base/push/channel/chronocat.py:122
+#, python-brace-format
+msgid "Chronocat QQ个人消息:{user_id} 推送成功"
+msgstr "Chronocat QQ private message:{user_id} push succeeded"
+
+#. src/one_dragon/base/push/channel/chronocat.py:143
+#, python-brace-format
+msgid "Chronocat QQ群消息:{group_id} 推送失败"
+msgstr "Chronocat QQ group message:{group_id} push failed"
+
+#. src/one_dragon/base/push/channel/chronocat.py:141
+#, python-brace-format
+msgid "Chronocat QQ群消息:{group_id} 推送成功"
+msgstr "Chronocat QQ group message:{group_id} push succeeded"
+
+#. src/one_dragon/base/push/channel/chronocat.py:153
+#. src/one_dragon/base/push/channel/chronocat.py:228
+msgid "Chronocat 推送异常"
+msgstr "Chronocat push exception"
+
+#. src/one_dragon/base/push/channel/discord.py:142
+msgid "Discord 推送异常"
+msgstr "Discord push exception"
+
+#. src/one_dragon/envs/git_service.py:1070
+#, python-brace-format
+msgid "Git fetch worker 超时，作废本次尝试: url={remote_url}, {timeout_message}"
+msgstr ""
+"Git fetch worker timed out, discarding this attempt: url={remote_url}, "
+"{timeout_message}"
+
+#. src/one_dragon/envs/git_service.py:212
+#, python-brace-format
+msgid "Git fetch 临时仓库仍被占用，将在下次启动时清理: {temp_repo_dir}"
+msgstr ""
+"Git fetch temp repo still in use, will be cleaned on next launch: "
+"{temp_repo_dir}"
+
+#. src/one_dragon/envs/git_service.py:189
+#, python-format
+msgid ""
+"Git fetch 超时设置: server_connect_timeout=%(v)sms, server_timeout=%(v_2)sms"
+msgstr ""
+"Git fetch timeout settings: server_connect_timeout=%(v)sms, "
+"server_timeout=%(v_2)sms"
+
+#. src/one_dragon/base/push/channel/gotify.py:82
+msgid "Gotify 暂不支持图片推送，仅发送文本消息"
+msgstr "Gotify does not support image push, sending text only"
+
+#. src/one_dragon/envs/git_service.py:1532
+msgid "HEAD 不存在且未开启强制更新"
+msgstr "HEAD does not exist and force update is disabled"
+
+#. src/one_dragon_qt/widgets/notice_card.py:279
+#, python-brace-format
+msgid "JSON缓存已保存: {CACHE_FILE}"
+msgstr "JSON cache saved: {CACHE_FILE}"
+
+#. src/one_dragon/base/push/channel/ntfy.py:158
+#, python-brace-format
+msgid "Ntfy 推送失败！错误信息：{text}"
+msgstr "Ntfy push failed! Error: {text}"
+
+#. src/one_dragon/base/push/channel/ntfy.py:169
+#, python-brace-format
+msgid "Ntfy 推送异常: {str}"
+msgstr "Ntfy push exception: {str}"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:129
+#, python-format
+msgid "OCR 进度解析失败: %(v)s"
+msgstr "Failed to parse OCR progress: %(v)s"
+
+#. src/onnxocr/onnx_paddleocr.py:178
+msgid "OCR推理出错"
+msgstr "OCR inference error"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:252
+msgid "OCR模型加载出错"
+msgstr "OCR model load error"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:381
+msgid "OCR模型返回的识别结果置信度低于阈值"
+msgstr "OCR model returned a result with confidence below the threshold"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:356
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:384
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:484
+#, python-format
+msgid "OCR结果 %(v)s 耗时 %(v_2).2f"
+msgstr "OCR result %(v)s, elapsed %(v_2).2f s"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:453
+#, python-format
+msgid "OCR结果 [] 耗时 %(v).2f"
+msgstr "OCR result [], elapsed %(v).2f s"
+
+#. src/one_dragon/base/matcher/ocr/ocr_service.py:312
+msgid "OCR缓存已清空"
+msgstr "OCR cache cleared"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:262
+#, python-brace-format
+msgid "OCR识别到传送点名称：{recognized_name}"
+msgstr "OCR recognized teleport point name: {recognized_name}"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:307
+msgid "OCR输入的图片为None"
+msgstr "OCR input image is None"
+
+#. src/one_dragon/base/push/channel/one_bot.py:246
+#, python-brace-format
+msgid "OneBot {label}失败: {result}"
+msgstr "OneBot {label}failed: {result}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:250
+#, python-brace-format
+msgid "OneBot {label}异常: {str}"
+msgstr "OneBot {label}exception: {str}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:244
+#, python-brace-format
+msgid "OneBot {label}成功！"
+msgstr "OneBot {label}succeeded!"
+
+#. src/one_dragon/base/push/channel/one_bot.py:131
+#, python-brace-format
+msgid "OneBot 私聊推送失败: {result_private}"
+msgstr "OneBot private message push failed: {result_private}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:135
+#, python-brace-format
+msgid "OneBot 私聊推送异常: {str}"
+msgstr "OneBot private message push exception: {str}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:129
+msgid "OneBot 私聊推送成功！"
+msgstr "OneBot private message push succeeded!"
+
+#. src/one_dragon/base/push/channel/one_bot.py:158
+#, python-brace-format
+msgid "OneBot 群聊推送失败: {result_group}"
+msgstr "OneBot group message push failed: {result_group}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:162
+#, python-brace-format
+msgid "OneBot 群聊推送异常: {str}"
+msgstr "OneBot group message push exception: {str}"
+
+#. src/one_dragon/base/push/channel/one_bot.py:156
+msgid "OneBot 群聊推送成功！"
+msgstr "OneBot group message push succeeded!"
+
+#. src/one_dragon/devtools/python_launcher.py:335
+#, python-brace-format
+msgid "OneDragon 启动器 {version}"
+msgstr "OneDragon Launcher {version}"
+
+#. src/one_dragon/launcher/runtime_launcher.py:32
+#, python-brace-format
+msgid "OneDragon 集成启动器 {version}"
+msgstr "OneDragon Integrated Launcher {version}"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:252
+msgid "Overlay 已启用，等待游戏窗口可用后显示"
+msgstr "Overlay enabled, will display once the game window is available"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:244
+msgid "Overlay 已禁用：系统版本低于 Windows 10 2004（build 19041）"
+msgstr "Overlay disabled: OS version is below Windows 10 2004 (build 19041)"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:169
+#, python-brace-format
+msgid "Overlay 显示模式切换为 {next_mode}"
+msgstr "Overlay display mode switched to {next_mode}"
+
+#. src/one_dragon/devtools/python_launcher.py:143
+#, python-brace-format
+msgid "PYTHONPATH 设置错误，无法找到 {app_file_path}"
+msgstr "PYTHONPATH is misconfigured, cannot find {app_file_path}"
+
+#. src/one_dragon/devtools/python_launcher.py:122
+#, python-brace-format
+msgid "PYTHONPATH: {v}"
+msgstr "PYTHONPATH: {v}"
+
+#. src/one_dragon/base/push/channel/push_deer.py:100
+msgid "PushDeer 推送异常"
+msgstr "PushDeer push exception"
+
+#. src/one_dragon/base/push/channel/push_me.py:98
+msgid "PushMe 推送异常"
+msgstr "PushMe push exception"
+
+#. src/one_dragon/envs/python_service.py:69
+msgid "Python 安装失败"
+msgstr "Python installation failed"
+
+#. src/one_dragon/envs/python_service.py:69
+msgid "Python 安装成功"
+msgstr "Python installed successfully"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:193
+#, python-brace-format
+msgid "QQ 官方机器人{err}"
+msgstr "QQ official bot{err}"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:437
+#. src/one_dragon/base/push/channel/qq_bot.py:490
+#, python-brace-format
+msgid "QQ 官方机器人{err}，{delay:.1f} 秒后重试"
+msgstr "QQ official bot{err}, retrying in {delay:.1f}s"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:217
+#, python-brace-format
+msgid "QQ 官方机器人{target_name}图片发送失败，已降级为纯文本：{err}"
+msgstr ""
+"QQ official bot{target_name} image send failed, downgraded to plain text: "
+"{err}"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:207
+#, python-brace-format
+msgid "QQ 官方机器人{target_name}消息发送失败：{err}"
+msgstr "QQ official bot{target_name} message send failed: {err}"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:741
+msgid "QQ 官方机器人已连接网关，等待消息事件"
+msgstr "QQ official bot connected to gateway, waiting for message events"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:143
+msgid "QQ 官方机器人推送异常"
+msgstr "QQ official bot push exception"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:224
+#, python-brace-format
+msgid "QQ 官方机器人推送成功，目标数：{ok_count}"
+msgstr "QQ official bot push succeeded, targets: {ok_count}"
+
+#. src/one_dragon/base/push/channel/qq_bot.py:183
+#, python-brace-format
+msgid "QQ 官方机器人校验失败：{msg}"
+msgstr "QQ official bot validation failed: {msg}"
+
+#. src/one_dragon_qt/widgets/setting_card/qq_bot_bind_card.py:73
+msgid "QQ 官方机器人绑定异常"
+msgstr "QQ official bot binding exception"
+
+#. src/one_dragon_qt/widgets/setting_card/qq_bot_bind_card.py:174
+msgid "QQ 机器人绑定线程未在退出前结束"
+msgstr "QQ bot binding thread did not finish before exit"
+
+#. src/one_dragon/base/push/channel/q_msg.py:98
+msgid "Qmsg酱 推送异常"
+msgstr "Qmsg酱 push exception"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:154
+msgid "ReleaseDC 失败"
+msgstr "ReleaseDC failed"
+
+#. src/one_dragon/base/push/channel/smtp.py:319
+#. src/one_dragon/base/push/channel/smtp.py:313
+msgid "SMTP邮件合并推送异常"
+msgstr "SMTP mail merged push exception"
+
+#. src/one_dragon/base/push/channel/smtp.py:182
+#. src/one_dragon/base/push/channel/smtp.py:175
+msgid "SMTP邮件推送异常"
+msgstr "SMTP mail push exception"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:168
+#, python-format
+msgid "ScreenCaptureKit 音频捕获启动失败 (%(v)s)，尝试回退到虚拟音频设备"
+msgstr ""
+"ScreenCaptureKit audio capture failed to start (%(v)s), falling back to "
+"virtual audio device"
+
+#. src/one_dragon/base/push/channel/synology_chat.py:96
+msgid "Synology Chat 推送异常"
+msgstr "Synology Chat push exception"
+
+#. src/one_dragon/base/push/channel/telegram.py:118
+#, python-brace-format
+msgid "Telegram 推送失败: {get}"
+msgstr "Telegram push failed: {get}"
+
+#. src/one_dragon/base/push/channel/telegram.py:127
+#, python-brace-format
+msgid "Telegram 推送异常: {str}"
+msgstr "Telegram push exception: {str}"
+
+#. src/one_dragon/base/push/channel/telegram.py:123
+#, python-brace-format
+msgid "Telegram 请求异常: {str}"
+msgstr "Telegram request exception: {str}"
+
+#. src/one_dragon/devtools/python_launcher.py:123
+#, python-brace-format
+msgid "UV_DEFAULT_INDEX: {v}"
+msgstr "UV_DEFAULT_INDEX: {v}"
+
+#. src/one_dragon/base/push/channel/webhook.py:183
+msgid "Webhook推送异常"
+msgstr "Webhook push exception"
+
+#. src/zzz_od/backend/entry/server.py:67
+#, python-brace-format
+msgid "ZZZ 后端监听: http://{host}:{port}/mcp 与 /game/*"
+msgstr "ZZZ backend listening: http://{host}:{port}/mcp and /game/*"
+
+#. src/zzz_od/backend/entry/server.py:61
+msgid "ZZZ 后端：初始化 ZContext（线程池，不阻塞事件循环）……"
+msgstr ""
+"ZZZ backend: initializing ZContext (thread pool, non-blocking event loop)..."
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:353
+msgid "[with-pos]再次卡住，跳过当前路线"
+msgstr "[with-pos] stuck again, skipping current route"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:362
+msgid "[with-pos]卡住，重启当前路线"
+msgstr "[with-pos] stuck, restarting current route"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:480
+#, python-brace-format
+msgid "[{tag}] 本次脱困方向 {stuck_move_direction}"
+msgstr "[{tag}] current unstuck direction {stuck_move_direction}"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:478
+#, python-brace-format
+msgid "[{tag}] 脱困尝试 {v}/6，方向 {stuck_move_direction}"
+msgstr "[{tag}] unstuck attempt {v}/6, direction {stuck_move_direction}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:568
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:619
+msgid "[位置] 更新为点击位置"
+msgstr "[position] updated to clicked position"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:459
+msgid "[合并到大地图] 完成"
+msgstr "[merge to big map] done"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:445
+msgid "[合并到大地图] 开始"
+msgstr "[merge to big map] start"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:465
+msgid "[回退] 恢复上一步大地图 只能恢复一次"
+msgstr "[rollback] restore previous big map, can only restore once"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:561
+#, python-brace-format
+msgid "[图标] 选中图标 {template_id} 位置 ({x}, {y})"
+msgstr "[icon] selected icon {template_id} at ({x}, {y})"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:111
+#, python-brace-format
+msgid "[小地图] 动态匹配小地图坐标: ({x1}, {y1}) - ({x2}, {y2})"
+msgstr ""
+"[minimap] dynamically matched minimap coordinates: ({x1}, {y1}) - ({x2}, "
+"{y2})"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:552
+msgid "[截图] 完成"
+msgstr "[screenshot] done"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:546
+msgid "[截图] 开始"
+msgstr "[screenshot] start"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:398
+msgid "[截图] 计算小地图道路 完成"
+msgstr "[screenshot] compute minimap roads done"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:384
+msgid "[截图] 计算小地图道路 开始"
+msgstr "[screenshot] compute minimap roads start"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:543
+msgid "[截图] 请先选择区域加载地图"
+msgstr "[screenshot] please select an area to load the map first"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:595
+#, python-brace-format
+msgid "[添加移动] 坐标: ({x}, {y}), 当前路线操作数: {len}"
+msgstr "[add move] coordinates: ({x}, {y}), current route op count: {len}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:428
+#, python-brace-format
+msgid "[计算坐标] 完成 当前坐标: {center}"
+msgstr "[compute coords] done, current coordinate: {center}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:413
+msgid "[计算坐标] 开始"
+msgstr "[compute coords] start"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:562
+#, python-brace-format
+msgid "[计算坐标] 当前坐标: {center}"
+msgstr "[compute coords] current coordinate: {center}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:410
+msgid "[计算坐标] 当前未有地图 跳过"
+msgstr "[compute coords] no map yet, skipping"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:566
+msgid "[计算坐标] 当前计算坐标失败"
+msgstr "[compute coords] coordinate computation failed"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:416
+msgid "[计算坐标] 未有上次坐标 请选点击选择一个坐标"
+msgstr "[compute coords] no previous coordinate, please click to select one"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:434
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:579
+msgid "[重叠] 更改重叠显示方式"
+msgstr "[overlap] changed overlap display mode"
+
+#. src/one_dragon_qt/widgets/notice_card.py:164
+#, python-brace-format
+msgid "banner图片已缓存: {cache_path}"
+msgstr "banner image cached: {cache_path}"
+
+#. src/one_dragon/base/push/channel/gotify.py:103
+msgid "gotify 推送失败！"
+msgstr "gotify push failed!"
+
+#. src/one_dragon/base/push/channel/gotify.py:112
+#, python-brace-format
+msgid "gotify 推送异常: {str}"
+msgstr "gotify push exception: {str}"
+
+#. src/one_dragon/base/push/channel/gotify.py:100
+msgid "gotify 推送成功！"
+msgstr "gotify push succeeded!"
+
+#. src/one_dragon/base/push/channel/gotify.py:108
+#, python-brace-format
+msgid "gotify 请求异常: {str}"
+msgstr "gotify request exception: {str}"
+
+#. src/one_dragon/base/push/channel/i_got.py:85
+msgid "iGot 推送异常"
+msgstr "iGot push exception"
+
+#. src/one_dragon/base/controller/pc_screenshot/pc_screenshot_controller.py:73
+msgid "macOS 当前运行的一条龙进程没有屏幕录制权限；请在“系统设置 → 隐私权与安全性 → 屏幕与系统录音”中授权实际运行程序"
+msgstr ""
+"macOS: the running OneDragon process lacks Screen Recording permission; "
+"grant it to the actual running program in System Settings → Privacy & "
+"Security → Screen & System Audio Recording"
+
+#. src/one_dragon/base/controller/pc_screenshot/pc_screenshot_controller.py:117
+msgid "macOS 截图失败，请在“系统设置 → 隐私与安全性 → 屏幕录制”中授权"
+msgstr ""
+"macOS screenshot failed, please grant permission in System Settings → "
+"Privacy & Security → Screen Recording"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:242
+msgid "macOS 暂不支持游戏画面覆盖层"
+msgstr "macOS does not support the game overlay yet"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:220
+msgid "macOS 虚拟鼠标未初始化；请先运行启动脚本并确认 Karabiner 虚拟 HID 服务正常"
+msgstr ""
+"macOS virtual mouse not initialized; run the startup script first and "
+"confirm the Karabiner virtual HID service is working"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:172
+msgid "macOS 音频录制异常，已停止声音闪避识别"
+msgstr "macOS audio recording error, sound-based dodge detection stopped"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:229
+#, python-format
+msgid ""
+"macOS 鼠标定位: 游戏坐标=%(v)s, 目标桌面坐标=(%(v_2)s, %(v_3)s), 实际桌面坐标=(%(v_4)s, %(v_5)s)"
+msgstr ""
+"macOS mouse positioning: game coord=%(v)s, target desktop coord=(%(v_2)s, "
+"%(v_3)s), actual desktop coord=(%(v_4)s, %(v_5)s)"
+
+#. src/one_dragon/envs/python_service.py:380
+msgid "pip源"
+msgstr "pip source"
+
+#. src/one_dragon/base/controller/pc_game_window.py:193
+msgid "win.restore 失败，尝试 ShowWindow 兜底"
+msgstr "win.restore failed, falling back to ShowWindow"
+
+#. src/one_dragon/envs/git_service.py:356
+#, python-brace-format
+msgid "worker Git fetch 已返回: branch={branch_name}, depth={actual_depth}"
+msgstr "worker Git fetch returned: branch={branch_name}, depth={actual_depth}"
+
+#. src/one_dragon/envs/git_service.py:346
+#, python-brace-format
+msgid ""
+"worker 开始 Git fetch: branch={branch_name}, depth={actual_depth}, "
+"proxy={bool}"
+msgstr ""
+"worker starting Git fetch: branch={branch_name}, depth={actual_depth}, "
+"proxy={bool}"
+
+#. src/one_dragon/envs/python_service.py:346
+#, python-brace-format
+msgid "{label} 耗时 {ms}ms"
+msgstr "{label} took {ms}ms"
+
+#. src/one_dragon/envs/python_service.py:354
+#, python-brace-format
+msgid "{log_prefix}测速失败"
+msgstr "{log_prefix}speed test failed"
+
+#. src/zzz_od/operation/restore_charge.py:130
+#, python-brace-format
+msgid "{source} 兑换数量 {exchange_amount}"
+msgstr "{source} exchange amount {exchange_amount}"
+
+#. src/one_dragon/devtools/python_launcher.py:119
+#, python-brace-format
+msgid "{var} 未设置"
+msgstr "{var} is not set"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:816
+#, python-brace-format
+msgid "{v}{join}"
+msgstr "{v}{join}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:489
+#, python-brace-format
+msgid ""
+"【决策检查】 追新模式: {chase_new_mode}, 当前挑战配置: {module_name}, 预设调查战略: "
+"{investigation_strategy}"
+msgstr ""
+"[Decision check] chase-new mode: {chase_new_mode}, current challenge config:"
+" {module_name}, preset investigation strategy: {investigation_strategy}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:100
+#, python-brace-format
+msgid "【武备追新】当前可选未获取武备 {join}"
+msgstr "[Gear chase-new] currently selectable unowned gear {join}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:102
+msgid "【武备追新】所有武备都已获取，回退至优先级"
+msgstr "[Gear chase-new] all gear already owned, falling back to priorities"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:97
+#, python-brace-format
+msgid "【武备追新】添加开局选择的武备属性至第一优先级: [{text}]"
+msgstr ""
+"[Gear chase-new] adding the attribute of the opening-chosen gear to first "
+"priority: [{text}]"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:589
+#, python-brace-format
+msgid ""
+"【追新模式-回退】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: "
+"{crop_offset})"
+msgstr ""
+"[Chase-new mode - fallback] clicking target coordinate: {click_pos} "
+"(relative: ({center_x}, {center_y}), offset: {crop_offset})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:528
+msgid "【追新模式】 开始执行CV流水线分析..."
+msgstr "[Chase-new mode] starting CV pipeline analysis..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:503
+msgid "【追新模式】 开始执行无等级圈圈流水线分析..."
+msgstr "[Chase-new mode] starting no-level-circle pipeline analysis..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:575
+msgid "【追新模式】 当前屏幕无可选择目标，执行滑动..."
+msgstr "[Chase-new mode] no selectable target on current screen, swiping..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:539
+#, python-brace-format
+msgid "【追新模式】 找到 {len} 个战略外框，{v} 个等级数字。开始匹配..."
+msgstr ""
+"[Chase-new mode] found {len} strategy frames and {v} level numbers, starting"
+" match..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:558
+msgid "【追新模式】 找到一个未满级/无等级目标，准备点击。"
+msgstr ""
+"[Chase-new mode] found an under-leveled/no-level target, about to click."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:516
+#, python-brace-format
+msgid ""
+"【追新模式】 找到无等级战略，点击坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: "
+"{crop_offset})"
+msgstr ""
+"[Chase-new mode] found a no-level strategy, clicking coordinate: {click_pos}"
+" (relative: ({center_x}, {center_y}), offset: {crop_offset})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:533
+msgid "【追新模式】 未找到任何战略外框，执行滑动..."
+msgstr "[Chase-new mode] no strategy frame found, swiping..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:522
+msgid "【追新模式】 未找到无等级战略，使用原有逻辑..."
+msgstr "[Chase-new mode] no no-level strategy found, using original logic..."
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:569
+#, python-brace-format
+msgid ""
+"【追新模式】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {crop_offset})"
+msgstr ""
+"[Chase-new mode] clicking target coordinate: {click_pos} (relative: "
+"({center_x}, {center_y}), offset: {crop_offset})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:509
+msgid "【追新模式】 轮廓面积为零，跳过无等级战略检测"
+msgstr ""
+"[Chase-new mode] contour area is zero, skipping no-level strategy detection"
+
+#. src/one_dragon_qt/widgets/install_card/all_install_card.py:43
+msgid "一键安装 开始"
+msgstr "one-click install started"
+
+#. src/one_dragon_qt/widgets/install_card/all_install_card.py:75
+msgid "一键安装 开始下一个"
+msgstr "one-click install starting next"
+
+#. src/zzz_od/operation/battle/withered_domain.py:109
+#. src/zzz_od/hollow_zero/hollow_battle.py:110
+msgid "上次移动后距离没有发生变化 尝试脱困"
+msgstr "distance unchanged after last move, trying to get unstuck"
+
+#. src/zzz_od/operation/battle/withered_domain.py:112
+#. src/zzz_od/hollow_zero/hollow_battle.py:113
+msgid "上次脱困后距离没有发生变化 更换脱困方向"
+msgstr ""
+"distance unchanged after last unstuck attempt, changing unstuck direction"
+
+#. src/one_dragon/base/operation/one_dragon_app.py:101
+#. src/one_dragon/base/operation/one_dragon_app.py:130
+#, python-format
+msgid "下一个实例 %(v)s"
+msgstr "next instance %(v)s"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:240
+msgid "下载OCR模型失败"
+msgstr "failed to download OCR model"
+
+#. src/one_dragon_qt/services/download_queue_service.py:128
+msgid "下载任务后处理失败"
+msgstr "download task post-processing failed"
+
+#. src/one_dragon/utils/http_utils.py:202
+#, python-brace-format
+msgid "下载失败 {e}"
+msgstr "download failed {e}"
+
+#. src/one_dragon/envs/download_service.py:78
+msgid "下载失败 请尝试更改网络代理"
+msgstr "download failed, please try changing the network proxy"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:106
+msgid "下载失败模型失败"
+msgstr "model download failed"
+
+#. src/one_dragon/utils/http_utils.py:185
+msgid "下载完成"
+msgstr "download complete"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:102
+#, python-format
+msgid "下载完成 %(model_name)s"
+msgstr "download complete %(model_name)s"
+
+#. src/one_dragon/utils/http_utils.py:172
+#, python-brace-format
+msgid "下载完成 {save_file_path}"
+msgstr "download complete {save_file_path}"
+
+#. src/one_dragon/utils/http_utils.py:192
+msgid "下载已取消"
+msgstr "download canceled"
+
+#. src/one_dragon_qt/services/plugin_cover_service.py:104
+#, python-brace-format
+msgid "下载插件封面失败 {_url}: {exc}"
+msgstr "failed to download plugin cover {_url}: {exc}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:294
+#, python-brace-format
+msgid "下载相关文件失败: {e}"
+msgstr "failed to download related files: {e}"
+
+#. src/one_dragon_qt/services/download_queue_service.py:112
+msgid "下载队列任务失败"
+msgstr "download queue task failed"
+
+#. src/one_dragon/envs/git_service.py:1745
+msgid "与远程分支不一致"
+msgstr "out of sync with remote branch"
+
+#. src/one_dragon/envs/git_service.py:909
+#, python-brace-format
+msgid "临时 Git 仓库导入完成: branch={branch_name}"
+msgstr "temp Git repo import complete: branch={branch_name}"
+
+#. src/one_dragon/utils/debug_utils.py:68
+#, python-format
+msgid "临时图片保存 %(v)s"
+msgstr "temporary image saved %(v)s"
+
+#. src/one_dragon/base/web/common_downloader.py:170
+#, python-brace-format
+msgid "从 {source_id} 下载失败 尝试下一个源"
+msgstr "download from {source_id} failed, trying next source"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:304
+msgid "从位图构建截图失败"
+msgstr "failed to build screenshot from bitmap"
+
+#. src/one_dragon_qt/widgets/notice_card.py:145
+#, python-brace-format
+msgid "从缓存加载banner图片: {cache_path}"
+msgstr "loaded banner image from cache: {cache_path}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:148
+#, python-brace-format
+msgid "从缓存加载图片失败: {e}"
+msgstr "failed to load image from cache: {e}"
+
+#. src/one_dragon/envs/git_service.py:1496
+#, python-brace-format
+msgid "从远程分支创建本地分支: {branch_name}"
+msgstr "created local branch from remote branch: {branch_name}"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:182
+#, python-brace-format
+msgid "仓库 {directory} 已跳过: {error_msg}"
+msgstr "repo {directory} skipped: {error_msg}"
+
+#. src/zzz_od/application/random_play/random_play_app.py:205
+#, python-brace-format
+msgid "代理人匹配失败: {agent_name}"
+msgstr "agent match failed: {agent_name}"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:125
+#, python-format
+msgid "代理人名单持续 %(v).1f 秒对不上，下一次识别重新全量识别所有角色"
+msgstr ""
+"agent roster has mismatched for %(v).1f s; next recognition will re-identify"
+" all agents"
+
+#. src/zzz_od/gui/view/devtools/agent_template_generator_interface.py:557
+msgid "代理人模板截图失败"
+msgstr "agent template screenshot failed"
+
+#. src/one_dragon/envs/git_service.py:1246
+#, python-brace-format
+msgid "代码源 {repository_name} 拉取失败，尝试下一个代码源"
+msgstr "code source {repository_name} pull failed, trying next code source"
+
+#. src/one_dragon/envs/git_service.py:1850
+#, python-brace-format
+msgid "代码源 {repository_name} 获取标签失败，尝试下一个代码源"
+msgstr ""
+"code source {repository_name} tag fetch failed, trying next code source"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:112
+#, python-brace-format
+msgid "任务 {task_id}: {state_name} 置信度 {confidence:.4f}"
+msgstr "task {task_id}: {state_name} confidence {confidence:.4f}"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:85
+#, python-brace-format
+msgid "任务 {task_id}: 多模板匹配缺少区域名"
+msgstr "task {task_id}: multi-template matching missing area name"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:89
+#, python-brace-format
+msgid "任务 {task_id}: 战斗画面中找不到区域 {area_name}"
+msgstr "task {task_id}: cannot find area {area_name} on battle screen"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:109
+msgid "企业微信应用 Access Token 获取成功"
+msgstr "WeCom app access token acquired"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:147
+#, python-brace-format
+msgid "企业微信应用临时图片素材上传成功，media_id: {get}"
+msgstr "WeCom app temporary image media uploaded, media_id: {get}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:152
+msgid "企业微信应用临时图片素材上传请求异常"
+msgstr "WeCom app temporary image media upload request exception"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:324
+#, python-brace-format
+msgid "企业微信应用图文消息发送失败：{send_msg}，尝试发送纯文本消息。"
+msgstr "WeCom app rich message send failed: {send_msg}, trying plain text."
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:339
+#, python-brace-format
+msgid "企业微信应用图文消息和文本消息均失败: {send_msg}; 文本回退失败: {text_fallback_msg}"
+msgstr ""
+"WeCom app rich and text messages both failed: {send_msg}; text fallback "
+"failed: {text_fallback_msg}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:336
+msgid "企业微信应用图文消息失败，已回退至文本消息推送成功"
+msgstr ""
+"WeCom app rich message failed, fell back to text message push successfully"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:186
+#, python-brace-format
+msgid "企业微信应用图片上传成功，获取永久URL: {permanent_url}"
+msgstr "WeCom app image uploaded, permanent URL: {permanent_url}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:280
+#, python-brace-format
+msgid "企业微信应用图片上传获取临时media_id失败，无法作为封面图。错误: {upload_media_err}"
+msgstr ""
+"WeCom app image upload failed to get temporary media_id, cannot use as "
+"cover. Error: {upload_media_err}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:273
+#, python-brace-format
+msgid "企业微信应用图片上传获取永久URL失败，无法在消息体中插入图片。错误: {permanent_upload_err}"
+msgstr ""
+"WeCom app image upload failed to get permanent URL, cannot embed image in "
+"message body. Error: {permanent_upload_err}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:191
+msgid "企业微信应用图片上传请求异常"
+msgstr "WeCom app image upload request exception"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:259
+#, python-brace-format
+msgid "企业微信应用推送失败：{token_err}"
+msgstr "WeCom app push failed: {token_err}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:246
+#, python-brace-format
+msgid "企业微信应用校验失败：{msg}"
+msgstr "WeCom app validation failed: {msg}"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:220
+msgid "企业微信应用消息发送请求异常"
+msgstr "WeCom app message send request exception"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:165
+#, python-brace-format
+msgid ""
+"企业微信机器人图片响应解析失败: {__name__}: {je}; status={status}; body_snip={body_snip}"
+msgstr ""
+"WeCom bot image response parse failed: {__name__}: {je}; status={status}; "
+"body_snip={body_snip}"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:176
+#, python-brace-format
+msgid ""
+"企业微信机器人图片推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; "
+"size={img_size}B; body_snip={body_snip}"
+msgstr ""
+"WeCom bot image push failed! status={status}; errcode={errcode}; "
+"errmsg={errmsg}; size={img_size}B; body_snip={body_snip}"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:171
+msgid "企业微信机器人图片推送成功！"
+msgstr "WeCom bot image push succeeded!"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:93
+#, python-brace-format
+msgid ""
+"企业微信机器人文字响应解析失败: {__name__}: {je}; status={status}; body_snip={body_snip}"
+msgstr ""
+"WeCom bot text response parse failed: {__name__}: {je}; status={status}; "
+"body_snip={body_snip}"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:103
+#, python-brace-format
+msgid ""
+"企业微信机器人文字推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; "
+"body_snip={body_snip}"
+msgstr ""
+"WeCom bot text push failed! status={status}; errcode={errcode}; "
+"errmsg={errmsg}; body_snip={body_snip}"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:99
+msgid "企业微信机器人文字推送成功！"
+msgstr "WeCom bot text push succeeded!"
+
+#. src/one_dragon/base/push/channel/work_weixin_bot.py:107
+#, python-brace-format
+msgid "企业微信机器人文字推送请求异常: {__name__}: {e}"
+msgstr "WeCom bot text push request exception: {__name__}: {e}"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:142
+msgid "优先级 [一步]"
+msgstr "priority [one step]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:204
+msgid "优先级 [兜底]"
+msgstr "priority [fallback]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:197
+msgid "优先级 [方向]"
+msgstr "priority [direction]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:127
+msgid "优先级 [空白已通行]"
+msgstr "priority [blank traversed]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:166
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:173
+msgid "优先级 [终点]"
+msgstr "priority [destination]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:152
+msgid "优先级 [途经]"
+msgstr "priority [waypoint]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:182
+msgid "优先级 [随机一步]"
+msgstr "priority [random step]"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:234
+msgid "优先级 [随机相邻]"
+msgstr "priority [random adjacent]"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:856
+#, python-brace-format
+msgid "优先级入队顺序 下标={queue_text}"
+msgstr "priority enqueue order indices={queue_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:760
+#, python-brace-format
+msgid ""
+"优先级决策 | 候选={len}(主选={primary_cnt} 次选={secondary_cnt}) 需选={choose_num} | "
+"放行=第1,2级:{consider_priority_1} 第3,4级:{consider_priority_2} "
+"补位:{consider_not_in_priority} NEW:{consider_priority_new}"
+msgstr ""
+"priority decision | candidates={len}(primary={primary_cnt} "
+"secondary={secondary_cnt}) need={choose_num} | "
+"allowed=level1,2:{consider_priority_1} level3,4:{consider_priority_2} fill-"
+"in:{consider_not_in_priority} NEW:{consider_priority_new}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:865
+msgid "优先级决策 | 结果 | 未选中 | 原因=优先级规则未命中任何候选 且 非优先级未开启"
+msgstr ""
+"priority decision | result | not selected | reason=priority rules matched no"
+" candidate and non-priority is disabled"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:863
+msgid "优先级决策 | 结果 | 未选中 | 原因=候选为空或全部被忽略"
+msgstr ""
+"priority decision | result | not selected | reason=candidates empty or all "
+"ignored"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:861
+#, python-brace-format
+msgid "优先级决策 | 结果 | 选中={len} | {selected_text}"
+msgstr "priority decision | result | selected={len} | {selected_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:770
+#, python-brace-format
+msgid ""
+"优先级分组 忽略下标={ignored_text} 主选下标={primary_idx_list} 次选下标={secondary_idx_list}"
+msgstr ""
+"priority grouping ignored indices={ignored_text} primary "
+"indices={primary_idx_list} secondary indices={secondary_idx_list}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:761
+#, python-brace-format
+msgid "优先级规则 | {level_text} 放弃组={abandon_text}"
+msgstr "priority rule | {level_text} abandon group={abandon_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:716
+#, python-brace-format
+msgid "优先级输入候选(去重前) 共{len}个: {raw_text}"
+msgstr "priority input candidates (before dedup) {len} total: {raw_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:723
+#, python-brace-format
+msgid "优先级输入候选(去重后) 共{len}个: {dedup_text}"
+msgstr "priority input candidates (after dedup) {len} total: {dedup_text}"
+
+#. src/one_dragon/devtools/python_launcher.py:150
+#, python-brace-format
+msgid "传递参数: {v}"
+msgstr "passing arguments: {v}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:128
+#, python-brace-format
+msgid "低等级藏品未能提取优先级: {text}"
+msgstr "failed to extract priorities from low-level artifacts: {text}"
+
+#. src/zzz_od/auto_battle/auto_battle_state_record_service.py:39
+#, python-brace-format
+msgid "使用了不合法的状态 {state_name}"
+msgstr "invalid state used: {state_name}"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:95
+#, python-brace-format
+msgid "使用医疗包失败 {status}"
+msgstr "medkit use failed {status}"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:87
+#, python-brace-format
+msgid "使用炸弹失败 回退为战斗通过 {status}"
+msgstr "bomb use failed, falling back to battle pass {status}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:281
+#, python-brace-format
+msgid "保存JSON缓存失败: {e}"
+msgstr "failed to save JSON cache: {e}"
+
+#. src/onnxocr/onnx_paddleocr.py:184
+msgid "保存OCR错误调试图片失败"
+msgstr "failed to save OCR error debug image"
+
+#. src/one_dragon_qt/widgets/notice_card.py:166
+#, python-brace-format
+msgid "保存banner图片到缓存失败: {e}"
+msgstr "failed to save banner image to cache: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:214
+#, python-brace-format
+msgid "保存区域地图成功: {full_id}"
+msgstr "area map saved: {full_id}"
+
+#. src/zzz_od/gui/view/devtools/agent_template_generator_interface.py:663
+#, python-brace-format
+msgid "保存模板失败 {sub_dir}/{template_id}"
+msgstr "failed to save template {sub_dir}/{template_id}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:296
+#, python-brace-format
+msgid "保存相关文件失败: {e}"
+msgstr "failed to save related files: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:357
+#, python-brace-format
+msgid "保存路线列表失败: {e}"
+msgstr "failed to save route list: {e}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:303
+#, python-brace-format
+msgid "保存路线列表成功: {name}"
+msgstr "route list saved: {name}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:354
+#, python-brace-format
+msgid "保存路线列表成功: {name} ({list_type})"
+msgstr "route list saved: {name} ({list_type})"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:292
+#, python-brace-format
+msgid "保存路线失败: {e}"
+msgstr "failed to save route: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:289
+#, python-brace-format
+msgid "保存路线成功: {full_name} - {tp_name} ({filename})"
+msgstr "route saved: {full_name} - {tp_name} ({filename})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:907
+#, python-brace-format
+msgid "保留 {display_name}，移除 {join}"
+msgstr "keeping {display_name}, removing {join}"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:88
+#, python-format
+msgid "修改注册表失败: %(v)s"
+msgstr "failed to modify registry: %(v)s"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:777
+#, python-brace-format
+msgid "候选入队 {fmt_artifact} 原因={reason}"
+msgstr "candidate enqueued {fmt_artifact} reason={reason}"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:113
+msgid "停止识别新角色"
+msgstr "stopped recognizing new agents"
+
+#. src/one_dragon/envs/git_service.py:1615
+msgid "克隆仓库成功"
+msgstr "repo cloned successfully"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:880
+msgid "入口层三个NPC均已交互完成 忽略剩余感叹号 直接前往下层入口"
+msgstr ""
+"all three entrance-floor NPCs interacted, ignoring remaining exclamation "
+"marks and heading to the next-floor entrance"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:60
+msgid "入口层两个武备均已完成 当前武备画面必为重复 直接返回"
+msgstr ""
+"both entrance-floor gear items done, current gear screen must be a "
+"duplicate, returning directly"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:580
+#, python-brace-format
+msgid "入口层交互文本 [{target_name}] 不是入口或未交互目标 走位后重试 第{entry_door_block_times}次"
+msgstr ""
+"entrance-floor interaction text [{target_name}] is not an entrance or "
+"uninteracted target, retrying after repositioning, attempt "
+"{entry_door_block_times}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:599
+msgid "入口层交互文本一直未确认到可交互目标 走位重试已达上限 直接交互"
+msgstr ""
+"entrance-floor interaction text never confirmed an interactable target, "
+"reposition retries exhausted, interacting directly"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1001
+#, python-brace-format
+msgid "入口层已放弃感叹号 保持朝下层入口前进 {press_time:.1f}秒"
+msgstr ""
+"entrance-floor exclamation marks abandoned, keep heading to next-floor "
+"entrance for {press_time:.1f}s"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1059
+#, python-brace-format
+msgid "入口层朝下层入口图标迈步 目标x={center:.0f} dx={dx:.0f}"
+msgstr ""
+"entrance floor stepping toward next-floor entrance icon "
+"target_x={center:.0f} dx={dx:.0f}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1041
+#, python-brace-format
+msgid "入口层朝剩余感叹号迈步 目标x={target_x:.0f} dx={dx:.0f}"
+msgstr ""
+"entrance floor stepping toward remaining exclamation mark "
+"target_x={target_x:.0f} dx={dx:.0f}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1067
+msgid "入口层未检测到可用图标 前进+交替侧移兜底"
+msgstr ""
+"entrance floor detected no usable icon, forward + alternating sidestep "
+"fallback"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1005
+msgid "入口层武备选择后 后退让相邻感叹号进入视野"
+msgstr ""
+"after entrance-floor gear selection, backing off to bring adjacent "
+"exclamation marks into view"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:701
+msgid "入口层武备选择重复交互多次 本层忽略感叹号 前往下层入口"
+msgstr ""
+"entrance-floor gear selected repeatedly, ignoring exclamation marks on this "
+"floor and heading to the next-floor entrance"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:593
+msgid "入口层走位重试达上限 目标仍是已交互NPC 后退换角度重新接近"
+msgstr ""
+"entrance-floor reposition retries exhausted, target is still an interacted "
+"NPC, backing off to re-approach from another angle"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1267
+msgid "入口层超时且完成过武备选择 本层放弃感叹号 直接前往下层入口"
+msgstr ""
+"entrance floor timed out and gear selection was completed, abandoning "
+"exclamation marks on this floor and heading to the next-floor entrance"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:164
+msgid "关闭游戏失败"
+msgstr "failed to close the game"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:162
+msgid "关闭游戏成功"
+msgstr "game closed successfully"
+
+#. src/one_dragon/base/operation/application/plugin_market.py:279
+#, python-brace-format
+msgid "写入插件市场缓存失败: {exc}"
+msgstr "failed to write plugin market cache: {exc}"
+
+#. src/one_dragon/devtools/python_launcher.py:347
+#, python-brace-format
+msgid "出现未处理的异常: {e}"
+msgstr "unhandled exception: {e}"
+
+#. src/one_dragon/envs/git_service.py:1513
+#, python-brace-format
+msgid "切换到分支 {branch_name} 失败"
+msgstr "failed to switch to branch {branch_name}"
+
+#. src/one_dragon/base/controller/pc_game_window.py:161
+msgid "切换到游戏窗口失败"
+msgstr "failed to switch to the game window"
+
+#. src/one_dragon/envs/git_service.py:1601
+#. src/one_dragon/envs/git_service.py:1648
+msgid "切换到目标分支"
+msgstr "switched to target branch"
+
+#. src/one_dragon/envs/git_service.py:1477
+#. src/one_dragon/envs/git_service.py:1502
+#. src/one_dragon/envs/git_service.py:1512
+msgid "切换到目标版本失败"
+msgstr "failed to switch to target version"
+
+#. src/zzz_od/hollow_zero/event/bangboo_plugin.py:100
+#, python-brace-format
+msgid "列表里没有 {value} 之前的手势应该已经快速使用了"
+msgstr ""
+"{value} is not in the list; the previous gesture should already have been "
+"consumed"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:163
+#, python-format
+msgid "创建ONNX Runtime会话完成 providers=%(providers)s"
+msgstr "ONNX Runtime session created, providers=%(providers)s"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:218
+#, python-format
+msgid "创建位图资源失败: %(v)s"
+msgstr "failed to create bitmap resource: %(v)s"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:505
+#, python-format
+msgid "创建应用 %(v)s 失败"
+msgstr "failed to create app %(v)s"
+
+#. src/one_dragon/envs/git_service.py:1499
+#, python-brace-format
+msgid "创建本地分支 {branch_name} 失败"
+msgstr "failed to create local branch {branch_name}"
+
+#. src/one_dragon/envs/python_service.py:294
+msgid "创建环境失败"
+msgstr "failed to create environment"
+
+#. src/one_dragon_qt/widgets/notice_card.py:262
+#, python-brace-format
+msgid "创建缓存目录失败: {e}"
+msgstr "failed to create cache directory: {e}"
+
+#. src/one_dragon/envs/python_service.py:93
+msgid "创建虚拟环境失败"
+msgstr "failed to create virtual environment"
+
+#. src/one_dragon/envs/python_service.py:93
+msgid "创建虚拟环境成功"
+msgstr "virtual environment created"
+
+#. src/one_dragon/envs/git_service.py:639
+#, python-brace-format
+msgid "创建远程仓库: {remote_name} -> {remote_url}"
+msgstr "created remote repo: {remote_name} -> {remote_url}"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:78
+#, python-format
+msgid "初始化 macOS 虚拟鼠标失败: %(v)s"
+msgstr "failed to initialize macOS virtual mouse: %(v)s"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:69
+#, python-brace-format
+msgid "初始化 {__name__} 失败"
+msgstr "failed to initialize {__name__}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:189
+#, python-brace-format
+msgid "初始化传送点搜索完成，目标：{target_tp_name}"
+msgstr "teleport point search initialized, target: {target_tp_name}"
+
+#. src/one_dragon/base/operation/one_dragon_context.py:396
+msgid "初始化出错"
+msgstr "initialization error"
+
+#. src/one_dragon/base/operation/operation.py:421
+msgid "初始化失败"
+msgstr "initialization failed"
+
+#. src/one_dragon/envs/git_service.py:1574
+msgid "初始化本地 Git 仓库"
+msgstr "initializing local Git repo"
+
+#. src/one_dragon/envs/git_service.py:1579
+msgid "初始化本地 Git 仓库失败"
+msgstr "failed to initialize local Git repo"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:93
+msgid "删除 mfcDC 失败"
+msgstr "failed to delete mfcDC"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:86
+msgid "删除 saveBitMap 失败"
+msgstr "failed to delete saveBitMap"
+
+#. src/one_dragon/envs/update_service.py:350
+#, python-brace-format
+msgid "删除备份文件: {backup_name}"
+msgstr "deleted backup file: {backup_name}"
+
+#. src/one_dragon/envs/update_service.py:352
+#, python-brace-format
+msgid "删除备份文件失败 {backup_name}: {e}"
+msgstr "failed to delete backup file {backup_name}: {e}"
+
+#. src/one_dragon/envs/update_service.py:359
+#, python-brace-format
+msgid "删除备份目录: {RUNTIME_DIR_BACKUP}"
+msgstr "deleted backup directory: {RUNTIME_DIR_BACKUP}"
+
+#. src/one_dragon/envs/update_service.py:361
+#, python-brace-format
+msgid "删除备份目录失败 {RUNTIME_DIR_BACKUP}: {e}"
+msgstr "failed to delete backup directory {RUNTIME_DIR_BACKUP}: {e}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:939
+#, python-brace-format
+msgid "删除插件失败: {e}"
+msgstr "failed to delete plugin: {e}"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:201
+msgid "删除旧 saveBitMap 失败"
+msgstr "failed to delete old saveBitMap"
+
+#. src/one_dragon/envs/update_service.py:378
+#, python-brace-format
+msgid "删除旧版本遗留文件: {legacy_file}"
+msgstr "deleted legacy file from old version: {legacy_file}"
+
+#. src/one_dragon/envs/update_service.py:380
+#, python-brace-format
+msgid "删除旧版本遗留文件失败 {legacy_file}: {e}"
+msgstr "failed to delete legacy file {legacy_file}: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:376
+#, python-brace-format
+msgid "删除路线列表失败: {e}"
+msgstr "failed to delete route list: {e}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:318
+msgid "删除路线列表成功"
+msgstr "route list deleted"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:369
+#, python-brace-format
+msgid "删除路线列表成功: {name}"
+msgstr "route list deleted: {name}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:318
+#, python-brace-format
+msgid "删除路线失败: {e}"
+msgstr "failed to delete route: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:311
+#, python-brace-format
+msgid "删除路线成功: {full_name} - {tp_name} ({filename})"
+msgstr "route deleted: {full_name} - {tp_name} ({filename})"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:362
+msgid "刷新 Overlay 状态面板失败"
+msgstr "failed to refresh Overlay status panel"
+
+#. src/one_dragon_qt/view/plugin/plugin_manage_interface.py:633
+#, python-brace-format
+msgid "刷新插件失败: {e}"
+msgstr "failed to refresh plugins: {e}"
+
+#. src/zzz_od/gui/view/home/home_interface.py:641
+#, python-brace-format
+msgid "刷新背景时出错: {e}"
+msgstr "error refreshing background: {e}"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:748
+#, python-brace-format
+msgid "前台角色 {front_agent_name} 在连携技中，切换到 {agent_name}"
+msgstr ""
+"on-field agent {front_agent_name} is in a chain attack, switching to "
+"{agent_name}"
+
+#. src/zzz_od/hollow_zero/hollow_runner.py:208
+#, python-brace-format
+msgid "前往目标: [{entry_name}] 当前移动: [{entry_name_2}]"
+msgstr "heading to target: [{entry_name}] currently moving: [{entry_name_2}]"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:109
+#, python-format
+msgid "剧变节点进度 %(v)d/%(v_2)d"
+msgstr "critical node progress %(v)d/%(v_2)d"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:113
+#, python-format
+msgid "剧变节点进度 OCR 异常 %(v)s,回退 run_record"
+msgstr "critical node progress OCR failed %(v)s, falling back to run_record"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:125
+#, python-format
+msgid "剧变节点进度 已完成 %(v)d"
+msgstr "critical node progress %(v)d completed"
+
+#. src/zzz_od/application/charge_plan/charge_plan_app.py:142
+#, python-format
+msgid "剩余电量 %(v)s 储蓄电量 %(v_2)s 以太电池 %(v_3)s"
+msgstr "remaining battery %(v)s stored battery %(v_2)s ether battery %(v_3)s"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:225
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:249
+msgid "加载OCR模型完毕"
+msgstr "OCR model loaded"
+
+#. src/one_dragon_qt/widgets/notice_card.py:112
+#, python-brace-format
+msgid "加载banner图片失败: {e}"
+msgstr "failed to load banner image: {e}"
+
+#. src/one_dragon/base/config/yaml_operator.py:21
+#. src/one_dragon/base/conditional_operation/loader.py:266
+#. src/one_dragon/base/screen/screen_loader.py:106
+#, python-brace-format
+msgid "加载yaml: {file_path}"
+msgstr "loading yaml: {file_path}"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:372
+msgid "加载声音模板中"
+msgstr "loading sound templates"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:420
+msgid "加载声音模板完成"
+msgstr "sound templates loaded"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:424
+#, python-brace-format
+msgid ""
+"加载工厂: {attr_name} (default_group={default_group}, "
+"internal_app={internal_app})"
+msgstr ""
+"loading factory: {attr_name} (default_group={default_group}, "
+"internal_app={internal_app})"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:257
+#, python-brace-format
+msgid "加载工厂文件 {factory_file} 失败: {error_msg}"
+msgstr "failed to load factory file {factory_file}: {error_msg}"
+
+#. src/one_dragon_qt/services/app_setting/app_setting_manager.py:207
+#, python-brace-format
+msgid "加载应用设置文件失败: {setting_file}"
+msgstr "failed to load app settings file: {setting_file}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:249
+#, python-brace-format
+msgid "加载底图成功: {file_path}, 形状: {shape}"
+msgstr "base map loaded: {file_path}, shape: {shape}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:314
+msgid "加载成功"
+msgstr "loaded successfully"
+
+#. src/one_dragon/base/screen/screen_loader.py:184
+#, python-brace-format
+msgid "加载插件画面: {file_path}"
+msgstr "loading plugin screen: {file_path}"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:144
+#, python-format
+msgid "加载模型 %(onnx_path)s"
+msgstr "loading model %(onnx_path)s"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:283
+#, python-brace-format
+msgid "加载第二张图成功: {file_path}, 形状: {shape}"
+msgstr "second image loaded: {file_path}, shape: {shape}"
+
+#. src/one_dragon_qt/widgets/scroll_credits.py:268
+#, python-brace-format
+msgid "加载贡献者数据失败: {e}"
+msgstr "failed to load contributor data: {e}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:347
+#, python-brace-format
+msgid "加载路线: {tp_name} ({len}步)"
+msgstr "route loaded: {tp_name} ({len} steps)"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:338
+#, python-brace-format
+msgid "加载路线列表失败: {filename}, 错误: {e}"
+msgstr "failed to load route list: {filename}, error: {e}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:271
+#, python-brace-format
+msgid "加载路线文件失败: {filename}, 错误: {e}"
+msgstr "failed to load route file: {filename}, error: {e}"
+
+#. src/one_dragon_qt/widgets/adapter_init_mixin.py:38
+msgid "加载配置项失败"
+msgstr "failed to load config items"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:132
+#, python-brace-format
+msgid "动态优先级列表已更新: {dynamic_priority_list}"
+msgstr "dynamic priority list updated: {dynamic_priority_list}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:615
+#, python-brace-format
+msgid "匹配成功，匹配度: {max_val:.3f}"
+msgstr "match succeeded, score: {max_val:.3f}"
+
+#. src/zzz_od/hollow_zero/hollow_runner.py:161
+#, python-format
+msgid "匹配普通事件 [%(v)s]"
+msgstr "matched normal event [%(v)s]"
+
+#. src/zzz_od/hollow_zero/hollow_runner.py:171
+#, python-format
+msgid "匹配特殊事件 [%(v)s]"
+msgstr "matched special event [%(v)s]"
+
+#. src/zzz_od/hollow_zero/hollow_zero_data_service.py:138
+#, python-format
+msgid "匹配结果 %(v)s %(v_2)s"
+msgstr "match result %(v)s %(v_2)s"
+
+#. src/zzz_od/hollow_zero/hollow_zero_data_service.py:107
+#. src/zzz_od/hollow_zero/hollow_zero_data_service.py:133
+msgid "匹配结果 无"
+msgstr "match result: none"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:384
+#, python-brace-format
+msgid "卸载插件模块: {modules_to_remove}"
+msgstr "unloaded plugin modules: {modules_to_remove}"
+
+#. src/one_dragon/envs/git_service.py:525
+msgid "压缩对象:"
+msgstr "compressing objects:"
+
+#. src/one_dragon_qt/services/app_setting/app_setting_manager.py:164
+#, python-brace-format
+msgid "发现 {len} 个应用设置提供者"
+msgstr "found {len} app settings providers"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:137
+#, python-brace-format
+msgid "发现 {len} 个默认组应用, {v} 个独立应用, {internal_count} 个固定入口应用, {len_2} 个失败"
+msgstr ""
+"found {len} default-group apps, {v} standalone apps, {internal_count} fixed-"
+"entry apps, {len_2} failed"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:124
+#, python-brace-format
+msgid "发现低等级藏品: {text}，添加优先级: {priority_category}"
+msgstr ""
+"found low-level artifact: {text}, adding priority: {priority_category}"
+
+#. src/zzz_od/hollow_zero/hollow_map/hollow_zero_map.py:77
+#, python-brace-format
+msgid "发现节点 [{entry_name}]"
+msgstr "found node [{entry_name}]"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:896
+#, python-brace-format
+msgid "发现重叠藏品: {display_name} 和 {display_name_2}, 距离: {x_distance}"
+msgstr ""
+"found overlapping artifacts: {display_name} and {display_name_2}, distance: "
+"{x_distance}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:421
+#, python-brace-format
+msgid "取消编辑路线: {tp_name}"
+msgstr "canceled route editing: {tp_name}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_pawnshop.py:236
+#, python-format
+msgid "可购买商品列表: %(v)s"
+msgstr "purchasable product list: %(v)s"
+
+#. src/one_dragon/base/push/push_service.py:290
+#, python-brace-format
+msgid "合并推送失败: {cid} {msg}"
+msgstr "merged push failed: {cid} {msg}"
+
+#. src/one_dragon/base/push/push_service.py:295
+#, python-brace-format
+msgid "合并推送成功: {cid}"
+msgstr "merged push succeeded: {cid}"
+
+#. src/one_dragon/base/screen/screen_loader.py:142
+#, python-brace-format
+msgid "合并画面配置中存在非字典条目，已跳过: {file_path}"
+msgstr "non-dict entry in merged screen config, skipped: {file_path}"
+
+#. src/one_dragon/base/screen/screen_loader.py:134
+#, python-brace-format
+msgid "合并画面配置文件不存在，按空配置加载: {file_path}"
+msgstr ""
+"merged screen config file missing, loading as empty config: {file_path}"
+
+#. src/one_dragon/base/screen/screen_loader.py:138
+#, python-brace-format
+msgid "合并画面配置格式错误，已忽略: {file_path}"
+msgstr "merged screen config malformed, ignored: {file_path}"
+
+#. src/one_dragon/envs/git_service.py:1608
+#. src/one_dragon/envs/git_service.py:1655
+msgid "同步本地代码"
+msgstr "syncing local code"
+
+#. src/one_dragon_qt/view/resource_management_interface.py:97
+msgid "后台重新加载 OCR 模型失败"
+msgstr "background OCR model reload failed"
+
+#. src/one_dragon/envs/git_service.py:1037
+#, python-brace-format
+msgid ""
+"启动 Git fetch worker: branch={branch_name}, depth={depth}, proxy={bool}, "
+"timeout={REMOTE_FETCH_TIMEOUT:g}s"
+msgstr ""
+"starting Git fetch worker: branch={branch_name}, depth={depth}, "
+"proxy={bool}, timeout={REMOTE_FETCH_TIMEOUT:g}s"
+
+#. src/one_dragon_qt/widgets/install_card/all_install_card.py:93
+msgid "启动中...大约需要10+秒"
+msgstr "starting... takes about 10+ seconds"
+
+#. src/zzz_od/operation/enter_game/open_game.py:60
+#, python-format
+msgid "命令行指令 %(v)s"
+msgstr "command line %(v)s"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:460
+#, python-brace-format
+msgid "回溯成功，已到达 {target}"
+msgstr "backtrack succeeded, reached {target}"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:462
+msgid "回溯超时"
+msgstr "backtrack timed out"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:437
+msgid "回溯跳过，回溯点与上次相同"
+msgstr "backtrack skipped, backtrack point same as last"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:454
+#, python-brace-format
+msgid "回溯进行中，当前距离目标 {distance:.2f}，剩余时间 {v:.1f}秒"
+msgstr ""
+"backtracking, current distance to target {distance:.2f}, {v:.1f}s remaining"
+
+#. src/one_dragon/envs/git_service.py:1819
+msgid "回滚失败"
+msgstr "rollback failed"
+
+#. src/one_dragon/envs/update_service.py:297
+#, python-brace-format
+msgid "回滚文件: {name} -> {name_2}"
+msgstr "rolling back file: {name} -> {name_2}"
+
+#. src/one_dragon/envs/update_service.py:299
+#, python-brace-format
+msgid "回滚文件失败 {name}"
+msgstr "file rollback failed {name}"
+
+#. src/one_dragon/envs/update_service.py:306
+#, python-brace-format
+msgid "回滚目录: {name} -> {name_2}"
+msgstr "rolling back directory: {name} -> {name_2}"
+
+#. src/one_dragon/envs/update_service.py:308
+#, python-brace-format
+msgid "回滚目录失败 {name}"
+msgstr "directory rollback failed {name}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:452
+#, python-brace-format
+msgid "回退操作: {op_type}, 剩余操作数: {len}"
+msgstr "undoing op: {op_type}, remaining ops: {len}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:450
+#, python-brace-format
+msgid "回退移动操作: ({data}, {data_2}), 剩余操作数: {len}"
+msgstr "undoing move op: ({data}, {data_2}), remaining ops: {len}"
+
+#. src/zzz_od/application/intel_board/intel_board_app.py:265
+#, python-brace-format
+msgid "因未选择预备编队，当前副本没有代理人出战，使用预备编队 {name} 重新出战"
+msgstr ""
+"no predefined team selected and no agent deployed in the current instance, "
+"re-deploying with predefined team {name}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:449
+#, python-brace-format
+msgid "图像保存成功: {file_path}"
+msgstr "image saved: {file_path}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:429
+#, python-brace-format
+msgid "图像合并失败: {str}"
+msgstr "image merge failed: {str}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:425
+msgid "图像合并完成"
+msgstr "image merge complete"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:501
+msgid "图标列表已更新"
+msgstr "icon list updated"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:640
+#, python-brace-format
+msgid "图标匹配阈值已更新为: {current_icon_threshold}"
+msgstr "icon match threshold updated to: {current_icon_threshold}"
+
+#. src/one_dragon/base/push/channel/webhook.py:142
+#, python-brace-format
+msgid "图片处理失败: {e}"
+msgstr "image processing failed: {e}"
+
+#. src/one_dragon/utils/debug_utils.py:54
+msgid "图片已复制到剪贴板"
+msgstr "image copied to clipboard"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:289
+#, python-brace-format
+msgid "坐标方向偏离 舍弃 {next_pos}"
+msgstr "coordinate direction deviated, discarding {next_pos}"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:286
+#, python-brace-format
+msgid "坐标跳变过大 舍弃 {next_pos} 距离 {pos_distance:.1f} 允许 {move_distance:.1f}"
+msgstr ""
+"coordinate jump too large, discarding {next_pos} distance {pos_distance:.1f}"
+" allowed {move_distance:.1f}"
+
+#. src/one_dragon/envs/git_service.py:367
+msgid "基于项目主分支的增量 fetch 失败，降级为 shallow fetch"
+msgstr ""
+"incremental fetch based on the project's primary branch failed, falling back"
+" to shallow fetch"
+
+#. src/one_dragon/envs/git_service.py:322
+msgid "增量基线不可用，降级为 shallow fetch"
+msgstr "incremental baseline unavailable, falling back to shallow fetch"
+
+#. src/one_dragon/envs/git_service.py:513
+msgid "处理增量"
+msgstr "processing increment"
+
+#. src/one_dragon/envs/update_service.py:285
+msgid "备份启动器失败"
+msgstr "failed to back up launcher"
+
+#. src/one_dragon/envs/git_service.py:1196
+msgid "备份或重建本地 Git 仓库失败，保留现场"
+msgstr ""
+"failed to back up or rebuild the local Git repo, leaving files in place"
+
+#. src/one_dragon/envs/update_service.py:280
+#, python-brace-format
+msgid "备份文件: {name} -> {name_2}"
+msgstr "backing up file: {name} -> {name_2}"
+
+#. src/one_dragon/envs/update_service.py:283
+#, python-brace-format
+msgid "备份目录: {name} -> {name_2}"
+msgstr "backing up directory: {name} -> {name_2}"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:59
+#. src/one_dragon/base/controller/pc_clipboard.py:67
+#, python-brace-format
+msgid "复制文字到剪切板:{mask_text}"
+msgstr "copying text to clipboard: {mask_text}"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:71
+msgid "复制文字到剪切板成功"
+msgstr "text copied to clipboard"
+
+#. src/one_dragon/utils/debug_utils.py:41
+msgid "复制调试图片到剪贴板目前仅支持 Windows"
+msgstr "copying debug images to clipboard is only supported on Windows"
+
+#. src/one_dragon/base/config/yaml_operator.py:92
+#, python-brace-format
+msgid ""
+"复制配置文件失败 来源文件不存在 source={_copy_on_write_source_path} write_path={write_path}"
+msgstr ""
+"failed to copy config file, source missing "
+"source={_copy_on_write_source_path} write_path={write_path}"
+
+#. src/one_dragon/base/conditional_operation/operator.py:357
+#, python-format
+msgid ""
+"复合中断条件满足，执行中断\n"
+"%(v)s"
+msgstr ""
+"composite interrupt condition met, interrupting\n"
+"%(v)s"
+
+#. src/zzz_od/operation/enter_game/switch_account.py:26
+msgid "多账户切换未配置完整登录信息，后续登录可能失败"
+msgstr ""
+"multi-account switching lacks complete login info, subsequent logins may "
+"fail"
+
+#. src/one_dragon/envs/python_service.py:291
+msgid "安装 Python 失败 请尝试到「设置」更改 Python 下载源"
+msgstr ""
+"Python install failed, please try changing the Python download source in "
+"Settings"
+
+#. src/one_dragon/envs/python_service.py:56
+msgid "安装 UV 失败"
+msgstr "UV install failed"
+
+#. src/one_dragon/envs/python_service.py:54
+msgid "安装 UV 成功"
+msgstr "UV installed successfully"
+
+#. src/one_dragon_qt/view/installer_interface.py:652
+msgid "安装失败，已自动打开帮助文档"
+msgstr "installation failed, help documentation opened automatically"
+
+#. src/zzz_od/operation/compendium/coupon.py:54
+#, python-format
+msgid "家政券数量 %(v)d"
+msgstr "housekeeping coupon count %(v)d"
+
+#. src/zzz_od/operation/compendium/coupon.py:51
+msgid "家政券数量为 0"
+msgstr "housekeeping coupon count is 0"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1272
+#, python-brace-format
+msgid "寻路失败或阵亡，开始第 {restart_count} 次重试"
+msgstr "pathfinding failed or wiped, starting retry #{restart_count}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:241
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:245
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:301
+#, python-format
+msgid "寻路节点[%(v)s] 当前目标=%(v_2)s 未检测到入口，但检测到更高优先级目标=%(v_3)s，返回上层重识别"
+msgstr ""
+"pathfinding node[%(v)s] current target=%(v_2)s no entrance detected, but "
+"higher-priority target=%(v_3)s detected, returning to upper level for re-"
+"identification"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:249
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:311
+#, python-format
+msgid "寻路节点[%(v)s] 当前目标=%(v_2)s 未识别到可追踪目标，检测结果=%(v_3)s"
+msgstr ""
+"pathfinding node[%(v)s] current target=%(v_2)s no trackable target "
+"recognized, detections=%(v_3)s"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:229
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:279
+#, python-format
+msgid "寻路节点[%(v)s] 当前目标=%(v_2)s 检测结果=%(v_3)s"
+msgstr "pathfinding node[%(v)s] current target=%(v_2)s detections=%(v_3)s"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:256
+#, python-brace-format
+msgid "导入 ZIP 来源失败: {e}"
+msgstr "failed to import ZIP source: {e}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:297
+#, python-brace-format
+msgid "导入插件失败: {plugin_name}, {e}"
+msgstr "failed to import plugin: {plugin_name}, {e}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:635
+#, python-brace-format
+msgid "导入目录插件失败: {plugin_name}, {e}"
+msgstr "failed to import directory plugin: {plugin_name}, {e}"
+
+#. src/one_dragon/envs/git_service.py:1241
+msgid "导入远程对象时发现本地 Git 对象缺失，停止代码源回退"
+msgstr ""
+"local Git objects missing while importing remote objects, stopping code-"
+"source fallback"
+
+#. src/one_dragon/base/web/common_downloader.py:122
+#, python-brace-format
+msgid "尝试从 {source_id} 下载 {save_file_name}"
+msgstr "trying to download {save_file_name} from {source_id}"
+
+#. src/one_dragon/envs/git_service.py:1220
+#, python-brace-format
+msgid "尝试代码源: {repository_name}"
+msgstr "trying code source: {repository_name}"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:46
+#, python-brace-format
+msgid "尝试使用备用模型 {backup_model_name}"
+msgstr "trying backup model {backup_model_name}"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:441
+#, python-brace-format
+msgid "尝试回溯到上一个目标点 {prev_pos}"
+msgstr "trying to backtrack to previous target point {prev_pos}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:164
+#, python-brace-format
+msgid "尝试点击刷新区域 (第{refresh_count}次)"
+msgstr "trying to click refresh area (attempt {refresh_count})"
+
+#. src/zzz_od/operation/enter_game/open_game.py:46
+#. src/zzz_od/operation/enter_game/open_game.py:38
+#, python-format
+msgid "尝试自动启动游戏 路径为 %(v)s"
+msgstr "trying to auto-launch the game at %(v)s"
+
+#. src/zzz_od/auto_battle/auto_battle_target_context.py:72
+#, python-brace-format
+msgid "已从配置加载 [异常状态] 检测间隔: {abnormal_status_interval}s"
+msgstr ""
+"loaded [abnormal status] detection interval from config: "
+"{abnormal_status_interval}s"
+
+#. src/zzz_od/auto_battle/auto_battle_target_context.py:68
+#, python-brace-format
+msgid "已从配置加载 [目标锁定] 检测间隔: {target_lock_interval}s"
+msgstr ""
+"loaded [target lock] detection interval from config: {target_lock_interval}s"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:40
+#, python-format
+msgid "已保存原始HDR设置: %(v)s"
+msgstr "original HDR settings saved: %(v)s"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:84
+msgid "已删除HDR设置键值"
+msgstr "HDR settings registry value deleted"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:201
+msgid "已到达目标点，重置脱困计数"
+msgstr "reached target point, unstuck counter reset"
+
+#. src/one_dragon/base/operation/one_dragon_context.py:543
+msgid "已取消下载OCR模型 使用OCR时将重新下载"
+msgstr "OCR model download canceled, will re-download when OCR is used"
+
+#. src/one_dragon_qt/view/one_dragon/one_dragon_run_interface.py:174
+msgid "已取消关机计划"
+msgstr "shutdown plan canceled"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:139
+msgid "已启用 macOS ScreenCaptureKit 系统音频回环捕获（声音闪避识别）"
+msgstr ""
+"enabled macOS ScreenCaptureKit system audio loopback capture (sound dodge "
+"detection)"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:178
+msgid "已启用前台键鼠模式"
+msgstr "foreground keyboard/mouse mode enabled"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:238
+#, python-format
+msgid "已回退使用虚拟音频输入设备进行声音闪避识别: %(v)s"
+msgstr ""
+"fell back to virtual audio input device for sound dodge detection: %(v)s"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:80
+#, python-format
+msgid "已恢复原始HDR设置: %(v)s"
+msgstr "original HDR settings restored: %(v)s"
+
+#. src/zzz_od/application/charge_plan/charge_plan_app.py:73
+#, python-format
+msgid "已按游戏刷新日重置体力计划已运行次数 %(v)s"
+msgstr "stamina plan run count reset for the game refresh day %(v)s"
+
+#. src/one_dragon_qt/view/app_run_interface.py:163
+#. src/one_dragon_qt/view/one_dragon/one_dragon_run_interface.py:198
+#. src/one_dragon_qt/view/one_dragon/one_dragon_run_interface.py:205
+msgid "已有应用在运行中"
+msgstr "an app is already running"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:480
+msgid "已清空所有图像"
+msgstr "all images cleared"
+
+#. src/one_dragon/envs/python_service.py:39
+msgid "已经安装了 UV"
+msgstr "UV is already installed"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:48
+#, python-format
+msgid "已设置注册表键值: %(v)s -> AutoHDREnable=2096"
+msgstr "registry value set: %(v)s -> AutoHDREnable=2096"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_setting_interface.py:208
+msgid "已重置记录"
+msgstr "records reset"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:491
+#, python-format
+msgid "应用 %(v)s 未注册"
+msgstr "app %(v)s is not registered"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:371
+#, python-brace-format
+msgid "应用X偏移: Δ{delta_x}, 新位置: ({second_image_x}, {second_image_y})"
+msgstr ""
+"applied X offset: Δ{delta_x}, new position: ({second_image_x}, "
+"{second_image_y})"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:394
+#, python-brace-format
+msgid "应用Y偏移: Δ{delta_y}, 新位置: ({second_image_x}, {second_image_y})"
+msgstr ""
+"applied Y offset: Δ{delta_y}, new position: ({second_image_x}, "
+"{second_image_y})"
+
+#. src/one_dragon/base/operation/one_dragon_context.py:325
+msgid "应用注册刷新完成"
+msgstr "app registration refresh complete"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:86
+#, python-format
+msgid "开始下载 %(model_name)s %(download_url)s"
+msgstr "starting download %(model_name)s %(download_url)s"
+
+#. src/one_dragon/utils/http_utils.py:131
+#, python-brace-format
+msgid "开始下载 {download_url}"
+msgstr "starting download {download_url}"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:154
+#, python-format
+msgid "开始创建ONNX Runtime会话 %(onnx_path)s providers=%(providers)s"
+msgstr "creating ONNX Runtime session %(onnx_path)s providers=%(providers)s"
+
+#. src/one_dragon/base/operation/one_dragon_context.py:291
+msgid "开始刷新应用注册..."
+msgstr "starting app registration refresh..."
+
+#. src/one_dragon/base/operation/one_dragon_context.py:505
+#, python-format
+msgid "开始加载实例配置 %(v)d"
+msgstr "loading instance config %(v)d"
+
+#. src/zzz_od/operation/compendium/combat_simulation.py:195
+#, python-format
+msgid "开始取消已选择数量 %(v)d"
+msgstr "starting to deselect %(v)d selected"
+
+#. src/one_dragon/envs/git_service.py:888
+#, python-brace-format
+msgid "开始导入临时 Git 仓库: {remote_path}"
+msgstr "starting temp Git repo import: {remote_path}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:69
+msgid "开始执行CV流水线 [迷失之地-藏品类型识别]..."
+msgstr "starting CV pipeline [Lost Void - artifact type recognition]..."
+
+#. src/one_dragon/devtools/python_launcher.py:318
+msgid "开始检查运行环境..."
+msgstr "checking runtime environment..."
+
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:139
+#, python-brace-format
+msgid "开始第 {current_round}/{total_rounds} 轮锄大地"
+msgstr "starting world patrol round {current_round}/{total_rounds}"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:115
+#, python-format
+msgid "开始解压文件 %(zip_file_path)s"
+msgstr "extracting file %(zip_file_path)s"
+
+#. src/zzz_od/operation/compendium/combat_simulation.py:199
+#, python-format
+msgid "开始选择数量 %(v)d"
+msgstr "starting to select %(v)d"
+
+#. src/one_dragon/devtools/python_launcher.py:111
+msgid "开始配置环境变量..."
+msgstr "configuring environment variables..."
+
+#. src/one_dragon/utils/thread_utils.py:11
+msgid "异步执行失败"
+msgstr "async execution failed"
+
+#. src/zzz_od/auto_battle/auto_battle_target_context.py:111
+#, python-brace-format
+msgid "异步检测任务失败 [task_id={task_id}]"
+msgstr "async detection task failed [task_id={task_id}]"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:224
+#, python-format
+msgid "弱点: %(v)s"
+msgstr "weakness: %(v)s"
+
+#. src/one_dragon/envs/git_service.py:1559
+msgid "强制更新失败"
+msgstr "force update failed"
+
+#. src/one_dragon/envs/git_service.py:1556
+#, python-brace-format
+msgid "强制更新成功: {v} -> {v_2}"
+msgstr "force update succeeded: {v} -> {v_2}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:288
+#, python-brace-format
+msgid "当前参考位置：{icon_name}({x}, {y})"
+msgstr "current reference position: {icon_name}({x}, {y})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_bangboo_store.py:205
+#, python-brace-format
+msgid "当前可购买藏品 {display_text}"
+msgstr "currently purchasable artifacts {display_text}"
+
+#. src/one_dragon/base/conditional_operation/operator.py:234
+#, python-brace-format
+msgid "当前场景 {state_name} 当前条件 {expr_display}"
+msgstr "current scene {state_name} current condition {expr_display}"
+
+#. src/one_dragon/base/conditional_operation/operator.py:164
+#, python-brace-format
+msgid "当前场景 主循环 当前条件 {expr_display}"
+msgstr "current scene main loop current condition {expr_display}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:551
+#, python-format
+msgid "当前层已交互过 %(v)s，本次不再交互，先离开当前对象"
+msgstr ""
+"already interacted with %(v)s on this floor, skipping interaction and "
+"leaving the current target"
+
+#. src/one_dragon/devtools/python_launcher.py:91
+#, python-brace-format
+msgid "当前工作目录: {cwd}"
+msgstr "current working directory: {cwd}"
+
+#. src/one_dragon/envs/git_service.py:1538
+msgid "当前已是最新版本"
+msgstr "already on the latest version"
+
+#. src/one_dragon_qt/widgets/setting_card/common_download_card.py:380
+msgid "当前没有下载任务在运行"
+msgstr "no download task is running"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:857
+#, python-brace-format
+msgid "当前符合优先级列表 {display_text}"
+msgstr "currently matching priority list {display_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:721
+#, python-brace-format
+msgid ""
+"当前考虑优先级 数量={choose_num} NEW!={consider_priority_new} "
+"第一优先级={consider_priority_1} 第二优先级={consider_priority_2} "
+"其他={consider_not_in_priority}"
+msgstr ""
+"current priority consideration count={choose_num} "
+"NEW!={consider_priority_new} first priority={consider_priority_1} second "
+"priority={consider_priority_2} others={consider_not_in_priority}"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:162
+#, python-format
+msgid "当前节点 %(v)d"
+msgstr "current node %(v)d"
+
+#. src/zzz_od/application/devtools/screenshot_helper/screenshot_helper_app.py:88
+#, python-brace-format
+msgid "当前角度 {angle}"
+msgstr "current angle {angle}"
+
+#. src/zzz_od/hollow_zero/hollow_zero_data_service.py:102
+#, python-format
+msgid "当前识别 %(v)s %(v_2)s"
+msgstr "currently recognizing %(v)s %(v_2)s"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:463
+#, python-brace-format
+msgid "当前识别UP代理人列表: [{display_name}]"
+msgstr "currently recognized UP agent list: [{display_name}]"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:427
+msgid "当前识别不到任何角色，下一次截图强制重新识别所有角色"
+msgstr ""
+"no agent recognized currently, next screenshot will force re-recognition of "
+"all agents"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_craft_dispatch.py:220
+#, python-format
+msgid "当前识别商品 %(v)s"
+msgstr "currently recognized product %(v)s"
+
+#. src/zzz_od/application/game_config_checker/mouse_sensitivity_checker/mouse_sensitivity_checker.py:55
+#, python-brace-format
+msgid "当前识别朝向 {angle:.2f}"
+msgstr "currently recognized heading {angle:.2f}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:275
+#, python-brace-format
+msgid "当前识别武备 {display_text}"
+msgstr "currently recognized gear {display_text}"
+
+#. src/one_dragon/base/operation/operation.py:1469
+#, python-brace-format
+msgid "当前识别画面 {current_screen_name}"
+msgstr "currently recognized screen {current_screen_name}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:167
+#, python-brace-format
+msgid "当前识别的屏幕: {current_screen}"
+msgstr "currently recognized screen: {current_screen}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:444
+#, python-brace-format
+msgid "当前识别藏品 主选={primary_cnt} 次选={secondary_cnt} {display_text}"
+msgstr ""
+"currently recognized artifacts primary={primary_cnt} "
+"secondary={secondary_cnt} {display_text}"
+
+#. src/zzz_od/operation/compendium/notorious_hunt_move.py:146
+#, python-format
+msgid "当前识别鸣徽选项数量 %(v)d"
+msgstr "currently recognized resonium option count %(v)d"
+
+#. src/one_dragon/envs/runtime_compatibility.py:78
+#, python-brace-format
+msgid "当前运行时无法导入 {dependency}"
+msgstr "cannot import {dependency} in the current runtime"
+
+#. src/one_dragon/base/push/channel/we_plus_bot.py:114
+msgid "微加机器人 推送异常"
+msgstr "Weijia bot push exception"
+
+#. src/one_dragon/envs/git_service.py:1550
+msgid "快进更新失败"
+msgstr "fast-forward update failed"
+
+#. src/one_dragon/envs/git_service.py:1547
+#, python-brace-format
+msgid "快进更新成功: {v} -> {v_2}"
+msgstr "fast-forward update succeeded: {v} -> {v_2}"
+
+#. src/one_dragon/envs/git_service.py:933
+msgid "恢复 Git 导入前状态失败"
+msgstr "failed to restore pre-Git-import state"
+
+#. src/one_dragon/envs/python_service.py:199
+msgid "恢复 uv.lock 失败"
+msgstr "failed to restore uv.lock"
+
+#. src/one_dragon/envs/git_service.py:692
+msgid "恢复主仓库远程地址失败"
+msgstr "failed to restore the main repo remote URL"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:311
+msgid "恢复原始 DC 对象失败"
+msgstr "failed to restore the original DC object"
+
+#. src/one_dragon/envs/update_service.py:290
+msgid "恢复已备份的启动器文件失败"
+msgstr "failed to restore the backed-up launcher files"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:525
+#, python-brace-format
+msgid "恢复缩放状态: {saved_scale_percent}% (当前: {current_scale}%)"
+msgstr ""
+"restored scale state: {saved_scale_percent}% (current: {current_scale}%)"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:441
+msgid "恢复运行"
+msgstr "resumed"
+
+#. src/zzz_od/operation/compendium/notorious_hunt.py:208
+#, python-format
+msgid "恶名狩猎剩余奖励次数 %(v)s"
+msgstr "Notorious Hunt remaining reward count %(v)s"
+
+#. src/one_dragon/envs/git_service.py:1509
+#, python-brace-format
+msgid "成功切换到分支 {branch_name}"
+msgstr "switched to branch {branch_name}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:271
+#, python-brace-format
+msgid "成功匹配到传送点：{icon_name}"
+msgstr "successfully matched teleport point: {icon_name}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:225
+#, python-brace-format
+msgid "成功购买第{bought_count}个S级邦布"
+msgstr "successfully bought S-rank Bangboo #{bought_count}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_good_goods.py:82
+#, python-brace-format
+msgid "成功购买第{purchased_count}个商品"
+msgstr "successfully bought product #{purchased_count}"
+
+#. src/one_dragon_qt/widgets/install_card/base_install_card.py:107
+#. src/one_dragon_qt/widgets/install_card/base_install_card.py:150
+#. src/one_dragon_qt/widgets/setting_card/common_download_card.py:362
+msgid "我知道你很急 但你先别急 正在运行了"
+msgstr "I know you're in a hurry, but hold on — it's already running"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:506
+#, python-brace-format
+msgid ""
+"战斗上下文代理人: {recognized_agent_text} 未追加新的代理人类型优先级 追加动态放弃组: {v} 当前动态优先级: "
+"{priority_text} 当前动态放弃组: {abandon_text}"
+msgstr ""
+"battle context agents: {recognized_agent_text} no new agent-type priority "
+"appended, dynamic abandon group appended: {v} current dynamic priorities: "
+"{priority_text} current dynamic abandon groups: {abandon_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:502
+#, python-brace-format
+msgid ""
+"战斗上下文代理人: {recognized_agent_text} 追加代理人类型优先级: {join} 追加动态放弃组: {v} 当前动态优先级: "
+"{priority_text} 当前动态放弃组: {abandon_text}"
+msgstr ""
+"battle context agents: {recognized_agent_text} appended agent-type "
+"priorities: {join} appended dynamic abandon group: {v} current dynamic "
+"priorities: {priority_text} current dynamic abandon groups: {abandon_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:438
+msgid "战斗上下文强制刷新后仍暂无队伍信息，跳过代理人类型优先级追加"
+msgstr ""
+"still no team info after forced battle-context refresh, skipping agent-type "
+"priority append"
+
+#. src/zzz_od/operation/battle/lost_void.py:152
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1126
+msgid "战斗中识别交互出现异常"
+msgstr "interaction recognition failed during battle"
+
+#. src/zzz_od/backend/mcp/app.py:177
+#, python-brace-format
+msgid "截图已保存到: {path}"
+msgstr "screenshot saved to: {path}"
+
+#. src/one_dragon/base/controller/pc_screenshot/pc_screenshot_controller.py:66
+msgid "截图方法尚未初始化，请先调用 init_screenshot()"
+msgstr "screenshot method not initialized, call init_screenshot() first"
+
+#. src/one_dragon/envs/git_service.py:1259
+msgid "所有代码源均拉取失败"
+msgstr "all code sources failed to pull"
+
+#. src/zzz_od/application/random_play/random_play_app.py:214
+msgid "所有候选代理人匹配失败, 向下滚动重试"
+msgstr "all candidate agents failed to match, scrolling down to retry"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:316
+msgid "所有图标识别失败，执行随机拖动"
+msgstr "all icons failed to be recognized, performing random drag"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:185
+msgid "所有状态已重置为初始值。"
+msgstr "all states reset to initial values."
+
+#. src/zzz_od/application/random_play/random_play_app.py:291
+#, python-brace-format
+msgid "所需主题 {_need_video_themes}"
+msgstr "required themes {_need_video_themes}"
+
+#. src/one_dragon_qt/widgets/setting_card/code_editor_setting_card.py:511
+#, python-format
+msgid "打开外部编辑器失败: %(v)s"
+msgstr "failed to open external editor: %(v)s"
+
+#. src/one_dragon/envs/git_service.py:1478
+msgid "打开本地仓库失败"
+msgstr "failed to open local repo"
+
+#. src/one_dragon/utils/cmd_utils.py:91
+#. src/one_dragon/utils/cmd_utils.py:117
+msgid "执行命令失败"
+msgstr "command execution failed"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:311
+#, python-brace-format
+msgid ""
+"执行精确拖动：从 {icon_name}({x}, {y}) 向 {icon_name_2}({x_2}, {y_2}) 坐标差({dx}, {dy})"
+" -> 拖动方向({drag_x}, {drag_y})"
+msgstr ""
+"performing precise drag: from {icon_name}({x}, {y}) to {icon_name_2}({x_2}, "
+"{y_2}) delta({dx}, {dy}) -> drag direction({drag_x}, {drag_y})"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:340
+#, python-brace-format
+msgid "执行随机拖动：{direction}"
+msgstr "performing random drag: {direction}"
+
+#. src/one_dragon/envs/python_service.py:177
+msgid "找不到 uv.lock，无法同步运行环境"
+msgstr "uv.lock not found, cannot sync runtime environment"
+
+#. src/one_dragon/envs/python_service.py:322
+#, python-brace-format
+msgid "找不到{log_prefix}进行测速"
+msgstr "cannot find {log_prefix}for speed test"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:126
+#, python-brace-format
+msgid "找到S级邦布，价格: {price_info}"
+msgstr "found S-rank Bangboo, price: {price_info}"
+
+#. src/zzz_od/operation/compendium/compendium_choose_mission_type.py:120
+#, python-brace-format
+msgid "找到代理人目标，最终目标点: {target_point}"
+msgstr "found agent target, final target point: {target_point}"
+
+#. src/zzz_od/operation/compendium/combat_simulation.py:136
+#, python-brace-format
+msgid "找到代理人目标，点击位置: {target_point}"
+msgstr "found agent target, click position: {target_point}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:277
+#, python-brace-format
+msgid "找到目标传送点：{target_tp_name}"
+msgstr "found target teleport point: {target_tp_name}"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:225
+#, python-format
+msgid "抗性: %(v)s"
+msgstr "resistance: %(v)s"
+
+#. src/one_dragon/envs/git_service.py:503
+msgid "拉取对象"
+msgstr "receiving objects"
+
+#. src/one_dragon/envs/git_service.py:478
+#, python-brace-format
+msgid "拉取对象 {received_mb:.2f} MB"
+msgstr "receiving objects {received_mb:.2f} MB"
+
+#. src/one_dragon/base/operation/application/plugin_market.py:206
+#, python-brace-format
+msgid "拉取插件市场数据失败: {exc}"
+msgstr "failed to fetch plugin market data: {exc}"
+
+#. src/one_dragon/envs/git_service.py:1256
+msgid "拉取结束后无法恢复主仓库远程地址"
+msgstr "cannot restore the main repo remote URL after pull"
+
+#. src/one_dragon/envs/git_service.py:1584
+#. src/one_dragon/envs/git_service.py:1627
+msgid "拉取远程代码"
+msgstr "pulling remote code"
+
+#. src/one_dragon/envs/git_service.py:1211
+msgid "拉取远程代码..."
+msgstr "pulling remote code..."
+
+#. src/one_dragon/envs/git_service.py:1275
+#. src/one_dragon/envs/git_service.py:1274
+msgid "拉取远程代码成功"
+msgstr "remote code pulled successfully"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:280
+#, python-format
+msgid "拖拽终点不在游戏窗口区域 (%(v)s)"
+msgstr "drag end point is outside the game window area (%(v)s)"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:275
+#, python-format
+msgid "拖拽起点不在游戏窗口区域 (%(v)s)"
+msgstr "drag start point is outside the game window area (%(v)s)"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:307
+#, python-brace-format
+msgid "拼接方向设置为: {text}"
+msgstr "stitch direction set to: {text}"
+
+#. src/one_dragon/base/conditional_operation/operation_executor.py:68
+msgid "指令执行出错"
+msgstr "instruction execution error"
+
+#. src/zzz_od/application/devtools/operation_debug/operation_debug_app.py:107
+msgid "指令模板加载失败"
+msgstr "instruction template load failed"
+
+#. src/one_dragon/launcher/application_launcher.py:53
+#, python-brace-format
+msgid "指定运行实例: {valid_instances}"
+msgstr "specified run instances: {valid_instances}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:387
+#, python-brace-format
+msgid "按钮计数命中 已选={chosen_cnt} 目标={target_num}"
+msgstr "button count hit chosen={chosen_cnt} target={target_num}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:381
+#, python-brace-format
+msgid "按钮计数忽略 文本={text} 解析={current_cnt}/{total_cnt} 目标={target_num}"
+msgstr ""
+"button count ignored text={text} parsed={current_cnt}/{total_cnt} "
+"target={target_num}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:361
+#, python-brace-format
+msgid "按钮计数未命中，使用点击次数兜底={fallback_click_count}"
+msgstr ""
+"button count missed, using click-count fallback={fallback_click_count}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:303
+msgid "挚交会谈开局向右移动"
+msgstr "Companion Talk opening: move right"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:741
+#, python-brace-format
+msgid "推测楼层类型 {value}"
+msgstr "inferred floor type {value}"
+
+#. src/one_dragon/base/push/push_service.py:171
+#, python-brace-format
+msgid "推送失败: {channel_id} {msg}"
+msgstr "push failed: {channel_id} {msg}"
+
+#. src/one_dragon/base/push/push_service.py:176
+#, python-brace-format
+msgid "推送成功: {channel_id}"
+msgstr "push succeeded: {channel_id}"
+
+#. src/one_dragon_qt/services/plugin_update_provider.py:90
+#, python-brace-format
+msgid "插件 {name} 无法更新: {error}"
+msgstr "plugin {name} cannot be updated: {error}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:289
+#, python-brace-format
+msgid "插件导入成功: {plugin_name}"
+msgstr "plugin imported: {plugin_name}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:932
+#, python-brace-format
+msgid "插件已删除: {plugin_name}"
+msgstr "plugin deleted: {plugin_name}"
+
+#. src/one_dragon_qt/view/plugin/plugin_operation_mixin.py:139
+#, python-brace-format
+msgid "插件操作异常: {e}"
+msgstr "plugin operation exception: {e}"
+
+#. src/one_dragon/base/screen/screen_loader.py:198
+#, python-brace-format
+msgid "插件画面ID冲突，已跳过: {screen_id}"
+msgstr "plugin screen ID conflict, skipped: {screen_id}"
+
+#. src/one_dragon/base/screen/screen_loader.py:195
+#, python-brace-format
+msgid "插件画面名称冲突，已跳过: {screen_name}"
+msgstr "plugin screen name conflict, skipped: {screen_name}"
+
+#. src/one_dragon/base/screen/screen_loader.py:187
+#, python-brace-format
+msgid "插件画面配置格式错误，已跳过: {file_path}"
+msgstr "plugin screen config malformed, skipped: {file_path}"
+
+#. src/zzz_od/game_data/map_area.py:65
+#. src/zzz_od/game_data/compendium.py:149
+#. src/zzz_od/game_data/compendium.py:310
+#, python-brace-format
+msgid "文件读取失败 {file_path}"
+msgstr "file read failed {file_path}"
+
+#. src/one_dragon/base/config/json_operator.py:39
+#. src/one_dragon/base/config/yaml_operator.py:72
+#, python-brace-format
+msgid "文件读取失败 将使用默认值 {file_path}"
+msgstr "file read failed, defaults will be used {file_path}"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:459
+msgid "新一期刷新后 可到「式舆防卫战」重置运行记录"
+msgstr "after the new refresh, run records can be reset in 'Shiyu Defense'"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:371
+#, python-brace-format
+msgid "新建路线: {full_name} - 传送点: {tp_name} (idx: {next_idx})"
+msgstr "new route: {full_name} - teleport point: {tp_name} (idx: {next_idx})"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:293
+#, python-brace-format
+msgid "新建路线列表: {name}"
+msgstr "new route list: {name}"
+
+#. src/one_dragon/launcher/application_launcher.py:34
+#, python-brace-format
+msgid "无效的参数值: {value}"
+msgstr "invalid argument value: {value}"
+
+#. src/one_dragon/base/controller/pc_game_window.py:143
+#. src/one_dragon/base/controller/pc_game_window.py:158
+msgid "无效的窗口句柄，尝试重置窗口"
+msgstr "invalid window handle, trying to reset the window"
+
+#. src/one_dragon/base/controller/pc_button/pc_button_listener.py:31
+msgid "无法创建 macOS 输入事件监听器，请检查辅助功能权限"
+msgstr ""
+"cannot create the macOS input event listener, please check Accessibility "
+"permission"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:399
+msgid "无法删除未保存的路线"
+msgstr "cannot delete an unsaved route"
+
+#. src/one_dragon/envs/git_service.py:1684
+msgid "无法判断首次 checkout 是否完成，按已有仓库更新处理"
+msgstr ""
+"cannot determine whether the first checkout completed, treating as an "
+"existing-repo update"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:267
+#, python-brace-format
+msgid "无法匹配传送点名称：{recognized_name}"
+msgstr "cannot match teleport point name: {recognized_name}"
+
+#. src/one_dragon/utils/debug_utils.py:59
+#, python-format
+msgid "无法将图片复制到剪贴板: %(v)s"
+msgstr "cannot copy image to clipboard: %(v)s"
+
+#. src/one_dragon/base/controller/mac_game_window.py:219
+msgid "无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限"
+msgstr ""
+"cannot activate the PlayCover game window, please check system Accessibility"
+" permission"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:212
+msgid "无法获取屏幕 DC"
+msgstr "cannot get the screen DC"
+
+#. src/one_dragon/envs/runtime_compatibility.py:66
+msgid "无法解析模块清单"
+msgstr "cannot parse module manifest"
+
+#. src/one_dragon_qt/services/app_setting/app_setting_manager.py:228
+#, python-brace-format
+msgid "无法解析模块路径: {setting_file}"
+msgstr "cannot resolve module path: {setting_file}"
+
+#. src/zzz_od/hollow_zero/event/call_for_support.py:72
+msgid "无法识别当前增援角色"
+msgstr "cannot recognize the current reinforcement agent"
+
+#. src/one_dragon/envs/git_service.py:1154
+msgid "旧 Git 仓库无法打开，跳过 remote 检查并直接备份重建"
+msgstr ""
+"old Git repo cannot be opened, skipping remote check and rebuilding from "
+"backup directly"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:435
+msgid "暂停运行"
+msgstr "paused"
+
+#. src/one_dragon/envs/git_service.py:1589
+msgid "暂时无法获取当前版本所需文件"
+msgstr "temporarily unable to get files required for the current version"
+
+#. src/one_dragon/envs/git_service.py:1260
+msgid "暂时无法获取更新"
+msgstr "temporarily unable to get updates"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:338
+msgid "更新 Overlay 交互模式失败"
+msgstr "failed to update Overlay interaction mode"
+
+#. src/one_dragon_qt/overlay/overlay_manager.py:227
+msgid "更新 Overlay 窗口失败"
+msgstr "failed to update Overlay window"
+
+#. src/one_dragon/envs/git_service.py:1699
+msgid "更新代码时发生未处理异常"
+msgstr "unhandled exception while updating code"
+
+#. src/one_dragon/envs/git_service.py:1617
+#. src/one_dragon/envs/git_service.py:1662
+#. src/one_dragon/envs/git_service.py:1548
+msgid "更新完成"
+msgstr "update complete"
+
+#. src/one_dragon/envs/git_service.py:635
+#, python-brace-format
+msgid "更新远程仓库地址: {url} -> {remote_url}"
+msgstr "updating remote repo URL: {url} -> {remote_url}"
+
+#. src/one_dragon/envs/git_service.py:1796
+msgid "更新远程仓库地址失败"
+msgstr "failed to update remote repo URL"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:858
+#, python-brace-format
+msgid "最终选择明细 {selected_text}"
+msgstr "final selection details {selected_text}"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:404
+msgid "未初始化控制器"
+msgstr "controller not initialized"
+
+#. src/one_dragon/base/matcher/template_matcher.py:48
+#. src/one_dragon/base/matcher/template_matcher.py:114
+#, python-brace-format
+msgid "未加载模板 {template_id}"
+msgstr "template not loaded {template_id}"
+
+#. src/one_dragon/base/conditional_operation/operator.py:121
+msgid "未完成初始化 无法运行"
+msgstr "initialization incomplete, cannot run"
+
+#. src/one_dragon/launcher/runtime_launcher.py:40
+#. src/one_dragon/devtools/python_launcher.py:289
+msgid "未开启代码自动更新，跳过"
+msgstr "auto code update disabled, skipping"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:139
+msgid "未找到GPU执行提供程序，回退到CPU"
+msgstr "no GPU execution provider found, falling back to CPU"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:130
+msgid "未找到初始坐标，请检查路线配置"
+msgstr "initial coordinate not found, please check the route config"
+
+#. src/one_dragon_qt/view/installer_interface.py:322
+msgid "未找到可用的 ctx，无法打开帮助文档"
+msgstr "no usable ctx found, cannot open help docs"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:615
+msgid "未找到指定路线"
+msgstr "specified route not found"
+
+#. src/zzz_od/operation/compendium/compendium_choose_mission_type.py:116
+msgid "未找到有效的代理人头像，执行滑动操作"
+msgstr "no valid agent avatar found, swiping"
+
+#. src/one_dragon/launcher/application_launcher.py:69
+msgid "未找到有效的实例"
+msgstr "no valid instance found"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:180
+#, python-brace-format
+msgid "未找到目标传送点配置 {target_tp_name}"
+msgstr "target teleport point config not found {target_tp_name}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:290
+msgid "未有地图数据"
+msgstr "no map data"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:308
+msgid "未有地图数据 新建"
+msgstr "no map data, creating new"
+
+#. src/one_dragon/base/screen/screen_area.py:62
+#, python-format
+msgid "未知区域类型 %(v)s，已降级为 none"
+msgstr "unknown area type %(v)s, downgraded to none"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:132
+#, python-brace-format
+msgid "未知的 TargetCheckWay: {check_way} for state {state_name}"
+msgstr "unknown TargetCheckWay: {check_way} for state {state_name}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:258
+msgid "未能OCR识别到传送点名称"
+msgstr "OCR failed to recognize a teleport point name"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:92
+msgid "未识别到任何等级1或等级2的藏品，保留现有动态优先级"
+msgstr ""
+"no level-1 or level-2 artifact recognized, keeping current dynamic "
+"priorities"
+
+#. src/zzz_od/operation/compendium/coupon.py:48
+msgid "未识别到家政券数量"
+msgstr "housekeeping coupon count not recognized"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:132
+msgid "未读到剧变节点进度，尝试从 run_record 获取"
+msgstr "critical node progress not read, trying run_record"
+
+#. src/one_dragon_qt/widgets/setting_card/common_download_card.py:359
+#. src/one_dragon_qt/widgets/setting_card/common_download_card.py:377
+msgid "未选择资源"
+msgstr "no resource selected"
+
+#. src/one_dragon_qt/view/setting/setting_instance_interface.py:412
+msgid "未配置登录操作"
+msgstr "login operation not configured"
+
+#. src/one_dragon/envs/git_service.py:1191
+#, python-brace-format
+msgid "本地 Git 仓库重建失败，旧目录已保留: {message}"
+msgstr "local Git repo rebuild failed, old directory kept: {message}"
+
+#. src/one_dragon/envs/git_service.py:1193
+#, python-brace-format
+msgid "本地 Git 仓库重建完成，旧目录备份于: {backup_dir}"
+msgstr "local Git repo rebuilt, old directory backed up at: {backup_dir}"
+
+#. src/one_dragon/envs/git_service.py:1133
+msgid "本地 Git 仓库重建期间再次检测到损坏，停止重复重建"
+msgstr ""
+"corruption detected again during local Git repo rebuild, stopping repeated "
+"rebuilds"
+
+#. src/one_dragon/envs/git_service.py:1236
+msgid "本地 Git 元数据损坏，停止代码源回退"
+msgstr "local Git metadata corrupted, stopping code-source fallback"
+
+#. src/one_dragon/envs/git_service.py:1145
+#, python-brace-format
+msgid "本地 Git 目录不存在，无法备份: {git_dir}"
+msgstr "local Git directory does not exist, cannot back up: {git_dir}"
+
+#. src/one_dragon/envs/git_service.py:1537
+#, python-brace-format
+msgid "本地代码已是最新: {v}"
+msgstr "local code is up to date: {v}"
+
+#. src/one_dragon/envs/git_service.py:1564
+#, python-brace-format
+msgid "本地代码无法快进且未开启强制更新: {v} -> {v_2}"
+msgstr ""
+"local code cannot fast-forward and force update is disabled: {v} -> {v_2}"
+
+#. src/one_dragon/envs/git_service.py:1131
+#. src/one_dragon/envs/git_service.py:1257
+#. src/one_dragon/envs/git_service.py:1252
+msgid "本地代码更新失败"
+msgstr "local code update failed"
+
+#. src/one_dragon/envs/git_service.py:1194
+msgid "本地代码更新完成"
+msgstr "local code update complete"
+
+#. src/one_dragon/envs/git_service.py:1503
+#, python-brace-format
+msgid "本地和远程都不存在分支 {branch_name}"
+msgstr "branch {branch_name} exists neither locally nor remotely"
+
+#. src/zzz_od/hollow_zero/hollow_battle.py:143
+#, python-format
+msgid "本次脱困方向 %(v)s"
+msgstr "current unstuck direction %(v)s"
+
+#. src/zzz_od/operation/battle/withered_domain.py:185
+#, python-brace-format
+msgid "本次脱困方向 {stuck_move_direction}"
+msgstr "current unstuck direction {stuck_move_direction}"
+
+#. src/zzz_od/application/game_config_checker/mouse_sensitivity_checker/mouse_sensitivity_checker.py:61
+#, python-brace-format
+msgid "本次角度偏移 {angle_diff:.2f}"
+msgstr "current angle offset {angle_diff:.2f}"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:1198
+msgid "松开所有按键"
+msgstr "released all keys"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:200
+msgid "构建 macOS ScreenCaptureKit 音频库失败"
+msgstr "failed to build the macOS ScreenCaptureKit audio library"
+
+#. src/one_dragon_qt/services/resource_update_coordinator.py:274
+#, python-brace-format
+msgid "构造资源下载项失败: {check_id}"
+msgstr "failed to build resource download item: {check_id}"
+
+#. src/one_dragon/envs/git_service.py:523
+msgid "枚举对象:"
+msgstr "enumerating objects:"
+
+#. src/one_dragon/envs/git_service.py:1847
+#, python-brace-format
+msgid "标签查询使用代码源: {repository_name}"
+msgstr "tag query using code source: {repository_name}"
+
+#. src/one_dragon/envs/git_service.py:1624
+msgid "核对当前仓库"
+msgstr "checking current repo"
+
+#. src/one_dragon_qt/widgets/setting_card/code_editor_setting_card.py:319
+msgid "格式化 JSON 失败"
+msgstr "failed to format JSON"
+
+#. src/one_dragon/envs/git_service.py:1641
+msgid "检查工作区状态"
+msgstr "checking working tree status"
+
+#. src/one_dragon/envs/git_service.py:1467
+msgid "检查模块清单时出错，跳过检查"
+msgstr "error while checking module manifest, skipping check"
+
+#. src/one_dragon/envs/git_service.py:1469
+msgid "检查模块清单时出错，阻止代码更新"
+msgstr "error while checking module manifest, blocking code update"
+
+#. src/one_dragon/envs/git_service.py:1422
+#, python-brace-format
+msgid "检查模块清单时出错，阻止代码更新。目标: {v}"
+msgstr ""
+"error while checking module manifest, blocking code update. Target: {v}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:230
+#, python-brace-format
+msgid "检查第 {v}/{len} 个图标"
+msgstr "checking icon {v}/{len}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:271
+#, python-brace-format
+msgid "检查缓存文件时间失败: {e}"
+msgstr "failed to check cache file time: {e}"
+
+#. src/one_dragon/envs/git_service.py:1634
+#. src/one_dragon/envs/git_service.py:1594
+msgid "检查运行环境兼容性"
+msgstr "checking runtime environment compatibility"
+
+#. src/one_dragon/envs/git_service.py:1164
+#, python-brace-format
+msgid "检测到 origin 以外的远程仓库，暂不自动重建本地 Git 仓库: {extra_remotes}"
+msgstr ""
+"remotes other than origin detected, skipping automatic local Git repo "
+"rebuild: {extra_remotes}"
+
+#. src/zzz_od/operation/enter_game/switch_account.py:55
+#. src/zzz_od/operation/enter_game/enter_game.py:74
+msgid "检测到B服登录, 使用Bitblt截图方式"
+msgstr "B-server login detected, using Bitblt screenshot method"
+
+#. src/one_dragon/envs/git_service.py:1148
+msgid "检测到关联 worktree，暂不自动重建本地 Git 仓库"
+msgstr "linked worktree detected, skipping automatic local Git repo rebuild"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:934
+#, python-brace-format
+msgid "检测到前台角色 {agent_name} 终结技可用，增加状态[自定义-终结技被强制释放]"
+msgstr ""
+"on-field agent {agent_name} ultimate available, adding state [custom - "
+"ultimate force-released]"
+
+#. src/one_dragon/base/controller/pc_game_window.py:180
+msgid "检测到失效窗口句柄，重置缓存后重试"
+msgstr "stale window handle detected, retrying after resetting the cache"
+
+#. src/one_dragon/envs/python_service.py:121
+msgid "检测到已存在的环境压缩包，正在解压..."
+msgstr "existing environment archive detected, extracting..."
+
+#. src/zzz_od/application/zzz_application.py:51
+msgid "检测到当前处于登录画面，开始进入游戏"
+msgstr "login screen detected, entering the game"
+
+#. src/one_dragon/envs/git_service.py:1172
+#, python-brace-format
+msgid "检测到本地 Git 仓库损坏，备份旧 Git 目录: {git_dir} -> {backup_dir}"
+msgstr ""
+"local Git repo corruption detected, backing up old Git directory: {git_dir} "
+"-> {backup_dir}"
+
+#. src/one_dragon/envs/git_service.py:1253
+msgid "检测到本地 Git 仓库损坏，开始自动备份并重建本地 Git 仓库"
+msgstr ""
+"local Git repo corruption detected, automatically backing up and rebuilding "
+"the local Git repo"
+
+#. src/one_dragon/envs/git_service.py:1563
+#. src/one_dragon/envs/git_service.py:1349
+msgid "检测到程序文件有改动"
+msgstr "program file changes detected"
+
+#. src/one_dragon/envs/git_service.py:807
+#, python-brace-format
+msgid ""
+"检测到项目主分支 {primary_branch} 存在未声明历史缺口，已将 {boundary_oid} 记录为 shallow "
+"边界；如需完整历史，请执行 git fetch --unshallow {git_remote} {primary_branch}"
+msgstr ""
+"undeclared history gap detected on project primary branch {primary_branch}; "
+"{boundary_oid} recorded as the shallow boundary. For full history, run git "
+"fetch --unshallow {git_remote} {primary_branch}"
+
+#. src/one_dragon/envs/python_service.py:265
+msgid "检测当前 Python 版本"
+msgstr "checking current Python version"
+
+#. src/one_dragon/envs/python_service.py:250
+msgid "检测当前 UV 版本"
+msgstr "checking current UV version"
+
+#. src/one_dragon/envs/git_service.py:1707
+msgid "检测当前代码分支"
+msgstr "checking current code branch"
+
+#. src/one_dragon/envs/git_service.py:1729
+msgid "检测当前代码是否最新"
+msgstr "checking whether the code is up to date"
+
+#. src/one_dragon/envs/git_service.py:1340
+msgid "检测当前代码是否有修改"
+msgstr "checking whether the code has local changes"
+
+#. src/one_dragon/envs/git_service.py:1345
+msgid "检测当前代码是否有修改失败"
+msgstr "failed to check whether the code has local changes"
+
+#. src/one_dragon/envs/git_service.py:1346
+msgid "检测当前代码状态失败"
+msgstr "failed to check current code status"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:811
+msgid "检测连携条轮廓失败"
+msgstr "failed to detect the chain bar contour"
+
+#. src/one_dragon_qt/services/app_setting/app_setting_manager.py:252
+#, python-brace-format
+msgid "模块 {module_name} 中发现多个 AppSettingProvider: {names}，仅使用第一个"
+msgstr ""
+"multiple AppSettingProviders found in module {module_name}: {names}, using "
+"the first one only"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:45
+#, python-brace-format
+msgid "模型 {model_name} 未下载成功 请尝试更换代理下载"
+msgstr "model {model_name} was not downloaded, please try a different proxy"
+
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_app.py:203
+msgid "模型加载失败"
+msgstr "model load failed"
+
+#. src/one_dragon/utils/http_utils.py:80
+#, python-brace-format
+msgid "正在下载 {downloaded_mb:.2f} MB"
+msgstr "downloading {downloaded_mb:.2f} MB"
+
+#. src/one_dragon/utils/http_utils.py:77
+#, python-brace-format
+msgid "正在下载 {downloaded_mb:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)"
+msgstr ""
+"downloading {downloaded_mb:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)"
+
+#. src/one_dragon/envs/download_service.py:71
+#, python-brace-format
+msgid "正在下载 {file_name}..."
+msgstr "downloading {file_name}..."
+
+#. src/one_dragon/yolo/onnx_model_loader.py:98
+#, python-brace-format
+msgid ""
+"正在下载 {model_name}: {downloaded:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)"
+msgstr ""
+"downloading {model_name}: {downloaded:.2f}/{total_size_mb:.2f} MB "
+"({progress:.2f}%)"
+
+#. src/one_dragon/envs/python_service.py:82
+msgid "正在使用 UV 创建虚拟环境..."
+msgstr "creating virtual environment with UV..."
+
+#. src/one_dragon/envs/python_service.py:114
+msgid "正在使用 UV 安装依赖..."
+msgstr "installing dependencies with UV..."
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:222
+msgid "正在加载OCR模型"
+msgstr "loading OCR model"
+
+#. src/one_dragon_qt/widgets/setting_card/common_download_card.py:385
+msgid "正在取消下载..."
+msgstr "canceling download..."
+
+#. src/one_dragon/envs/python_service.py:43
+msgid "正在安装 UV..."
+msgstr "installing UV..."
+
+#. src/one_dragon/launcher/runtime_launcher.py:59
+msgid "正在检查代码更新..."
+msgstr "checking for code updates..."
+
+#. src/one_dragon/envs/python_service.py:216
+msgid "正在检查环境同步状态..."
+msgstr "checking environment sync status..."
+
+#. src/one_dragon/envs/python_service.py:284
+msgid "正在清理旧文件"
+msgstr "cleaning up old files"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:180
+#, python-brace-format
+msgid "正在清空 {len} 个状态..."
+msgstr "clearing {len} states..."
+
+#. src/one_dragon/envs/download_service.py:82
+#, python-brace-format
+msgid "正在解压 {file_name}..."
+msgstr "extracting {file_name}..."
+
+#. src/one_dragon/envs/python_service.py:314
+#, python-brace-format
+msgid "正在进行{log_prefix}测速..."
+msgstr "running {log_prefix}speed test..."
+
+#. src/one_dragon/utils/http_utils.py:136
+msgid "正在连接"
+msgstr "connecting"
+
+#. src/one_dragon/envs/git_service.py:313
+msgid "正式仓库对象目录不可用，降级为 shallow fetch"
+msgstr "main repo object directory unavailable, falling back to shallow fetch"
+
+#. src/one_dragon_qt/view/installer_interface.py:323
+msgid "步骤安装失败，已自动打开帮助文档"
+msgstr "step installation failed, help documentation opened automatically"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:344
+msgid "武备选择成功，已设置优先级更新标志"
+msgstr "gear selection succeeded, priority update flag set"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:381
+msgid "没有可保存的路线"
+msgstr "no route to save"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:395
+msgid "没有可删除的路线"
+msgstr "no route to delete"
+
+#. src/one_dragon/base/web/common_downloader.py:109
+msgid "没有可用的下载源"
+msgstr "no download source available"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_large_map_recorder_interface.py:474
+msgid "没有可编辑的图标"
+msgstr "no editable icons"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:43
+msgid "没有找到原始HDR设置"
+msgstr "no original HDR settings found"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:418
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:439
+msgid "没有正在编辑的路线"
+msgstr "no route is being edited"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:238
+msgid "派驻邦布持有数量已达上限，停止邦巢购买"
+msgstr "dispatched Bangboo holding cap reached, stopping Boo Box purchases"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/update_priority_operation.py:73
+msgid "流水线未识别到任何藏品，保留现有动态优先级"
+msgstr "pipeline recognized no artifacts, keeping current dynamic priorities"
+
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_app.py:420
+#, python-brace-format
+msgid "添加协战代理人属性武备至第一优先级: [{text}]"
+msgstr "adding co-battle agent attribute gear to first priority: [{text}]"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:357
+#, python-brace-format
+msgid "添加整个区域: {full_name} ({len}条路线)"
+msgstr "adding whole area: {full_name} ({len} routes)"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:342
+#, python-brace-format
+msgid "添加路线: {full_id}"
+msgstr "added route: {full_id}"
+
+#. src/one_dragon/envs/git_service.py:214
+#. src/one_dragon/envs/git_service.py:216
+#, python-brace-format
+msgid "清理 Git fetch 临时仓库失败: {temp_repo_dir}"
+msgstr "failed to clean Git fetch temp repo: {temp_repo_dir}"
+
+#. src/zzz_od/gui/view/home/home_interface.py:290
+#, python-brace-format
+msgid "清理临时文件失败: {cleanup_err}"
+msgstr "failed to clean temp files: {cleanup_err}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:308
+#. src/one_dragon/base/operation/application/plugin_import_service.py:646
+#, python-brace-format
+msgid "清理插件临时目录失败: {staging_dir}, {e}"
+msgstr "failed to clean plugin staging dir: {staging_dir}, {e}"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:875
+#, python-brace-format
+msgid "清理插件备份目录失败: {backup_dir}, {e}"
+msgstr "failed to clean plugin backup dir: {backup_dir}, {e}"
+
+#. src/one_dragon/envs/update_service.py:272
+msgid "清理旧启动器备份失败"
+msgstr "failed to clean old launcher backup"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:310
+#, python-format
+msgid "滚动位置不在游戏窗口区域 (%(v)s)"
+msgstr "scroll position is outside the game window area (%(v)s)"
+
+#. src/zzz_od/application/random_play/random_play_app.py:209
+msgid "滚动多次仍未找到, 选择默认位置"
+msgstr "still not found after multiple scrolls, selecting default position"
+
+#. src/one_dragon/base/controller/pc_game_window.py:147
+msgid "激活窗口失败"
+msgstr "failed to activate the window"
+
+#. src/one_dragon/utils/cv2_utils.py:1300
+#, python-format
+msgid "灰遮罩图片置信度 [%(v)2f]"
+msgstr "gray mask image confidence [%(v)2f]"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:80
+msgid "炸弹使用次数已达上限 炸不掉挡路的小怪 回退为战斗通过"
+msgstr ""
+"bomb usage limit reached, cannot bomb the blocking mobs, falling back to "
+"battle pass"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:247
+msgid "点击图标后未找到前往按钮"
+msgstr "go button not found after clicking the icon"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:207
+#, python-format
+msgid "点击非游戏窗口区域 (%(v)s)"
+msgstr "clicked outside the game window area (%(v)s)"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:248
+#, python-brace-format
+msgid "状态 {state_name} 需要CV流水线提供 mask_image 输出，但未找到。"
+msgstr ""
+"state {state_name} requires mask_image output from the CV pipeline, but it "
+"was not found."
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:327
+#, python-brace-format
+msgid ""
+"状态 {state_name}: OCR文本='{ocr_text}', 候选='{expected_texts}', "
+"最佳匹配='{best_match}', 分数={score:.2f} (阈值 {threshold})"
+msgstr ""
+"state {state_name}: OCR text='{ocr_text}', candidates='{expected_texts}', "
+"best match='{best_match}', score={score:.2f} (threshold {threshold})"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:244
+#, python-brace-format
+msgid "状态 {state_name}: 未找到轮廓"
+msgstr "state {state_name}: no contour found"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:292
+#, python-brace-format
+msgid "状态 {state_name}: 模板匹配无结果"
+msgstr "state {state_name}: template matching returned no result"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:296
+#, python-brace-format
+msgid "状态 {state_name}: 模板匹配置信度 {confidence:.4f} (阈值 {threshold})"
+msgstr ""
+"state {state_name}: template match confidence {confidence:.4f} (threshold "
+"{threshold})"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:100
+#, python-brace-format
+msgid "状态 {state_name}: 缺少模板名称"
+msgstr "state {state_name}: missing template name"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:254
+#, python-brace-format
+msgid "状态 {state_name}: 轮廓索引 {contour_index} 越界 (共 {len} 个轮廓)"
+msgstr ""
+"state {state_name}: contour index {contour_index} out of bounds ({len} "
+"contours total)"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:263
+#, python-brace-format
+msgid "状态 {state_name}: 遮罩宽度为0"
+msgstr "state {state_name}: mask width is 0"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:383
+msgid "独立模式截图失败"
+msgstr "standalone-mode screenshot failed"
+
+#. src/one_dragon/base/controller/pc_screenshot/gdi_screencapper_base.py:394
+msgid "独立模式资源释放失败"
+msgstr "standalone-mode resource release failed"
+
+#. src/one_dragon_qt/services/pip/pip_mode_manager.py:152
+msgid "画中画截图器初始化失败"
+msgstr "picture-in-picture screenshotter initialization failed"
+
+#. src/one_dragon_qt/services/pip/pip_capture_worker.py:42
+msgid "画中画截图失败"
+msgstr "picture-in-picture screenshot failed"
+
+#. src/one_dragon_qt/services/pip/pip_mode_manager.py:104
+msgid "画中画轮询异常"
+msgstr "picture-in-picture polling exception"
+
+#. src/one_dragon/base/screen/screen_loader.py:117
+#. src/one_dragon/base/screen/screen_loader.py:149
+#, python-brace-format
+msgid "画面ID冲突，已跳过: {screen_id}"
+msgstr "screen ID conflict, skipped: {screen_id}"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:225
+#, python-brace-format
+msgid "画面内发现 {len} 个传送点图标，开始逐个检查"
+msgstr "found {len} teleport point icons on screen, checking them one by one"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:220
+msgid "画面内无传送点图标，执行随机拖动"
+msgstr "no teleport point icon on screen, performing random drag"
+
+#. src/one_dragon/base/screen/screen_loader.py:114
+#. src/one_dragon/base/screen/screen_loader.py:146
+#, python-brace-format
+msgid "画面名称冲突，已跳过: {screen_name}"
+msgstr "screen name conflict, skipped: {screen_name}"
+
+#. src/one_dragon/base/screen/screen_loader.py:369
+#, python-format
+msgid "画面路径 %(v)s -> %(v_2)s 无法找到目标画面"
+msgstr "screen path %(v)s -> %(v_2)s cannot find the target screen"
+
+#. src/one_dragon/base/screen/screen_loader.py:365
+#, python-format
+msgid "画面路径没有初始化 %(v)s"
+msgstr "screen path not initialized %(v)s"
+
+#. src/one_dragon/base/screen/screen_loader.py:109
+#, python-brace-format
+msgid "画面配置格式错误，已跳过: {file_path}"
+msgstr "screen config malformed, skipped: {file_path}"
+
+#. src/one_dragon/base/web/zip_downloader.py:69
+msgid "疑似压缩包损毁 重新下载"
+msgstr "archive appears corrupted, re-downloading"
+
+#. src/zzz_od/operation/enter_game/enter_game.py:51
+msgid "登录信息未配置完整，跳过强制重新登录，将使用游戏当前登录状态"
+msgstr ""
+"login info is incomplete, skipping forced re-login and using the current "
+"game login state"
+
+#. src/one_dragon/base/operation/application/application_factory_manager.py:242
+#, python-brace-format
+msgid "目录 {parent_dir} 中发现多个{label}文件，已跳过: {names}"
+msgstr ""
+"multiple {label} files found in directory {parent_dir}, skipped: {names}"
+
+#. src/one_dragon/envs/git_service.py:1140
+#, python-brace-format
+msgid "目录 {repo_dir} 不是有效的 Git 仓库，无法备份"
+msgstr "directory {repo_dir} is not a valid Git repo, cannot back up"
+
+#. src/one_dragon/base/operation/application/plugin_import_service.py:627
+#, python-brace-format
+msgid "目录插件导入成功: {plugin_name}"
+msgstr "directory plugin imported: {plugin_name}"
+
+#. src/one_dragon/devtools/python_launcher.py:100
+msgid "目录核验通过"
+msgstr "directory verification passed"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:289
+#, python-brace-format
+msgid "目标位置：{target_tp_name}({x}, {y})"
+msgstr "target position: {target_tp_name}({x}, {y})"
+
+#. src/one_dragon/envs/git_service.py:1416
+#, python-brace-format
+msgid "目标版本模块清单读取失败，阻止代码更新。目标: {v}"
+msgstr ""
+"failed to read the target version's module manifest, blocking code update. "
+"Target: {v}"
+
+#. src/one_dragon/envs/git_service.py:1411
+#. src/one_dragon/envs/git_service.py:1417
+#. src/one_dragon/envs/git_service.py:1427
+msgid "目标版本的运行环境与当前不兼容"
+msgstr ""
+"the target version's runtime environment is incompatible with the current "
+"one"
+
+#. src/one_dragon/envs/git_service.py:1410
+#, python-brace-format
+msgid "目标版本缺少有效模块清单路径，阻止代码更新。目标: {v}"
+msgstr ""
+"the target version lacks a valid module manifest path, blocking code update."
+" Target: {v}"
+
+#. src/one_dragon_qt/widgets/notice_card.py:292
+#, python-brace-format
+msgid "相关文件已下载: {file_path}"
+msgstr "related files downloaded: {file_path}"
+
+#. src/one_dragon/base/matcher/ocr/onnx_ocr_matcher.py:378
+msgid "禁检测的OCR模型返回多个识别结果"
+msgstr "the detection-disabled OCR model returned multiple results"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_list_interface.py:390
+#, python-brace-format
+msgid "移除路线: {removed_item}"
+msgstr "removed route: {removed_item}"
+
+#. src/one_dragon/devtools/python_launcher.py:344
+#, python-brace-format
+msgid "程序已退出，状态码: {code}"
+msgstr "program exited, exit code: {code}"
+
+#. src/zzz_od/hollow_zero/hollow_map/hollow_zero_map_service.py:103
+#, python-format
+msgid "空洞地图识别 耗时 %(v).2f 秒"
+msgstr "Hollow map recognition took %(v).2f s"
+
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:171
+#, python-brace-format
+msgid "第 {current_round}/{total_rounds} 轮因界面消失静默失败终止任务 路线 {full_id}"
+msgstr ""
+"round {current_round}/{total_rounds} silently failed because the UI "
+"disappeared, aborting task for route {full_id}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:239
+#, python-brace-format
+msgid ""
+"第 {current_round}/{total_rounds} 轮耗时 {round_duration:.0f}s 最少占用 "
+"{loop_interval_seconds}s 将等待 {round_wait_seconds:.0f}s"
+msgstr ""
+"round {current_round}/{total_rounds} took {round_duration:.0f}s, minimum "
+"{loop_interval_seconds}s, waiting {round_wait_seconds:.0f}s"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:344
+#, python-brace-format
+msgid "第二张图新位置: ({second_image_x}, {second_image_y})"
+msgstr "second image new position: ({second_image_x}, {second_image_y})"
+
+#. src/one_dragon/devtools/python_launcher.py:282
+msgid "等待主界面弹出..."
+msgstr "waiting for the main UI to appear..."
+
+#. src/one_dragon/base/operation/application/application_run_context.py:483
+#, python-format
+msgid "等待应用 %(v)s 初始化超时"
+msgstr "timed out waiting for app %(v)s to initialize"
+
+#. src/one_dragon/base/operation/one_dragon_app.py:112
+msgid "等待游戏占用文件释放(10s)..."
+msgstr "waiting for game-held files to be released (10s)..."
+
+#. src/one_dragon/base/controller/pc_clipboard.py:107
+msgid "粘贴文字, 按下 V"
+msgstr "paste text, pressing V"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:104
+msgid "粘贴文字, 按下修饰键"
+msgstr "paste text, pressing modifier key"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:103
+msgid "粘贴文字, 按下粘贴快捷键"
+msgstr "paste text, pressing paste hotkey"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:92
+msgid "粘贴文字, 查找剪切板"
+msgstr "paste text, checking clipboard"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:95
+#, python-brace-format
+msgid "粘贴文字, 获取到:{mask_text}"
+msgstr "paste text, got: {mask_text}"
+
+#. src/one_dragon/base/controller/pc_clipboard.py:110
+msgid "粘贴文字, 释放 V"
+msgstr "paste text, releasing V"
+
+#. src/one_dragon_qt/widgets/setting_card/code_editor_setting_card.py:332
+msgid "紧凑化 JSON 失败"
+msgstr "failed to compact JSON"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:57
+#, python-brace-format
+msgid "终点被 [{entry_name}] 挡住 使用炸弹"
+msgstr "destination blocked by [{entry_name}], using a bomb"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:54
+#, python-brace-format
+msgid "终点被 [{entry_name}] 挡住 先前往它旁边的格子"
+msgstr ""
+"destination blocked by [{entry_name}], moving to the adjacent cell first"
+
+#. src/one_dragon/envs/git_service.py:524
+msgid "统计对象:"
+msgstr "counting objects:"
+
+#. src/one_dragon/launcher/runtime_launcher.py:73
+#. src/one_dragon/devtools/python_launcher.py:302
+msgid "继续使用内置版本"
+msgstr "continuing with the built-in version"
+
+#. src/one_dragon/launcher/runtime_launcher.py:71
+#. src/one_dragon/launcher/runtime_launcher.py:79
+#. src/one_dragon/launcher/runtime_launcher.py:81
+msgid "继续使用当前版本"
+msgstr "continuing with the current version"
+
+#. src/one_dragon_qt/widgets/notice_card.py:260
+#, python-brace-format
+msgid "缓存目录已确保存在: {CACHE_DIR}"
+msgstr "cache directory ensured: {CACHE_DIR}"
+
+#. src/zzz_od/application/game_config_checker/predefined_team_checker/predefined_team_checker.py:120
+#, python-format
+msgid "编队序号:%(v)d 当前名称:%(v_2)s 识别代理人:%(v_3)s"
+msgstr "team index:%(v)d current name:%(v_2)s recognized agents:%(v_3)s"
+
+#. src/zzz_od/application/world_patrol/operation/world_patrol_run_route.py:216
+msgid "缺少大地图数据，无法计算坐标"
+msgstr "missing big map data, cannot compute coordinates"
+
+#. src/one_dragon/base/push/channel/webhook.py:180
+msgid "网络请求异常"
+msgstr "network request exception"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:297
+#, python-brace-format
+msgid "自动加载地图成功: {full_name}"
+msgstr "map auto-loaded: {full_name}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:348
+#, python-brace-format
+msgid "自动匹配失败: {str}"
+msgstr "auto match failed: {str}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:343
+#, python-brace-format
+msgid "自动匹配完成，调整偏移: ({match_offset_x}, {match_offset_y})"
+msgstr ""
+"auto match complete, adjusted offset: ({match_offset_x}, {match_offset_y})"
+
+#. src/zzz_od/auto_battle/auto_battle_operator.py:119
+msgid "自动战斗初始化失败 如果是共享配队文件请在群内提醒对应作者修复"
+msgstr ""
+"auto-battle initialization failed; if this is a shared team file, please "
+"remind its author in the group to fix it"
+
+#. src/zzz_od/auto_battle/auto_battle_operator.py:44
+#, python-brace-format
+msgid "自动战斗配置 {original_file_path} 不存在，回退到 {FALLBACK_TEMPLATE_NAME}"
+msgstr ""
+"auto-battle config {original_file_path} missing, falling back to "
+"{FALLBACK_TEMPLATE_NAME}"
+
+#. src/zzz_od/auto_battle/auto_battle_operator.py:116
+#, python-brace-format
+msgid "自动战斗配置加载成功 {get_template_name}"
+msgstr "auto-battle config loaded {get_template_name}"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:284
+#, python-brace-format
+msgid "自动拼接位置: ({second_image_x}, {second_image_y})"
+msgstr "auto-stitched position: ({second_image_x}, {second_image_y})"
+
+#. src/one_dragon/envs/ghproxy_service.py:36
+#. src/one_dragon/envs/ghproxy_service.py:42
+#. src/one_dragon/envs/ghproxy_service.py:30
+msgid "自动获取免费代理地址失败"
+msgstr "failed to auto-fetch a free proxy address"
+
+#. src/one_dragon/envs/ghproxy_service.py:56
+#, python-format
+msgid "自动获取免费代理地址失败 提取域名不合法 %(v)s"
+msgstr ""
+"failed to auto-fetch a free proxy address, extracted domain invalid %(v)s"
+
+#. src/one_dragon/envs/ghproxy_service.py:47
+msgid "自动获取免费代理地址失败 有多个 <a href> 标签"
+msgstr ""
+"failed to auto-fetch a free proxy address, multiple <a href> tags found"
+
+#. src/one_dragon/envs/ghproxy_service.py:59
+#, python-format
+msgid "自动获取免费代理地址成功 %(v)s"
+msgstr "free proxy address fetched %(v)s"
+
+#. src/zzz_od/application/commission_assistant/commission_assistant_app.py:454
+msgid "节点 委托助手 -> 剧情模式 返回状态点击跳过键"
+msgstr "node Commission Assistant -> Story Mode returned status: clicked skip"
+
+#. src/one_dragon/devtools/python_launcher.py:107
+msgid "获取 UV 路径失败，请运行安装程序。"
+msgstr "failed to get the UV path, please run the installer."
+
+#. src/one_dragon/utils/gpu_executor.py:61
+msgid "获取ONNX Runtime执行提供程序失败，将保守串行化执行"
+msgstr ""
+"failed to get ONNX Runtime execution providers, will conservatively "
+"serialize execution"
+
+#, python-brace-format
+msgid "获取commit 第{v}页"
+msgstr "fetching commits page {v}"
+
+#. src/one_dragon/envs/git_service.py:1751
+msgid "获取commit总数"
+msgstr "fetching commit count"
+
+#. src/one_dragon/envs/git_service.py:1367
+msgid "获取commit遍历器失败"
+msgstr "failed to get commit walker"
+
+#. src/one_dragon/base/push/channel/work_weixin_app.py:114
+msgid "获取企业微信应用 Access Token 请求异常"
+msgstr "WeCom app access token request exception"
+
+#. src/zzz_od/application/hollow_zero/lost_void/context/lost_void_context.py:462
+#, python-brace-format
+msgid "获取区域失败 screen={screen_name} area=区域-藏品名称 err={e}"
+msgstr ""
+"failed to get area screen={screen_name} area=area-artifact-name err={e}"
+
+#. src/one_dragon_qt/widgets/download_card/launcher_download_card.py:47
+msgid "获取启动器版本信息失败"
+msgstr "failed to get launcher version info"
+
+#. src/one_dragon/envs/git_service.py:1713
+msgid "获取当前分支失败"
+msgstr "failed to get current branch"
+
+#. src/one_dragon/envs/update_service.py:73
+msgid "获取最新启动器版本失败"
+msgstr "failed to get the latest launcher version"
+
+#. src/one_dragon/envs/git_service.py:1855
+msgid "获取最新标签失败"
+msgstr "failed to get the latest tag"
+
+#. src/one_dragon/envs/git_service.py:1317
+msgid "获取本地提交信息失败"
+msgstr "failed to get local commit info"
+
+#. src/one_dragon/envs/python_service.py:239
+msgid "获取系统环境变量中的 UV"
+msgstr "getting UV from system environment variables"
+
+#. src/one_dragon/envs/git_service.py:1332
+msgid "获取远程提交信息失败"
+msgstr "failed to get remote commit info"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:195
+msgid "藏品选择成功，已设置优先级更新标志"
+msgstr "artifact selection succeeded, priority update flag set"
+
+#. src/one_dragon/envs/download_service.py:107
+msgid "解压失败"
+msgstr "extraction failed"
+
+#. src/one_dragon/envs/download_service.py:107
+msgid "解压失败 准备重试"
+msgstr "extraction failed, preparing to retry"
+
+#. src/one_dragon/yolo/onnx_model_loader.py:123
+#, python-format
+msgid "解压完成 %(zip_file_path)s"
+msgstr "extraction complete %(zip_file_path)s"
+
+#. src/one_dragon/base/web/zip_downloader.py:96
+#, python-brace-format
+msgid "解压完成 {zip_file_path} 到 {unzip_dir}"
+msgstr "extraction complete {zip_file_path} to {unzip_dir}"
+
+#. src/one_dragon/envs/download_service.py:96
+msgid "解压成功"
+msgstr "extracted successfully"
+
+#. src/one_dragon/envs/python_service.py:126
+msgid "解压环境包成功，正在安装运行依赖..."
+msgstr "environment package extracted, installing runtime dependencies..."
+
+#. src/one_dragon_qt/view/devtools/devtools_screen_manage_interface.py:958
+#. src/one_dragon_qt/view/devtools/devtools_screen_manage_interface.py:1029
+msgid "解析失败"
+msgstr "parse failed"
+
+#. src/one_dragon/envs/git_service.py:1811
+msgid "解析提交ID失败"
+msgstr "failed to parse commit ID"
+
+#. src/one_dragon/envs/git_service.py:1810
+#, python-brace-format
+msgid "解析提交ID失败: {commit_id}"
+msgstr "failed to parse commit ID: {commit_id}"
+
+#. src/zzz_od/auto_battle/target_state/target_state_checker.py:277
+#, python-brace-format
+msgid "计算轮廓宽度与遮罩宽度比率时出错: {e}"
+msgstr "error computing the contour-width to mask-width ratio: {e}"
+
+#. src/one_dragon/envs/git_service.py:1269
+msgid "记录上次成功代码源失败"
+msgstr "failed to record the last successful code source"
+
+#. src/zzz_od/application/world_patrol/operation/transport_by_3d_map.py:283
+#, python-brace-format
+msgid "记录导航参考点：{icon_name}({x}, {y})"
+msgstr "recorded navigation reference point: {icon_name}({x}, {y})"
+
+#. src/zzz_od/operation/enter_game/auto_hdr.py:52
+#, python-format
+msgid "设置注册表失败: %(v)s"
+msgstr "failed to set registry: %(v)s"
+
+#. src/zzz_od/hollow_zero/event/hollow_event_utils.py:201
+#, python-format
+msgid "识别事件无选项 %(v)s"
+msgstr "recognized event has no options %(v)s"
+
+#. src/zzz_od/hollow_zero/event/hollow_event_utils.py:198
+#, python-format
+msgid "识别事件选项 %(v)s"
+msgstr "recognized event options %(v)s"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:863
+msgid "识别切换后援失败"
+msgstr "failed to recognize support switch"
+
+#. src/zzz_od/hollow_zero/event/bangboo_plugin.py:94
+#, python-brace-format
+msgid "识别到插件槽位 {len} 个"
+msgstr "recognized {len} plugin slots"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_pawnshop.py:205
+#, python-format
+msgid "识别商品列表: %(v)s"
+msgstr "recognized product list: %(v)s"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:841
+msgid "识别快速支援失败"
+msgstr "failed to recognize quick assist"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:1013
+msgid "识别战斗结束失败"
+msgstr "failed to recognize battle end"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:1129
+#, python-format
+msgid "识别按键禁用状态失败 %(v)s"
+msgstr "failed to recognize key disabled state %(v)s"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1203
+msgid "识别正在交互"
+msgstr "recognized ongoing interaction"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:411
+msgid "识别画面角色失败"
+msgstr "failed to recognize on-screen agents"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:497
+msgid "识别画面闪光失败"
+msgstr "failed to recognize screen flash"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:473
+#. src/zzz_od/application/hollow_zero/withered_domain/withered_domain_context.py:557
+msgid "识别角色头像失败"
+msgstr "failed to recognize agent avatar"
+
+#. src/zzz_od/auto_battle/auto_battle_agent_context.py:566
+msgid "识别角色状态失败"
+msgstr "failed to recognize agent status"
+
+#. src/zzz_od/operation/compendium/notorious_hunt_move.py:87
+#, python-brace-format
+msgid "识别距离: {current_distance}"
+msgstr "recognized distance: {current_distance}"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:1030
+msgid "识别距离失败"
+msgstr "failed to recognize distance"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:672
+msgid "识别连携技出错"
+msgstr "chain attack recognition error"
+
+#. src/zzz_od/auto_battle/auto_battle_context.py:700
+msgid "识别连携技角色头像失败"
+msgstr "failed to recognize chain attack agent avatar"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:536
+msgid "识别闪避声音失败"
+msgstr "failed to recognize dodge sound"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:586
+msgid "请先新建路线"
+msgstr "please create a route first"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:401
+msgid "请先结束其他运行中的功能 再启动"
+msgstr "please stop other running features first, then start"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:358
+msgid "请先选择传送点"
+msgstr "please select a teleport point first"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:354
+msgid "请先选择区域"
+msgstr "please select an area first"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:658
+msgid "请先选择路线"
+msgstr "please select a route first"
+
+#. src/one_dragon/launcher/runtime_launcher.py:86
+#. src/one_dragon/devtools/python_launcher.py:311
+msgid "请查看日志后重试"
+msgstr "please check the logs and retry"
+
+#. src/one_dragon/launcher/runtime_launcher.py:76
+msgid "请稍后重试或切换代码源"
+msgstr "please retry later or switch the code source"
+
+#. src/one_dragon/launcher/runtime_launcher.py:83
+#. src/one_dragon/devtools/python_launcher.py:308
+msgid "请重新运行启动器；仍然失败时请重新安装"
+msgstr "please rerun the launcher; if it still fails, reinstall"
+
+#. src/one_dragon/envs/python_service.py:182
+#. src/one_dragon/envs/python_service.py:183
+msgid "读取 uv.lock 失败"
+msgstr "failed to read uv.lock"
+
+#. src/zzz_od/gui/view/devtools/agent_template_generator_interface.py:355
+msgid "读取已提交的代理人模板失败"
+msgstr "failed to read the committed agent template"
+
+#. src/one_dragon/base/operation/application/plugin_market.py:249
+#, python-brace-format
+msgid "读取插件市场缓存失败: {exc}"
+msgstr "failed to read plugin market cache: {exc}"
+
+#. src/one_dragon/envs/runtime_compatibility.py:25
+msgid "读取本地模块清单失败，跳过检查"
+msgstr "failed to read local module manifest, skipping check"
+
+#. src/one_dragon_qt/widgets/notice_card.py:251
+#, python-brace-format
+msgid "读取缓存文件失败: {cache_error}"
+msgstr "failed to read cache file: {cache_error}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:48
+msgid "调试异常"
+msgstr "debug exception"
+
+#. src/one_dragon/base/operation/one_dragon_context.py:588
+msgid "资源下载确认超时，已取消本次下载"
+msgstr ""
+"resource download confirmation timed out, this download has been canceled"
+
+#. src/one_dragon_qt/services/resource_update_coordinator.py:62
+#, python-brace-format
+msgid "资源更新检查失败: {check_id}"
+msgstr "resource update check failed: {check_id}"
+
+#. src/one_dragon/devtools/python_launcher.py:98
+msgid "路径中存在空格"
+msgstr "the path contains spaces"
+
+#. src/one_dragon/devtools/python_launcher.py:95
+msgid "路径包含中文字符"
+msgstr "the path contains Chinese characters"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:443
+msgid "路线中没有可回退的操作"
+msgstr "no undoable operations in the route"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:390
+msgid "路线保存失败"
+msgstr "failed to save the route"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:386
+#, python-brace-format
+msgid "路线保存成功: {tp_name}"
+msgstr "route saved: {tp_name}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:372
+#, python-brace-format
+msgid "路线列表文件不存在: {filename}"
+msgstr "route list file does not exist: {filename}"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_route_recorder_interface.py:680
+#, python-brace-format
+msgid "路线操作已更新，当前操作数: {len}"
+msgstr "route operations updated, current op count: {len}"
+
+#. src/zzz_od/application/world_patrol/world_patrol_service.py:314
+#, python-brace-format
+msgid "路线文件不存在: {filename}"
+msgstr "route file does not exist: {filename}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_move_by_det.py:430
+#, python-brace-format
+msgid ""
+"转向指令: X={turn_distance_x}, Y={turn_distance_y}, 当前X比例: "
+"{estimated_turn_ratio:.4f}, 移动中: {is_moving}, 校准轴: {calibration_axis}"
+msgstr ""
+"turn command: X={turn_distance_x}, Y={turn_distance_y}, current X ratio: "
+"{estimated_turn_ratio:.4f}, moving: {is_moving}, calibration axis: "
+"{calibration_axis}"
+
+#. src/zzz_od/application/game_config_checker/mouse_sensitivity_checker/mouse_sensitivity_checker.py:84
+#, python-brace-format
+msgid "转向系数 turn_dx={dx:.6f}"
+msgstr "turn coefficient turn_dx={dx:.6f}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:159
+#, python-brace-format
+msgid ""
+"达到最大刷新次数限制({max_refresh_count}) - 购买邦布数量: {bought_count}, 刷新次数: "
+"{refresh_count}"
+msgstr ""
+"max refresh count reached ({max_refresh_count}) - Bangboo bought: "
+"{bought_count}, refreshes: {refresh_count}"
+
+#. src/one_dragon/envs/python_service.py:147
+msgid "运行依赖安装失败"
+msgstr "runtime dependency installation failed"
+
+#. src/one_dragon/envs/python_service.py:147
+msgid "运行依赖安装成功"
+msgstr "runtime dependencies installed"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:415
+msgid "运行前初始化失败"
+msgstr "pre-run initialization failed"
+
+#. src/one_dragon/base/operation/application/application_run_context.py:527
+#, python-format
+msgid "运行应用 %(v)s 失败"
+msgstr "failed to run app %(v)s"
+
+#. src/one_dragon/envs/git_service.py:1426
+#, python-brace-format
+msgid "运行环境不兼容，阻止代码更新。目标: {v}"
+msgstr "runtime environment incompatible, blocking code update. Target: {v}"
+
+#. src/one_dragon/envs/python_service.py:202
+msgid "运行环境同步失败"
+msgstr "runtime environment sync failed"
+
+#. src/one_dragon/envs/python_service.py:204
+msgid "运行环境同步完成"
+msgstr "runtime environment sync complete"
+
+#. src/one_dragon/envs/python_service.py:173
+msgid "运行环境已同步"
+msgstr "runtime environment is synced"
+
+#. src/zzz_od/gui/view/world_patrol/world_patrol_setting_interface.py:205
+msgid "运行记录未初始化"
+msgstr "run record not initialized"
+
+#. src/one_dragon/envs/git_service.py:1272
+#, python-brace-format
+msgid "远程代码拉取成功，实际代码源: {used_repository_name}"
+msgstr "remote code pulled, actual code source: {used_repository_name}"
+
+#. src/one_dragon/envs/git_service.py:1325
+#, python-brace-format
+msgid "远程分支不存在: {remote_branch_name}"
+msgstr "remote branch does not exist: {remote_branch_name}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:430
+msgid "追加代理人类型优先级前，强制刷新一次战斗上下文队伍信息"
+msgstr ""
+"force-refreshing battle-context team info once before appending agent-type "
+"priorities"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:342
+msgid "选择决策 | can_choose兜底 | 结果=候选耗尽仍未达到目标数量"
+msgstr ""
+"selection decision | can_choose fallback | result=candidates exhausted "
+"before reaching target count"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:312
+msgid "选择决策 | can_choose兜底 | 结果=已达到目标数量"
+msgstr ""
+"selection decision | can_choose fallback | result=target count reached"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:339
+msgid "选择决策 | can_choose兜底 | 结果=点击后已达到目标数量"
+msgstr ""
+"selection decision | can_choose fallback | result=target count reached after"
+" click"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:137
+#, python-brace-format
+msgid "选择决策 | 常规层 | 动作=点击 目标={display_name} 坐标=({x},{y})"
+msgstr ""
+"selection decision | regular layer | action=click target={display_name} "
+"coord=({x},{y})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:125
+#, python-brace-format
+msgid "选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} 可选={len} 结果=无候选 下一步=答题兜底"
+msgstr ""
+"selection decision | regular layer | need={target_num} chosen={chosen_cnt} "
+"available={len} result=no candidates next=quiz fallback"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:133
+#, python-brace-format
+msgid ""
+"选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} 还需={remain_cnt} 可选={len} "
+"NEW={new_text} 优先级={priority_text} 合并={merged_text}"
+msgstr ""
+"selection decision | regular layer | need={target_num} chosen={chosen_cnt} "
+"remaining={remain_cnt} available={len} NEW={new_text} "
+"priorities={priority_text} merged={merged_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:582
+#, python-brace-format
+msgid ""
+"选择决策 | 标题 | OCR={v} 规则={matched_rule} 需选={to_choose_num} "
+"藏品={to_choose_artifact} 武备={to_choose_gear} 分支={to_choose_gear_branch}"
+msgstr ""
+"selection decision | title | OCR={v} rule={matched_rule} "
+"need={to_choose_num} artifacts={to_choose_artifact} gear={to_choose_gear} "
+"branch={to_choose_gear_branch}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:54
+#, python-brace-format
+msgid "选择决策 | 概览 | 需选={to_choose_num} 已选={chosen_cnt} 可选={len}"
+msgstr ""
+"selection decision | overview | need={to_choose_num} chosen={chosen_cnt} "
+"available={len}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:296
+msgid "选择决策 | 盲点兜底 | 结果=两轮结束仍未命中"
+msgstr ""
+"selection decision | blind-spot fallback | result=no hit after two rounds"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:268
+msgid "选择决策 | 盲点兜底 | 结果=未识别到名称文本块"
+msgstr ""
+"selection decision | blind-spot fallback | result=no name text block "
+"recognized"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:271
+#, python-brace-format
+msgid "选择决策 | 盲点兜底 | 阶段=第一轮 文本块数={len}"
+msgstr ""
+"selection decision | blind-spot fallback | stage=round 1 text blocks={len}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:278
+#, python-brace-format
+msgid "选择决策 | 盲点兜底 | 阶段=第一轮 结果=命中同流派武备 序号={v}/{len}"
+msgstr ""
+"selection decision | blind-spot fallback | stage=round 1 result=hit same-"
+"style gear index={v}/{len}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:281
+#, python-brace-format
+msgid "选择决策 | 盲点兜底 | 阶段=第二轮 文本块数={len}"
+msgstr ""
+"selection decision | blind-spot fallback | stage=round 2 text blocks={len}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:288
+#, python-brace-format
+msgid "选择决策 | 盲点兜底 | 阶段=第二轮 结果=命中已选择 序号={v}/{len}"
+msgstr ""
+"selection decision | blind-spot fallback | stage=round 2 result=hit already-"
+"chosen index={v}/{len}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:293
+msgid "选择决策 | 盲点兜底 | 阶段=第二轮 结果=结束后检测到已选择"
+msgstr ""
+"selection decision | blind-spot fallback | stage=round 2 result=already-"
+"chosen detected after the end"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:240
+#, python-brace-format
+msgid "选择决策 | 答题兜底 | 动作=点击 目标={display_name} 坐标=({x},{y})"
+msgstr ""
+"selection decision | quiz fallback | action=click target={display_name} "
+"coord=({x},{y})"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:213
+msgid "选择决策 | 答题兜底 | 结果=已满足目标数量"
+msgstr "selection decision | quiz fallback | result=target count satisfied"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:237
+msgid "选择决策 | 答题兜底 | 结果=无命中 下一步=盲点兜底"
+msgstr ""
+"selection decision | quiz fallback | result=no hit next=blind-spot fallback"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:250
+msgid "选择决策 | 答题兜底 | 结果=点击后已满足目标数量"
+msgstr ""
+"selection decision | quiz fallback | result=target count satisfied after "
+"click"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:222
+#, python-brace-format
+msgid ""
+"选择决策 | 答题兜底 | 需选={target_num} 已选={chosen_cnt} 候选数={len} 候选={candidate_text}"
+msgstr ""
+"selection decision | quiz fallback | need={target_num} chosen={chosen_cnt} "
+"candidates={len} candidates={candidate_text}"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:269
+#, python-format
+msgid "选择房间: %(v)s"
+msgstr "choosing room: %(v)s"
+
+#. src/one_dragon/envs/python_service.py:365
+#, python-brace-format
+msgid "选择最优{log_prefix} {label}"
+msgstr "selected best {log_prefix}{label}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:456
+#, python-brace-format
+msgid "选择识别 | 可选 | 数量={len} 候选={can_choose_text}"
+msgstr ""
+"selection recognition | selectable | count={len} "
+"candidates={can_choose_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_common.py:460
+#, python-brace-format
+msgid "选择识别 | 已选 | 数量={len} 候选={chosen_text}"
+msgstr "selection recognition | chosen | count={len} candidates={chosen_text}"
+
+#. src/one_dragon_qt/view/devtools/devtools_template_helper_interface.py:635
+#. src/one_dragon_qt/view/devtools/devtools_screen_manage_interface.py:676
+#. src/one_dragon_qt/view/devtools/devtools_screen_manage_interface.py:744
+#, python-format
+msgid "选择路径 %(v)s"
+msgstr "selected path %(v)s"
+
+#, python-brace-format
+msgid "选择路径 {file_path}"
+msgstr "selected path {file_path}"
+
+#, python-brace-format
+msgid "选择路径 {norm_path}"
+msgstr "selected path {norm_path}"
+
+#. src/zzz_od/hollow_zero/hollow_quick_runner.py:72
+#, python-brace-format
+msgid "速刷地图 层={level} 阶段={phase} 目标=[{entry_name}] {summary}"
+msgstr ""
+"speed-farm map floor={level} phase={phase} target=[{entry_name}] {summary}"
+
+#. src/zzz_od/application/suibian_temple/operations/suibian_temple_boo_box.py:154
+#, python-brace-format
+msgid "邦巢购买完成 - 购买邦布数量: {bought_count}, 刷新次数: {refresh_count}"
+msgstr ""
+"Boo Box purchase complete - Bangboo bought: {bought_count}, refreshes: "
+"{refresh_count}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_bangboo_store.py:157
+#, python-brace-format
+msgid "邦布商店 第{round_num}轮 | 规则 | {level_text} 放弃组={abandon_text}"
+msgstr ""
+"Bangboo store round {round_num} | rule | {level_text} abandon "
+"group={abandon_text}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_bangboo_store.py:121
+#, python-brace-format
+msgid "邦布商店 第{v}轮 | 结果 | 未选中可购买藏品 下一步=刷新"
+msgstr ""
+"Bangboo store round {v} | result | no purchasable artifact selected "
+"next=refresh"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_bangboo_store.py:136
+#, python-brace-format
+msgid "邦布商店 第{v}轮 | 结果 | 购买 {display_name}"
+msgstr "Bangboo store round {v} | result | bought {display_name}"
+
+#. src/zzz_od/hollow_zero/hollow_zero_challenge_config.py:190
+#. src/zzz_od/application/hollow_zero/lost_void/lost_void_challenge_config.py:311
+#, python-format
+msgid "配置文件读取错误 跳过 %(v)s"
+msgstr "config file read error, skipping %(v)s"
+
+#. src/one_dragon_qt/app/devtools/image_stitching_interface.py:317
+#, python-brace-format
+msgid "重叠比例设置为: 宽度{value}%, 高度{value_2}%"
+msgstr "overlap ratio set to: width {value}%, height {value_2}%"
+
+#. src/one_dragon/envs/update_service.py:334
+#, python-brace-format
+msgid "重命名目录失败，释放文件句柄后重试: {name} -> {name_2} {error}"
+msgstr ""
+"failed to rename directory, retrying after releasing file handles: {name} ->"
+" {name_2} {error}"
+
+#. src/one_dragon_qt/services/app_setting/app_setting_manager.py:212
+#, python-brace-format
+msgid "重复的应用设置 app_id '{app_id}'，跳过: {setting_file}"
+msgstr "duplicate app settings app_id '{app_id}', skipped: {setting_file}"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/interact/lost_void_choose_gear.py:75
+#, python-brace-format
+msgid "重复进入已完成选择的武备画面 直接返回 首个武备={first_name}"
+msgstr ""
+"re-entered an already-selected gear screen, returning directly "
+"first_gear={first_name}"
+
+#. src/one_dragon/envs/git_service.py:1303
+#, python-brace-format
+msgid "重置到提交 {target_id} 失败"
+msgstr "failed to reset to commit {target_id}"
+
+#. src/one_dragon/envs/git_service.py:1528
+msgid "重置到远程提交失败"
+msgstr "failed to reset to the remote commit"
+
+#. src/one_dragon/envs/git_service.py:1525
+#, python-brace-format
+msgid "重置到远程提交成功: {v}"
+msgstr "reset to the remote commit succeeded: {v}"
+
+#. src/zzz_od/gui/view/hollow_zero/hollow_eval_speed_setting_interface.py:145
+#. src/zzz_od/gui/view/hollow_zero/withered_domain_setting_interface.py:197
+#. src/zzz_od/gui/view/hollow_zero/lost_void_setting_interface.py:190
+msgid "重置成功"
+msgstr "reset succeeded"
+
+#. src/zzz_od/application/hollow_zero/lost_void/operation/lost_void_run_level.py:1293
+msgid "重试次数已达上限，准备退出挑战"
+msgstr "retry limit reached, exiting the challenge"
+
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:230
+#, python-brace-format
+msgid "锄大地全部循环已完成 共 {total_rounds} 轮"
+msgstr "all world patrol loops complete, {total_rounds} rounds total"
+
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:85
+#. src/zzz_od/application/world_patrol/world_patrol_app.py:223
+#, python-brace-format
+msgid "锄大地当日已完成 {completed_rounds}/{total_rounds} 轮，无需再跑"
+msgstr ""
+"world patrol already completed {completed_rounds}/{total_rounds} rounds "
+"today, no need to run again"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:223
+#, python-format
+msgid "阶段 %(v)d"
+msgstr "stage %(v)d"
+
+#. src/zzz_od/application/shiyu_defense/shiyu_defense_app.py:249
+#, python-format
+msgid "阶段 %(v)d 配队:%(v_2)s 自动战斗:%(v_3)s"
+msgstr "stage %(v)d team:%(v_2)s auto battle:%(v_3)s"
+
+#. src/one_dragon/envs/update_service.py:252
+msgid "集成启动器更新完成 备份将在下次启动时清理"
+msgstr ""
+"integrated launcher update complete, backup will be cleaned on next launch"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:123
+msgid "音频录制异常，已停止声音闪避识别"
+msgstr "audio recording error, sound-based dodge detection stopped"
+
+#. src/zzz_od/operation/choose_predefined_team.py:317
+#, python-format
+msgid "预备编队取消预选:队伍:%(v)s"
+msgstr "predefined team preselection canceled: team:%(v)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:239
+#, python-format
+msgid "预备编队取消预选已确认:队伍:%(v)s"
+msgstr "predefined team preselection cancel confirmed: team:%(v)s"
+
+#. src/zzz_od/config/team_config.py:86
+#. src/zzz_od/config/team_config.py:102
+#, python-format
+msgid "预备编队名称更新:下标:%(v)d 原名称:%(v_2)s 新名称:%(v_3)s"
+msgstr ""
+"predefined team name updated: index:%(v)d old name:%(v_2)s new name:%(v_3)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:653
+#, python-format
+msgid "预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 头像区域为空"
+msgstr ""
+"predefined team avatar brightness: agent:%(v)s template:%(v_2)s avatar area "
+"is empty"
+
+#. src/zzz_od/operation/choose_predefined_team.py:678
+#, python-format
+msgid ""
+"预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 实际:%(v_3).1f 模板:%(v_4).1f 比例:%(v_5).1f%% "
+"阈值:%(v_6).1f%% 判暗:%(v_7)s"
+msgstr ""
+"predefined team avatar brightness: agent:%(v)s template:%(v_2)s "
+"actual:%(v_3).1f template:%(v_4).1f ratio:%(v_5).1f%% threshold:%(v_6).1f%% "
+"dark:%(v_7)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:645
+#, python-format
+msgid "预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 未找到模板原图"
+msgstr ""
+"predefined team avatar brightness: agent:%(v)s template:%(v_2)s template "
+"source image not found"
+
+#. src/zzz_od/operation/choose_predefined_team.py:261
+#, python-format
+msgid "预备编队已选:队伍:%(v)s 序号:%(v_2)d"
+msgstr "predefined team selected: team:%(v)s index:%(v_2)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:369
+#, python-format
+msgid "预备编队扫描卡位:%(v)d 未识别队名"
+msgstr "predefined team scanning slot:%(v)d team name not recognized"
+
+#. src/zzz_od/operation/choose_predefined_team.py:398
+#, python-format
+msgid "预备编队扫描卡位:%(v)d 队名:%(v_2)s 代理人数量:%(v_3)d 槽位:%(v_4)s 队伍人数:%(v_5)s"
+msgstr ""
+"predefined team scanning slot:%(v)d team:%(v_2)s agents:%(v_3)d "
+"slots:%(v_4)s team size:%(v_5)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:373
+#, python-format
+msgid "预备编队扫描卡位:%(v)d 队名:%(v_2)s 已扫描，跳过"
+msgstr ""
+"predefined team scanning slot:%(v)d team:%(v_2)s already scanned, skipping"
+
+#. src/zzz_od/operation/choose_predefined_team.py:177
+#, python-format
+msgid "预备编队扫描完成:有效:%(v)d 禁用:%(v_2)d 人数识别失败:%(v_3)d"
+msgstr ""
+"predefined team scan complete: valid:%(v)d disabled:%(v_2)d team-size-"
+"recognition-failed:%(v_3)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:161
+msgid "预备编队扫描开始"
+msgstr "predefined team scan started"
+
+#. src/zzz_od/operation/choose_predefined_team.py:440
+#, python-format
+msgid "预备编队扫描有效:序号:%(v)d 名称:%(v_2)s 代理人:%(v_3)s"
+msgstr "predefined team scan valid: index:%(v)d name:%(v_2)s agents:%(v_3)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:380
+#, python-format
+msgid "预备编队扫描结束:已达到最大队伍数量:%(v)d"
+msgstr "predefined team scan finished: max team count reached:%(v)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:450
+#, python-format
+msgid "预备编队扫描结束:当前页:%(v)d 新增队伍:%(v_2)s"
+msgstr "predefined team scan finished: current page:%(v)d new teams:%(v_2)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:404
+#, python-format
+msgid "预备编队扫描结束:队名:%(v)s 队伍为空"
+msgstr "predefined team scan finished: team:%(v)s team is empty"
+
+#. src/zzz_od/operation/choose_predefined_team.py:167
+#, python-format
+msgid "预备编队扫描继续:当前页:%(v)d 下一页:%(v_2)d 有效:%(v_3)d"
+msgstr ""
+"predefined team scan continuing: current page:%(v)d next page:%(v_2)d "
+"valid:%(v_3)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:427
+#, python-format
+msgid "预备编队禁用:序号:%(v)d 队名:%(v_2)s 代理人槽位不完整:%(v_3)s 且头像变暗"
+msgstr ""
+"predefined team disabled: index:%(v)d team:%(v_2)s agent slots "
+"incomplete:%(v_3)s and avatar darkened"
+
+#. src/zzz_od/operation/choose_predefined_team.py:755
+#, python-format
+msgid ""
+"预备编队禁用判定:队名:%(v)s 槽位:%(v_2)s 队伍人数:%(v_3)s 缺失槽位:%(v_4)s 对应头像变暗:%(v_5)s "
+"结果:%(v_6)s"
+msgstr ""
+"predefined team disabled judgment: team:%(v)s slots:%(v_2)s team "
+"size:%(v_3)s missing slots:%(v_4)s corresponding avatars darkened:%(v_5)s "
+"result:%(v_6)s"
+
+#. src/zzz_od/operation/choose_predefined_team.py:779
+#, python-format
+msgid "预备编队禁用疑似:队名:%(v)s 等待 1 秒后二次确认"
+msgstr ""
+"predefined team suspected disabled: team:%(v)s waiting 1s for second "
+"confirmation"
+
+#. src/zzz_od/application/game_config_checker/predefined_team_checker/predefined_team_checker.py:114
+#, python-format
+msgid ""
+"预备编队角色原始匹配:序号:%(v)d 角色:%(v_2)s 模板:%(v_3)s 置信度:%(v_4).3f "
+"坐标:%(v_5)d,%(v_6)d,%(v_7)d,%(v_8)d"
+msgstr ""
+"predefined team agent raw match: index:%(v)d agent:%(v_2)s template:%(v_3)s "
+"confidence:%(v_4).3f coords:%(v_5)d,%(v_6)d,%(v_7)d,%(v_8)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:413
+#, python-format
+msgid "预备编队跳过:序号:%(v)d 队名:%(v_2)s 未识别队伍人数"
+msgstr ""
+"predefined team skipped: index:%(v)d team:%(v_2)s team size not recognized"
+
+#. src/zzz_od/operation/choose_predefined_team.py:326
+#, python-format
+msgid "预备编队选择:队伍:%(v)s 序号:%(v_2)d"
+msgstr "predefined team selection: team:%(v)s index:%(v_2)d"
+
+#. src/zzz_od/operation/choose_predefined_team.py:342
+msgid "预备编队选择完成:已点击预备出战"
+msgstr "predefined team selection complete: predefined deploy clicked"
+
+#. src/one_dragon/base/push/channel/feishu.py:223
+#, python-brace-format
+msgid "飞书图片上传失败 status_code={status_code}"
+msgstr "Feishu image upload failed status_code={status_code}"
+
+#. src/one_dragon/base/push/channel/feishu.py:228
+#, python-brace-format
+msgid "飞书图片上传失败 {response_json}"
+msgstr "Feishu image upload failed {response_json}"
+
+#. src/one_dragon/base/push/channel/feishu.py:233
+#, python-brace-format
+msgid "飞书图片上传失败 无法获取image_key {response_json}"
+msgstr "Feishu image upload failed, cannot get image_key {response_json}"
+
+#. src/one_dragon/base/push/channel/feishu.py:239
+msgid "飞书图片上传异常"
+msgstr "Feishu image upload exception"
+
+#. src/one_dragon/launcher/runtime_launcher.py:59
+msgid "首次运行，正在同步代码仓库..."
+msgstr "first run, syncing the code repo..."
+
+#. src/one_dragon/base/controller/pc_controller_base.py:237
+#, python-format
+msgid "鼠标点击失败: %(v)s"
+msgstr "mouse click failed: %(v)s"

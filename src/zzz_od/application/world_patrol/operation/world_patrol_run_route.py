@@ -127,7 +127,7 @@ class WorldPatrolRunRoute(ZOperation):
         start_pos = self.ctx.world_patrol_service.get_route_pos_before_op_idx(self.route, self.current_idx)
         if start_pos is None:
             # 起点坐标缺失，视为配置错误
-            log.error('未找到初始坐标，请检查路线配置')
+            log.error(gt('未找到初始坐标，请检查路线配置', model='log'))
             return self.round_fail(status='路线或开始下标有误')
         # 静止切人会让角色向前冲一小段，先切完最佳行走位，再记录路线起点
         self.ctx.controller.stop_moving_forward()
@@ -198,7 +198,7 @@ class WorldPatrolRunRoute(ZOperation):
                 self.ctx.controller.start_moving_forward()
             # 到达目标点后，重置脱困计数
             if self.pos_stuck_attempts > 0:
-                log.info('已到达目标点，重置脱困计数')
+                log.info(gt('已到达目标点，重置脱困计数', model='log'))
                 self.pos_stuck_attempts = 0
             return self.round_wait(status=f'已到达目标点 {target_pos}')
 
@@ -213,7 +213,7 @@ class WorldPatrolRunRoute(ZOperation):
         :return: 成功则返回新的坐标点，失败则返回 OperationRoundResult
         """
         if self.current_large_map is None:
-            log.error('缺少大地图数据，无法计算坐标')
+            log.error(gt('缺少大地图数据，无法计算坐标', model='log'))
             raise RuntimeError('缺少大地图数据，路线配置错误')
         # 基于上一次的已知位置，估算本次可能出现的搜索范围矩形，搜索范围再加上小地图尺寸
         if self.no_pos_start_time == 0:
@@ -283,10 +283,10 @@ class WorldPatrolRunRoute(ZOperation):
         """
         pos_distance = cal_utils.distance_between(self.current_pos, next_pos)
         if pos_distance > move_distance:
-            log.info(f'坐标跳变过大 舍弃 {next_pos} 距离 {pos_distance:.1f} 允许 {move_distance:.1f}')
+            log.info(gt('坐标跳变过大 舍弃 {next_pos} 距离 {pos_distance:.1f} 允许 {move_distance:.1f}', model='log').format(next_pos=next_pos, pos_distance=pos_distance, move_distance=move_distance))
             return False
         if not self._is_next_pos_in_angle_range(next_pos):
-            log.info(f'坐标方向偏离 舍弃 {next_pos}')
+            log.info(gt('坐标方向偏离 舍弃 {next_pos}', model='log').format(next_pos=next_pos))
             return False
         return True
 
@@ -350,7 +350,7 @@ class WorldPatrolRunRoute(ZOperation):
                 self.ctx.controller.stop_moving_forward()
                 # 如果是重启后的路线，再次卡住时直接跳过
                 if self.is_restarted:
-                    log.error('[with-pos]再次卡住，跳过当前路线')
+                    log.error(gt('[with-pos]再次卡住，跳过当前路线', model='log'))
                     return True
                 # 先尝试智能回溯
                 status = self._backtrack_step(next_pos, emit_log=True)
@@ -359,7 +359,7 @@ class WorldPatrolRunRoute(ZOperation):
                     self._do_unstuck_move('with-pos')
                     self.pos_stuck_attempts += 1
                     if self.pos_stuck_attempts >= 6:  # 脱困最大尝试次数
-                        log.info('[with-pos]卡住，重启当前路线')
+                        log.info(gt('[with-pos]卡住，重启当前路线', model='log'))
                         self.pos_stuck_attempts = 0
                         return True
                 elif status == 'started':
@@ -434,11 +434,11 @@ class WorldPatrolRunRoute(ZOperation):
             )
             if prev_pos is None or same_as_last:
                 if emit_log and same_as_last:
-                    log.info('回溯跳过，回溯点与上次相同')
+                    log.info(gt('回溯跳过，回溯点与上次相同', model='log'))
                 return 'unavailable'
 
             if emit_log:
-                log.info(f'尝试回溯到上一个目标点 {prev_pos}')
+                log.info(gt('尝试回溯到上一个目标点 {prev_pos}', model='log').format(prev_pos=prev_pos))
             self.backtrack_active = True
             self.backtrack_target = prev_pos
             self.backtrack_deadline = now + 15.0
@@ -451,15 +451,15 @@ class WorldPatrolRunRoute(ZOperation):
         expired = now >= self.backtrack_deadline
         if not reached and not expired:
             if emit_log:
-                log.debug(f'回溯进行中，当前距离目标 {distance:.2f}，剩余时间 {self.backtrack_deadline - now:.1f}秒')
+                log.debug(gt('回溯进行中，当前距离目标 {distance:.2f}，剩余时间 {v:.1f}秒', model='log').format(distance=distance, v=self.backtrack_deadline - now))
             return 'ongoing'
         target = self.backtrack_target
         if reached:
             self.ctx.controller.stop_moving_forward()
             if emit_log:
-                log.info(f'回溯成功，已到达 {target}')
+                log.info(gt('回溯成功，已到达 {target}', model='log').format(target=target))
         elif emit_log:
-            log.info('回溯超时')
+            log.info(gt('回溯超时', model='log'))
         # 清理状态
         self.last_backtrack_target = self.backtrack_target
         self.backtrack_active = False
@@ -475,9 +475,9 @@ class WorldPatrolRunRoute(ZOperation):
         # 脱困前，切换到下一位（利用不同角色体型/站位尝试摆脱卡点）
         self.ctx.auto_battle_context.switch_next()
         if tag == 'with-pos':
-            log.info(f'[{tag}] 脱困尝试 {self.pos_stuck_attempts + 1}/6，方向 {self.stuck_move_direction}')
+            log.info(gt('[{tag}] 脱困尝试 {v}/6，方向 {stuck_move_direction}', model='log').format(tag=tag, v=self.pos_stuck_attempts + 1, stuck_move_direction=self.stuck_move_direction))
         else:
-            log.info(f'[{tag}] 本次脱困方向 {self.stuck_move_direction}')
+            log.info(gt('[{tag}] 本次脱困方向 {stuck_move_direction}', model='log').format(tag=tag, stuck_move_direction=self.stuck_move_direction))
         if self.stuck_move_direction == 0:  # 向左走
             self.ctx.controller.move_a(press=True, press_time=1, release=True)
         elif self.stuck_move_direction == 1:  # 向右走
@@ -612,7 +612,7 @@ def __debug(area_full_id: str, route_idx: int):
                 break
 
     if target_route is None:
-        log.error('未找到指定路线')
+        log.error(gt('未找到指定路线', model='log'))
         return
 
     op = WorldPatrolRunRoute(ctx, target_route)

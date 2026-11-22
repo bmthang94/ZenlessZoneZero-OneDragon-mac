@@ -12,6 +12,7 @@ from PySide6.QtGui import QGuiApplication
 
 from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.context_event_bus import ContextEventItem
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.overlay.overlay_config import OverlayConfig
 from one_dragon_qt.overlay.overlay_events import OverlayEventEnum, OverlayLogEvent
@@ -165,7 +166,7 @@ class OverlayManager(QObject):
         self._safe_follow_window()
         if self._hud_window is not None:
             self._hud_window.set_toast(toast_text)
-        log.info(f"Overlay 显示模式切换为 {next_mode}")
+        log.info(gt('Overlay 显示模式切换为 {next_mode}', model='log').format(next_mode=next_mode))
 
     def _on_log_received_signal(self, payload: object) -> None:
         if self._hud_window is None:
@@ -223,7 +224,7 @@ class OverlayManager(QObject):
         try:
             self._follow_window()
         except Exception:
-            log.error("更新 Overlay 窗口失败", exc_info=True)
+            log.error(gt('更新 Overlay 窗口失败', model='log'), exc_info=True)
 
     def _sync_bus_enabled(self) -> None:
         """同步调试总线开关：档位关闭时，生产端跳过构造 trace 对象。"""
@@ -238,9 +239,9 @@ class OverlayManager(QObject):
             self._hide_overlay()
             if not self._warned_unsupported:
                 if sys.platform == 'darwin':
-                    log.warning('macOS 暂不支持游戏画面覆盖层')
+                    log.warning(gt('macOS 暂不支持游戏画面覆盖层', model='log'))
                 else:
-                    log.warning("Overlay 已禁用：系统版本低于 Windows 10 2004（build 19041）")
+                    log.warning(gt('Overlay 已禁用：系统版本低于 Windows 10 2004（build 19041）', model='log'))
                 self._warned_unsupported = True
             return
 
@@ -248,7 +249,7 @@ class OverlayManager(QObject):
         if game_rect is None:
             self._hide_overlay()
             if not self._warned_waiting_game_window:
-                log.info("Overlay 已启用，等待游戏窗口可用后显示")
+                log.info(gt('Overlay 已启用，等待游戏窗口可用后显示', model='log'))
                 self._warned_waiting_game_window = True
             return
         self._warned_waiting_game_window = False
@@ -334,7 +335,7 @@ class OverlayManager(QObject):
         try:
             self._poll_input_mode()
         except Exception:
-            log.error("更新 Overlay 交互模式失败", exc_info=True)
+            log.error(gt('更新 Overlay 交互模式失败', model='log'), exc_info=True)
 
     def _poll_input_mode(self) -> None:
         toggle_key = str(self.ctx.key_debug or "f12").lower()
@@ -358,7 +359,7 @@ class OverlayManager(QObject):
         try:
             self._refresh_state_panel()
         except Exception:
-            log.error("刷新 Overlay 状态面板失败", exc_info=True)
+            log.error(gt('刷新 Overlay 状态面板失败', model='log'), exc_info=True)
 
     def _refresh_state_panel(self) -> None:
         if self._overlay_window is None or not self._overlay_window.isVisible():

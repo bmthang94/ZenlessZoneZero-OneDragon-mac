@@ -7,7 +7,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -219,23 +223,23 @@ class FeiShu(PushChannel):
             )
 
             if image_response.status_code != 200:
-                log.error(f"飞书图片上传失败 status_code={image_response.status_code}")
+                log.error(gt('飞书图片上传失败 status_code={status_code}', model='log').format(status_code=image_response.status_code))
                 return None
 
             response_json = image_response.json()
             if response_json.get('code', 1) != 0:
-                log.error(f"飞书图片上传失败 {response_json}")
+                log.error(gt('飞书图片上传失败 {response_json}', model='log').format(response_json=response_json))
                 return None
 
             image_key = response_json.get('data', {}).get('image_key')
             if image_key is None:
-                log.error(f"飞书图片上传失败 无法获取image_key {response_json}")
+                log.error(gt('飞书图片上传失败 无法获取image_key {response_json}', model='log').format(response_json=response_json))
                 return None
 
             return image_key
 
         except Exception:
-            log.error("飞书图片上传异常", exc_info=True)
+            log.error(gt('飞书图片上传异常', model='log'), exc_info=True)
             return None
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:

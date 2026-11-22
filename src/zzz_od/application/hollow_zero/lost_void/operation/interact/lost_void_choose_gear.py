@@ -12,6 +12,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.hollow_zero.lost_void.context.lost_void_artifact import (
     LostVoidArtifact,
@@ -56,7 +57,7 @@ class LostVoidChooseGear(ZOperation):
         # 入口层只有两个武备NPC 两个都完成过还进武备画面 必为重复 直接退出
         # 省掉判重的点击首格+OCR(约10秒) 去门途中被NPC抢交互时的自愈更快
         if self.completed_name_list is not None and len(self.completed_name_list) >= 2:
-            log.info('入口层两个武备均已完成 当前武备画面必为重复 直接返回')
+            log.info(gt('入口层两个武备均已完成 当前武备画面必为重复 直接返回', model='log'))
             return self.round_success(LostVoidChooseGear.STATUS_REPEATED)
 
         choose_new: bool = False
@@ -71,7 +72,7 @@ class LostVoidChooseGear(ZOperation):
             first_name = self._get_first_gear_name(gear_context)
             if (first_name is not None
                     and str_utils.find_best_match_by_difflib(first_name, self.completed_name_list, cutoff=0.8) is not None):
-                log.info(f'重复进入已完成选择的武备画面 直接返回 首个武备={first_name}')
+                log.info(gt('重复进入已完成选择的武备画面 直接返回 首个武备={first_name}', model='log').format(first_name=first_name))
                 return self.round_success(LostVoidChooseGear.STATUS_REPEATED)
 
         gear_list, has_level_list = self.get_gear_pos_by_click_ocr(gear_contours, gear_context)
@@ -93,12 +94,12 @@ class LostVoidChooseGear(ZOperation):
                 # 将选择的武备类型鸣徽添加至第一优先级
                 text = target.artifact.category
                 self.ctx.lost_void.challenge_config.artifact_priority_in_battle.append(text)
-                log.info('【武备追新】添加开局选择的武备属性至第一优先级: [' + text + ']')
+                log.info(gt('【武备追新】添加开局选择的武备属性至第一优先级: [{text}]', model='log').format(text=text))
 
                 choose_new = True
-                log.info(f'【武备追新】当前可选未获取武备 {",".join([i.artifact.display_name for i in unlocked_gears])}')
+                log.info(gt('【武备追新】当前可选未获取武备 {join}', model='log').format(join=",".join([i.artifact.display_name for i in unlocked_gears])))
             else:
-                log.info('【武备追新】所有武备都已获取，回退至优先级')
+                log.info(gt('【武备追新】所有武备都已获取，回退至优先级', model='log'))
 
         if not choose_new:
             priority_list: list[LostVoidArtifactPos] = self.ctx.lost_void.get_artifact_by_priority(gear_list, 1)
@@ -157,8 +158,7 @@ class LostVoidChooseGear(ZOperation):
                                       gear_y2 < level_y1 or level_y2 < gear_y1)
 
                 if is_overlapping:
-                    log.debug(f"  !!! 发现重叠: 武备[{i}] ({gear_x1},{gear_y1},{gear_x2},{gear_y2}) "
-                              f"与 等级[{j}] ({level_x1},{level_y1},{level_x2},{level_y2}) 匹配成功 !!!")
+                    log.debug(gt('  !!! 发现重叠: 武备[{i}] ({gear_x1},{gear_y1},{gear_x2},{gear_y2}) 与 等级[{j}] ({level_x1},{level_y1},{level_x2},{level_y2}) 匹配成功 !!!', model='log').format(i=i, gear_x1=gear_x1, gear_y1=gear_y1, gear_x2=gear_x2, gear_y2=gear_y2, j=j, level_x1=level_x1, level_y1=level_y1, level_x2=level_x2, level_y2=level_y2))
                     has_level = True
                     remaining_levels.pop(j)  # 直接移除匹配的等级
                     break
@@ -272,7 +272,7 @@ class LostVoidChooseGear(ZOperation):
             )
 
         display_text = ','.join([i.artifact.display_name for i in result_list]) if len(result_list) > 0 else '无'
-        log.info(f'当前识别武备 {display_text}')
+        log.info(gt('当前识别武备 {display_text}', model='log').format(display_text=display_text))
         return result_list, has_level_list
 
     def _update_first_slot_gear_name(self, name_list: list[str]) -> None:
@@ -341,7 +341,7 @@ class LostVoidChooseGear(ZOperation):
                                                    success_wait=1, retry_wait=1)
         if result.is_success:
             self.ctx.lost_void.priority_updated = False
-            log.info("武备选择成功，已设置优先级更新标志")
+            log.info(gt('武备选择成功，已设置优先级更新标志', model='log'))
             # 只记录本画面最左侧槽位的武备名 与重复判断读取的信号一致
             # 记录其他槽位名称会让别的画面的首个武备有机会与本画面的非首个武备误匹配
             if (self.completed_name_list is not None

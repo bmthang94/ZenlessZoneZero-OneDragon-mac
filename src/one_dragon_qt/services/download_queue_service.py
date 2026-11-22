@@ -12,6 +12,7 @@ from one_dragon.base.web.common_downloader import (
     CommonDownloader,
     ResourceDownloadProgress,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 if TYPE_CHECKING:
@@ -108,7 +109,7 @@ class DownloadTaskWorker(QThread):
             )
         except Exception as exc:
             error_message = str(exc)
-            log.error('下载队列任务失败', exc_info=True)
+            log.error(gt('下载队列任务失败', model='log'), exc_info=True)
         finally:
             if self.task.spec.after_download is not None:
                 try:
@@ -124,7 +125,7 @@ class DownloadTaskWorker(QThread):
                 except Exception as exc:
                     success = False
                     error_message = str(exc)
-                    log.error('下载任务后处理失败', exc_info=True)
+                    log.error(gt('下载任务后处理失败', model='log'), exc_info=True)
 
         cancelled = self.task.progress_signal.get('signal') == 'cancel'
         self.task_finished.emit(success, cancelled, error_message)

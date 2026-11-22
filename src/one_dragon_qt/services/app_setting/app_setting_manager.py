@@ -19,6 +19,7 @@ from PySide6.QtCore import QObject, Signal
 from PySide6.QtWidgets import QWidget
 
 from one_dragon.base.operation.application.plugin_info import PluginSource
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon.utils.plugin_module_loader import (
     ensure_sys_path,
@@ -160,7 +161,7 @@ class AppSettingManager(QObject):
                     continue
                 self._try_register_provider(setting_file, info.source, base_dir, seen_app_ids)
 
-        log.info(f"发现 {len(self._app_setting_map)} 个应用设置提供者")
+        log.info(gt('发现 {len} 个应用设置提供者', model='log').format(len=len(self._app_setting_map)))
 
     @staticmethod
     def _module_root_for(
@@ -203,12 +204,12 @@ class AppSettingManager(QObject):
         try:
             provider = self._load_provider(setting_file, source, base_dir)
         except Exception:
-            log.warning(f"加载应用设置文件失败: {setting_file}", exc_info=True)
+            log.warning(gt('加载应用设置文件失败: {setting_file}', model='log').format(setting_file=setting_file), exc_info=True)
             return
         if provider is None:
             return
         if provider.app_id in seen_app_ids:
-            log.warning(f"重复的应用设置 app_id '{provider.app_id}'，跳过: {setting_file}")
+            log.warning(gt("重复的应用设置 app_id '{app_id}'，跳过: {setting_file}", model='log').format(app_id=provider.app_id, setting_file=setting_file))
             return
 
         seen_app_ids.add(provider.app_id)
@@ -224,7 +225,7 @@ class AppSettingManager(QObject):
         """动态导入 setting 文件并查找唯一的 AppSettingProvider 子类。"""
         result = resolve_module_name(setting_file, source, base_dir)
         if result is None:
-            log.warning(f"无法解析模块路径: {setting_file}")
+            log.warning(gt('无法解析模块路径: {setting_file}', model='log').format(setting_file=setting_file))
             return None
 
         module_name, module_root = result
@@ -248,7 +249,7 @@ class AppSettingManager(QObject):
             return None
         if len(found) > 1:
             names = [cls.__name__ for cls in found]
-            log.warning(f"模块 {module_name} 中发现多个 AppSettingProvider: {names}，仅使用第一个")
+            log.warning(gt('模块 {module_name} 中发现多个 AppSettingProvider: {names}，仅使用第一个', model='log').format(module_name=module_name, names=names))
         return found[0]()
 
     # ─── UI 分发 ──────────────────────────────────────────

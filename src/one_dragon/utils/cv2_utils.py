@@ -1,14 +1,15 @@
 import base64
 import math
 import os
-from typing import Union, List, Optional, Tuple
+from typing import List, Optional, Tuple, Union
 
 import cv2
 import numpy as np
 from cv2.typing import MatLike
 
 from one_dragon.base.geometry.rectangle import Rect
-from one_dragon.base.matcher.match_result import MatchResultList, MatchResult
+from one_dragon.base.matcher.match_result import MatchResult, MatchResultList
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 feature_detector = cv2.SIFT_create()
@@ -1296,7 +1297,7 @@ def is_in_gray_mask(img: MatLike, rect: Rect | None = None, threshold: int = 55,
     count = (cond1 | cond2).sum()
     # save_image(img, 'y:\\debug.png')
     percent = count / total
-    log.debug('灰遮罩图片置信度 [%2f]', percent)
+    log.debug(gt('灰遮罩图片置信度 [%(v)2f]', model='log'), {'v': percent})
     # is_colorful(img)
 
     return percent > percent_rate

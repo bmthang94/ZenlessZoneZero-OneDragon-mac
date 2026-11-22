@@ -1,16 +1,20 @@
-import smtplib
 import html
+import smtplib
 from email.header import Header
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
 from email.mime.image import MIMEImage
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from email.utils import formataddr
 
 from cv2.typing import MatLike
 
 from one_dragon.base.operation.notify_pool import NotifyPoolItem
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -171,14 +175,14 @@ class Smtp(PushChannel):
                 return True, "SMTP邮件推送成功"
 
             except Exception as e:
-                log.error('SMTP邮件推送异常', exc_info=True)
+                log.error(gt('SMTP邮件推送异常', model='log'), exc_info=True)
                 return False, f"SMTP邮件推送异常: {str(e)}"
 
             finally:
                 smtp_server.close()
 
         except Exception as e:
-            log.error('SMTP邮件推送异常', exc_info=True)
+            log.error(gt('SMTP邮件推送异常', model='log'), exc_info=True)
             return False, f"SMTP邮件推送异常: {str(e)}"
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:
@@ -309,11 +313,11 @@ class Smtp(PushChannel):
                 smtp_server.sendmail(email_addr, email_addr, message.as_bytes())
                 return True, 'SMTP邮件合并推送成功'
             except Exception as e:
-                log.error('SMTP邮件合并推送异常', exc_info=True)
+                log.error(gt('SMTP邮件合并推送异常', model='log'), exc_info=True)
                 return False, f'SMTP邮件合并推送异常: {str(e)}'
             finally:
                 smtp_server.close()
 
         except Exception as e:
-            log.error('SMTP邮件合并推送异常', exc_info=True)
+            log.error(gt('SMTP邮件合并推送异常', model='log'), exc_info=True)
             return False, f'SMTP邮件合并推送异常: {str(e)}'

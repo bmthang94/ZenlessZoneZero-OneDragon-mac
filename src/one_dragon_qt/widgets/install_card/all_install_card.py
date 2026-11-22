@@ -1,11 +1,12 @@
-from qfluentwidgets import FluentIcon, FluentThemeColor, PushButton, HyperlinkButton
-from typing import List, Callable, Tuple, Optional
+from typing import Callable, List, Optional, Tuple
+
+from qfluentwidgets import FluentIcon, FluentThemeColor, HyperlinkButton, PushButton
 
 from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
-from one_dragon_qt.widgets.install_card.base_install_card import BaseInstallCard
 from one_dragon.utils import app_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
+from one_dragon_qt.widgets.install_card.base_install_card import BaseInstallCard
 
 
 class AllInstallCard(BaseInstallCard):
@@ -40,7 +41,7 @@ class AllInstallCard(BaseInstallCard):
         按顺序进行安装
         :return:
         """
-        log.info('一键安装 开始')
+        log.info(gt('一键安装 开始', model='log'))
         self.update_display(None, gt('安装中'))
         self.installing_idx = 0
         self._progress_callback = progress_callback  # 保存回调
@@ -72,7 +73,7 @@ class AllInstallCard(BaseInstallCard):
             self._progress_callback = None
             self.finished.emit(False)
         else:
-            log.info('一键安装 开始下一个')
+            log.info(gt('一键安装 开始下一个', model='log'))
             self.installing_idx += 1
             # 每次子卡片完成时调用回调
             if hasattr(self, '_progress_callback') and self._progress_callback is not None:
@@ -90,5 +91,5 @@ class AllInstallCard(BaseInstallCard):
         启动一条龙脚本
         :return:
         """
-        log.info('启动中...大约需要10+秒')
+        log.info(gt('启动中...大约需要10+秒', model='log'))
         app_utils.start_one_dragon(restart=True)

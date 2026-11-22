@@ -2,6 +2,7 @@ import json
 import os
 from typing import Optional
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -35,7 +36,7 @@ class JsonOperator:
             with open(self.file_path, 'r', encoding='utf-8') as file:
                 self.data = json.load(file)
         except Exception:
-            log.error(f'文件读取失败 将使用默认值 {self.file_path}', exc_info=True)
+            log.error(gt('文件读取失败 将使用默认值 {file_path}', model='log').format(file_path=self.file_path), exc_info=True)
             return
 
         if self.data is None:

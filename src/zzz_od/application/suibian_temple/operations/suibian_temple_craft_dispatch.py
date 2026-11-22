@@ -7,7 +7,7 @@ from one_dragon.base.operation.application import application_const
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
-from one_dragon.utils import str_utils, cal_utils
+from one_dragon.utils import cal_utils, str_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.suibian_temple.suibian_temple_config import SuibianTempleConfig
@@ -217,7 +217,7 @@ class SuibianTempleCraftDispatch(ZOperation):
             with_new_item = True
             break
         self.last_item_list = new_item_list
-        log.info('当前识别商品 %s', new_item_list)
+        log.info(gt('当前识别商品 %(v)s', model='log'), {'v': new_item_list})
 
         if self.drag_times >= self.config.craft_drag_times:
             return self.round_success(status='已滑动次数达到上限', wait=1)

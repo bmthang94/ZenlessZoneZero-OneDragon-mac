@@ -12,6 +12,7 @@ from one_dragon.envs.env_config import DEFAULT_ENV_PATH, EnvConfig
 from one_dragon.envs.git_service import GitService
 from one_dragon.envs.project_config import ProjectConfig
 from one_dragon.utils import app_utils, os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 LauncherType = Literal['launcher', 'runtime']
@@ -69,7 +70,7 @@ class UpdateService:
         try:
             latest_stable, latest_beta = self.git_service.get_latest_tag()
         except Exception:
-            log.error('获取最新启动器版本失败', exc_info=True)
+            log.error(gt('获取最新启动器版本失败', model='log'), exc_info=True)
             latest_stable, latest_beta = '', ''
         result = (current_version, latest_stable, latest_beta)
         self._launcher_version_cache[launcher_type] = result
@@ -248,7 +249,7 @@ class UpdateService:
         if launcher_type == 'runtime':
             # 当前进程可能仍占用已改名的 exe 和 .runtime 备份 Windows 无法立即删除
             # 保留到下次启动 由 restore_interrupted_launcher_update 确认新版本有效后清理
-            log.info('集成启动器更新完成 备份将在下次启动时清理')
+            log.info(gt('集成启动器更新完成 备份将在下次启动时清理', model='log'))
             return
         self._cleanup_launcher_backup(launcher_type)
 
@@ -268,7 +269,7 @@ class UpdateService:
                 if launcher_type == 'runtime' and runtime_backup_path.exists():
                     shutil.rmtree(runtime_backup_path)
             except Exception:
-                log.error('清理旧启动器备份失败', exc_info=True)
+                log.error(gt('清理旧启动器备份失败', model='log'), exc_info=True)
                 raise
 
             exe_backed_up = False
@@ -276,35 +277,35 @@ class UpdateService:
                 if exe_path.exists():
                     exe_path.replace(backup_path)
                     exe_backed_up = True
-                    log.info(f'备份文件: {exe_path.name} -> {backup_path.name}')
+                    log.info(gt('备份文件: {name} -> {name_2}', model='log').format(name=exe_path.name, name_2=backup_path.name))
                 if launcher_type == 'runtime' and runtime_path.exists():
                     self._rename_runtime_dir(runtime_path, runtime_backup_path)
-                    log.info(f'备份目录: {runtime_path.name} -> {runtime_backup_path.name}')
+                    log.info(gt('备份目录: {name} -> {name_2}', model='log').format(name=runtime_path.name, name_2=runtime_backup_path.name))
             except Exception:
-                log.error('备份启动器失败', exc_info=True)
+                log.error(gt('备份启动器失败', model='log'), exc_info=True)
                 if exe_backed_up and backup_path.exists():
                     try:
                         backup_path.replace(exe_path)
                     except Exception:
-                        log.error('恢复已备份的启动器文件失败', exc_info=True)
+                        log.error(gt('恢复已备份的启动器文件失败', model='log'), exc_info=True)
                 raise
             return
 
         if backup_path.exists():
             try:
                 backup_path.replace(exe_path)
-                log.info(f'回滚文件: {backup_path.name} -> {exe_path.name}')
+                log.info(gt('回滚文件: {name} -> {name_2}', model='log').format(name=backup_path.name, name_2=exe_path.name))
             except Exception:
-                log.error(f'回滚文件失败 {backup_path.name}', exc_info=True)
+                log.error(gt('回滚文件失败 {name}', model='log').format(name=backup_path.name), exc_info=True)
 
         if launcher_type == 'runtime' and runtime_backup_path.exists():
             try:
                 if runtime_path.exists():
                     shutil.rmtree(runtime_path)
                 self._rename_runtime_dir(runtime_backup_path, runtime_path)
-                log.info(f'回滚目录: {runtime_backup_path.name} -> {runtime_path.name}')
+                log.info(gt('回滚目录: {name} -> {name_2}', model='log').format(name=runtime_backup_path.name, name_2=runtime_path.name))
             except Exception:
-                log.error(f'回滚目录失败 {runtime_backup_path.name}', exc_info=True)
+                log.error(gt('回滚目录失败 {name}', model='log').format(name=runtime_backup_path.name), exc_info=True)
 
     @staticmethod
     def _release_runtime_dir_handles() -> None:
@@ -330,7 +331,7 @@ class UpdateService:
                 last_error = error
                 if attempt == 0:
                     log.warning(
-                        f'重命名目录失败，释放文件句柄后重试: {src.name} -> {dst.name} {error}'
+                        gt('重命名目录失败，释放文件句柄后重试: {name} -> {name_2} {error}', model='log').format(name=src.name, name_2=dst.name, error=error)
                     )
                 self._release_runtime_dir_handles()
                 time.sleep(0.3)
@@ -346,18 +347,18 @@ class UpdateService:
         if backup_path.exists():
             try:
                 backup_path.unlink()
-                log.info(f'删除备份文件: {backup_name}')
+                log.info(gt('删除备份文件: {backup_name}', model='log').format(backup_name=backup_name))
             except Exception as e:
-                log.error(f'删除备份文件失败 {backup_name}: {e}')
+                log.error(gt('删除备份文件失败 {backup_name}: {e}', model='log').format(backup_name=backup_name, e=e))
 
         if launcher_type == 'runtime':
             runtime_backup_path = work_dir / RUNTIME_DIR_BACKUP
             if runtime_backup_path.exists():
                 try:
                     shutil.rmtree(runtime_backup_path)
-                    log.info(f'删除备份目录: {RUNTIME_DIR_BACKUP}')
+                    log.info(gt('删除备份目录: {RUNTIME_DIR_BACKUP}', model='log').format(RUNTIME_DIR_BACKUP=RUNTIME_DIR_BACKUP))
                 except Exception as e:
-                    log.error(f'删除备份目录失败 {RUNTIME_DIR_BACKUP}: {e}')
+                    log.error(gt('删除备份目录失败 {RUNTIME_DIR_BACKUP}: {e}', model='log').format(RUNTIME_DIR_BACKUP=RUNTIME_DIR_BACKUP, e=e))
 
     @staticmethod
     def _delete_legacy_launcher_files() -> None:
@@ -374,6 +375,6 @@ class UpdateService:
             if legacy_path.exists():
                 try:
                     legacy_path.unlink()
-                    log.info(f'删除旧版本遗留文件: {legacy_file}')
+                    log.info(gt('删除旧版本遗留文件: {legacy_file}', model='log').format(legacy_file=legacy_file))
                 except Exception as e:
-                    log.error(f'删除旧版本遗留文件失败 {legacy_file}: {e}')
+                    log.error(gt('删除旧版本遗留文件失败 {legacy_file}: {e}', model='log').format(legacy_file=legacy_file, e=e))

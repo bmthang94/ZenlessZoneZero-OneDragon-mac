@@ -21,6 +21,7 @@ from one_dragon.base.controller.pc_screenshot.pc_screenshot_controller import (
     PcScreenshotController,
 )
 from one_dragon.base.geometry.point import Point
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 if TYPE_CHECKING:
@@ -74,7 +75,7 @@ class PcControllerBase(ControllerBase):
                 if self._mac_virtual_hid_mouse is None:
                     self._mac_virtual_hid_mouse = MacVirtualHIDMouse()
             except (OSError, RuntimeError, TimeoutError) as e:
-                log.error('初始化 macOS 虚拟鼠标失败: %s', e)
+                log.error(gt('初始化 macOS 虚拟鼠标失败: %(v)s', model='log'), {'v': e})
                 return False
         self.init_game_win()
         self.game_win.active()
@@ -158,9 +159,9 @@ class PcControllerBase(ControllerBase):
             return
         try:
             win.close()
-            log.info('关闭游戏成功')
+            log.info(gt('关闭游戏成功', model='log'))
         except Exception:
-            log.error('关闭游戏失败', exc_info=True)
+            log.error(gt('关闭游戏失败', model='log'), exc_info=True)
 
     def get_screenshot(self, independent: bool = False) -> MatLike | None:
         if self.is_game_window_ready:
@@ -174,7 +175,7 @@ class PcControllerBase(ControllerBase):
     def enable_foreground_mode(self) -> None:
         """启用前台键鼠模式。"""
         self.enable_keyboard()
-        log.info('已启用前台键鼠模式')
+        log.info(gt('已启用前台键鼠模式', model='log'))
 
     def click(self, pos: Point = None, press_time: float = 0.1, pc_alt: bool = False) -> bool:
         """点击位置。
@@ -203,7 +204,7 @@ class PcControllerBase(ControllerBase):
         if pos is not None:
             click_pos: Point = self.game_win.game2win_pos(pos)
             if click_pos is None:
-                log.error('点击非游戏窗口区域 (%s)', pos)
+                log.error(gt('点击非游戏窗口区域 (%(v)s)', model='log'), {'v': pos})
                 return False
         else:
             click_pos = get_current_mouse_pos()
@@ -216,7 +217,7 @@ class PcControllerBase(ControllerBase):
                 time.sleep(0.2)
             if sys.platform == 'darwin':
                 if self._mac_virtual_hid_mouse is None:
-                    log.error('macOS 虚拟鼠标未初始化；请先运行启动脚本并确认 Karabiner 虚拟 HID 服务正常')
+                    log.error(gt('macOS 虚拟鼠标未初始化；请先运行启动脚本并确认 Karabiner 虚拟 HID 服务正常', model='log'))
                     return False
                 if not self.game_win.is_win_active:
                     self.game_win.active()
@@ -225,19 +226,15 @@ class PcControllerBase(ControllerBase):
                 self._mac_virtual_hid_mouse.nudge_cursor()
                 actual_pos = pyautogui.position()
                 log.info(
-                    'macOS 鼠标定位: 游戏坐标=%s, 目标桌面坐标=(%s, %s), 实际桌面坐标=(%s, %s)',
-                    pos,
-                    click_pos.x,
-                    click_pos.y,
-                    actual_pos.x,
-                    actual_pos.y,
+                    gt('macOS 鼠标定位: 游戏坐标=%(v)s, 目标桌面坐标=(%(v_2)s, %(v_3)s), 实际桌面坐标=(%(v_4)s, %(v_5)s)', model='log'),
+                    {'v': pos, 'v_2': click_pos.x, 'v_3': click_pos.y, 'v_4': actual_pos.x, 'v_5': actual_pos.y},
                 )
                 time.sleep(self.MAC_MOUSE_MOVE_SETTLE)
                 self._mac_virtual_hid_mouse.click(press_time=press_time)
             else:
                 win_click(click_pos, press_time=press_time)
         except (OSError, RuntimeError, TimeoutError) as e:
-            log.error('鼠标点击失败: %s', e)
+            log.error(gt('鼠标点击失败: %(v)s', model='log'), {'v': e})
             return False
         finally:
             if alt_pressed:
@@ -275,12 +272,12 @@ class PcControllerBase(ControllerBase):
         """
         from_pos = self.game_win.game2win_pos(start)
         if from_pos is None:
-            log.error('拖拽起点不在游戏窗口区域 (%s)', start)
+            log.error(gt('拖拽起点不在游戏窗口区域 (%(v)s)', model='log'), {'v': start})
             return
 
         to_pos = self.game_win.game2win_pos(end)
         if to_pos is None:
-            log.error('拖拽终点不在游戏窗口区域 (%s)', end)
+            log.error(gt('拖拽终点不在游戏窗口区域 (%(v)s)', model='log'), {'v': end})
             return
         if sys.platform == 'darwin':
             if not self.game_win.is_win_active:
@@ -310,7 +307,7 @@ class PcControllerBase(ControllerBase):
             pos = get_current_mouse_pos()
         win_pos = self.game_win.game2win_pos(pos)
         if win_pos is None:
-            log.error('滚动位置不在游戏窗口区域 (%s)', pos)
+            log.error(gt('滚动位置不在游戏窗口区域 (%(v)s)', model='log'), {'v': pos})
             return
         if sys.platform == 'darwin':
             if not self.game_win.is_win_active:

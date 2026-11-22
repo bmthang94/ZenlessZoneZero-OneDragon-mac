@@ -6,6 +6,7 @@ import threading
 from collections.abc import Callable
 
 from one_dragon.utils import os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -87,7 +88,7 @@ def run_command(
         else:
             return None
     except Exception:
-        log.error('执行命令失败', exc_info=True)
+        log.error(gt('执行命令失败', model='log'), exc_info=True)
         return None
 
 
@@ -113,7 +114,7 @@ def run_command_with_code(
         )
         return result.returncode
     except Exception:
-        log.error("执行命令失败", exc_info=True)
+        log.error(gt('执行命令失败', model='log'), exc_info=True)
         return None
 
 

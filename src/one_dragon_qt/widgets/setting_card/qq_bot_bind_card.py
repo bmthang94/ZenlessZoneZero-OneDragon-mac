@@ -10,6 +10,7 @@ from one_dragon.base.push.channel.qq_bot import (
     bind_group_openid,
     bind_user_openid,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
     MultiPushSettingCard,
@@ -69,7 +70,7 @@ class QQBotBindRunner(QThread):
                 )
             self.result_signal.emit(self._is_group, openid, err)
         except Exception as e:
-            log.error('QQ 官方机器人绑定异常', exc_info=True)
+            log.error(gt('QQ 官方机器人绑定异常', model='log'), exc_info=True)
             self.result_signal.emit(self._is_group, '', f'绑定失败：{e}')
 
     def _on_user_verify_code(self, code: str) -> None:
@@ -170,7 +171,7 @@ class QQBotBindCard(MultiPushSettingCard):
         runner.result_signal.disconnect(self._on_bind_result)
         runner.cancel()
         if not runner.wait(3000):
-            log.warning('QQ 机器人绑定线程未在退出前结束')
+            log.warning(gt('QQ 机器人绑定线程未在退出前结束', model='log'))
 
     def _show_verify_code(self, msg: str) -> None:
         """验证码另弹一条不自动消失的提示，卡片里那行灰色小字容易被忽略"""

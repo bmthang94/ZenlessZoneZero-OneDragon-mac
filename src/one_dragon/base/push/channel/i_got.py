@@ -8,7 +8,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -81,7 +85,7 @@ class IGot(PushChannel):
                 return False, f"推送失败：{error_msg}"
 
         except Exception as e:
-            log.error("iGot 推送异常", exc_info=True)
+            log.error(gt('iGot 推送异常', model='log'), exc_info=True)
             return False, f"iGot 推送异常: {str(e)}"
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:

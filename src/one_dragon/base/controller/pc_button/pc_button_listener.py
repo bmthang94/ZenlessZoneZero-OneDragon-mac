@@ -5,6 +5,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from pynput import keyboard, mouse
 
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 
 if sys.platform == 'darwin':
     from pynput.keyboard._darwin import Listener as DarwinKeyboardListener
@@ -27,7 +28,7 @@ if sys.platform == 'darwin':
             try:
                 tap = self._create_event_tap()
                 if tap is None:
-                    self._log.warning('无法创建 macOS 输入事件监听器，请检查辅助功能权限')
+                    self._log.warning(gt('无法创建 macOS 输入事件监听器，请检查辅助功能权限', model='log'))
                     self._mark_ready()
                     return
 

@@ -7,6 +7,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.shiyu_defense import (
     shiyu_defense_const,
@@ -105,11 +106,11 @@ class ShiyuDefenseApp(ZApplication):
             if len(digits) >= 2:
                 current = int(digits[0])
                 total = int(digits[-1])
-                log.info('剧变节点进度 %d/%d', current, total)
+                log.info(gt('剧变节点进度 %(v)d/%(v_2)d', model='log'), {'v': current, 'v_2': total})
                 # 防御 OCR 误读:进度不可能 total<current(总防线数不会小于已挑战到的防线);
                 # 不合理时回退 run_record,避免误判已完成(实测见过 OCR 读成 2/1)。
                 if total < current:
-                    log.info('剧变节点进度 OCR 异常 %s,回退 run_record', progress_text)
+                    log.info(gt('剧变节点进度 OCR 异常 %(v)s,回退 run_record', model='log'), {'v': progress_text})
                     next_idx = self.run_record.next_node_idx()
                     if next_idx is None:
                         return self.round_success(ShiyuDefenseApp.STATUS_ALL_FINISHED)
@@ -121,14 +122,14 @@ class ShiyuDefenseApp(ZApplication):
             elif len(digits) == 1:
                 # 只有一个数字，可能是 "5"，说明已完成
                 total = int(digits[0])
-                log.info('剧变节点进度 已完成 %d', total)
+                log.info(gt('剧变节点进度 已完成 %(v)d', model='log'), {'v': total})
                 self.config.critical_max_node_idx = total
                 return self.round_success(ShiyuDefenseApp.STATUS_ALL_FINISHED)
             else:
-                log.info('OCR 进度解析失败: %s', progress_text)
+                log.info(gt('OCR 进度解析失败: %(v)s', model='log'), {'v': progress_text})
                 next_idx = 1
         else:
-            log.info('未读到剧变节点进度，尝试从 run_record 获取')
+            log.info(gt('未读到剧变节点进度，尝试从 run_record 获取', model='log'))
             next_idx = self.run_record.next_node_idx()
             if next_idx is None:
                 return self.round_success(ShiyuDefenseApp.STATUS_ALL_FINISHED)
@@ -158,7 +159,7 @@ class ShiyuDefenseApp(ZApplication):
 
         result = self.round_by_find_area(self.last_screenshot, '式舆防卫战', '下一步')
         if result.is_success:
-            log.info('当前节点 %d', self.current_node_idx)
+            log.info(gt('当前节点 %(v)d', model='log'), {'v': self.current_node_idx})
             return self.round_success(result.status, wait=1)
 
         area = self.ctx.screen_loader.get_area('式舆防卫战', '节点区域')
@@ -207,10 +208,8 @@ class ShiyuDefenseApp(ZApplication):
             )
             for idx, team in enumerate(self.room_teams):
                 log.info(
-                    '%s 弱点:%s 抗性:%s',
-                    ROOM_NAMES[idx],
-                    [dmg_type.value for dmg_type in team.phase_weakness],
-                    [dmg_type.value for dmg_type in team.phase_resistance],
+                    gt('%(v)s 弱点:%(v_2)s 抗性:%(v_3)s', model='log'),
+                    {'v': ROOM_NAMES[idx], 'v_2': [dmg_type.value for dmg_type in team.phase_weakness], 'v_3': [dmg_type.value for dmg_type in team.phase_resistance]},
                 )
 
             return self.round_success('多间模式')
@@ -221,9 +220,9 @@ class ShiyuDefenseApp(ZApplication):
         )
 
         for idx, team in enumerate(self.phase_team_list):
-            log.info('阶段 %d', idx + 1)
-            log.info('弱点: %s', [dmg_type.value for dmg_type in team.phase_weakness])
-            log.info('抗性: %s', [dmg_type.value for dmg_type in team.phase_resistance])
+            log.info(gt('阶段 %(v)d', model='log'), {'v': idx + 1})
+            log.info(gt('弱点: %(v)s', model='log'), {'v': [dmg_type.value for dmg_type in team.phase_weakness]})
+            log.info(gt('抗性: %(v)s', model='log'), {'v': [dmg_type.value for dmg_type in team.phase_resistance]})
 
         return self.round_by_click_area(
             '式舆防卫战',
@@ -247,7 +246,7 @@ class ShiyuDefenseApp(ZApplication):
             predefined_team = self.ctx.team_config.get_team_by_idx(team.team_idx)
             if predefined_team is None:
                 return self.round_fail(f'阶段 {idx + 1} 未找到预备编队')
-            log.info('阶段 %d 配队:%s 自动战斗:%s', idx + 1, predefined_team.name, predefined_team.auto_battle)
+            log.info(gt('阶段 %(v)d 配队:%(v_2)s 自动战斗:%(v_3)s', model='log'), {'v': idx + 1, 'v_2': predefined_team.name, 'v_3': predefined_team.auto_battle})
 
         return self.round_success(result.status)
 
@@ -267,7 +266,7 @@ class ShiyuDefenseApp(ZApplication):
             return self.round_success(ShiyuDefenseApp.STATUS_ALL_ROOMS_COMPLETE)
         self.current_room_idx = idx
         self.current_room_team_idx = self.room_teams[idx].team_idx
-        log.info('选择房间: %s', ROOM_NAMES[self.current_room_idx])
+        log.info(gt('选择房间: %(v)s', model='log'), {'v': ROOM_NAMES[self.current_room_idx]})
         return self.round_by_find_and_click_area(self.last_screenshot, '式舆防卫战-三间选择', f'前往{ROOM_NAMES[self.current_room_idx]}', success_wait=1, retry_wait=1)
 
     @node_from(from_name='多间-选择房间')
@@ -457,7 +456,7 @@ class ShiyuDefenseApp(ZApplication):
     @node_from(from_name='多间-战斗失败')
     @operation_node(name='结束后返回')
     def back_after_all(self) -> OperationRoundResult:
-        log.info('新一期刷新后 可到「式舆防卫战」重置运行记录')
+        log.info(gt('新一期刷新后 可到「式舆防卫战」重置运行记录', model='log'))
         op = BackToNormalWorld(self.ctx)
         return self.round_by_op_result(op.execute())
 

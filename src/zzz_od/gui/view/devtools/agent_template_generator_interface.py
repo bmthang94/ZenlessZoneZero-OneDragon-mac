@@ -352,7 +352,7 @@ class AgentTemplateGeneratorInterface(VerticalScrollInterface):
             tree = repo.head.peel(pygit2.Commit).tree / 'assets' / 'template' / 'battle'
             return {e.name.removeprefix(prefix) for e in tree if e.name.startswith(prefix)}
         except Exception:
-            log.error('读取已提交的代理人模板失败', exc_info=True)
+            log.error(gt('读取已提交的代理人模板失败', model='log'), exc_info=True)
             return None
 
     def _show_git_error(self) -> None:
@@ -554,7 +554,7 @@ class AgentTemplateGeneratorInterface(VerticalScrollInterface):
         try:
             _, screen = controller.screenshot()
         except Exception:
-            log.error('代理人模板截图失败', exc_info=True)
+            log.error(gt('代理人模板截图失败', model='log'), exc_info=True)
             screen = None
         if screen is None:
             self.show_info_bar(gt('截图失败'), '', icon=InfoBarIcon.ERROR)
@@ -660,7 +660,7 @@ class AgentTemplateGeneratorInterface(VerticalScrollInterface):
             template.save_mask()
             return True
         except Exception:
-            log.error(f'保存模板失败 {step.sub_dir}/{template.template_id}', exc_info=True)
+            log.error(gt('保存模板失败 {sub_dir}/{template_id}', model='log').format(sub_dir=step.sub_dir, template_id=template.template_id), exc_info=True)
             return False
 
     def _save_all(self) -> None:

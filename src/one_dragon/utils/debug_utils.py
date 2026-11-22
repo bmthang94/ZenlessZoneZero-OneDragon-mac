@@ -13,6 +13,7 @@ if sys.platform == 'win32':
     import win32con
 
 from one_dragon.utils import cv2_utils, os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -37,7 +38,7 @@ def get_debug_image(filename, suffix: str = '.png') -> MatLike:
 def copy_image_to_clipboard(image) -> bool:
     """将图片复制到剪贴板"""
     if sys.platform != 'win32':
-        log.error('复制调试图片到剪贴板目前仅支持 Windows')
+        log.error(gt('复制调试图片到剪贴板目前仅支持 Windows', model='log'))
         return False
 
     try:
@@ -50,12 +51,12 @@ def copy_image_to_clipboard(image) -> bool:
         try:
             win32clipboard.EmptyClipboard()
             win32clipboard.SetClipboardData(win32con.CF_DIB, data)
-            log.debug('图片已复制到剪贴板')
+            log.debug(gt('图片已复制到剪贴板', model='log'))
             return True
         finally:
             win32clipboard.CloseClipboard()
     except Exception as e:
-        log.error('无法将图片复制到剪贴板: %s', e)
+        log.error(gt('无法将图片复制到剪贴板: %(v)s', model='log'), {'v': e})
         return False
 
 
@@ -64,7 +65,7 @@ def save_debug_image(image, file_name: str | None = None, prefix: str = '', copy
     if file_name is None:
         file_name = f'{prefix}_{round(time.time() * 1000)}'
     path = get_debug_image_path(file_name)
-    log.debug('临时图片保存 %s', path)
+    log.debug(gt('临时图片保存 %(v)s', model='log'), {'v': path})
 
     bgr_image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
     cv2.imwrite(path, bgr_image)

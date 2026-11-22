@@ -11,6 +11,7 @@ from one_dragon.base.conditional_operation.loader import ConditionalOperatorLoad
 from one_dragon.base.conditional_operation.operation_def import OperationDef
 from one_dragon.base.conditional_operation.operator import ConditionalOperator
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.auto_battle.atomic_op.btn_lock import AtomicBtnLock
 from zzz_od.auto_battle.atomic_op.turn import AtomicTurn
@@ -40,7 +41,7 @@ class AutoBattleOperator(ConditionalOperator):
             read_from_merged=read_from_merged,
         )
         if not os.path.exists(original_file_path):
-            log.warning(f'自动战斗配置 {original_file_path} 不存在，回退到 {FALLBACK_TEMPLATE_NAME}')
+            log.warning(gt('自动战斗配置 {original_file_path} 不存在，回退到 {FALLBACK_TEMPLATE_NAME}', model='log').format(original_file_path=original_file_path, FALLBACK_TEMPLATE_NAME=FALLBACK_TEMPLATE_NAME))
             template_name = FALLBACK_TEMPLATE_NAME
 
         ConditionalOperator.__init__(
@@ -112,10 +113,10 @@ class AutoBattleOperator(ConditionalOperator):
         """
         try:
             ConditionalOperator.init(self)
-            log.info(f'自动战斗配置加载成功 {self.get_template_name()}')
+            log.info(gt('自动战斗配置加载成功 {get_template_name}', model='log').format(get_template_name=self.get_template_name()))
             return True, ''
         except Exception:
-            log.error('自动战斗初始化失败 如果是共享配队文件请在群内提醒对应作者修复', exc_info=True)
+            log.error(gt('自动战斗初始化失败 如果是共享配队文件请在群内提醒对应作者修复', model='log'), exc_info=True)
             return False, '初始化失败'
 
     def get_atomic_op(self, op_def: OperationDef) -> AtomicOp:

@@ -1,7 +1,8 @@
-import cv2
 import difflib
+from typing import ClassVar, List, Optional
+
+import cv2
 from cv2.typing import MatLike
-from typing import Optional, List, ClassVar
 
 from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.operation_edge import node_from
@@ -12,9 +13,9 @@ from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.game_data.agent import Agent, AgentEnum
-from zzz_od.hollow_zero.game_data.hollow_zero_event import HollowZeroSpecialEvent
 from zzz_od.hollow_zero.event import hollow_event_utils
 from zzz_od.hollow_zero.event.event_ocr_result_handler import EventOcrResultHandler
+from zzz_od.hollow_zero.game_data.hollow_zero_event import HollowZeroSpecialEvent
 from zzz_od.operation.zzz_operation import ZOperation
 
 
@@ -69,7 +70,7 @@ class CallForSupport(ZOperation):
 
         self.new_agent = self._get_support_agent(self.last_screenshot)
         if self.new_agent is None:
-            log.error('无法识别当前增援角色')
+            log.error(gt('无法识别当前增援角色', model='log'))
         self.should_call_pos = self._should_call_backup(agent_list, self.new_agent)
 
         if self.should_call_pos is not None:
@@ -272,8 +273,9 @@ def __debug_support_agent():
     ctx.init_by_config()
     ctx.init_ocr()
     op = CallForSupport(ctx)
-    from one_dragon.utils import os_utils
     import os
+
+    from one_dragon.utils import os_utils
     screen = cv2_utils.read_image(os.path.join(
         os_utils.get_path_under_work_dir('.debug', 'devtools', 'screen', 'hollow_zero_support'),
         'laikaen.png'
@@ -286,8 +288,9 @@ def __debug_current_agent():
     ctx.init_by_config()
     ctx.init_ocr()
     op = CallForSupport(ctx)
-    from one_dragon.utils import os_utils
     import os
+
+    from one_dragon.utils import os_utils
     screen = cv2_utils.read_image(os.path.join(
         os_utils.get_path_under_work_dir('.debug', 'devtools', 'screen', 'hollow_zero_support'),
         'laikaen.png'
@@ -304,8 +307,9 @@ def __debug_check_screen():
     ctx.init_by_config()
     ctx.init_ocr()
     op = CallForSupport(ctx)
-    from one_dragon.utils import os_utils
     import os
+
+    from one_dragon.utils import os_utils
     screen = cv2_utils.read_image(os.path.join(
         os_utils.get_path_under_work_dir('.debug', 'devtools', 'screen', 'hollow_zero_support'),
         'empty.png'

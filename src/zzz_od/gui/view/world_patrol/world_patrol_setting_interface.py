@@ -6,6 +6,7 @@ from PySide6.QtWidgets import QHBoxLayout, QVBoxLayout, QWidget
 from qfluentwidgets import FluentIcon, PushSettingCard
 
 from one_dragon.base.config.config_item import ConfigItem
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.services.app_setting.app_setting_provider import GroupIdMixin
 from one_dragon_qt.utils.config_utils import get_prop_adapter
@@ -201,8 +202,8 @@ class WorldPatrolSettingInterface(VerticalScrollInterface, GroupIdMixin):
 
     def _on_reset_record_clicked(self) -> None:
         if self.run_record is None:
-            log.warning('运行记录未初始化')
+            log.warning(gt('运行记录未初始化', model='log'))
             return
         self.run_record.reset_record()
-        log.info('已重置记录')
+        log.info(gt('已重置记录', model='log'))
         self._update_run_record_display()

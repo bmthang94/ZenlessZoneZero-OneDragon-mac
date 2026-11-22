@@ -23,7 +23,7 @@ class SwitchAccount(ZOperation):
     @operation_node(name='打开菜单', is_start_node=True)
     def open_menu(self) -> OperationRoundResult:
         if not self.ctx.game_account_config.has_login_info:
-            log.warning('多账户切换未配置完整登录信息，后续登录可能失败')
+            log.warning(gt('多账户切换未配置完整登录信息，后续登录可能失败', model='log'))
         op = GotoMenu(self.ctx)
         return self.round_by_op_result(op.execute())
 
@@ -52,7 +52,7 @@ class SwitchAccount(ZOperation):
     @operation_node(name='修改截图方法')
     def modify_screenshot_func(self) -> OperationRoundResult:
         if self.ctx.game_account_config.game_region == GameRegionEnum.CNB.value.value:
-            log.info('检测到B服登录, 使用Bitblt截图方式')
+            log.info(gt('检测到B服登录, 使用Bitblt截图方式', model='log'))
             self.ctx.controller.screenshot_controller.init_screenshot(ScreenshotMethodEnum.BITBLT.value.value)
         return self.round_success()
 
@@ -78,7 +78,7 @@ class SwitchAccount(ZOperation):
     # noinspection PyUnusedLocal
     def restore_screenshot_func(self, result: OperationResult) -> None:
         if self.ctx.game_account_config.game_region == GameRegionEnum.CNB.value.value:
-            log.info('B服登录结束, 恢复原来的截图方式: ' + self.screenshot_func)
+            log.info(gt('B服登录结束, 恢复原来的截图方式: {screenshot_func}', model='log').format(screenshot_func=self.screenshot_func))
             self.ctx.controller.screenshot_controller.init_screenshot(self.screenshot_func)
 
 

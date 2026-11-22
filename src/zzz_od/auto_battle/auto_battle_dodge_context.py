@@ -23,6 +23,7 @@ from scipy.signal import butter, filtfilt, resample_poly
 from one_dragon.base.conditional_operation.state_recorder import StateRecord
 from one_dragon.base.operation.context_notify_event import ContextNotifyEvent
 from one_dragon.utils import cal_utils, os_utils, thread_utils, yolo_config_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.yolo.flash_classifier import FlashClassifier
@@ -119,7 +120,7 @@ class AudioRecorder:
                         self.latest_audio[:-len(stream_data)] = self.latest_audio[len(stream_data):]
                         self.latest_audio[-len(stream_data):] = stream_data
         except RuntimeError as e:
-            log.warning('音频录制异常，已停止声音闪避识别', exc_info=True)
+            log.warning(gt('音频录制异常，已停止声音闪避识别', model='log'), exc_info=True)
             if self._error_callback is not None:
                 self._error_callback(e)
         finally:
@@ -135,7 +136,7 @@ class AudioRecorder:
             if lib is not None:
                 rc = int(lib.od_sck_audio_start(self._sample_rate))
                 if rc == 0:
-                    log.info('已启用 macOS ScreenCaptureKit 系统音频回环捕获（声音闪避识别）')
+                    log.info(gt('已启用 macOS ScreenCaptureKit 系统音频回环捕获（声音闪避识别）', model='log'))
                     buf = (ctypes.c_float * self._chunk_size)()
                     while self.running:
                         read_frames = int(
@@ -164,11 +165,11 @@ class AudioRecorder:
                     if err_bytes
                     else f'错误码 {rc}'
                 )
-                log.warning('ScreenCaptureKit 音频捕获启动失败 (%s)，尝试回退到虚拟音频设备', err_msg)
+                log.warning(gt('ScreenCaptureKit 音频捕获启动失败 (%(v)s)，尝试回退到虚拟音频设备', model='log'), {'v': err_msg})
 
             self._record_loop_macos_fallback()
         except Exception as e:
-            log.warning('macOS 音频录制异常，已停止声音闪避识别', exc_info=True)
+            log.warning(gt('macOS 音频录制异常，已停止声音闪避识别', model='log'), exc_info=True)
             if self._error_callback is not None:
                 self._error_callback(RuntimeError(str(e)))
         finally:
@@ -196,7 +197,7 @@ class AudioRecorder:
                     timeout=30,
                 )
             except Exception:
-                log.warning('构建 macOS ScreenCaptureKit 音频库失败', exc_info=True)
+                log.warning(gt('构建 macOS ScreenCaptureKit 音频库失败', model='log'), exc_info=True)
                 return None
 
         if not dylib_path.is_file():
@@ -234,7 +235,7 @@ class AudioRecorder:
                 'ScreenCaptureKit 音频捕获未就绪（请检查屏幕与系统录音权限），且未找到 BlackHole 等虚拟音频设备'
             )
 
-        log.info('已回退使用虚拟音频输入设备进行声音闪避识别: %s', target_mic.name)
+        log.info(gt('已回退使用虚拟音频输入设备进行声音闪避识别: %(v)s', model='log'), {'v': target_mic.name})
         recorder = target_mic.recorder(samplerate=self._sample_rate, channels=self._used_channel)
         with recorder as audio_recorder:
             while self.running:
@@ -368,7 +369,7 @@ class AutoBattleDodgeContext:
         """
         if self._audio_template_fft is not None:
             return
-        log.info('加载声音模板中')
+        log.info(gt('加载声音模板中', model='log'))
 
         template_dir = Path(os_utils.get_path_under_work_dir('assets', 'template', 'dodge_audio'))
         template_files: tuple[str, ...] = (
@@ -416,7 +417,7 @@ class AutoBattleDodgeContext:
         # 缓存三个模板的频域数据，实时识别时不再重复计算模板 FFT。
         self._audio_template_fft = rfft(template_matrix, n=fft_size, axis=1)
 
-        log.info('加载声音模板完成')
+        log.info(gt('加载声音模板完成', model='log'))
 
     def _load_audio_template(self, template_path: Path) -> np.ndarray:
         """读取模板并转换为录音使用的采样率和单声道。"""
@@ -493,7 +494,7 @@ class AutoBattleDodgeContext:
 
             return should_dodge
         except Exception:
-            log.error('识别画面闪光失败', exc_info=True)
+            log.error(gt('识别画面闪光失败', model='log'), exc_info=True)
             return False
         finally:
             self._check_dodge_flash_lock.release()
@@ -532,7 +533,7 @@ class AutoBattleDodgeContext:
 
             return False
         except Exception:
-            log.error('识别闪避声音失败', exc_info=True)
+            log.error(gt('识别闪避声音失败', model='log'), exc_info=True)
             return False
         finally:
             self._check_audio_lock.release()

@@ -133,7 +133,7 @@ class CombatSimulation(ZOperation):
 
             if click_pos:
                 target_point = Point(click_pos[0], click_pos[1])
-                log.info(f'找到代理人目标，点击位置: {target_point}')
+                log.info(gt('找到代理人目标，点击位置: {target_point}', model='log').format(target_point=target_point))
 
             if target_point is None:
                 start = area.center + Point(-100, 0)
@@ -192,11 +192,11 @@ class CombatSimulation(ZOperation):
             return self.round_retry(result.status, wait=1)
 
         for i in range(1, 6):
-            log.info('开始取消已选择数量 %d', i)
+            log.info(gt('开始取消已选择数量 %(v)d', model='log'), {'v': i})
             self.round_by_click_area('实战模拟室', '内层-已选择卡片1')
             time.sleep(0.5)
         for i in range(1, int(self.plan.card_num) + 1):
-            log.info('开始选择数量 %d', i)
+            log.info(gt('开始选择数量 %(v)d', model='log'), {'v': i})
             self.round_by_click_area('实战模拟室', '内层-卡片1')
             time.sleep(0.5)
 

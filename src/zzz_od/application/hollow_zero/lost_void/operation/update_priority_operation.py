@@ -3,6 +3,7 @@ import re
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.operation.zzz_operation import ZOperation
@@ -65,11 +66,11 @@ class UpdatePriorityOperation(ZOperation):
         使用CV流水线识别藏品，并通过空间关联，识别等级1或2的武备，并提取其分类作为优先级
         """
         # 1. 使用CV流水线识别藏品
-        log.info("开始执行CV流水线 [迷失之地-藏品类型识别]...")
+        log.info(gt('开始执行CV流水线 [迷失之地-藏品类型识别]...', model='log'))
         pipeline_result = self.ctx.cv_service.run_pipeline('迷失之地-藏品类型识别', self.last_screenshot)
 
         if not pipeline_result.ocr_result:
-            log.info('流水线未识别到任何藏品，保留现有动态优先级')
+            log.info(gt('流水线未识别到任何藏品，保留现有动态优先级', model='log'))
             return self.round_success("未发现需优先的藏品")
 
         all_match_results_with_text = []
@@ -88,7 +89,7 @@ class UpdatePriorityOperation(ZOperation):
                 level_blocks.append(block)
 
         if not level_blocks:
-            log.info('未识别到任何等级1或等级2的藏品，保留现有动态优先级')
+            log.info(gt('未识别到任何等级1或等级2的藏品，保留现有动态优先级', model='log'))
             return self.round_success("未发现需优先的藏品")
 
         # 3. 为每个“等级X”找到其上方的藏品名称
@@ -120,15 +121,15 @@ class UpdatePriorityOperation(ZOperation):
                 # 4. 直接按 [a:b] 中的 a 提取动态优先级分类
                 priority_category = self._extract_priority_category_from_text(best_candidate.text)
                 if priority_category is not None:
-                    log.info(f'发现低等级藏品: {best_candidate.text}，添加优先级: {priority_category}')
+                    log.info(gt('发现低等级藏品: {text}，添加优先级: {priority_category}', model='log').format(text=best_candidate.text, priority_category=priority_category))
                     if priority_category not in new_priorities:
                         new_priorities.append(priority_category)
                 else:
-                    log.debug(f'低等级藏品未能提取优先级: {best_candidate.text}')
+                    log.debug(gt('低等级藏品未能提取优先级: {text}', model='log').format(text=best_candidate.text))
 
         # 6. 存储最终结果
         self._append_dynamic_priorities(new_priorities)
-        log.debug(f"动态优先级列表已更新: {self.ctx.lost_void.dynamic_priority_list}")
+        log.debug(gt('动态优先级列表已更新: {dynamic_priority_list}', model='log').format(dynamic_priority_list=self.ctx.lost_void.dynamic_priority_list))
         return self.round_success("动态优先级存储成功")
 
     @node_from(from_name='识别并存储优先级')

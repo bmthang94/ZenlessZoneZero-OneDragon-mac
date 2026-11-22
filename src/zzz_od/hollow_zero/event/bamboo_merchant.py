@@ -1,8 +1,9 @@
-import cv2
-from cv2.typing import MatLike
 from typing import ClassVar
 
-from one_dragon.base.matcher.match_result import MatchResultList, MatchResult
+import cv2
+from cv2.typing import MatLike
+
+from one_dragon.base.matcher.match_result import MatchResult, MatchResultList
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
@@ -103,7 +104,7 @@ class BambooMerchant(ZOperation):
         # 只保留有价格的
         for ocr_result, mrl in desc_ocr_result_map.items():
             item = self.ctx.withered_domain.data_service.match_resonium_by_ocr_full(ocr_result)
-            log.info('%s 匹配鸣徽 %s' % (ocr_result, item.name if item is not None else 'none'))
+            log.info((gt('%(v)s 匹配鸣徽 %(v_2)s', model='log') % {'v': ocr_result, 'v_2': item.name if item is not None else 'none'}))
             if item is None:
                 continue
             with_price: bool = False
@@ -228,8 +229,9 @@ def __debug_check_screen():
     ctx.init_by_config()
     ctx.init_ocr()
     op = BambooMerchant(ctx)
-    from one_dragon.utils import os_utils
     import os
+
+    from one_dragon.utils import os_utils
     screen = cv2_utils.read_image(os.path.join(
         os_utils.get_path_under_work_dir('.debug', 'devtools', 'screen', 'hollow_zero_merchant'),
         '_1725071431457.png'

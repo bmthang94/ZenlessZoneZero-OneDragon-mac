@@ -1,13 +1,16 @@
-from PySide6.QtCore import Signal, QThread
+from typing import Callable, List, Optional, Tuple
+
+from PySide6.QtCore import QThread, Signal
 from PySide6.QtGui import QIcon
 from PySide6.QtWidgets import QWidget
 from qfluentwidgets import FluentIcon, PrimaryPushButton
-from typing import Optional, Callable, Tuple, List
 
 from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
-from one_dragon_qt.widgets.setting_card.multi_push_setting_card import MultiPushSettingCard
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
+from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
+    MultiPushSettingCard,
+)
 
 
 class InstallRunner(QThread):
@@ -104,7 +107,7 @@ class BaseInstallCard(MultiPushSettingCard):
         :return:
         """
         if self.install_runner.isRunning():
-            log.warning('我知道你很急 但你先别急 正在运行了')
+            log.warning(gt('我知道你很急 但你先别急 正在运行了', model='log'))
             return
         self.install_btn.setDisabled(True)
         self.install_runner.start()
@@ -147,7 +150,7 @@ class BaseInstallCard(MultiPushSettingCard):
         :return:
         """
         if self.display_checker.isRunning():
-            log.warning('我知道你很急 但你先别急 正在运行了')
+            log.warning(gt('我知道你很急 但你先别急 正在运行了', model='log'))
             return
         self.setContent(gt('检查中'))
         self.display_checker.start()

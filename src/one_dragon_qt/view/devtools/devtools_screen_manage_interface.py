@@ -673,7 +673,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface, HistoryMixin):
         )
         if file_path is not None and file_path.endswith('.png'):
             fix_file_path = os.path.normpath(file_path)
-            log.info('选择路径 %s', fix_file_path)
+            log.info(gt('选择路径 %(v)s', model='log'), {'v': fix_file_path})
             self.last_screen_dir = os.path.dirname(fix_file_path)
             self._on_image_chosen(fix_file_path)
 
@@ -741,7 +741,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface, HistoryMixin):
         )
         if file_path is not None and file_path.endswith('.yml'):
             fix_file_path = os.path.normpath(file_path)
-            log.info('选择路径 %s', fix_file_path)
+            log.info(gt('选择路径 %(v)s', model='log'), {'v': fix_file_path})
             self._on_template_chosen(fix_file_path)
 
     def _on_template_chosen(self, template_file_path: str) -> None:
@@ -955,7 +955,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface, HistoryMixin):
         try:
             new_value = parser(text) if parser is not None else text
         except Exception as e:
-            log.error('解析失败', exc_info=True)
+            log.error(gt('解析失败', model='log'), exc_info=True)
             self.show_info_bar(
                 '解析失败',
                 f'{attr_name}: {e}',
@@ -1026,7 +1026,7 @@ class DevtoolsScreenManageInterface(VerticalScrollInterface, HistoryMixin):
                 self._image_update.signal.emit()
         except Exception as e:
             # 如果解析失败，不进行修改
-            log.error('解析失败', exc_info=True)
+            log.error(gt('解析失败', model='log'), exc_info=True)
             self.show_info_bar(
                 '解析失败',
                 f'{col_meta.display_name}: {e}',

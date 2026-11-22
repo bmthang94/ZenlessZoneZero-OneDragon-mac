@@ -630,7 +630,7 @@ class PluginManageInterface(PluginOperationMixin, VerticalScrollInterface):
                 parent=self
             )
         except Exception as e:
-            log.error(f'刷新插件失败: {e}', exc_info=True)
+            log.error(gt('刷新插件失败: {e}', model='log').format(e=e), exc_info=True)
             self._show_error(gt('刷新失败'), str(e))
 
     def _on_open_dir_clicked(self) -> None:

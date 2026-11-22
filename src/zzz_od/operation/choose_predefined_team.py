@@ -158,16 +158,14 @@ class ChoosePredefinedTeam(ZOperation):
         """
         if not self.shiyu_team_selected:
             if not self.scan_started:
-                log.info('预备编队扫描开始')
+                log.info(gt('预备编队扫描开始', model='log'))
                 self.scan_started = True
 
             scan_finished = self._scan_team_page(self.last_screenshot)
             if not scan_finished:
                 log.debug(
-                    '预备编队扫描继续:当前页:%d 下一页:%d 有效:%d',
-                    self.current_scroll_page,
-                    self.current_scroll_page + 1,
-                    len(self.scanned_team_idx_list),
+                    gt('预备编队扫描继续:当前页:%(v)d 下一页:%(v_2)d 有效:%(v_3)d', model='log'),
+                    {'v': self.current_scroll_page, 'v_2': self.current_scroll_page + 1, 'v_3': len(self.scanned_team_idx_list)},
                 )
                 self._scroll_team_list(-1)
                 self.current_scroll_page += 1
@@ -176,10 +174,8 @@ class ChoosePredefinedTeam(ZOperation):
                     wait=1,
                 )
             log.info(
-                '预备编队扫描完成:有效:%d 禁用:%d 人数识别失败:%d',
-                len(self.scanned_team_idx_list),
-                self.disabled_team_count,
-                self.unrecognized_team_member_count,
+                gt('预备编队扫描完成:有效:%(v)d 禁用:%(v_2)d 人数识别失败:%(v_3)d', model='log'),
+                {'v': len(self.scanned_team_idx_list), 'v_2': self.disabled_team_count, 'v_3': self.unrecognized_team_member_count},
             )
             if not self._select_shiyu_teams():
                 return self.round_fail('预备编队不足以完成自动配队')
@@ -240,7 +236,7 @@ class ChoosePredefinedTeam(ZOperation):
                     '取消预选后未恢复SELECT',
                     wait=0.5,
                 )
-            log.debug('预备编队取消预选已确认:队伍:%s', target_team.name)
+            log.debug(gt('预备编队取消预选已确认:队伍:%(v)s', model='log'), {'v': target_team.name})
             self.pending_cancel_button_center = None
             return self.round_wait(
                 ChoosePredefinedTeam.STATUS_CONTINUE_CHOOSE,
@@ -262,9 +258,8 @@ class ChoosePredefinedTeam(ZOperation):
                     wait=0.5,
                 )
             log.info(
-                '预备编队已选:队伍:%s 序号:%d',
-                target_team.name,
-                target_team_idx + 1,
+                gt('预备编队已选:队伍:%(v)s 序号:%(v_2)d', model='log'),
+                {'v': target_team.name, 'v_2': target_team_idx + 1},
             )
             self.pending_select_button_center = None
             self.current_target_idx += 1
@@ -319,7 +314,7 @@ class ChoosePredefinedTeam(ZOperation):
             )
             if selected_button_mr is None:
                 return self.round_fail(f'当前编队未找到SELECT {target_team.name}')
-            log.info('预备编队取消预选:队伍:%s', target_team.name)
+            log.info(gt('预备编队取消预选:队伍:%(v)s', model='log'), {'v': target_team.name})
             self.ctx.controller.click(selected_button_mr.center)
             self.pending_cancel_button_center = selected_button_mr.center
             return self.round_wait(
@@ -328,9 +323,8 @@ class ChoosePredefinedTeam(ZOperation):
             )
 
         log.info(
-            '预备编队选择:队伍:%s 序号:%d',
-            target_team.name,
-            target_team_idx + 1,
+            gt('预备编队选择:队伍:%(v)s 序号:%(v_2)d', model='log'),
+            {'v': target_team.name, 'v_2': target_team_idx + 1},
         )
         self.ctx.controller.click(select_button_mr.center)
         self.pending_select_button_center = select_button_mr.center
@@ -345,7 +339,7 @@ class ChoosePredefinedTeam(ZOperation):
             '预备出战',
         )
         if result.is_success:
-            log.info('预备编队选择完成:已点击预备出战')
+            log.info(gt('预备编队选择完成:已点击预备出战', model='log'))
             time.sleep(0.5)
             self.ctx.controller.mouse_move(Point(200, 200))
             return self.round_success(result.status, wait=0.5)
@@ -372,19 +366,18 @@ class ChoosePredefinedTeam(ZOperation):
                 team_slot_rect,
             )
             if team_name is None:
-                log.debug('预备编队扫描卡位:%d 未识别队名', card_idx + 1)
+                log.debug(gt('预备编队扫描卡位:%(v)d 未识别队名', model='log'), {'v': card_idx + 1})
                 continue
             if team_name in self.scanned_team_name_set:
                 log.debug(
-                    '预备编队扫描卡位:%d 队名:%s 已扫描，跳过',
-                    card_idx + 1,
-                    team_name,
+                    gt('预备编队扫描卡位:%(v)d 队名:%(v_2)s 已扫描，跳过', model='log'),
+                    {'v': card_idx + 1, 'v_2': team_name},
                 )
                 continue
 
             team_idx = page_start_team_idx + card_idx
             if team_idx >= self.MAX_TEAM_COUNT:
-                log.debug('预备编队扫描结束:已达到最大队伍数量:%d', self.MAX_TEAM_COUNT)
+                log.debug(gt('预备编队扫描结束:已达到最大队伍数量:%(v)d', model='log'), {'v': self.MAX_TEAM_COUNT})
                 return True
             new_team_found = True
 
@@ -402,17 +395,13 @@ class ChoosePredefinedTeam(ZOperation):
                 team_slot_rect,
             )
             log.debug(
-                '预备编队扫描卡位:%d 队名:%s 代理人数量:%d 槽位:%s 队伍人数:%s',
-                card_idx + 1,
-                team_name,
-                len(agent_list),
-                sorted(agent_slot_set),
-                team_member_count,
+                gt('预备编队扫描卡位:%(v)d 队名:%(v_2)s 代理人数量:%(v_3)d 槽位:%(v_4)s 队伍人数:%(v_5)s', model='log'),
+                {'v': card_idx + 1, 'v_2': team_name, 'v_3': len(agent_list), 'v_4': sorted(agent_slot_set), 'v_5': team_member_count},
             )
             if team_member_count == 0 or (
                 len(agent_list) == 0 and team_member_count is None
             ):
-                log.debug('预备编队扫描结束:队名:%s 队伍为空', team_name)
+                log.debug(gt('预备编队扫描结束:队名:%(v)s 队伍为空', model='log'), {'v': team_name})
                 return True
 
             self.scanned_team_name_set.add(team_name)
@@ -421,9 +410,8 @@ class ChoosePredefinedTeam(ZOperation):
                 self.ctx.team_config.update_team_name_by_idx(team_idx, team_name)
                 self.unrecognized_team_member_count += 1
                 log.warning(
-                    '预备编队跳过:序号:%d 队名:%s 未识别队伍人数',
-                    team_idx + 1,
-                    team_name,
+                    gt('预备编队跳过:序号:%(v)d 队名:%(v_2)s 未识别队伍人数', model='log'),
+                    {'v': team_idx + 1, 'v_2': team_name},
                 )
                 continue
 
@@ -436,10 +424,8 @@ class ChoosePredefinedTeam(ZOperation):
             if is_disabled:
                 self.disabled_team_count += 1
                 log.debug(
-                    '预备编队禁用:序号:%d 队名:%s 代理人槽位不完整:%s 且头像变暗',
-                    team_idx + 1,
-                    team_name,
-                    sorted(agent_slot_set),
+                    gt('预备编队禁用:序号:%(v)d 队名:%(v_2)s 代理人槽位不完整:%(v_3)s 且头像变暗', model='log'),
+                    {'v': team_idx + 1, 'v_2': team_name, 'v_3': sorted(agent_slot_set)},
                 )
                 continue
 
@@ -451,10 +437,8 @@ class ChoosePredefinedTeam(ZOperation):
             )
             self.scanned_team_idx_list.append(team_idx)
             log.debug(
-                '预备编队扫描有效:序号:%d 名称:%s 代理人:%s',
-                team_idx + 1,
-                team_name,
-                [agent.agent_name for agent in team_member_list],
+                gt('预备编队扫描有效:序号:%(v)d 名称:%(v_2)s 代理人:%(v_3)s', model='log'),
+                {'v': team_idx + 1, 'v_2': team_name, 'v_3': [agent.agent_name for agent in team_member_list]},
             )
 
         scan_finished = (
@@ -463,9 +447,8 @@ class ChoosePredefinedTeam(ZOperation):
         )
         if scan_finished:
             log.debug(
-                '预备编队扫描结束:当前页:%d 新增队伍:%s',
-                self.current_scroll_page,
-                new_team_found,
+                gt('预备编队扫描结束:当前页:%(v)d 新增队伍:%(v_2)s', model='log'),
+                {'v': self.current_scroll_page, 'v_2': new_team_found},
             )
         return scan_finished
 
@@ -659,18 +642,16 @@ class ChoosePredefinedTeam(ZOperation):
         )
         if template is None or template.raw is None:
             log.warning(
-                '预备编队头像亮度:代理人:%s 模板:%s 未找到模板原图',
-                agent_mr.data.agent_name,
-                agent_mr.template_id,
+                gt('预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 未找到模板原图', model='log'),
+                {'v': agent_mr.data.agent_name, 'v_2': agent_mr.template_id},
             )
             return False
 
         avatar_image = cv2_utils.crop_image_only(screen, agent_mr.rect)
         if avatar_image.size == 0:
             log.warning(
-                '预备编队头像亮度:代理人:%s 模板:%s 头像区域为空',
-                agent_mr.data.agent_name,
-                agent_mr.template_id,
+                gt('预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 头像区域为空', model='log'),
+                {'v': agent_mr.data.agent_name, 'v_2': agent_mr.template_id},
             )
             return False
         template_image = cv2.resize(
@@ -694,14 +675,8 @@ class ChoosePredefinedTeam(ZOperation):
             and brightness_ratio <= self.DISABLED_AVATAR_BRIGHTNESS_RATIO
         )
         log.debug(
-            '预备编队头像亮度:代理人:%s 模板:%s 实际:%.1f 模板:%.1f 比例:%.1f%% 阈值:%.1f%% 判暗:%s',
-            agent_mr.data.agent_name,
-            agent_mr.template_id,
-            avatar_brightness,
-            template_brightness,
-            brightness_ratio * 100 if brightness_ratio is not None else 0,
-            self.DISABLED_AVATAR_BRIGHTNESS_RATIO * 100,
-            is_dim,
+            gt('预备编队头像亮度:代理人:%(v)s 模板:%(v_2)s 实际:%(v_3).1f 模板:%(v_4).1f 比例:%(v_5).1f%% 阈值:%(v_6).1f%% 判暗:%(v_7)s', model='log'),
+            {'v': agent_mr.data.agent_name, 'v_2': agent_mr.template_id, 'v_3': avatar_brightness, 'v_4': template_brightness, 'v_5': brightness_ratio * 100 if brightness_ratio is not None else 0, 'v_6': self.DISABLED_AVATAR_BRIGHTNESS_RATIO * 100, 'v_7': is_dim},
         )
         return is_dim
 
@@ -777,13 +752,8 @@ class ChoosePredefinedTeam(ZOperation):
             ]
         is_disabled = len(dim_missing_slot_list) > 0
         log.debug(
-            '预备编队禁用判定:队名:%s 槽位:%s 队伍人数:%s 缺失槽位:%s 对应头像变暗:%s 结果:%s',
-            team_name,
-            sorted(agent_slot_set),
-            team_member_count,
-            missing_slot_list,
-            dim_missing_slot_list,
-            is_disabled,
+            gt('预备编队禁用判定:队名:%(v)s 槽位:%(v_2)s 队伍人数:%(v_3)s 缺失槽位:%(v_4)s 对应头像变暗:%(v_5)s 结果:%(v_6)s', model='log'),
+            {'v': team_name, 'v_2': sorted(agent_slot_set), 'v_3': team_member_count, 'v_4': missing_slot_list, 'v_5': dim_missing_slot_list, 'v_6': is_disabled},
         )
         return is_disabled
 
@@ -806,7 +776,7 @@ class ChoosePredefinedTeam(ZOperation):
         time.sleep(1)
         new_screen = self.screenshot()
         new_ocr_result_map = self.ctx.ocr.run_ocr(new_screen)
-        log.debug('预备编队禁用疑似:队名:%s 等待 1 秒后二次确认', team_name)
+        log.debug(gt('预备编队禁用疑似:队名:%(v)s 等待 1 秒后二次确认', model='log'), {'v': team_name})
         return self._is_team_disabled_on_screen(
             new_screen,
             new_ocr_result_map,

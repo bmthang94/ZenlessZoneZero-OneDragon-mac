@@ -1,15 +1,16 @@
 import re
 import time
-from typing import List, Tuple, Any
+from typing import Any, List, Tuple
 
 import cv2
 from cv2.typing import MatLike
 
 from one_dragon.base.cv_process.cv_pipeline import CvPipelineContext
 from one_dragon.utils import str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
-from zzz_od.game_data.target_state import DetectionTask, TargetStateDef, TargetCheckWay
+from zzz_od.game_data.target_state import DetectionTask, TargetCheckWay, TargetStateDef
 
 
 class TargetStateChecker:
@@ -81,11 +82,11 @@ class TargetStateChecker:
             return None
 
         if not task.area_name:
-            log.error(f'任务 {task.task_id}: 多模板匹配缺少区域名')
+            log.error(gt('任务 {task_id}: 多模板匹配缺少区域名', model='log').format(task_id=task.task_id))
             return None
         area = self.ctx.screen_loader.get_area('战斗画面', task.area_name)
         if area is None:
-            log.error(f'任务 {task.task_id}: 战斗画面中找不到区域 {task.area_name}')
+            log.error(gt('任务 {task_id}: 战斗画面中找不到区域 {area_name}', model='log').format(task_id=task.task_id, area_name=task.area_name))
             return None
 
         preferred = self._preferred_state.get(task.task_id)
@@ -96,7 +97,7 @@ class TargetStateChecker:
             template_name = params.get('template_name')
             threshold = params.get('threshold', 0.85)
             if not template_name:
-                log.error(f'状态 {state_def.state_name}: 缺少模板名称')
+                log.error(gt('状态 {state_name}: 缺少模板名称', model='log').format(state_name=state_def.state_name))
                 continue
             sub_dir, template_id = template_name.split('/')
             match_result = self.ctx.tm.crop_and_match_template(
@@ -108,7 +109,7 @@ class TargetStateChecker:
             )
             if match_result.max is None:
                 continue
-            log.debug(f'任务 {task.task_id}: {state_def.state_name} 置信度 {match_result.max.confidence:.4f}')
+            log.debug(gt('任务 {task_id}: {state_name} 置信度 {confidence:.4f}', model='log').format(task_id=task.task_id, state_name=state_def.state_name, confidence=match_result.max.confidence))
             self._preferred_state[task.task_id] = state_def.state_name
             return state_def.state_name
 
@@ -128,7 +129,7 @@ class TargetStateChecker:
             # 将start_time传递给具体的检查函数
             return handler(cv_result, state_def, cv_result.start_time)
         else:
-            log.debug(f"未知的 TargetCheckWay: {state_def.check_way} for state {state_def.state_name}")
+            log.debug(gt('未知的 TargetCheckWay: {check_way} for state {state_name}', model='log').format(check_way=state_def.check_way, state_name=state_def.state_name))
             return False # 未知check_way视为不处理
 
     def _check_contour_count(self, cv_result: CvPipelineContext, state_def: TargetStateDef, _start_time: float) -> bool | None:
@@ -240,17 +241,17 @@ class TargetStateChecker:
 
         # 1. 验证输入
         if not cv_result.contours:
-            log.debug(f"状态 {state_def.state_name}: 未找到轮廓")
+            log.debug(gt('状态 {state_name}: 未找到轮廓', model='log').format(state_name=state_def.state_name))
             return None if state_def.clear_on_miss else False
 
         if cv_result.mask_image is None:
-            log.warn(f"状态 {state_def.state_name} 需要CV流水线提供 mask_image 输出，但未找到。")
+            log.warn(gt('状态 {state_name} 需要CV流水线提供 mask_image 输出，但未找到。', model='log').format(state_name=state_def.state_name))
             return None if state_def.clear_on_miss else False
 
         # 2. 获取参数
         contour_index = state_def.check_params.get('contour_index', 0)
         if len(cv_result.contours) <= contour_index:
-            log.debug(f"状态 {state_def.state_name}: 轮廓索引 {contour_index} 越界 (共 {len(cv_result.contours)} 个轮廓)")
+            log.debug(gt('状态 {state_name}: 轮廓索引 {contour_index} 越界 (共 {len} 个轮廓)', model='log').format(state_name=state_def.state_name, contour_index=contour_index, len=len(cv_result.contours)))
             return None if state_def.clear_on_miss else False
 
         # 3. 计算
@@ -259,7 +260,7 @@ class TargetStateChecker:
             mask_width = cv_result.mask_image.shape[1]
 
             if mask_width == 0:
-                log.debug(f"状态 {state_def.state_name}: 遮罩宽度为0")
+                log.debug(gt('状态 {state_name}: 遮罩宽度为0', model='log').format(state_name=state_def.state_name))
                 return None if state_def.clear_on_miss else False
 
             # 【核心修正】: 使用外接矩形的宽度，而不是轮廓周长
@@ -273,7 +274,7 @@ class TargetStateChecker:
             return True, result_percent
 
         except (ValueError, TypeError, AttributeError) as e:
-            log.exception(f"计算轮廓宽度与遮罩宽度比率时出错: {e}")
+            log.exception(gt('计算轮廓宽度与遮罩宽度比率时出错: {e}', model='log').format(e=e))
             return None if state_def.clear_on_miss else False
 
     def _check_template_match_confidence(self, cv_result: CvPipelineContext, state_def: TargetStateDef, _start_time: float) -> bool | None:
@@ -288,11 +289,11 @@ class TargetStateChecker:
         threshold = state_def.check_params.get('threshold', 0.8)
         match_result = cv_result.match_result
         if match_result is None or match_result.max is None:
-            log.debug(f"状态 {state_def.state_name}: 模板匹配无结果")
+            log.debug(gt('状态 {state_name}: 模板匹配无结果', model='log').format(state_name=state_def.state_name))
             return None if state_def.clear_on_miss else False
 
         confidence = match_result.max.confidence
-        log.debug(f"状态 {state_def.state_name}: 模板匹配置信度 {confidence:.4f} (阈值 {threshold})")
+        log.debug(gt('状态 {state_name}: 模板匹配置信度 {confidence:.4f} (阈值 {threshold})', model='log').format(state_name=state_def.state_name, confidence=confidence, threshold=threshold))
         if confidence >= threshold:
             return True
         return None if state_def.clear_on_miss else False
@@ -323,8 +324,7 @@ class TargetStateChecker:
             # 在这里，我们不再遍历OCR文本中的每个词，而是将整个OCR文本与候选词进行比较
             # 这更适合短语匹配
             best_match, score = str_utils.find_best_match_by_similarity(ocr_text, expected_texts, threshold)
-            log.debug(f"状态 {state_def.state_name}: OCR文本='{ocr_text}', 候选='{expected_texts}', "
-                      f"最佳匹配='{best_match}', 分数={score:.2f} (阈值 {threshold})")
+            log.debug(gt("状态 {state_name}: OCR文本='{ocr_text}', 候选='{expected_texts}', 最佳匹配='{best_match}', 分数={score:.2f} (阈值 {threshold})", model='log').format(state_name=state_def.state_name, ocr_text=ocr_text, expected_texts=expected_texts, best_match=best_match, score=score, threshold=threshold))
 
             if best_match is not None:
                 return True

@@ -6,6 +6,7 @@ import numpy as np
 from cv2.typing import MatLike
 from PySide6.QtCore import QThread, Signal
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -38,7 +39,7 @@ class PipCaptureWorker(QThread):
             try:
                 frame = self._capture_fn()
             except Exception:
-                log.debug('画中画截图失败', exc_info=True)
+                log.debug(gt('画中画截图失败', model='log'), exc_info=True)
                 frame = None
 
             if frame is not None:

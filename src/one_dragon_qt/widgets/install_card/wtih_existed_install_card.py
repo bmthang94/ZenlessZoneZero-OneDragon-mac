@@ -1,13 +1,14 @@
 import os
-from PySide6.QtWidgets import QFileDialog
-from qfluentwidgets import FluentIcon, PushButton
 from typing import Callable, Optional, Tuple
 
+from PySide6.QtWidgets import QFileDialog
+from qfluentwidgets import FluentIcon, PushButton
+
 from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
-from one_dragon_qt.widgets.install_card.base_install_card import BaseInstallCard
 from one_dragon.utils import os_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
+from one_dragon_qt.widgets.install_card.base_install_card import BaseInstallCard
 
 
 class WithExistedInstallCard(BaseInstallCard):
@@ -47,7 +48,7 @@ class WithExistedInstallCard(BaseInstallCard):
                                                    filter="Exe (*.exe)",
                                                    )
         if file_path is not None and file_path.endswith('.exe'):
-            log.info('选择路径 %s', file_path)
+            log.info(gt('选择路径 %(v)s', model='log'), {'v': file_path})
             self.on_existed_chosen(os.path.normpath(file_path))
 
     def get_existed_os_path(self) -> Optional[str]:

@@ -27,8 +27,8 @@ def compile_po_files():
     将不同语言的po文件编译成mo
     :return:
     """
-    for model in ['game', 'ui']:
-        for lang in ['zh', 'en']:
+    for model, langs in [('game', ['zh', 'en']), ('ui', ['zh', 'en']), ('log', ['en'])]:
+        for lang in langs:
             compile_lang(model, lang)
 
 

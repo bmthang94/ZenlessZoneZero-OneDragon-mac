@@ -8,7 +8,6 @@ from pathlib import Path
 from pynput import keyboard
 
 from one_dragon.base.config.basic_model_config import BasicModelConfig
-from one_dragon.base.config.custom_config import UILanguageEnum
 from one_dragon.base.controller.controller_base import ControllerBase
 from one_dragon.base.controller.pc_button.keyboard_mouse_controller import (
     KeyboardMouseController,
@@ -53,6 +52,7 @@ from one_dragon.utils import (
     os_utils,
     thread_utils,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon.utils.plugin_module_loader import list_repo_plugin_dirs
 
@@ -72,6 +72,8 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
     def __init__(self):
         ContextEventBus.__init__(self)
         OneDragonEnvContext.__init__(self)
+
+        self.apply_ui_language()
 
         self.signal: ContextLazySignal = ContextLazySignal()
 
@@ -286,7 +288,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         重新扫描插件目录，刷新所有应用的注册。
         可在运行时调用以加载新的应用或更新已有应用。
         """
-        log.info("开始刷新应用注册...")
+        log.info(gt('开始刷新应用注册...', model='log'))
 
         # 清空现有注册
         self.run_context.clear_applications()
@@ -320,7 +322,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         # 通知前端重扫应用设置入口 使新装/卸载插件的设置及时生效
         self.dispatch_event(ContextAppSettingRefreshEvent.EVENT_ID, ContextAppSettingRefreshEvent())
 
-        log.info("应用注册刷新完成")
+        log.info(gt('应用注册刷新完成', model='log'))
 
     def _sync_current_application_after_refresh(self) -> None:
         """刷新后校验当前运行应用，避免继续引用已移除的注册。"""
@@ -341,17 +343,21 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
 
     #------------------- 以下是 初始化相关 -------------------#
 
+    def apply_ui_language(self) -> None:
+        """应用界面语言设置。
+
+        在上下文构建阶段调用一次，使日志与界面语言在其他懒加载配置、
+        服务创建前生效。后续重新执行 init() 不会重复应用，保存新的
+        语言配置需要重启后才生效。
+        """
+        i18_utils.apply_ui_language(self.custom_config.ui_language)
+
     def init(self) -> None:
         if not self._init_lock.acquire(blocking=False):
             return
 
         try:
             self.ready_for_application = False
-
-            if self.custom_config.ui_language == UILanguageEnum.AUTO.value.value:
-                i18_utils.detect_and_set_default_language()
-            else:
-                i18_utils.update_default_lang(self.custom_config.ui_language)
 
             log_utils.set_log_level(logging.DEBUG if self.env_config.is_debug else logging.INFO)
 
@@ -387,7 +393,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
 
             self._start_btn_listener()
         except Exception:
-            log.error('初始化出错', exc_info=True)
+            log.error(gt('初始化出错', model='log'), exc_info=True)
         finally:
             self._init_lock.release()
 
@@ -496,7 +502,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         注意如果有缓存需要清理缓存
         子类需要继承加载更多的配置
         """
-        log.info('开始加载实例配置 %d', self.current_instance_idx)
+        log.info(gt('开始加载实例配置 %(v)d', model='log'), {'v': self.current_instance_idx})
 
         to_clear_props = [
             'game_account_config',
@@ -534,7 +540,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         need_download: bool = not self.ocr.is_file_existed()
         if need_download:
             if not self._confirm_resource_download(title='OCR识别模型', note=self.model_config.ocr):
-                log.info('已取消下载OCR模型 使用OCR时将重新下载')
+                log.info(gt('已取消下载OCR模型 使用OCR时将重新下载', model='log'))
                 return
             self.dispatch_event(
                 ContextNotifyEvent.EVENT_ID,
@@ -579,7 +585,7 @@ class OneDragonContext(ContextEventBus, OneDragonEnvContext):
         request = ContextDownloadRequestEvent(title=title, note=note)
         self.dispatch_event(ContextDownloadRequestEvent.EVENT_ID, request)
         if not request.wait(timeout=300):
-            log.warning('资源下载确认超时，已取消本次下载')
+            log.warning(gt('资源下载确认超时，已取消本次下载', model='log'))
             return False
         if request.confirmed and request.remember:
             self.env_config.resource_download_no_confirm = True

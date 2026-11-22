@@ -14,6 +14,7 @@ from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.base.screen import screen_utils
 from one_dragon.base.screen.screen_utils import FindAreaResultEnum
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.hollow_zero.lost_void.lost_void_challenge_config import (
     LostVoidRegionType,
@@ -148,7 +149,7 @@ class LostVoidBattleOp(BattleOpBase):
                             no_in_battle = True
                     except Exception as e:
                         # 刚开始可能有一段时间识别报错 有可能是一张图同时在两个onnx里面跑 加入第二次截图观察
-                        log.error('战斗中识别交互出现异常', exc_info=e)
+                        log.error(gt('战斗中识别交互出现异常', model='log'), exc_info=e)
                         return None  # 异常 → None
 
                 if not no_in_battle:

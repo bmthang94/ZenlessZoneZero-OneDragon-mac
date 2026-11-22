@@ -6,6 +6,7 @@ from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.game_config_checker.predefined_team_checker import (
     predefined_team_checker_const,
@@ -110,23 +111,14 @@ class PredefinedTeamChecker(ZApplication):
 
             for raw_mr in agent_mr_list:
                 log.debug(
-                    '预备编队角色原始匹配:序号:%d 角色:%s 模板:%s 置信度:%.3f 坐标:%d,%d,%d,%d',
-                    team_idx + 1,
-                    raw_mr.data.agent_name,
-                    raw_mr.template_id,
-                    raw_mr.confidence,
-                    raw_mr.left_top.x,
-                    raw_mr.left_top.y,
-                    raw_mr.right_bottom.x,
-                    raw_mr.right_bottom.y,
+                    gt('预备编队角色原始匹配:序号:%(v)d 角色:%(v_2)s 模板:%(v_3)s 置信度:%(v_4).3f 坐标:%(v_5)d,%(v_6)d,%(v_7)d,%(v_8)d', model='log'),
+                    {'v': team_idx + 1, 'v_2': raw_mr.data.agent_name, 'v_3': raw_mr.template_id, 'v_4': raw_mr.confidence, 'v_5': raw_mr.left_top.x, 'v_6': raw_mr.left_top.y, 'v_7': raw_mr.right_bottom.x, 'v_8': raw_mr.right_bottom.y},
                 )
 
             agent_list = [mr.data for mr in agent_mr_list]
             log.info(
-                '编队序号:%d 当前名称:%s 识别代理人:%s',
-                team_idx + 1,
-                team_name if team_name is not None else '<未识别>',
-                [agent.agent_name for agent in agent_list],
+                gt('编队序号:%(v)d 当前名称:%(v_2)s 识别代理人:%(v_3)s', model='log'),
+                {'v': team_idx + 1, 'v_2': team_name if team_name is not None else '<未识别>', 'v_3': [agent.agent_name for agent in agent_list]},
             )
             self.ctx.team_config.update_team_by_idx(
                 team_idx,

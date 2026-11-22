@@ -2,6 +2,7 @@ import os
 
 from one_dragon.base.config.config_item import ConfigItem
 from one_dragon.utils import os_utils, yaml_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -145,7 +146,7 @@ class CompendiumService:
                 tab_list: list[dict] = yaml_utils.safe_load(file)
                 self.data = CompendiumData(tab_list)
         except Exception:
-            log.error(f'文件读取失败 {file_path}', exc_info=True)
+            log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def get_tab_data(self, tab_name: str) -> CompendiumTab | None:
         for tab_item in self.data.tab_list:
@@ -306,7 +307,7 @@ class CompendiumService:
 
 
         except Exception:
-            log.error(f'文件读取失败 {file_path}', exc_info=True)
+            log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def _construct_coffee(self, coffee_name: str,
                           tab_name: str | None = None,

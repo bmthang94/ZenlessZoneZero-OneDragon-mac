@@ -2,6 +2,7 @@ import time
 
 from cv2.typing import MatLike
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.hollow_zero.hollow_map import hollow_map_utils
@@ -99,7 +100,7 @@ class HollowZeroMapService:
 
         self.map_list = [x for x in self.map_list if x.not_current_map_times <= 10]
 
-        log.debug('空洞地图识别 耗时 %.2f 秒', time.time() - start_time)
+        log.debug(gt('空洞地图识别 耗时 %(v).2f 秒', model='log'), {'v': time.time() - start_time})
         return merge_map
 
     def clear_map_result(self) -> None:

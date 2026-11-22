@@ -68,18 +68,18 @@ class DownloadService:
 
             # 如果文件不存在，下载它
             if not zip_file_path.exists():
-                msg = f"{gt('正在下载')} {file_name}..."
+                msg = gt('正在下载 {file_name}...', model='log').format(file_name=file_name)
                 if progress_callback is not None:
                     progress_callback(-1, msg)
                 log.info(msg)
 
                 success = self.download_env_file(file_name, str(zip_file_path), progress_callback)
                 if not success:
-                    msg = gt('下载失败 请尝试更改网络代理')
+                    msg = gt('下载失败 请尝试更改网络代理', model='log')
                     log.error(msg)
                     return False
 
-            msg = f"{gt('正在解压')} {file_name}..."
+            msg = gt('正在解压 {file_name}...', model='log').format(file_name=file_name)
             log.info(msg)
             if progress_callback is not None:
                 progress_callback(-1, msg)
@@ -93,7 +93,7 @@ class DownloadService:
             success = file_utils.unzip_file(str(zip_file_path), str(extract_path))
 
             if success:
-                msg = gt('解压成功')
+                msg = gt('解压成功', model='log')
                 log.info(msg)
                 if progress_callback is not None:
                     progress_callback(1, msg)
@@ -104,7 +104,7 @@ class DownloadService:
                 return True
             else:
                 # 解压失败，可能是zip包损坏
-                msg = gt('解压失败 准备重试') if attempt < retry_count - 1 else gt('解压失败')
+                msg = gt('解压失败 准备重试', model='log') if attempt < retry_count - 1 else gt('解压失败', model='log')
                 log.warning(msg)
                 if progress_callback is not None:
                     progress_callback(0, msg)

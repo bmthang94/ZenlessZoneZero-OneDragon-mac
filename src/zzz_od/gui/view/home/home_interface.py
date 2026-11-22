@@ -24,6 +24,7 @@ from qfluentwidgets import (
 
 from one_dragon.base.config.custom_config import BackgroundTypeEnum
 from one_dragon.utils import os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.services.theme_manager import ThemeManager
 from one_dragon_qt.utils.color_utils import get_foreground_color
@@ -286,7 +287,7 @@ class BackgroundImageDownloader(BaseThread):
                 try:
                     temp_path.unlink()
                 except Exception as cleanup_err:
-                    log.warning(f"清理临时文件失败: {cleanup_err}")
+                    log.warning(gt('清理临时文件失败: {cleanup_err}', model='log').format(cleanup_err=cleanup_err))
             raise
 
     def _download_dynamic_background_video(self, video_url: str) -> bool:
@@ -637,7 +638,7 @@ class HomeInterface(BaseInterface):
             if show_notification:
                 self._show_info_bar("背景已更新", "新的背景已成功应用", 3000)
         except Exception as e:
-            log.error(f"刷新背景时出错: {e}")
+            log.error(gt('刷新背景时出错: {e}', model='log').format(e=e))
 
     def choose_banner_media(self) -> str:
         """选择主页背景媒体文件"""

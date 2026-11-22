@@ -7,6 +7,7 @@ from one_dragon.base.operation.one_dragon_finalizer import (
     execute_after_done,
 )
 from one_dragon.launcher.launcher_base import LauncherBase
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -30,7 +31,7 @@ class ApplicationLauncher(LauncherBase):
         try:
             return [convert_func(item) for item in items]
         except ValueError:
-            log.error(f"无效的参数值: {value}")
+            log.error(gt('无效的参数值: {value}', model='log').format(value=value))
             return []
 
     def create_context(self) -> OneDragonContext:
@@ -49,7 +50,7 @@ class ApplicationLauncher(LauncherBase):
                            if any(instance.idx == idx for instance in self.ctx.one_dragon_config.instance_list)]
 
         if valid_instances:
-            log.info(f"指定运行实例: {valid_instances}")
+            log.info(gt('指定运行实例: {valid_instances}', model='log').format(valid_instances=valid_instances))
             return True
         else:
             self.ctx.one_dragon_config.clear_temp_instance_indices()
@@ -65,7 +66,7 @@ class ApplicationLauncher(LauncherBase):
         if args.instance:
             instance_indices = self.parse_comma_separated_values(args.instance, int)
             if not self.set_temp_instance_config(instance_indices):
-                log.error("未找到有效的实例")
+                log.error(gt('未找到有效的实例', model='log'))
                 self.ctx.after_app_shutdown()
                 sys.exit(1)
 

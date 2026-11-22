@@ -8,6 +8,7 @@ from one_dragon.base.web.common_downloader import (
     ResourceDownloadProgress,
 )
 from one_dragon.utils import file_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -65,7 +66,7 @@ class ZipDownloader(CommonDownloader):
             if unzip_result:
                 break
             else:  # 可能压缩包下载不完整 解压不成功 重新下载
-                log.warning('疑似压缩包损毁 重新下载')
+                log.warning(gt('疑似压缩包损毁 重新下载', model='log'))
                 continue
 
         # 解压有可能失败 最后再判断一次解压产物是否已经存在
@@ -92,7 +93,7 @@ class ZipDownloader(CommonDownloader):
         unzip_dir = self.param.unzip_dir_path or self.param.save_file_path
         os.makedirs(unzip_dir, exist_ok=True)
         file_utils.unzip_file(zip_file_path=zip_file_path, unzip_dir_path=unzip_dir)
-        log.info(f"解压完成 {zip_file_path} 到 {unzip_dir}")
+        log.info(gt('解压完成 {zip_file_path} 到 {unzip_dir}', model='log').format(zip_file_path=zip_file_path, unzip_dir=unzip_dir))
 
         # 最后判断压缩包以外的文件是否完整了 完整了才说明解压成功
         return CommonDownloader.is_file_existed(self)

@@ -356,10 +356,10 @@ class CommonDownloaderSettingCard(MultiPushSettingCard):
             return
 
         if self.download_runner is None:
-            log.warning('未选择资源')
+            log.warning(gt('未选择资源', model='log'))
             return
         if self.download_runner.isRunning():
-            log.warning('我知道你很急 但你先别急 正在运行了')
+            log.warning(gt('我知道你很急 但你先别急 正在运行了', model='log'))
             return
 
         # 重置取消信号
@@ -374,15 +374,15 @@ class CommonDownloaderSettingCard(MultiPushSettingCard):
         处理取消按钮点击事件
         """
         if self.download_runner is None:
-            log.warning('未选择资源')
+            log.warning(gt('未选择资源', model='log'))
             return
         if not self.download_runner.isRunning():
-            log.warning('当前没有下载任务在运行')
+            log.warning(gt('当前没有下载任务在运行', model='log'))
             return
 
         # 取消下载
         self.download_runner.cancel()
-        log.info('正在取消下载...')
+        log.info(gt('正在取消下载...', model='log'))
 
         # 更新UI状态：禁用取消按钮，显示取消中
         self.download_btn.setText(gt('取消中'))

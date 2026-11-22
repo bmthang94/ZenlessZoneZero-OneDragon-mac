@@ -6,6 +6,7 @@ from qfluentwidgets import isDarkTheme
 
 from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
 from one_dragon.utils import os_utils, yaml_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.fast_scroll_area import FastScrollArea
 
@@ -264,7 +265,7 @@ class ScrollCreditsWidget(QWidget):
                 self.credits_layout.addWidget(no_data_label)
 
         except Exception as e:
-            log.error(f"加载贡献者数据失败: {e}")
+            log.error(gt('加载贡献者数据失败: {e}', model='log').format(e=e))
             # 添加错误信息
             error_label = QLabel(f"加载贡献者信息失败: {str(e)}")
             error_label.setAlignment(Qt.AlignmentFlag.AlignCenter)

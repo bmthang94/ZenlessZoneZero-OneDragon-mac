@@ -79,7 +79,7 @@ class SuibianTempleGoodGoods(ZOperation):
             if not confirm_result.is_success:
                 return self.round_retry(status='点击获得确认失败')
             self.purchased_count += 1
-            log.info(f"成功购买第{self.purchased_count}个商品")
+            log.info(gt('成功购买第{purchased_count}个商品', model='log').format(purchased_count=self.purchased_count))
             return self.round_success(status='购买成功')
 
         # 处理弹窗
