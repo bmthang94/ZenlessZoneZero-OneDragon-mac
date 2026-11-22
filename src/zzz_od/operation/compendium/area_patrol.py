@@ -155,6 +155,8 @@ class AreaPatrol(ZOperation):
     @node_from(from_name='加载自动战斗指令')
     @operation_node(name='等待战斗画面加载', node_max_retry_times=120)
     def wait_battle_screen(self) -> OperationRoundResult:
+        if self.last_screenshot is None:
+            return self.round_retry(status='未获取到游戏画面', wait_round_time=1)
         result = self.round_by_find_area(self.last_screenshot, '战斗画面', '按键-普通攻击', retry_wait_round=1)
         if self.node_retry_times > 0 and self.node_retry_times % 10 == 0:
             log.info('等待战斗画面加载中... 重试 %d/%d', self.node_retry_times, self.node_max_retry_times)

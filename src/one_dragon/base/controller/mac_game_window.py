@@ -172,6 +172,7 @@ class MacPcGameWindow:
             else {self.win_title}
         )
         matched_window: MacGameWindowHandle | None = None
+        best_rank: tuple[int, float] = (0, 0)
         for window in self._get_windows():
             window_id = window.get(Quartz.kCGWindowNumber)
             owner_pid = window.get(Quartz.kCGWindowOwnerPID)
@@ -187,11 +188,18 @@ class MacPcGameWindow:
             if title not in expected_titles and owner_name not in expected_titles:
                 continue
 
-            if title == self.win_title or owner_name == self.win_title:
+            if title == self.win_title:
+                rank = (4, 0)
+            elif title in expected_titles:
+                rank = (3, 0)
+            else:
+                # 应用所属的小窗口可能排在游戏窗口之前，按标题找不到时优先选择较大的窗口。
+                bounds = window.get(Quartz.kCGWindowBounds, {})
+                area = bounds.get('Width', 0) * bounds.get('Height', 0)
+                rank = (2 if owner_name == self.win_title else 1, area)
+            if rank > best_rank:
                 matched_window = MacGameWindowHandle(int(window_id), int(owner_pid), title or owner_name)
-                break
-            if matched_window is None:
-                matched_window = MacGameWindowHandle(int(window_id), int(owner_pid), title or owner_name)
+                best_rank = rank
 
         if matched_window is None:
             self._clear_cached_window()

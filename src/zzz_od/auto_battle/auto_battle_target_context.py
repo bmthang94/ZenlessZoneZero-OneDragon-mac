@@ -66,12 +66,12 @@ class AutoBattleTargetContext:
                     task.dynamic_interval_config['interval_if_not_state'] = target_lock_interval
                 log.info(f"已从配置加载 [目标锁定] 检测间隔: {target_lock_interval}s")
 
-            elif task.task_id == 'abnormal_statuses' and abnormal_status_interval > 0:
-                task.interval = abnormal_status_interval
-                log.info(f"已从配置加载 [异常状态] 检测间隔: {abnormal_status_interval}s")
-
         # 更新当前的计时器间隔
         self._current_intervals: Dict[str, float] = {task.task_id: task.interval for task in self.tasks}
+        if 'abnormal_statuses' in self._current_intervals:
+            self._current_intervals['abnormal_statuses'] = max(0, abnormal_status_interval)
+            if abnormal_status_interval > 0:
+                log.info(f'已从配置加载 [异常状态] 检测间隔: {abnormal_status_interval}s')
 
     def run_all_checks(self, screen: MatLike, screenshot_time: float):
         """

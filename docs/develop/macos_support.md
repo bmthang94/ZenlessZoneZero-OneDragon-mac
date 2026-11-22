@@ -17,7 +17,7 @@ macOS 控制器只使用前台键鼠模式：发送键盘或鼠标输入时，�
 - 国际服 3.3.1 中，游戏的「UI布局」目前只显示「触屏」，物理键盘输入仍存在问题。2026-11-20 的 macOS 统一日志记录了 `LayoutPlatformSettingContext.IsShowOnUIInner instruction mismatch!`，表明插件对该游戏版本的界面布局处理未匹配；已有插件修改不足以证明键盘输入可用。MCP 虚拟鼠标点击与物理键盘输入是不同路径，点击成功不能证明键盘正常。
 - macOS 使用 ONNX Runtime 的 CPU 执行提供程序。模型推理与自动化流程保持不变；若后续增加 Apple GPU 加速，须单独验证模型兼容性与推理结果。
 - 自动战斗的声音闪避识别通过 macOS 原生 `ScreenCaptureKit` 优先捕获 PlayCover 游戏应用的声音。无法按应用录制时，先尝试系统输出音频回环，再尝试 `BlackHole` 等虚拟音频设备。原生桥接库由 `tools/macos/sck_audio_capture.mm` 构建，使用屏幕与系统录音权限。[Apple ScreenCaptureKit 音频过滤说明](https://developer.apple.com/videos/play/wwdc2022/10155/)
-- PlayCover 窗口识别支持常见中英文游戏标题。自定义标题仍按原值精确匹配。
+- PlayCover 窗口识别优先匹配窗口标题（支持常见中英文游戏标题），避免把同一应用的浮层误当成游戏窗口。只能按应用名匹配时，优先选择同名应用较大的窗口。自定义标题仍按原值精确匹配。
 - 在账户管理中选择 PlayCover 游戏的 `.app`，即可在需要时自动启动游戏。路径留空时仍可手动启动 PlayCover 游戏。请求关闭游戏时，一条龙通过 macOS 关闭已定位的游戏应用。
 - 游戏覆盖层使用同一个游戏内容区域跟随窗口。日志面板标题显示开始、暂停、继续及停止等快捷键。
 
