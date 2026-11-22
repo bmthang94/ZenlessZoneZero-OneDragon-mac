@@ -14,7 +14,7 @@
 | `upsert_screen_area(screen_name, area_name, pc_rect, area_type=None, ...)` | `backend.upsert_screen_area()` | `{success, action(inserted/updated), area_count, error}`（支持 `none/text/template`，写 yml + reload） |
 | `delete_screen_area(screen_name, area_name)` | `backend.delete_screen_area()` | `{success, action(deleted), area_count, error}`（写 yml + reload） |
 | `open_game(enter=True, block=True)` | `backend.start_run('mcp', op_factory)`（`enter=False`→`OpenGame`，`enter=True`→`OpenAndEnterGame`） | `block=True`：结果文本；`block=False`：已启动 JSON；并发拒绝时返错误 JSON |
-| `click_game(x, y, press_time=0.1, pc_alt=False)` | `backend.click_game()` | `{success, x, y, in_window, pc_alt}`（坐标不在窗口内 → `in_window=False`；`pc_alt=True` 大世界等锁光标画面点击前需按 Alt 解锁） |
+| `click_game(x, y, press_time=0.1, pc_alt=False)` | `backend.click_game()` | `{success, x, y, in_window, pc_alt}`（坐标不在窗口内 → `in_window=False`；设备等异常返回 `error`，不含 `in_window`；`pc_alt=True` 大世界等锁光标画面点击前需按 Alt 解锁） |
 | `input_text(text, use_clipboard=None)` | `backend.input_text()` | `{success, method, masked_text}`（`use_clipboard=None` 跟 `game_config.type_input_way`） |
 | `key_tap(key, press_time=0)` | `backend.key_tap()` | `{success, key, press_time}`（框架键名 `w`/`a`/`s`/`d`/`f`/`esc`/`space`；`press_time>0` 长按） |
 | `drag(x1, y1, x2, y2, duration=1)` | `backend.drag()` | `{success, x1, y1, x2, y2, duration}`（`(x1,y1)→(x2,y2)` 1080p 游戏坐标拖拽，覆盖刮刮卡 / 收集来回拖等） |

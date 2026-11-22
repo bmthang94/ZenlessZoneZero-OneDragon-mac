@@ -36,6 +36,8 @@ CLANGXX="$(xcrun --find clang++)"
 MACOS_SDK="$(xcrun --show-sdk-path)"
 
 if [[ ! -x "$CLIENT_BINARY" || "$CLIENT_SOURCE" -nt "$CLIENT_BINARY" ]]; then
+    tmp_binary="$CLIENT_BINARY.tmp.$$"
+    rm -f "$tmp_binary"
     "$CLANGXX" \
         -std=c++23 \
         -O2 \
@@ -45,14 +47,17 @@ if [[ ! -x "$CLIENT_BINARY" || "$CLIENT_SOURCE" -nt "$CLIENT_BINARY" ]]; then
         -I "$SOURCE_DIR/include" \
         -I "$SOURCE_DIR/vendor/vendor/include" \
         "$CLIENT_SOURCE" \
-        -o "$CLIENT_BINARY" \
+        -o "$tmp_binary" \
         -pthread
 
-    chmod 755 "$CLIENT_BINARY"
+    chmod 755 "$tmp_binary"
+    mv -f "$tmp_binary" "$CLIENT_BINARY"
     echo "已构建虚拟 HID 点击客户端：$CLIENT_BINARY"
 fi
 
 if [[ -f "$AUDIO_SOURCE" && ( ! -f "$AUDIO_DYLIB" || "$AUDIO_SOURCE" -nt "$AUDIO_DYLIB" ) ]]; then
+    tmp_audio="$AUDIO_DYLIB.tmp.$$"
+    trap 'rm -f "$tmp_audio"' EXIT
     "$CLANGXX" \
         -std=c++17 \
         -O2 \
@@ -66,8 +71,10 @@ if [[ -f "$AUDIO_SOURCE" && ( ! -f "$AUDIO_DYLIB" || "$AUDIO_SOURCE" -nt "$AUDIO
         -framework CoreAudio \
         -framework Foundation \
         "$AUDIO_SOURCE" \
-        -o "$AUDIO_DYLIB"
+        -o "$tmp_audio"
 
-    chmod 755 "$AUDIO_DYLIB"
+    chmod 755 "$tmp_audio"
+    mv -f "$tmp_audio" "$AUDIO_DYLIB"
+    trap - EXIT
     echo "已构建系统音频回环捕获库：$AUDIO_DYLIB"
 fi

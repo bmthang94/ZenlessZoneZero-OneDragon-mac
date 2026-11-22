@@ -1,0 +1,10 @@
+operations:
+  - op_name: "按键-普通攻击"
+  - op_name: "等待秒数"
+    seconds: 0.5
+  - op_name: "按键-普通攻击-按下"
+    press: 2.0
+  - op_name: "按键-普通攻击-松开"
+  - op_name: "设置状态"
+    state: "自定义-蕾米埃尔-连招完成"
+    seconds: 0

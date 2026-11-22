@@ -35,7 +35,7 @@ __ZenlessZoneZero-OneDragon__
 ### 一、前置准备
 
 1. **PlayCover 与游戏设置**
-   - 在 PlayCover 中安装并运行《绝区零》（窗口标题支持 `绝区零` / `絕區零` / `ZenlessZoneZero`）。
+   - 在 PlayCover 中安装并运行《绝区零》（窗口标题支持 `绝区零` / `絕區零` / `ZenlessZoneZero` / `Zenless Zone Zero`）。
    - 游戏需注入仓库内置的 [`tools/macos/libUnityDesktopMode.dylib`](../tools/macos/libUnityDesktopMode.dylib) 插件，使游戏以 **PC 桌面模式**接收键鼠输入，并**关闭 PlayCover 内置的键位映射（Keymapping）**。
    - 建议将游戏窗口比例保持为 **16:9**（例如 `1920x1080`）。
 
@@ -83,11 +83,11 @@ __ZenlessZoneZero-OneDragon__
 1. **首次基础配置**：
    - 在一条龙界面左侧进入 **账户管理**：
      - 选择对应的**游戏区服**（国服 / B服 / 国际服）。
-     - 点击 **游戏路径**，选择 PlayCover 中的游戏 `.app`（默认会打开 `~/Library/Containers/io.playcover.PlayCover/Applications`，选择 `com.miHoYo.Nap.app` 或 `com.HoYoverse.Nap.app` 即可）。
+     - 如需自动启动游戏，点击 **游戏路径**，选择 PlayCover 中的游戏 `.app`（通常位于 `~/Library/Containers/io.playcover.PlayCover/Applications`）。
    - 在 **一条龙 -> 运行设置** 中勾选需要执行的日常任务（如邮件、每日签到、咖啡店、录像店营业、刮刮乐、恶名狩猎、体力刷本、迷失之地等），并在对应模块配置好配队与体力计划。
 2. **开始 / 暂停运行**：
    - 点击界面右下角的 **「开始」** 按钮（或直接按快捷键 **`F9`**）启动：
-     - **若游戏尚未打开**：一条龙会自动根据已设置的「游戏路径」打开 `.app` 并等待进入登录画面。
+     - **若游戏尚未打开**：已设置游戏路径时，一条龙会打开该 `.app`。路径留空时，一条龙会等待您手动启动游戏。
      - **若游戏处于登录画面**：一条龙会自动点击第一次「点击进入游戏」、等待「加载配置数据中」进度跑完、再次点击「点击进入游戏」进入大世界后开始执行任务。
      - **若已在游戏大世界内**：将直接开始执行任务。
    - 运行过程中：

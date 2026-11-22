@@ -15,7 +15,7 @@ from zzz_od.operation.enter_game.auto_hdr import DisableAutoHDR, EnableAutoHDR
 
 class OpenGame(Operation):
 
-    def __init__(self, ctx: ZContext):
+    def __init__(self, ctx: ZContext) -> None:
         self.ctx: ZContext = ctx
         Operation.__init__(self, ctx, op_name=gt('打开游戏'),
                            need_check_game_win=False)
@@ -23,22 +23,29 @@ class OpenGame(Operation):
     @operation_node(name='打开游戏', is_start_node=True, screenshot_before_round=False)
     def open_game(self) -> OperationRoundResult:
         """macOS 启动配置的 .app 游戏应用，Windows 启动游戏程序。"""
-        if self.ctx.game_account_config.game_path == '':
-            return self.round_fail('未配置游戏路径，请前往 [ 账户管理 ] -> [ 游戏路径 ] 手动设置')
         full_path = self.ctx.game_account_config.game_path
 
         if sys.platform == 'darwin':
-            app_path = Path(full_path)
-            for candidate in [app_path, *app_path.parents]:
-                if candidate.suffix.lower() == '.app':
-                    app_path = candidate
-                    break
-            if not app_path.exists():
-                return self.round_fail(f'游戏路径不存在: {app_path}')
+            if not full_path:
+                log.info(gt('请在 PlayCover 中启动绝区零，程序将等待游戏窗口出现', model='log'))
+                return self.round_success(wait=5)
+            selected_path = Path(full_path).expanduser()
+            app_path = next(
+                (p for p in (selected_path, *selected_path.parents) if p.suffix.lower() == '.app'),
+                None,
+            )
+            if app_path is None or not app_path.is_dir():
+                return self.round_fail(gt('无效的 PlayCover 游戏应用路径: {selected_path}', model='log').format(selected_path=selected_path))
             log.info(gt('尝试自动启动游戏 路径为 %(v)s', model='log'), {'v': app_path})
-            subprocess.Popen(['open', '-a', str(app_path)])
+            try:
+                subprocess.run(['/usr/bin/open', '-a', str(app_path)], check=True, timeout=10)
+            except (OSError, subprocess.SubprocessError) as error:
+                log.warning(gt('无法打开 PlayCover 游戏', model='log'), exc_info=True)
+                return self.round_fail(gt('无法打开 PlayCover 游戏: {error}', model='log').format(error=error))
             return self.round_success(wait=5)
 
+        if not full_path:
+            return self.round_fail(gt('未配置游戏路径，请前往 [ 账户管理 ] -> [ 游戏路径 ] 手动设置', model='log'))
         hdr_op = DisableAutoHDR(self.ctx)
         hdr_op.execute()
         dir_path = os.path.dirname(full_path)

@@ -1,6 +1,7 @@
 # 开发过程产生的临时文件
 build/
 dist/
+.DS_Store
 zzz-od-test/
 .idea/
 .vscode/*
@@ -20,6 +21,12 @@ CLAUDE.local.md
 !.claude/CLAUDE.md
 nul
 .kiro/
+/.agentkit/
+/.agents/
+/.codex/
+.devin/skills/
+.grok/
+skills-lock.json
 
 # superpowers
 docs/superpowers/

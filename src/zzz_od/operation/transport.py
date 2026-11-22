@@ -10,6 +10,7 @@ from one_dragon.utils.i18_utils import gt
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.operation.back_to_normal_world import BackToNormalWorld
 from zzz_od.operation.map_transport import MapTransport
+from zzz_od.operation.wait_normal_world import WaitNormalWorld
 from zzz_od.operation.zzz_operation import ZOperation
 
 
@@ -27,11 +28,7 @@ class Transport(ZOperation):
         :param wait_at_last: 最后等待大世界加载
         """
         ZOperation.__init__(self, ctx,
-                            op_name='%s %s %s' % (
-                                gt('传送'),
-                                gt(area_name, 'game'),
-                                gt(tp_name, 'game')
-                            ))
+                            op_name=f"{gt('传送')} {gt(area_name, 'game')} {gt(tp_name, 'game')}")
 
         self.area_name: str = area_name
         self.tp_name: str = tp_name
@@ -64,6 +61,18 @@ class Transport(ZOperation):
         if self.is_map_screen(self.last_screenshot):
             return self.round_success()
 
+        # 检查是否已进入 3D地图（在 macOS/PlayCover 触屏模式下，点击大世界小地图会进入 3D地图）
+        # 此时点击右上角快捷导航进入 2D 地图
+        is_in_3d_map = (
+            self.round_by_find_area(self.last_screenshot, '3D地图', '按钮-快捷导航').is_success
+            or self.round_by_find_area(self.last_screenshot, '3D地图', '菜单-返回').is_success
+        )
+        if is_in_3d_map:
+            res_click = self.round_by_find_and_click_area(self.last_screenshot, '3D地图', '按钮-快捷导航')
+            if not res_click.is_success:
+                res_click = self.round_by_click_area('3D地图', '按钮-快捷导航')
+            return self.round_wait(status='点击快捷导航', wait=2)
+
         result = self.round_by_find_and_click_area(self.last_screenshot, '大世界', '地图')
         if result.is_success:
             return self.round_wait(status=result.status, wait=2)
@@ -86,6 +95,11 @@ class Transport(ZOperation):
     def wait_in_world(self) -> OperationRoundResult:
         if not self.wait_at_last:
             return self.round_success('不等待大世界加载')
+        # 先等待大世界画面加载完成，避免在加载过渡期调用 BackToNormalWorld 误点击左上角导致打开菜单
+        op_wait = WaitNormalWorld(self.ctx)
+        wait_res = op_wait.execute()
+        if wait_res.is_success:
+            return self.round_by_op_result(wait_res)
         op = BackToNormalWorld(self.ctx)  # 传送落地可能触发好感度事件 使用BackToNormalWorld可以处理
         return self.round_by_op_result(op.execute())
 
@@ -107,7 +121,7 @@ class Transport(ZOperation):
         area_name_cnt: int = 0
         tp_name_cnt: int = 0
         ocr_result_map = self.ctx.ocr.run_ocr(screen)
-        for ocr_result, mrl in ocr_result_map.items():
+        for ocr_result, _mrl in ocr_result_map.items():
             area_idx: int = str_utils.find_best_match_by_difflib(ocr_result, area_name_list)
             if area_idx is not None and area_idx >= 0:
                 area_name_cnt += 1
@@ -118,7 +132,10 @@ class Transport(ZOperation):
         # 增加判断条件，左上角返回
         result = self.round_by_find_area(screen, '地图', '左上角返回')
 
-        return area_name_cnt >= 3 and tp_name_cnt >= 1 and result.is_success
+        # 满足以下任一均可判定为地图画面：
+        # 1. 地区名称和传送点名称均出现（2D 地图特有，兼顾不同城区）
+        # 2. 地区名称出现且左上角返回成功匹配
+        return (area_name_cnt >= 3 and tp_name_cnt >= 1) or (area_name_cnt >= 1 and tp_name_cnt >= 1 and result.is_success)
 
 
 def __debug():

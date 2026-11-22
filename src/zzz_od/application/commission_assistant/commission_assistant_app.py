@@ -564,7 +564,7 @@ class CommissionAssistantApp(ZApplication):
                 power = self.round_by_find_area(self.last_screenshot, '钓鱼', '按键-强力-右')
 
             if power is not None and power.is_success:
-                self.ctx.controller.btn_controller.press(key='space', press_time=0.05)
+                self.ctx.controller.btn_press('space', press_time=0.05)
             return self.round_wait(target_command_list[command_idx], wait_round_time=0.1)  # 这个要尽快按
         elif command_idx == 4:  # 长按
             if self.fishing_btn_pressed is None:
@@ -583,7 +583,7 @@ class CommissionAssistantApp(ZApplication):
 
                 if power is not None and power.is_success:
                     time.sleep(0.05)  # 稍微等待前面长按 避免按键冲突
-                    self.ctx.controller.btn_controller.press(key='space', press_time=0.05)
+                    self.ctx.controller.btn_press('space', press_time=0.05)
             return self.round_wait(target_command_list[command_idx], wait_round_time=0.1)
 
         if command_idx is None:

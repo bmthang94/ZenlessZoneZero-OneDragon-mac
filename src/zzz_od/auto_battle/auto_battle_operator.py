@@ -24,6 +24,8 @@ _auto_battle_operator_executor = ThreadPoolExecutor(thread_name_prefix='_auto_ba
 
 # 自动战斗配置的默认回退模板名
 FALLBACK_TEMPLATE_NAME = '全配队通用'
+# 战斗中未匹配到执行信息时的兜底普攻间隔(秒)
+FALLBACK_ATTACK_INTERVAL = 0.2
 
 
 class AutoBattleOperator(ConditionalOperator):
@@ -77,6 +79,8 @@ class AutoBattleOperator(ConditionalOperator):
         # 自动周期
         self.last_lock_time: float = 0  # 上一次锁定的时间
         self.last_turn_time: float = 0  # 上一次转动视角的时间
+        self._last_fallback_attack_time: float = 0  # 上一次兜底普攻的时间
+        self.fallback_attack_enabled: bool = True  # 是否启用兜底普攻
 
         # 停止事件
         self._stop_event = Event()
@@ -105,6 +109,7 @@ class AutoBattleOperator(ConditionalOperator):
         self.abnormal_status_interval = data.get('abnormal_status_interval', 0)
         self.auto_lock_interval = data.get('auto_lock_interval', 1)
         self.auto_turn_interval = data.get('auto_turn_interval', 2)
+        self.fallback_attack_enabled = data.get('fallback_attack_enabled', True)
 
     def init_before_running(self) -> tuple[bool, str]:
         """
@@ -187,6 +192,25 @@ class AutoBattleOperator(ConditionalOperator):
                 if self._stop_event.wait(timeout=0.2):
                     break
 
+    def _on_normal_scene_idle(self, trigger_time: float) -> None:
+        """战斗中未匹配到执行信息时兜底普攻，避免角色站立不动。"""
+        if not self.is_running or self.running_executor_cnt.get() > 0:
+            return
+        if not self.fallback_attack_enabled:
+            return
+        if not self.ctx.last_check_in_battle:
+            return
+
+        now = time.time()
+        if now - self._last_fallback_attack_time < FALLBACK_ATTACK_INTERVAL:
+            return
+        self._last_fallback_attack_time = now
+
+        controller = self.ctx.ctx.controller
+        if controller is None:
+            return
+        controller.normal_attack()
+
     def stop_running(self) -> None:
         """
         停止执行
@@ -207,7 +231,7 @@ def __debug():
     ctx.init()
     auto_op = AutoBattleOperator(ctx.auto_battle_context, 'auto_battle', '全配队通用')
     auto_op.init()
-    auto_op.usage_states
+    print(auto_op.usage_states)
     # auto_op.start_running_async()
     # time.sleep(5)
     # auto_op.stop_running()

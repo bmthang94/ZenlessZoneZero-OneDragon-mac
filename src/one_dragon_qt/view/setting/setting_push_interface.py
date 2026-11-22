@@ -115,9 +115,9 @@ class SettingPushInterface(VerticalScrollInterface):
         )
         content_widget.add_widget(self.proxy_input_opt)
 
-        self.test_current_btn = PushButton(text='测试当前方式', icon=FluentIcon.SEND, parent=self)
+        self.test_current_btn = PushButton(text=gt('测试当前方式'), icon=FluentIcon.SEND, parent=self)
         self.test_current_btn.clicked.connect(self._send_test_message)
-        self.test_all_btn = PushButton(text='测试全部', icon=FluentIcon.SEND_FILL, parent=self)
+        self.test_all_btn = PushButton(text=gt('测试全部'), icon=FluentIcon.SEND_FILL, parent=self)
         self.test_all_btn.clicked.connect(self._send_test_all_message)
 
         self.test_notification_card = MultiPushSettingCard(
@@ -145,9 +145,9 @@ class SettingPushInterface(VerticalScrollInterface):
         content_widget.add_widget(channel_group)
 
         # 预创建特殊卡片（稍后按渠道分配）
-        self.pwsh_curl_btn = PushButton(text='PowerShell 风格')
+        self.pwsh_curl_btn = PushButton(text=gt('PowerShell 风格'))
         self.pwsh_curl_btn.clicked.connect(lambda: self._generate_curl('pwsh'))
-        self.unix_curl_btn = PushButton(text='Unix 风格')
+        self.unix_curl_btn = PushButton(text=gt('Unix 风格'))
         self.unix_curl_btn.clicked.connect(lambda: self._generate_curl('unix'))
         self.curl_btn = MultiPushSettingCard(icon=FluentIcon.CODE, title='生成 cURL 命令', btn_list=[self.pwsh_curl_btn, self.unix_curl_btn])
         self.curl_btn.setVisible(False)
@@ -307,8 +307,8 @@ class SettingPushInterface(VerticalScrollInterface):
         self.test_all_btn.setDisabled(True)
         self._clear_error_bar()
         self._info_bar = InfoBar.info(
-            title='提示',
-            content="正在发送测试消息...",
+            title=gt('提示'),
+            content=gt("正在发送测试消息..."),
             orient=InfoBarPosition.TOP,
             isClosable=True,
             duration=-1,
@@ -519,7 +519,7 @@ class SettingPushInterface(VerticalScrollInterface):
         """显示成功消息提示"""
         self._clear_error_bar()
         InfoBar.success(
-            title='成功',
+            title=gt('成功'),
             content=message,
             orient=InfoBarPosition.TOP,
             isClosable=True,
@@ -531,7 +531,7 @@ class SettingPushInterface(VerticalScrollInterface):
         """显示错误消息提示，不自动消失，新的错误替换旧的"""
         self._clear_error_bar()
         self._error_bar = InfoBar.error(
-            title='错误',
+            title=gt('错误'),
             content=message,
             orient=InfoBarPosition.TOP,
             isClosable=True,

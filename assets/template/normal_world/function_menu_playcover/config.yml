@@ -1,0 +1,8 @@
+sub_dir: normal_world
+template_id: function_menu_playcover
+template_name: 功能导览 PlayCover
+template_shape: circle
+auto_mask: true
+point_list:
+- 1806, 94
+- 1833, 94

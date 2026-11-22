@@ -3,6 +3,8 @@ from __future__ import annotations
 from functools import cached_property
 
 from one_dragon.base.operation.one_dragon_context import OneDragonContext
+from one_dragon.utils.i18_utils import gt
+from zzz_od.context.zzz_screen_context import ZScreenContext
 
 
 class ZContext(OneDragonContext):
@@ -11,9 +13,15 @@ class ZContext(OneDragonContext):
 
         OneDragonContext.__init__(self)
 
+        self.screen_loader = ZScreenContext(lambda: self.is_playcover_touch_ui)
+
         # 后续所有用到自动战斗的 都统一设置到这个里面
         from zzz_od.auto_battle.auto_battle_context import AutoBattleContext
         self.auto_battle_context: AutoBattleContext = AutoBattleContext(self)
+
+    @property
+    def is_playcover_touch_ui(self) -> bool:
+        return getattr(self.controller, 'touch_ui_enabled', False) is True
 
     #------------------- 需要懒加载的都使用 @cached_property -------------------#
 
@@ -131,6 +139,12 @@ class ZContext(OneDragonContext):
             )
             # 初始化窗口标题
             self.controller.set_window_title(self._get_win_title())
+            from one_dragon.utils.log_utils import log
+            log.info(
+                gt('游戏窗口检测: 已找到', model='log')
+                if self.controller.is_game_window_ready
+                else gt('游戏窗口检测: 未找到', model='log')
+            )
 
     def init_for_application(self) -> None:
         self.map_service.reload()  # 传送需要用的数据
@@ -138,7 +152,8 @@ class ZContext(OneDragonContext):
         self.auto_battle_context.init_screen_area()  # 自动战斗相关的区域 依赖 ScreenLoader
 
     def init_others(self) -> None:
-        self.telemetry.initialize()  # 遥测
+        # 本地禁用启动遥测，避免发送设备标识。
+        pass
 
     def after_app_shutdown(self) -> None:
         """

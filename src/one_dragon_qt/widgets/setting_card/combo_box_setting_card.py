@@ -159,7 +159,7 @@ class ComboBoxSettingCard(SettingCardBase, AdapterInitMixin):
             desc = self._opts_list[self.combo_box.currentIndex()].desc
             if desc is None or len(desc) == 0:
                 desc = self.default_content
-            self.setContent(desc)
+            self.setContent(gt(desc))
         self._update_tag()
 
     def _update_tag(self) -> None:

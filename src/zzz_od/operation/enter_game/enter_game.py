@@ -32,8 +32,11 @@ class EnterGame(ZOperation):
     MAX_LOADING_SECONDS: ClassVar[float] = 180
     MAX_RESOURCE_DOWNLOAD_SECONDS: ClassVar[float] = 1200
 
-    def __init__(self, ctx: ZContext, switch: bool = False):
-        ZOperation.__init__(self, ctx, op_name=gt('进入游戏'), op_callback=self.restore_screenshot_func)
+    def __init__(self, ctx: ZContext, switch: bool = False, timeout_seconds: float = -1) -> None:
+        ZOperation.__init__(
+            self, ctx, op_name=gt('进入游戏'), op_callback=self.restore_screenshot_func,
+            timeout_seconds=timeout_seconds,
+        )
 
         self.force_login: bool = (
             self.ctx.one_dragon_config.current_instance_should_force_login

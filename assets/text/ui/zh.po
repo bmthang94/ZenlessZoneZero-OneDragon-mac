@@ -1,3 +1,4 @@
+#
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -242,7 +243,6 @@ msgstr "界面主题"
 
 msgid "主页公告"
 msgstr "主页公告"
-
 
 msgid "版本海报"
 msgstr "版本海报"
@@ -744,3 +744,2653 @@ msgstr "自定义主页背景"
 
 msgid "设置后重启脚本生效"
 msgstr "设置后重启脚本生效"
+
+msgid ""
+"为了让您的自动战斗体验更加顺畅，这里有一些温馨的小建议给到您：\n"
+"\n"
+"1. 关于画面设置：建议您将游戏帧数限制在 30 帧，并适当降低画质设置。如果您的电脑配置非常强大，尝试 60 帧也是可以的，但请务必不要开启「无限帧率」哦。\n"
+"\n"
+"2. 释放电脑性能：自动战斗功能依托于 AI 视觉识别技术，需要消耗一定的计算资源。建议您在使用时尽量关闭不必要的后台程序，电脑运行越流畅，AI 的表现也会越出色。\n"
+"\n"
+"3. 截图间隔设置：为了不让 AI 错过每一个精彩瞬间，请确保截图频率至少达到每秒 20 次。毕竟，我们不能强求 AI 在 1 帧的画面里完成电竞级的操作呀。\n"
+"\n"
+"4. 按键设置建议：强烈建议您将连携技的「左」、「右」和「取消」设置为独立的按键，避免与普攻、闪避或终结技共用键位。特别需要强调的是，几乎所有的连携技释放错误都源自于使用了同一个按键。默认键位下，连携技出现时很容易被普攻误触，导致操作失误，分开设置会让战斗更精准。\n"
+"\n"
+"比如把连携左设置为1，连携右设置为3，取消设置为2\n"
+"\n"
+"5. 应对特殊情况：目前的 AI 还在学习中，暂时无法完美应对 BOSS 的转阶段或特殊状态攻击。遇到这种情况时，可能需要您稍微费心，暂停自动战斗并手动应对一下。\n"
+"\n"
+"6. 最佳显示环境：为了保证识别准确，请将游戏分辨率设置为 1920x1080，并关闭 HDR 功能。同时，请确保游戏画面没有被其他窗口遮挡，让 AI 能看清全局。\n"
+"\n"
+"祝您游戏愉快！"
+msgstr ""
+"为了让您的自动战斗体验更加顺畅，这里有一些温馨的小建议给到您：\n"
+"\n"
+"1. 关于画面设置：建议您将游戏帧数限制在 30 帧，并适当降低画质设置。如果您的电脑配置非常强大，尝试 60 帧也是可以的，但请务必不要开启「无限帧率」哦。\n"
+"\n"
+"2. 释放电脑性能：自动战斗功能依托于 AI 视觉识别技术，需要消耗一定的计算资源。建议您在使用时尽量关闭不必要的后台程序，电脑运行越流畅，AI 的表现也会越出色。\n"
+"\n"
+"3. 截图间隔设置：为了不让 AI 错过每一个精彩瞬间，请确保截图频率至少达到每秒 20 次。毕竟，我们不能强求 AI 在 1 帧的画面里完成电竞级的操作呀。\n"
+"\n"
+"4. 按键设置建议：强烈建议您将连携技的「左」、「右」和「取消」设置为独立的按键，避免与普攻、闪避或终结技共用键位。特别需要强调的是，几乎所有的连携技释放错误都源自于使用了同一个按键。默认键位下，连携技出现时很容易被普攻误触，导致操作失误，分开设置会让战斗更精准。\n"
+"\n"
+"比如把连携左设置为1，连携右设置为3，取消设置为2\n"
+"\n"
+"5. 应对特殊情况：目前的 AI 还在学习中，暂时无法完美应对 BOSS 的转阶段或特殊状态攻击。遇到这种情况时，可能需要您稍微费心，暂停自动战斗并手动应对一下。\n"
+"\n"
+"6. 最佳显示环境：为了保证识别准确，请将游戏分辨率设置为 1920x1080，并关闭 HDR 功能。同时，请确保游戏画面没有被其他窗口遮挡，让 AI 能看清全局。\n"
+"\n"
+"祝您游戏愉快！"
+
+msgid "11号-支援攻击"
+msgstr "11号-支援攻击"
+
+msgid "11号–支援攻击"
+msgstr "11号–支援攻击"
+
+msgid "11号-火刀八连"
+msgstr "11号-火刀八连"
+
+msgid "11号–火刀八连"
+msgstr "11号–火刀八连"
+
+msgid "仪玄-凸"
+msgstr "仪玄-凸"
+
+msgid "仪玄–凸"
+msgstr "仪玄–凸"
+
+msgid "仪玄–喧嚣终结技"
+msgstr "仪玄–喧嚣终结技"
+
+msgid "仪玄-喧嚣终结技"
+msgstr "仪玄-喧嚣终结技"
+
+msgid "仪玄-太极合轴"
+msgstr "仪玄-太极合轴"
+
+msgid "仪玄–太极合轴"
+msgstr "仪玄–太极合轴"
+
+msgid "仪玄-强化特殊技三连"
+msgstr "仪玄-强化特殊技三连"
+
+msgid "仪玄–强化特殊技三连"
+msgstr "仪玄–强化特殊技三连"
+
+msgid "仪玄–支援攻击"
+msgstr "仪玄–支援攻击"
+
+msgid "仪玄-支援攻击"
+msgstr "仪玄-支援攻击"
+
+msgid "仪玄-普通攻击"
+msgstr "仪玄-普通攻击"
+
+msgid "仪玄–普通攻击"
+msgstr "仪玄–普通攻击"
+
+msgid "仪玄–法术终结技"
+msgstr "仪玄–法术终结技"
+
+msgid "仪玄-法术终结技"
+msgstr "仪玄-法术终结技"
+
+msgid "仪玄-满蓄瞬大"
+msgstr "仪玄-满蓄瞬大"
+
+msgid "仪玄–满蓄瞬大"
+msgstr "仪玄–满蓄瞬大"
+
+msgid "仪玄–瞬大"
+msgstr "仪玄–瞬大"
+
+msgid "仪玄-瞬大"
+msgstr "仪玄-瞬大"
+
+msgid "仪玄–连携攻击"
+msgstr "仪玄–连携攻击"
+
+msgid "仪玄-连携攻击"
+msgstr "仪玄-连携攻击"
+
+msgid "仪玄-闪A"
+msgstr "仪玄-闪A"
+
+msgid "仪玄–闪A"
+msgstr "仪玄–闪A"
+
+msgid "伊德海莉-强化特殊技-极寒重碾"
+msgstr "伊德海莉-强化特殊技-极寒重碾"
+
+msgid "伊德海莉–强化特殊技–极寒重碾"
+msgstr "伊德海莉–强化特殊技–极寒重碾"
+
+msgid "伊德海莉-强化特殊技-缠霜"
+msgstr "伊德海莉-强化特殊技-缠霜"
+
+msgid "伊德海莉–强化特殊技–缠霜"
+msgstr "伊德海莉–强化特殊技–缠霜"
+
+msgid "伊德海莉–支援攻击"
+msgstr "伊德海莉–支援攻击"
+
+msgid "伊德海莉-支援攻击"
+msgstr "伊德海莉-支援攻击"
+
+msgid "伊德海莉–普通攻击"
+msgstr "伊德海莉–普通攻击"
+
+msgid "伊德海莉-普通攻击"
+msgstr "伊德海莉-普通攻击"
+
+msgid "伊德海莉–极寒重碾连招"
+msgstr "伊德海莉–极寒重碾连招"
+
+msgid "伊德海莉-极寒重碾连招"
+msgstr "伊德海莉-极寒重碾连招"
+
+msgid "伊德海莉–溯寒下砸"
+msgstr "伊德海莉–溯寒下砸"
+
+msgid "伊德海莉-溯寒下砸"
+msgstr "伊德海莉-溯寒下砸"
+
+msgid "伊德海莉-终结技"
+msgstr "伊德海莉-终结技"
+
+msgid "伊德海莉–终结技"
+msgstr "伊德海莉–终结技"
+
+msgid "伊德海莉-蓄力提前下砸"
+msgstr "伊德海莉-蓄力提前下砸"
+
+msgid "伊德海莉–蓄力提前下砸"
+msgstr "伊德海莉–蓄力提前下砸"
+
+msgid "伊德海莉–蓄力攻击"
+msgstr "伊德海莉–蓄力攻击"
+
+msgid "伊德海莉-蓄力攻击"
+msgstr "伊德海莉-蓄力攻击"
+
+msgid "伊德海莉-连携攻击"
+msgstr "伊德海莉-连携攻击"
+
+msgid "伊德海莉–连携攻击"
+msgstr "伊德海莉–连携攻击"
+
+msgid "伊德海莉–追碾连招"
+msgstr "伊德海莉–追碾连招"
+
+msgid "伊德海莉-追碾连招"
+msgstr "伊德海莉-追碾连招"
+
+msgid "伊德海莉–闪A"
+msgstr "伊德海莉–闪A"
+
+msgid "伊德海莉-闪A"
+msgstr "伊德海莉-闪A"
+
+msgid "伊芙琳-支援攻击"
+msgstr "伊芙琳-支援攻击"
+
+msgid "伊芙琳–支援攻击"
+msgstr "伊芙琳–支援攻击"
+
+msgid "伊芙琳–无脑EA"
+msgstr "伊芙琳–无脑EA"
+
+msgid "伊芙琳-无脑EA"
+msgstr "伊芙琳-无脑EA"
+
+msgid "伊芙琳-普通攻击"
+msgstr "伊芙琳-普通攻击"
+
+msgid "伊芙琳–普通攻击"
+msgstr "伊芙琳–普通攻击"
+
+msgid "伊芙琳-终结技"
+msgstr "伊芙琳-终结技"
+
+msgid "伊芙琳–终结技"
+msgstr "伊芙琳–终结技"
+
+msgid "伊芙琳–连携攻击"
+msgstr "伊芙琳–连携攻击"
+
+msgid "伊芙琳-连携攻击"
+msgstr "伊芙琳-连携攻击"
+
+msgid "伊芙琳-长按A"
+msgstr "伊芙琳-长按A"
+
+msgid "伊芙琳–长按A"
+msgstr "伊芙琳–长按A"
+
+msgid "伊芙琳-长按A二连"
+msgstr "伊芙琳-长按A二连"
+
+msgid "伊芙琳–长按A二连"
+msgstr "伊芙琳–长按A二连"
+
+msgid "伊芙琳–长按A二连合轴连携技"
+msgstr "伊芙琳–长按A二连合轴连携技"
+
+msgid "伊芙琳-长按A二连合轴连携技"
+msgstr "伊芙琳-长按A二连合轴连携技"
+
+msgid "伊芙琳–长按A合轴连携技"
+msgstr "伊芙琳–长按A合轴连携技"
+
+msgid "伊芙琳-长按A合轴连携技"
+msgstr "伊芙琳-长按A合轴连携技"
+
+msgid "伊芙琳-长按E"
+msgstr "伊芙琳-长按E"
+
+msgid "伊芙琳–长按E"
+msgstr "伊芙琳–长按E"
+
+msgid "伊芙琳–长按E二连"
+msgstr "伊芙琳–长按E二连"
+
+msgid "伊芙琳-长按E二连"
+msgstr "伊芙琳-长按E二连"
+
+msgid "伊芙琳-长按E二连合轴连携技"
+msgstr "伊芙琳-长按E二连合轴连携技"
+
+msgid "伊芙琳–长按E二连合轴连携技"
+msgstr "伊芙琳–长按E二连合轴连携技"
+
+msgid "伊芙琳–长按E合轴连携技"
+msgstr "伊芙琳–长按E合轴连携技"
+
+msgid "伊芙琳-长按E合轴连携技"
+msgstr "伊芙琳-长按E合轴连携技"
+
+msgid "伊芙琳-闪A"
+msgstr "伊芙琳-闪A"
+
+msgid "伊芙琳–闪A"
+msgstr "伊芙琳–闪A"
+
+msgid "佩洛伊斯–强化特殊技"
+msgstr "佩洛伊斯–强化特殊技"
+
+msgid "佩洛伊斯-强化特殊技"
+msgstr "佩洛伊斯-强化特殊技"
+
+msgid "佩洛伊斯–快速长按普攻"
+msgstr "佩洛伊斯–快速长按普攻"
+
+msgid "佩洛伊斯-快速长按普攻"
+msgstr "佩洛伊斯-快速长按普攻"
+
+msgid "佩洛伊斯-终结技-上"
+msgstr "佩洛伊斯-终结技-上"
+
+msgid "佩洛伊斯–终结技–上"
+msgstr "佩洛伊斯–终结技–上"
+
+msgid "佩洛伊斯-终结技-下"
+msgstr "佩洛伊斯-终结技-下"
+
+msgid "佩洛伊斯–终结技–下"
+msgstr "佩洛伊斯–终结技–下"
+
+msgid "佩洛伊斯-连携攻击"
+msgstr "佩洛伊斯-连携攻击"
+
+msgid "佩洛伊斯–连携攻击"
+msgstr "佩洛伊斯–连携攻击"
+
+msgid "佩洛伊斯–长按普攻"
+msgstr "佩洛伊斯–长按普攻"
+
+msgid "佩洛伊斯-长按普攻"
+msgstr "佩洛伊斯-长按普攻"
+
+msgid "克拉蕾–强化连段"
+msgstr "克拉蕾–强化连段"
+
+msgid "克拉蕾-强化连段"
+msgstr "克拉蕾-强化连段"
+
+msgid "克拉蕾–支援攻击"
+msgstr "克拉蕾–支援攻击"
+
+msgid "克拉蕾-支援攻击"
+msgstr "克拉蕾-支援攻击"
+
+msgid "克拉蕾–普攻连段"
+msgstr "克拉蕾–普攻连段"
+
+msgid "克拉蕾-普攻连段"
+msgstr "克拉蕾-普攻连段"
+
+msgid "克拉蕾-终爆"
+msgstr "克拉蕾-终爆"
+
+msgid "克拉蕾–终爆"
+msgstr "克拉蕾–终爆"
+
+msgid "克拉蕾–终结技"
+msgstr "克拉蕾–终结技"
+
+msgid "克拉蕾-终结技"
+msgstr "克拉蕾-终结技"
+
+msgid "克拉蕾-进入猩红铭刻"
+msgstr "克拉蕾-进入猩红铭刻"
+
+msgid "克拉蕾–进入猩红铭刻"
+msgstr "克拉蕾–进入猩红铭刻"
+
+msgid "克拉蕾–连携攻击"
+msgstr "克拉蕾–连携攻击"
+
+msgid "克拉蕾-连携攻击"
+msgstr "克拉蕾-连携攻击"
+
+msgid "克拉蕾–铭刻循环"
+msgstr "克拉蕾–铭刻循环"
+
+msgid "克拉蕾-铭刻循环"
+msgstr "克拉蕾-铭刻循环"
+
+msgid "克拉蕾-闪避反击"
+msgstr "克拉蕾-闪避反击"
+
+msgid "克拉蕾–闪避反击"
+msgstr "克拉蕾–闪避反击"
+
+msgid "凯撒–支援攻击"
+msgstr "凯撒–支援攻击"
+
+msgid "凯撒-支援攻击"
+msgstr "凯撒-支援攻击"
+
+msgid "凯撒-普通攻击"
+msgstr "凯撒-普通攻击"
+
+msgid "凯撒–普通攻击"
+msgstr "凯撒–普通攻击"
+
+msgid "凯撒-普通攻击合轴"
+msgstr "凯撒-普通攻击合轴"
+
+msgid "凯撒–普通攻击合轴"
+msgstr "凯撒–普通攻击合轴"
+
+msgid "凯撒-特殊技合轴"
+msgstr "凯撒-特殊技合轴"
+
+msgid "凯撒–特殊技合轴"
+msgstr "凯撒–特殊技合轴"
+
+msgid "凯撒-特殊技格挡"
+msgstr "凯撒-特殊技格挡"
+
+msgid "凯撒–特殊技格挡"
+msgstr "凯撒–特殊技格挡"
+
+msgid "凯撒-终结技"
+msgstr "凯撒-终结技"
+
+msgid "凯撒–终结技"
+msgstr "凯撒–终结技"
+
+msgid "凯撒-连携攻击"
+msgstr "凯撒-连携攻击"
+
+msgid "凯撒–连携攻击"
+msgstr "凯撒–连携攻击"
+
+msgid "凯撒-闪A"
+msgstr "凯撒-闪A"
+
+msgid "凯撒–闪A"
+msgstr "凯撒–闪A"
+
+msgid "千夏-特殊攻击"
+msgstr "千夏-特殊攻击"
+
+msgid "千夏–特殊攻击"
+msgstr "千夏–特殊攻击"
+
+msgid "千夏-终结技"
+msgstr "千夏-终结技"
+
+msgid "千夏–终结技"
+msgstr "千夏–终结技"
+
+msgid "南宫羽–强化特殊技"
+msgstr "南宫羽–强化特殊技"
+
+msgid "南宫羽-强化特殊技"
+msgstr "南宫羽-强化特殊技"
+
+msgid "南宫羽–终结技"
+msgstr "南宫羽–终结技"
+
+msgid "南宫羽-终结技"
+msgstr "南宫羽-终结技"
+
+msgid "南宫羽-长按普攻"
+msgstr "南宫羽-长按普攻"
+
+msgid "南宫羽–长按普攻"
+msgstr "南宫羽–长按普攻"
+
+msgid "卢西娅–强化特殊技合轴"
+msgstr "卢西娅–强化特殊技合轴"
+
+msgid "卢西娅-强化特殊技合轴"
+msgstr "卢西娅-强化特殊技合轴"
+
+msgid "卢西娅–支援攻击"
+msgstr "卢西娅–支援攻击"
+
+msgid "卢西娅-支援攻击"
+msgstr "卢西娅-支援攻击"
+
+msgid "卢西娅-普通攻击"
+msgstr "卢西娅-普通攻击"
+
+msgid "卢西娅–普通攻击"
+msgstr "卢西娅–普通攻击"
+
+msgid "卢西娅-普通攻击合轴"
+msgstr "卢西娅-普通攻击合轴"
+
+msgid "卢西娅–普通攻击合轴"
+msgstr "卢西娅–普通攻击合轴"
+
+msgid "卢西娅–终结技"
+msgstr "卢西娅–终结技"
+
+msgid "卢西娅-终结技"
+msgstr "卢西娅-终结技"
+
+msgid "双反-上一个"
+msgstr "双反-上一个"
+
+msgid "双反–上一个"
+msgstr "双反–上一个"
+
+msgid "双反-下一个"
+msgstr "双反-下一个"
+
+msgid "双反–下一个"
+msgstr "双反–下一个"
+
+msgid "可琳–强化特殊技"
+msgstr "可琳–强化特殊技"
+
+msgid "可琳-强化特殊技"
+msgstr "可琳-强化特殊技"
+
+msgid "可琳-快速支援"
+msgstr "可琳-快速支援"
+
+msgid "可琳–快速支援"
+msgstr "可琳–快速支援"
+
+msgid "可琳–支援攻击"
+msgstr "可琳–支援攻击"
+
+msgid "可琳-支援攻击"
+msgstr "可琳-支援攻击"
+
+msgid "可琳–连携攻击"
+msgstr "可琳–连携攻击"
+
+msgid "可琳-连携攻击"
+msgstr "可琳-连携攻击"
+
+msgid "叶瞬光–eaeeeaE"
+msgstr "叶瞬光–eaeeeaE"
+
+msgid "叶瞬光-eaeeeaE"
+msgstr "叶瞬光-eaeeeaE"
+
+msgid "叶瞬光–乱砍"
+msgstr "叶瞬光–乱砍"
+
+msgid "叶瞬光-乱砍"
+msgstr "叶瞬光-乱砍"
+
+msgid "叶瞬光-变身"
+msgstr "叶瞬光-变身"
+
+msgid "叶瞬光–变身"
+msgstr "叶瞬光–变身"
+
+msgid "叶瞬光–强化特殊攻击"
+msgstr "叶瞬光–强化特殊攻击"
+
+msgid "叶瞬光-强化特殊攻击"
+msgstr "叶瞬光-强化特殊攻击"
+
+msgid "叶瞬光–支援攻击"
+msgstr "叶瞬光–支援攻击"
+
+msgid "叶瞬光-支援攻击"
+msgstr "叶瞬光-支援攻击"
+
+msgid "叶瞬光-普通攻击"
+msgstr "叶瞬光-普通攻击"
+
+msgid "叶瞬光–普通攻击"
+msgstr "叶瞬光–普通攻击"
+
+msgid "叶瞬光–格挡"
+msgstr "叶瞬光–格挡"
+
+msgid "叶瞬光-格挡"
+msgstr "叶瞬光-格挡"
+
+msgid "叶瞬光–终结技–收"
+msgstr "叶瞬光–终结技–收"
+
+msgid "叶瞬光-终结技-收"
+msgstr "叶瞬光-终结技-收"
+
+msgid "叶瞬光–终结技–起"
+msgstr "叶瞬光–终结技–起"
+
+msgid "叶瞬光-终结技-起"
+msgstr "叶瞬光-终结技-起"
+
+msgid "叶瞬光–连携攻击"
+msgstr "叶瞬光–连携攻击"
+
+msgid "叶瞬光-连携攻击"
+msgstr "叶瞬光-连携攻击"
+
+msgid "叶瞬光-闪A"
+msgstr "叶瞬光-闪A"
+
+msgid "叶瞬光–闪A"
+msgstr "叶瞬光–闪A"
+
+msgid "叶瞬光-飞天连段"
+msgstr "叶瞬光-飞天连段"
+
+msgid "叶瞬光–飞天连段"
+msgstr "叶瞬光–飞天连段"
+
+msgid "奥菲丝-普通攻击"
+msgstr "奥菲丝-普通攻击"
+
+msgid "奥菲丝–普通攻击"
+msgstr "奥菲丝–普通攻击"
+
+msgid "奥菲丝–特殊攻击合轴"
+msgstr "奥菲丝–特殊攻击合轴"
+
+msgid "奥菲丝-特殊攻击合轴"
+msgstr "奥菲丝-特殊攻击合轴"
+
+msgid "奥菲丝-终结技"
+msgstr "奥菲丝-终结技"
+
+msgid "奥菲丝–终结技"
+msgstr "奥菲丝–终结技"
+
+msgid "妮可-2a接快速蓄力炮"
+msgstr "妮可-2a接快速蓄力炮"
+
+msgid "妮可–2a接快速蓄力炮"
+msgstr "妮可–2a接快速蓄力炮"
+
+msgid "妮可-2a接蓄力坐箱炮"
+msgstr "妮可-2a接蓄力坐箱炮"
+
+msgid "妮可–2a接蓄力坐箱炮"
+msgstr "妮可–2a接蓄力坐箱炮"
+
+msgid "妮可-快速蓄力炮合轴"
+msgstr "妮可-快速蓄力炮合轴"
+
+msgid "妮可–快速蓄力炮合轴"
+msgstr "妮可–快速蓄力炮合轴"
+
+msgid "妮可–支援攻击"
+msgstr "妮可–支援攻击"
+
+msgid "妮可-支援攻击"
+msgstr "妮可-支援攻击"
+
+msgid "妮可–终结技"
+msgstr "妮可–终结技"
+
+msgid "妮可-终结技"
+msgstr "妮可-终结技"
+
+msgid "妮可-蓄力坐箱炮"
+msgstr "妮可-蓄力坐箱炮"
+
+msgid "妮可–蓄力坐箱炮"
+msgstr "妮可–蓄力坐箱炮"
+
+msgid "妮可–蓄力特殊攻击"
+msgstr "妮可–蓄力特殊攻击"
+
+msgid "妮可-蓄力特殊攻击"
+msgstr "妮可-蓄力特殊攻击"
+
+msgid "妮可-连携攻击"
+msgstr "妮可-连携攻击"
+
+msgid "妮可–连携攻击"
+msgstr "妮可–连携攻击"
+
+msgid "妮可–闪A上弹普攻二连"
+msgstr "妮可–闪A上弹普攻二连"
+
+msgid "妮可-闪A上弹普攻二连"
+msgstr "妮可-闪A上弹普攻二连"
+
+msgid "妮可-闪A普攻"
+msgstr "妮可-闪A普攻"
+
+msgid "妮可–闪A普攻"
+msgstr "妮可–闪A普攻"
+
+msgid "妮可–闪A普攻二连"
+msgstr "妮可–闪A普攻二连"
+
+msgid "妮可-闪A普攻二连"
+msgstr "妮可-闪A普攻二连"
+
+msgid "安东-支援攻击"
+msgstr "安东-支援攻击"
+
+msgid "安东–支援攻击"
+msgstr "安东–支援攻击"
+
+msgid "安比–3A普E"
+msgstr "安比–3A普E"
+
+msgid "安比-3A普E"
+msgstr "安比-3A普E"
+
+msgid "安比-3A特殊攻击"
+msgstr "安比-3A特殊攻击"
+
+msgid "安比–3A特殊攻击"
+msgstr "安比–3A特殊攻击"
+
+msgid "安比–3A重击"
+msgstr "安比–3A重击"
+
+msgid "安比-3A重击"
+msgstr "安比-3A重击"
+
+msgid "安比-支援攻击"
+msgstr "安比-支援攻击"
+
+msgid "安比–支援攻击"
+msgstr "安比–支援攻击"
+
+msgid "希希芙-EA"
+msgstr "希希芙-EA"
+
+msgid "希希芙–EA"
+msgstr "希希芙–EA"
+
+msgid "希希芙-支援攻击"
+msgstr "希希芙-支援攻击"
+
+msgid "希希芙–支援攻击"
+msgstr "希希芙–支援攻击"
+
+msgid "希希芙-普通普攻"
+msgstr "希希芙-普通普攻"
+
+msgid "希希芙–普通普攻"
+msgstr "希希芙–普通普攻"
+
+msgid "希希芙-终结技"
+msgstr "希希芙-终结技"
+
+msgid "希希芙–终结技"
+msgstr "希希芙–终结技"
+
+msgid "希希芙-连携攻击"
+msgstr "希希芙-连携攻击"
+
+msgid "希希芙–连携攻击"
+msgstr "希希芙–连携攻击"
+
+msgid "希希芙-长按普攻"
+msgstr "希希芙-长按普攻"
+
+msgid "希希芙–长按普攻"
+msgstr "希希芙–长按普攻"
+
+msgid "希希芙–闪A"
+msgstr "希希芙–闪A"
+
+msgid "希希芙-闪A"
+msgstr "希希芙-闪A"
+
+msgid "希格莉德-强化特殊技"
+msgstr "希格莉德-强化特殊技"
+
+msgid "希格莉德–强化特殊技"
+msgstr "希格莉德–强化特殊技"
+
+msgid "希格莉德-普通攻击"
+msgstr "希格莉德-普通攻击"
+
+msgid "希格莉德–普通攻击"
+msgstr "希格莉德–普通攻击"
+
+msgid "希格莉德-终结技"
+msgstr "希格莉德-终结技"
+
+msgid "希格莉德–终结技"
+msgstr "希格莉德–终结技"
+
+msgid "希格莉德-长按普攻"
+msgstr "希格莉德-长按普攻"
+
+msgid "希格莉德–长按普攻"
+msgstr "希格莉德–长按普攻"
+
+msgid "席德-强化特殊技"
+msgstr "席德-强化特殊技"
+
+msgid "席德–强化特殊技"
+msgstr "席德–强化特殊技"
+
+msgid "席德-终结技"
+msgstr "席德-终结技"
+
+msgid "席德–终结技"
+msgstr "席德–终结技"
+
+msgid "悠真-射箭三刀"
+msgstr "悠真-射箭三刀"
+
+msgid "悠真–射箭三刀"
+msgstr "悠真–射箭三刀"
+
+msgid "悠真-射箭四刀"
+msgstr "悠真-射箭四刀"
+
+msgid "悠真–射箭四刀"
+msgstr "悠真–射箭四刀"
+
+msgid "悠真–强化特殊技"
+msgstr "悠真–强化特殊技"
+
+msgid "悠真-强化特殊技"
+msgstr "悠真-强化特殊技"
+
+msgid "悠真–强化特殊技合轴"
+msgstr "悠真–强化特殊技合轴"
+
+msgid "悠真-强化特殊技合轴"
+msgstr "悠真-强化特殊技合轴"
+
+msgid "悠真–强化特殊技速接普攻"
+msgstr "悠真–强化特殊技速接普攻"
+
+msgid "悠真-强化特殊技速接普攻"
+msgstr "悠真-强化特殊技速接普攻"
+
+msgid "悠真–强化特殊攻击"
+msgstr "悠真–强化特殊攻击"
+
+msgid "悠真-强化特殊攻击"
+msgstr "悠真-强化特殊攻击"
+
+msgid "悠真-强化特殊攻击接闪A四刀"
+msgstr "悠真-强化特殊攻击接闪A四刀"
+
+msgid "悠真–强化特殊攻击接闪A四刀"
+msgstr "悠真–强化特殊攻击接闪A四刀"
+
+msgid "悠真–强化特殊攻击速接普攻"
+msgstr "悠真–强化特殊攻击速接普攻"
+
+msgid "悠真-强化特殊攻击速接普攻"
+msgstr "悠真-强化特殊攻击速接普攻"
+
+msgid "悠真–支援攻击"
+msgstr "悠真–支援攻击"
+
+msgid "悠真-支援攻击"
+msgstr "悠真-支援攻击"
+
+msgid "悠真–普通攻击"
+msgstr "悠真–普通攻击"
+
+msgid "悠真-普通攻击"
+msgstr "悠真-普通攻击"
+
+msgid "悠真–终结技"
+msgstr "悠真–终结技"
+
+msgid "悠真-终结技"
+msgstr "悠真-终结技"
+
+msgid "悠真-自动EA"
+msgstr "悠真-自动EA"
+
+msgid "悠真–自动EA"
+msgstr "悠真–自动EA"
+
+msgid "悠真-连携攻击"
+msgstr "悠真-连携攻击"
+
+msgid "悠真–连携攻击"
+msgstr "悠真–连携攻击"
+
+msgid "悠真–连携普攻产电壶"
+msgstr "悠真–连携普攻产电壶"
+
+msgid "悠真-连携普攻产电壶"
+msgstr "悠真-连携普攻产电壶"
+
+msgid "悠真-闪A三刀"
+msgstr "悠真-闪A三刀"
+
+msgid "悠真–闪A三刀"
+msgstr "悠真–闪A三刀"
+
+msgid "悠真-闪A四刀"
+msgstr "悠真-闪A四刀"
+
+msgid "悠真–闪A四刀"
+msgstr "悠真–闪A四刀"
+
+msgid "扳机–强化特殊技"
+msgstr "扳机–强化特殊技"
+
+msgid "扳机-强化特殊技"
+msgstr "扳机-强化特殊技"
+
+msgid "扳机–快速狙击"
+msgstr "扳机–快速狙击"
+
+msgid "扳机-快速狙击"
+msgstr "扳机-快速狙击"
+
+msgid "扳机-支援攻击"
+msgstr "扳机-支援攻击"
+
+msgid "扳机–支援攻击"
+msgstr "扳机–支援攻击"
+
+msgid "扳机–狙击四连"
+msgstr "扳机–狙击四连"
+
+msgid "扳机-狙击四连"
+msgstr "扳机-狙击四连"
+
+msgid "扳机–终结技"
+msgstr "扳机–终结技"
+
+msgid "扳机-终结技"
+msgstr "扳机-终结技"
+
+msgid "扳机-连携攻击"
+msgstr "扳机-连携攻击"
+
+msgid "扳机–连携攻击"
+msgstr "扳机–连携攻击"
+
+msgid "掉血闪避"
+msgstr "掉血闪避"
+
+msgid "星辉比利-终结技"
+msgstr "星辉比利-终结技"
+
+msgid "星辉比利–终结技"
+msgstr "星辉比利–终结技"
+
+msgid "普罗米娅–支援攻击"
+msgstr "普罗米娅–支援攻击"
+
+msgid "普罗米娅-支援攻击"
+msgstr "普罗米娅-支援攻击"
+
+msgid "普罗米娅-普通攻击"
+msgstr "普罗米娅-普通攻击"
+
+msgid "普罗米娅–普通攻击"
+msgstr "普罗米娅–普通攻击"
+
+msgid "普罗米娅-特殊攻击"
+msgstr "普罗米娅-特殊攻击"
+
+msgid "普罗米娅–特殊攻击"
+msgstr "普罗米娅–特殊攻击"
+
+msgid "普罗米娅-终结技"
+msgstr "普罗米娅-终结技"
+
+msgid "普罗米娅–终结技"
+msgstr "普罗米娅–终结技"
+
+msgid "普罗米娅-连携攻击"
+msgstr "普罗米娅-连携攻击"
+
+msgid "普罗米娅–连携攻击"
+msgstr "普罗米娅–连携攻击"
+
+msgid "普罗米娅–长按普攻"
+msgstr "普罗米娅–长按普攻"
+
+msgid "普罗米娅-长按普攻"
+msgstr "普罗米娅-长按普攻"
+
+msgid "普罗米娅-闪A"
+msgstr "普罗米娅-闪A"
+
+msgid "普罗米娅–闪A"
+msgstr "普罗米娅–闪A"
+
+msgid "本-支援攻击"
+msgstr "本-支援攻击"
+
+msgid "本–支援攻击"
+msgstr "本–支援攻击"
+
+msgid "朱鸢-5A"
+msgstr "朱鸢-5A"
+
+msgid "朱鸢–5A"
+msgstr "朱鸢–5A"
+
+msgid "朱鸢-5A接4A"
+msgstr "朱鸢-5A接4A"
+
+msgid "朱鸢–5A接4A"
+msgstr "朱鸢–5A接4A"
+
+msgid "朱鸢–后4A"
+msgstr "朱鸢–后4A"
+
+msgid "朱鸢-后4A"
+msgstr "朱鸢-后4A"
+
+msgid "朱鸢–强化特殊攻击"
+msgstr "朱鸢–强化特殊攻击"
+
+msgid "朱鸢-强化特殊攻击"
+msgstr "朱鸢-强化特殊攻击"
+
+msgid "朱鸢-支援攻击"
+msgstr "朱鸢-支援攻击"
+
+msgid "朱鸢–支援攻击"
+msgstr "朱鸢–支援攻击"
+
+msgid "朱鸢-普通攻击"
+msgstr "朱鸢-普通攻击"
+
+msgid "朱鸢–普通攻击"
+msgstr "朱鸢–普通攻击"
+
+msgid "朱鸢-终结技"
+msgstr "朱鸢-终结技"
+
+msgid "朱鸢–终结技"
+msgstr "朱鸢–终结技"
+
+msgid "朱鸢-蓄力3A"
+msgstr "朱鸢-蓄力3A"
+
+msgid "朱鸢–蓄力3A"
+msgstr "朱鸢–蓄力3A"
+
+msgid "朱鸢–连携攻击"
+msgstr "朱鸢–连携攻击"
+
+msgid "朱鸢-连携攻击"
+msgstr "朱鸢-连携攻击"
+
+msgid "朱鸢–长按A"
+msgstr "朱鸢–长按A"
+
+msgid "朱鸢-长按A"
+msgstr "朱鸢-长按A"
+
+msgid "朱鸢-闪A"
+msgstr "朱鸢-闪A"
+
+msgid "朱鸢–闪A"
+msgstr "朱鸢–闪A"
+
+msgid "朱鸢-闪前A"
+msgstr "朱鸢-闪前A"
+
+msgid "朱鸢–闪前A"
+msgstr "朱鸢–闪前A"
+
+msgid "柏妮思-普通攻击"
+msgstr "柏妮思-普通攻击"
+
+msgid "柏妮思–普通攻击"
+msgstr "柏妮思–普通攻击"
+
+msgid "柏妮思-格挡攻击"
+msgstr "柏妮思-格挡攻击"
+
+msgid "柏妮思–格挡攻击"
+msgstr "柏妮思–格挡攻击"
+
+msgid "柏妮思-直接长按特殊攻击"
+msgstr "柏妮思-直接长按特殊攻击"
+
+msgid "柏妮思–直接长按特殊攻击"
+msgstr "柏妮思–直接长按特殊攻击"
+
+msgid "柏妮思-短喷"
+msgstr "柏妮思-短喷"
+
+msgid "柏妮思–短喷"
+msgstr "柏妮思–短喷"
+
+msgid "柏妮思-终结技"
+msgstr "柏妮思-终结技"
+
+msgid "柏妮思–终结技"
+msgstr "柏妮思–终结技"
+
+msgid "柏妮思-连携攻击"
+msgstr "柏妮思-连携攻击"
+
+msgid "柏妮思–连携攻击"
+msgstr "柏妮思–连携攻击"
+
+msgid "柏妮思-长按普通攻击"
+msgstr "柏妮思-长按普通攻击"
+
+msgid "柏妮思–长按普通攻击"
+msgstr "柏妮思–长按普通攻击"
+
+msgid "柏妮思–闪A"
+msgstr "柏妮思–闪A"
+
+msgid "柏妮思-闪A"
+msgstr "柏妮思-闪A"
+
+msgid "柳–强化特殊攻击"
+msgstr "柳–强化特殊攻击"
+
+msgid "柳-强化特殊攻击"
+msgstr "柳-强化特殊攻击"
+
+msgid "柳-强化特殊攻击-上弦"
+msgstr "柳-强化特殊攻击-上弦"
+
+msgid "柳–强化特殊攻击–上弦"
+msgstr "柳–强化特殊攻击–上弦"
+
+msgid "柳-强化特殊攻击-下弦"
+msgstr "柳-强化特殊攻击-下弦"
+
+msgid "柳–强化特殊攻击–下弦"
+msgstr "柳–强化特殊攻击–下弦"
+
+msgid "柳–支援攻击"
+msgstr "柳–支援攻击"
+
+msgid "柳-支援攻击"
+msgstr "柳-支援攻击"
+
+msgid "柳–普通攻击"
+msgstr "柳–普通攻击"
+
+msgid "柳-普通攻击"
+msgstr "柳-普通攻击"
+
+msgid "柳–普通攻击–上弦"
+msgstr "柳–普通攻击–上弦"
+
+msgid "柳-普通攻击-上弦"
+msgstr "柳-普通攻击-上弦"
+
+msgid "柳-普通攻击-下弦"
+msgstr "柳-普通攻击-下弦"
+
+msgid "柳–普通攻击–下弦"
+msgstr "柳–普通攻击–下弦"
+
+msgid "柳-普通攻击合轴"
+msgstr "柳-普通攻击合轴"
+
+msgid "柳–普通攻击合轴"
+msgstr "柳–普通攻击合轴"
+
+msgid "柳-格挡攻击"
+msgstr "柳-格挡攻击"
+
+msgid "柳–格挡攻击"
+msgstr "柳–格挡攻击"
+
+msgid "柳–流转攻击"
+msgstr "柳–流转攻击"
+
+msgid "柳-流转攻击"
+msgstr "柳-流转攻击"
+
+msgid "柳–流转攻击–上弦"
+msgstr "柳–流转攻击–上弦"
+
+msgid "柳-流转攻击-上弦"
+msgstr "柳-流转攻击-上弦"
+
+msgid "柳-流转攻击-上弦合轴"
+msgstr "柳-流转攻击-上弦合轴"
+
+msgid "柳–流转攻击–上弦合轴"
+msgstr "柳–流转攻击–上弦合轴"
+
+msgid "柳-流转攻击-下弦"
+msgstr "柳-流转攻击-下弦"
+
+msgid "柳–流转攻击–下弦"
+msgstr "柳–流转攻击–下弦"
+
+msgid "柳–流转攻击–下弦合轴"
+msgstr "柳–流转攻击–下弦合轴"
+
+msgid "柳-流转攻击-下弦合轴"
+msgstr "柳-流转攻击-下弦合轴"
+
+msgid "柳–终结技"
+msgstr "柳–终结技"
+
+msgid "柳-终结技"
+msgstr "柳-终结技"
+
+msgid "柳-连携攻击"
+msgstr "柳-连携攻击"
+
+msgid "柳–连携攻击"
+msgstr "柳–连携攻击"
+
+msgid "柳-闪A"
+msgstr "柳-闪A"
+
+msgid "柳–闪A"
+msgstr "柳–闪A"
+
+msgid "标准–支援攻击模板"
+msgstr "标准–支援攻击模板"
+
+msgid "标准-支援攻击模板"
+msgstr "标准-支援攻击模板"
+
+msgid "格莉丝–3AEAE"
+msgstr "格莉丝–3AEAE"
+
+msgid "格莉丝-3AEAE"
+msgstr "格莉丝-3AEAE"
+
+msgid "格莉丝–支援攻击"
+msgstr "格莉丝–支援攻击"
+
+msgid "格莉丝-支援攻击"
+msgstr "格莉丝-支援攻击"
+
+msgid "格莉丝–终结技"
+msgstr "格莉丝–终结技"
+
+msgid "格莉丝-终结技"
+msgstr "格莉丝-终结技"
+
+msgid "格莉丝-连携攻击"
+msgstr "格莉丝-连携攻击"
+
+msgid "格莉丝–连携攻击"
+msgstr "格莉丝–连携攻击"
+
+msgid "橘福福-强化特殊攻击合轴"
+msgstr "橘福福-强化特殊攻击合轴"
+
+msgid "橘福福–强化特殊攻击合轴"
+msgstr "橘福福–强化特殊攻击合轴"
+
+msgid "橘福福-支援攻击"
+msgstr "橘福福-支援攻击"
+
+msgid "橘福福–支援攻击"
+msgstr "橘福福–支援攻击"
+
+msgid "橘福福–普通攻击合轴"
+msgstr "橘福福–普通攻击合轴"
+
+msgid "橘福福-普通攻击合轴"
+msgstr "橘福福-普通攻击合轴"
+
+msgid "橘福福-终结技"
+msgstr "橘福福-终结技"
+
+msgid "橘福福–终结技"
+msgstr "橘福福–终结技"
+
+msgid "橘福福-连携攻击"
+msgstr "橘福福-连携攻击"
+
+msgid "橘福福–连携攻击"
+msgstr "橘福福–连携攻击"
+
+msgid "比利-支援攻击"
+msgstr "比利-支援攻击"
+
+msgid "比利–支援攻击"
+msgstr "比利–支援攻击"
+
+msgid "洛克茜-强化特殊技-攒满"
+msgstr "洛克茜-强化特殊技-攒满"
+
+msgid "洛克茜–强化特殊技–攒满"
+msgstr "洛克茜–强化特殊技–攒满"
+
+msgid "洛克茜-支援攻击"
+msgstr "洛克茜-支援攻击"
+
+msgid "洛克茜–支援攻击"
+msgstr "洛克茜–支援攻击"
+
+msgid "洛克茜-普攻连段"
+msgstr "洛克茜-普攻连段"
+
+msgid "洛克茜–普攻连段"
+msgstr "洛克茜–普攻连段"
+
+msgid "洛克茜–终结技"
+msgstr "洛克茜–终结技"
+
+msgid "洛克茜-终结技"
+msgstr "洛克茜-终结技"
+
+msgid "洛克茜–连携攻击"
+msgstr "洛克茜–连携攻击"
+
+msgid "洛克茜-连携攻击"
+msgstr "洛克茜-连携攻击"
+
+msgid "洛克茜–闪避反击"
+msgstr "洛克茜–闪避反击"
+
+msgid "洛克茜-闪避反击"
+msgstr "洛克茜-闪避反击"
+
+msgid "派派-2A"
+msgstr "派派-2A"
+
+msgid "派派–2A"
+msgstr "派派–2A"
+
+msgid "派派–3A速启强化特殊技"
+msgstr "派派–3A速启强化特殊技"
+
+msgid "派派-3A速启强化特殊技"
+msgstr "派派-3A速启强化特殊技"
+
+msgid "派派-3A速启强化特殊技合轴"
+msgstr "派派-3A速启强化特殊技合轴"
+
+msgid "派派–3A速启强化特殊技合轴"
+msgstr "派派–3A速启强化特殊技合轴"
+
+msgid "派派-3A速启特殊技"
+msgstr "派派-3A速启特殊技"
+
+msgid "派派–3A速启特殊技"
+msgstr "派派–3A速启特殊技"
+
+msgid "派派-3A速启特殊技合轴"
+msgstr "派派-3A速启特殊技合轴"
+
+msgid "派派–3A速启特殊技合轴"
+msgstr "派派–3A速启特殊技合轴"
+
+msgid "派派–支援攻击"
+msgstr "派派–支援攻击"
+
+msgid "派派-支援攻击"
+msgstr "派派-支援攻击"
+
+msgid "派派-终结技"
+msgstr "派派-终结技"
+
+msgid "派派–终结技"
+msgstr "派派–终结技"
+
+msgid "派派–连携攻击"
+msgstr "派派–连携攻击"
+
+msgid "派派-连携攻击"
+msgstr "派派-连携攻击"
+
+msgid "派派-速启轮胎转"
+msgstr "派派-速启轮胎转"
+
+msgid "派派–速启轮胎转"
+msgstr "派派–速启轮胎转"
+
+msgid "派派-闪A"
+msgstr "派派-闪A"
+
+msgid "派派–闪A"
+msgstr "派派–闪A"
+
+msgid "浮波柚叶-强化特殊技合轴"
+msgstr "浮波柚叶-强化特殊技合轴"
+
+msgid "浮波柚叶–强化特殊技合轴"
+msgstr "浮波柚叶–强化特殊技合轴"
+
+msgid "浮波柚叶-普攻合轴"
+msgstr "浮波柚叶-普攻合轴"
+
+msgid "浮波柚叶–普攻合轴"
+msgstr "浮波柚叶–普攻合轴"
+
+msgid "浮波柚叶–普攻格挡"
+msgstr "浮波柚叶–普攻格挡"
+
+msgid "浮波柚叶-普攻格挡"
+msgstr "浮波柚叶-普攻格挡"
+
+msgid "浮波柚叶–特殊技合轴"
+msgstr "浮波柚叶–特殊技合轴"
+
+msgid "浮波柚叶-特殊技合轴"
+msgstr "浮波柚叶-特殊技合轴"
+
+msgid "浮波柚叶-终结技"
+msgstr "浮波柚叶-终结技"
+
+msgid "浮波柚叶–终结技"
+msgstr "浮波柚叶–终结技"
+
+msgid "浮波柚叶-闪A"
+msgstr "浮波柚叶-闪A"
+
+msgid "浮波柚叶–闪A"
+msgstr "浮波柚叶–闪A"
+
+msgid "潘引壶–支援攻击"
+msgstr "潘引壶–支援攻击"
+
+msgid "潘引壶-支援攻击"
+msgstr "潘引壶-支援攻击"
+
+msgid "潘引壶-特殊攻击合轴"
+msgstr "潘引壶-特殊攻击合轴"
+
+msgid "潘引壶–特殊攻击合轴"
+msgstr "潘引壶–特殊攻击合轴"
+
+msgid "潘引壶–终结技"
+msgstr "潘引壶–终结技"
+
+msgid "潘引壶-终结技"
+msgstr "潘引壶-终结技"
+
+msgid "潘引壶-连携攻击"
+msgstr "潘引壶-连携攻击"
+
+msgid "潘引壶–连携攻击"
+msgstr "潘引壶–连携攻击"
+
+msgid "照-强化特殊攻击"
+msgstr "照-强化特殊攻击"
+
+msgid "照–强化特殊攻击"
+msgstr "照–强化特殊攻击"
+
+msgid "照–登场技"
+msgstr "照–登场技"
+
+msgid "照-登场技"
+msgstr "照-登场技"
+
+msgid "照–终结技"
+msgstr "照–终结技"
+
+msgid "照-终结技"
+msgstr "照-终结技"
+
+msgid "照-连携攻击"
+msgstr "照-连携攻击"
+
+msgid "照–连携攻击"
+msgstr "照–连携攻击"
+
+msgid "爱丽丝–强化特殊技"
+msgstr "爱丽丝–强化特殊技"
+
+msgid "爱丽丝-强化特殊技"
+msgstr "爱丽丝-强化特殊技"
+
+msgid "爱丽丝–支援攻击"
+msgstr "爱丽丝–支援攻击"
+
+msgid "爱丽丝-支援攻击"
+msgstr "爱丽丝-支援攻击"
+
+msgid "爱丽丝-普通攻击"
+msgstr "爱丽丝-普通攻击"
+
+msgid "爱丽丝–普通攻击"
+msgstr "爱丽丝–普通攻击"
+
+msgid "爱丽丝-终结技"
+msgstr "爱丽丝-终结技"
+
+msgid "爱丽丝–终结技"
+msgstr "爱丽丝–终结技"
+
+msgid "爱丽丝-连携攻击"
+msgstr "爱丽丝-连携攻击"
+
+msgid "爱丽丝–连携攻击"
+msgstr "爱丽丝–连携攻击"
+
+msgid "爱丽丝–长按普攻合轴"
+msgstr "爱丽丝–长按普攻合轴"
+
+msgid "爱丽丝-长按普攻合轴"
+msgstr "爱丽丝-长按普攻合轴"
+
+msgid "爱丽丝-闪A"
+msgstr "爱丽丝-闪A"
+
+msgid "爱丽丝–闪A"
+msgstr "爱丽丝–闪A"
+
+msgid "爱芮-强化特殊技"
+msgstr "爱芮-强化特殊技"
+
+msgid "爱芮–强化特殊技"
+msgstr "爱芮–强化特殊技"
+
+msgid "爱芮-强化特殊技二连"
+msgstr "爱芮-强化特殊技二连"
+
+msgid "爱芮–强化特殊技二连"
+msgstr "爱芮–强化特殊技二连"
+
+msgid "爱芮-支援攻击"
+msgstr "爱芮-支援攻击"
+
+msgid "爱芮–支援攻击"
+msgstr "爱芮–支援攻击"
+
+msgid "爱芮–普攻循环"
+msgstr "爱芮–普攻循环"
+
+msgid "爱芮-普攻循环"
+msgstr "爱芮-普攻循环"
+
+msgid "爱芮–普通攻击"
+msgstr "爱芮–普通攻击"
+
+msgid "爱芮-普通攻击"
+msgstr "爱芮-普通攻击"
+
+msgid "爱芮-终结技"
+msgstr "爱芮-终结技"
+
+msgid "爱芮–终结技"
+msgstr "爱芮–终结技"
+
+msgid "爱芮–绝对音准"
+msgstr "爱芮–绝对音准"
+
+msgid "爱芮-绝对音准"
+msgstr "爱芮-绝对音准"
+
+msgid "爱芮-连携攻击"
+msgstr "爱芮-连携攻击"
+
+msgid "爱芮–连携攻击"
+msgstr "爱芮–连携攻击"
+
+msgid "爱芮–长按攻击"
+msgstr "爱芮–长按攻击"
+
+msgid "爱芮-长按攻击"
+msgstr "爱芮-长按攻击"
+
+msgid "爱芮–闪A"
+msgstr "爱芮–闪A"
+
+msgid "爱芮-闪A"
+msgstr "爱芮-闪A"
+
+msgid "猫又-支援攻击"
+msgstr "猫又-支援攻击"
+
+msgid "猫又–支援攻击"
+msgstr "猫又–支援攻击"
+
+msgid "猫又-穿刺普攻E"
+msgstr "猫又-穿刺普攻E"
+
+msgid "猫又–穿刺普攻E"
+msgstr "猫又–穿刺普攻E"
+
+msgid "猫又-终结技"
+msgstr "猫又-终结技"
+
+msgid "猫又–终结技"
+msgstr "猫又–终结技"
+
+msgid "猫又-连携攻击"
+msgstr "猫又-连携攻击"
+
+msgid "猫又–连携攻击"
+msgstr "猫又–连携攻击"
+
+msgid "珂蕾妲-强化普攻接特殊技"
+msgstr "珂蕾妲-强化普攻接特殊技"
+
+msgid "珂蕾妲–强化普攻接特殊技"
+msgstr "珂蕾妲–强化普攻接特殊技"
+
+msgid "珂蕾妲–强化普攻接特殊技合轴"
+msgstr "珂蕾妲–强化普攻接特殊技合轴"
+
+msgid "珂蕾妲-强化普攻接特殊技合轴"
+msgstr "珂蕾妲-强化普攻接特殊技合轴"
+
+msgid "珂蕾妲–支援攻击"
+msgstr "珂蕾妲–支援攻击"
+
+msgid "珂蕾妲-支援攻击"
+msgstr "珂蕾妲-支援攻击"
+
+msgid "珂蕾妲-特殊技合轴"
+msgstr "珂蕾妲-特殊技合轴"
+
+msgid "珂蕾妲–特殊技合轴"
+msgstr "珂蕾妲–特殊技合轴"
+
+msgid "琉音–找投诉"
+msgstr "琉音–找投诉"
+
+msgid "琉音-找投诉"
+msgstr "琉音-找投诉"
+
+msgid "琉音-支援攻击"
+msgstr "琉音-支援攻击"
+
+msgid "琉音–支援攻击"
+msgstr "琉音–支援攻击"
+
+msgid "琉音-石头剪刀布"
+msgstr "琉音-石头剪刀布"
+
+msgid "琉音–石头剪刀布"
+msgstr "琉音–石头剪刀布"
+
+msgid "琉音–石头剪刀布(连点特殊技)"
+msgstr "琉音–石头剪刀布(连点特殊技)"
+
+msgid "琉音-石头剪刀布(连点特殊技)"
+msgstr "琉音-石头剪刀布(连点特殊技)"
+
+msgid "琉音-终结技"
+msgstr "琉音-终结技"
+
+msgid "琉音–终结技"
+msgstr "琉音–终结技"
+
+msgid "琉音-连携攻击"
+msgstr "琉音-连携攻击"
+
+msgid "琉音–连携攻击"
+msgstr "琉音–连携攻击"
+
+msgid "琉音-送客(长按强化特殊技)"
+msgstr "琉音-送客(长按强化特殊技)"
+
+msgid "琉音–送客(长按强化特殊技)"
+msgstr "琉音–送客(长按强化特殊技)"
+
+msgid "琉音–闪A"
+msgstr "琉音–闪A"
+
+msgid "琉音-闪A"
+msgstr "琉音-闪A"
+
+msgid "真斗-基础连段"
+msgstr "真斗-基础连段"
+
+msgid "真斗–基础连段"
+msgstr "真斗–基础连段"
+
+msgid "真斗-强化特殊技"
+msgstr "真斗-强化特殊技"
+
+msgid "真斗–强化特殊技"
+msgstr "真斗–强化特殊技"
+
+msgid "真斗-拜年剑法"
+msgstr "真斗-拜年剑法"
+
+msgid "真斗–拜年剑法"
+msgstr "真斗–拜年剑法"
+
+msgid "真斗-擦火刀"
+msgstr "真斗-擦火刀"
+
+msgid "真斗–擦火刀"
+msgstr "真斗–擦火刀"
+
+msgid "真斗-支援攻击"
+msgstr "真斗-支援攻击"
+
+msgid "真斗–支援攻击"
+msgstr "真斗–支援攻击"
+
+msgid "真斗-格挡"
+msgstr "真斗-格挡"
+
+msgid "真斗–格挡"
+msgstr "真斗–格挡"
+
+msgid "真斗-终结技"
+msgstr "真斗-终结技"
+
+msgid "真斗–终结技"
+msgstr "真斗–终结技"
+
+msgid "真斗-连携攻击"
+msgstr "真斗-连携攻击"
+
+msgid "真斗–连携攻击"
+msgstr "真斗–连携攻击"
+
+msgid "简–强化特殊攻击"
+msgstr "简–强化特殊攻击"
+
+msgid "简-强化特殊攻击"
+msgstr "简-强化特殊攻击"
+
+msgid "简-普通攻击"
+msgstr "简-普通攻击"
+
+msgid "简–普通攻击"
+msgstr "简–普通攻击"
+
+msgid "简-普通攻击合轴"
+msgstr "简-普通攻击合轴"
+
+msgid "简–普通攻击合轴"
+msgstr "简–普通攻击合轴"
+
+msgid "简–格挡攻击"
+msgstr "简–格挡攻击"
+
+msgid "简-格挡攻击"
+msgstr "简-格挡攻击"
+
+msgid "简-终结技"
+msgstr "简-终结技"
+
+msgid "简–终结技"
+msgstr "简–终结技"
+
+msgid "简-萨霍夫跳"
+msgstr "简-萨霍夫跳"
+
+msgid "简–萨霍夫跳"
+msgstr "简–萨霍夫跳"
+
+msgid "简–萨霍夫跳合轴"
+msgstr "简–萨霍夫跳合轴"
+
+msgid "简-萨霍夫跳合轴"
+msgstr "简-萨霍夫跳合轴"
+
+msgid "简–连携攻击"
+msgstr "简–连携攻击"
+
+msgid "简-连携攻击"
+msgstr "简-连携攻击"
+
+msgid "简-闪A"
+msgstr "简-闪A"
+
+msgid "简–闪A"
+msgstr "简–闪A"
+
+msgid "维琳娜–强化特殊技"
+msgstr "维琳娜–强化特殊技"
+
+msgid "维琳娜-强化特殊技"
+msgstr "维琳娜-强化特殊技"
+
+msgid "维琳娜–强化特殊技合轴"
+msgstr "维琳娜–强化特殊技合轴"
+
+msgid "维琳娜-强化特殊技合轴"
+msgstr "维琳娜-强化特殊技合轴"
+
+msgid "维琳娜-支援攻击"
+msgstr "维琳娜-支援攻击"
+
+msgid "维琳娜–支援攻击"
+msgstr "维琳娜–支援攻击"
+
+msgid "维琳娜–普通攻击"
+msgstr "维琳娜–普通攻击"
+
+msgid "维琳娜-普通攻击"
+msgstr "维琳娜-普通攻击"
+
+msgid "维琳娜–特殊攻击"
+msgstr "维琳娜–特殊攻击"
+
+msgid "维琳娜-特殊攻击"
+msgstr "维琳娜-特殊攻击"
+
+msgid "维琳娜-终结技"
+msgstr "维琳娜-终结技"
+
+msgid "维琳娜–终结技"
+msgstr "维琳娜–终结技"
+
+msgid "维琳娜-连携攻击"
+msgstr "维琳娜-连携攻击"
+
+msgid "维琳娜–连携攻击"
+msgstr "维琳娜–连携攻击"
+
+msgid "维琳娜-长按普攻"
+msgstr "维琳娜-长按普攻"
+
+msgid "维琳娜–长按普攻"
+msgstr "维琳娜–长按普攻"
+
+msgid "维琳娜–闪A"
+msgstr "维琳娜–闪A"
+
+msgid "维琳娜-闪A"
+msgstr "维琳娜-闪A"
+
+msgid "耀嘉音–强化特殊技"
+msgstr "耀嘉音–强化特殊技"
+
+msgid "耀嘉音-强化特殊技"
+msgstr "耀嘉音-强化特殊技"
+
+msgid "耀嘉音–终结技"
+msgstr "耀嘉音–终结技"
+
+msgid "耀嘉音-终结技"
+msgstr "耀嘉音-终结技"
+
+msgid "耀嘉音-连携攻击"
+msgstr "耀嘉音-连携攻击"
+
+msgid "耀嘉音–连携攻击"
+msgstr "耀嘉音–连携攻击"
+
+msgid "般岳-冲刺攻击-飞砂"
+msgstr "般岳-冲刺攻击-飞砂"
+
+msgid "般岳–冲刺攻击–飞砂"
+msgstr "般岳–冲刺攻击–飞砂"
+
+msgid "般岳–快速支援–磐岩"
+msgstr "般岳–快速支援–磐岩"
+
+msgid "般岳-快速支援-磐岩"
+msgstr "般岳-快速支援-磐岩"
+
+msgid "般岳–招架支援–铁壁"
+msgstr "般岳–招架支援–铁壁"
+
+msgid "般岳-招架支援-铁壁"
+msgstr "般岳-招架支援-铁壁"
+
+msgid "般岳–支援突击–冲霄"
+msgstr "般岳–支援突击–冲霄"
+
+msgid "般岳-支援突击-冲霄"
+msgstr "般岳-支援突击-冲霄"
+
+msgid "般岳–支援突击–昂霄"
+msgstr "般岳–支援突击–昂霄"
+
+msgid "般岳-支援突击-昂霄"
+msgstr "般岳-支援突击-昂霄"
+
+msgid "般岳-普通攻击-倾山"
+msgstr "般岳-普通攻击-倾山"
+
+msgid "般岳–普通攻击–倾山"
+msgstr "般岳–普通攻击–倾山"
+
+msgid "般岳–普通攻击–峥嵘"
+msgstr "般岳–普通攻击–峥嵘"
+
+msgid "般岳-普通攻击-峥嵘"
+msgstr "般岳-普通攻击-峥嵘"
+
+msgid "般岳–普通攻击–崔巍"
+msgstr "般岳–普通攻击–崔巍"
+
+msgid "般岳-普通攻击-崔巍"
+msgstr "般岳-普通攻击-崔巍"
+
+msgid "般岳-普通攻击-引火"
+msgstr "般岳-普通攻击-引火"
+
+msgid "般岳–普通攻击–引火"
+msgstr "般岳–普通攻击–引火"
+
+msgid "般岳-普通攻击-摧岳"
+msgstr "般岳-普通攻击-摧岳"
+
+msgid "般岳–普通攻击–摧岳"
+msgstr "般岳–普通攻击–摧岳"
+
+msgid "般岳–普通攻击–焚身"
+msgstr "般岳–普通攻击–焚身"
+
+msgid "般岳-普通攻击-焚身"
+msgstr "般岳-普通攻击-焚身"
+
+msgid "般岳-特殊技-地动"
+msgstr "般岳-特殊技-地动"
+
+msgid "般岳–特殊技–地动"
+msgstr "般岳–特殊技–地动"
+
+msgid "般岳-特殊技-山摇"
+msgstr "般岳-特殊技-山摇"
+
+msgid "般岳–特殊技–山摇"
+msgstr "般岳–特殊技–山摇"
+
+msgid "般岳–特殊技–山摇怒"
+msgstr "般岳–特殊技–山摇怒"
+
+msgid "般岳-特殊技-山摇怒"
+msgstr "般岳-特殊技-山摇怒"
+
+msgid "般岳–特殊技–狮子吼"
+msgstr "般岳–特殊技–狮子吼"
+
+msgid "般岳-特殊技-狮子吼"
+msgstr "般岳-特殊技-狮子吼"
+
+msgid "般岳–特殊技–狮子吼怒"
+msgstr "般岳–特殊技–狮子吼怒"
+
+msgid "般岳-特殊技-狮子吼怒"
+msgstr "般岳-特殊技-狮子吼怒"
+
+msgid "般岳-特殊技-论道"
+msgstr "般岳-特殊技-论道"
+
+msgid "般岳–特殊技–论道"
+msgstr "般岳–特殊技–论道"
+
+msgid "般岳-终结技-撼天动地"
+msgstr "般岳-终结技-撼天动地"
+
+msgid "般岳–终结技–撼天动地"
+msgstr "般岳–终结技–撼天动地"
+
+msgid "般岳-连招-地动山摇"
+msgstr "般岳-连招-地动山摇"
+
+msgid "般岳–连招–地动山摇"
+msgstr "般岳–连招–地动山摇"
+
+msgid "般岳-连招-完整循环"
+msgstr "般岳-连招-完整循环"
+
+msgid "般岳–连招–完整循环"
+msgstr "般岳–连招–完整循环"
+
+msgid "般岳–连招–怒相爆发"
+msgstr "般岳–连招–怒相爆发"
+
+msgid "般岳-连招-怒相爆发"
+msgstr "般岳-连招-怒相爆发"
+
+msgid "般岳–连招–怒相连招"
+msgstr "般岳–连招–怒相连招"
+
+msgid "般岳-连招-怒相连招"
+msgstr "般岳-连招-怒相连招"
+
+msgid "般岳–连招–论道狮吼"
+msgstr "般岳–连招–论道狮吼"
+
+msgid "般岳-连招-论道狮吼"
+msgstr "般岳-连招-论道狮吼"
+
+msgid "般岳-连携技-怒焰"
+msgstr "般岳-连携技-怒焰"
+
+msgid "般岳–连携技–怒焰"
+msgstr "般岳–连携技–怒焰"
+
+msgid "般岳-闪避-不动如山"
+msgstr "般岳-闪避-不动如山"
+
+msgid "般岳–闪避–不动如山"
+msgstr "般岳–闪避–不动如山"
+
+msgid "般岳–闪避–叫阵"
+msgstr "般岳–闪避–叫阵"
+
+msgid "般岳-闪避-叫阵"
+msgstr "般岳-闪避-叫阵"
+
+msgid "般岳–闪避–越岭"
+msgstr "般岳–闪避–越岭"
+
+msgid "般岳-闪避-越岭"
+msgstr "般岳-闪避-越岭"
+
+msgid "般岳-闪避反击-扬砾"
+msgstr "般岳-闪避反击-扬砾"
+
+msgid "般岳–闪避反击–扬砾"
+msgstr "般岳–闪避反击–扬砾"
+
+msgid "艾莲-3A"
+msgstr "艾莲-3A"
+
+msgid "艾莲–3A"
+msgstr "艾莲–3A"
+
+msgid "艾莲–EA连击"
+msgstr "艾莲–EA连击"
+
+msgid "艾莲-EA连击"
+msgstr "艾莲-EA连击"
+
+msgid "艾莲-冲刺蓄力攻击"
+msgstr "艾莲-冲刺蓄力攻击"
+
+msgid "艾莲–冲刺蓄力攻击"
+msgstr "艾莲–冲刺蓄力攻击"
+
+msgid "艾莲-冲刺蓄力攻击-慢"
+msgstr "艾莲-冲刺蓄力攻击-慢"
+
+msgid "艾莲–冲刺蓄力攻击–慢"
+msgstr "艾莲–冲刺蓄力攻击–慢"
+
+msgid "艾莲–冲蓄3A"
+msgstr "艾莲–冲蓄3A"
+
+msgid "艾莲-冲蓄3A"
+msgstr "艾莲-冲蓄3A"
+
+msgid "艾莲–支援攻击"
+msgstr "艾莲–支援攻击"
+
+msgid "艾莲-支援攻击"
+msgstr "艾莲-支援攻击"
+
+msgid "艾莲–新冲刺剪刀一套快速"
+msgstr "艾莲–新冲刺剪刀一套快速"
+
+msgid "艾莲-新冲刺剪刀一套快速"
+msgstr "艾莲-新冲刺剪刀一套快速"
+
+msgid "艾莲–新冲刺剪刀一套慢速"
+msgstr "艾莲–新冲刺剪刀一套慢速"
+
+msgid "艾莲-新冲刺剪刀一套慢速"
+msgstr "艾莲-新冲刺剪刀一套慢速"
+
+msgid "艾莲–新双E连招"
+msgstr "艾莲–新双E连招"
+
+msgid "艾莲-新双E连招"
+msgstr "艾莲-新双E连招"
+
+msgid "艾莲-普通攻击"
+msgstr "艾莲-普通攻击"
+
+msgid "艾莲–普通攻击"
+msgstr "艾莲–普通攻击"
+
+msgid "艾莲–特殊攻击"
+msgstr "艾莲–特殊攻击"
+
+msgid "艾莲-特殊攻击"
+msgstr "艾莲-特殊攻击"
+
+msgid "艾莲–终结技"
+msgstr "艾莲–终结技"
+
+msgid "艾莲-终结技"
+msgstr "艾莲-终结技"
+
+msgid "艾莲-连携攻击"
+msgstr "艾莲-连携攻击"
+
+msgid "艾莲–连携攻击"
+msgstr "艾莲–连携攻击"
+
+msgid "艾莲–闪A"
+msgstr "艾莲–闪A"
+
+msgid "艾莲-闪A"
+msgstr "艾莲-闪A"
+
+msgid "苍角-1E展旗合轴"
+msgstr "苍角-1E展旗合轴"
+
+msgid "苍角–1E展旗合轴"
+msgstr "苍角–1E展旗合轴"
+
+msgid "苍角-2E展旗合轴"
+msgstr "苍角-2E展旗合轴"
+
+msgid "苍角–2E展旗合轴"
+msgstr "苍角–2E展旗合轴"
+
+msgid "苍角-3E展旗合轴"
+msgstr "苍角-3E展旗合轴"
+
+msgid "苍角–3E展旗合轴"
+msgstr "苍角–3E展旗合轴"
+
+msgid "苍角-EA连击"
+msgstr "苍角-EA连击"
+
+msgid "苍角–EA连击"
+msgstr "苍角–EA连击"
+
+msgid "苍角-展旗"
+msgstr "苍角-展旗"
+
+msgid "苍角–展旗"
+msgstr "苍角–展旗"
+
+msgid "苍角–支援攻击"
+msgstr "苍角–支援攻击"
+
+msgid "苍角-支援攻击"
+msgstr "苍角-支援攻击"
+
+msgid "苍角–普通攻击"
+msgstr "苍角–普通攻击"
+
+msgid "苍角-普通攻击"
+msgstr "苍角-普通攻击"
+
+msgid "苍角-特殊攻击"
+msgstr "苍角-特殊攻击"
+
+msgid "苍角–特殊攻击"
+msgstr "苍角–特殊攻击"
+
+msgid "苍角–特殊攻击合轴"
+msgstr "苍角–特殊攻击合轴"
+
+msgid "苍角-特殊攻击合轴"
+msgstr "苍角-特殊攻击合轴"
+
+msgid "苍角-终结技"
+msgstr "苍角-终结技"
+
+msgid "苍角–终结技"
+msgstr "苍角–终结技"
+
+msgid "苍角–连携攻击"
+msgstr "苍角–连携攻击"
+
+msgid "苍角-连携攻击"
+msgstr "苍角-连携攻击"
+
+msgid "苍角–闪2A合轴"
+msgstr "苍角–闪2A合轴"
+
+msgid "苍角-闪2A合轴"
+msgstr "苍角-闪2A合轴"
+
+msgid "莱卡恩-支援攻击"
+msgstr "莱卡恩-支援攻击"
+
+msgid "莱卡恩–支援攻击"
+msgstr "莱卡恩–支援攻击"
+
+msgid "莱卡恩-普通攻击"
+msgstr "莱卡恩-普通攻击"
+
+msgid "莱卡恩–普通攻击"
+msgstr "莱卡恩–普通攻击"
+
+msgid "莱卡恩–特殊技合轴"
+msgstr "莱卡恩–特殊技合轴"
+
+msgid "莱卡恩-特殊技合轴"
+msgstr "莱卡恩-特殊技合轴"
+
+msgid "莱卡恩-终结技"
+msgstr "莱卡恩-终结技"
+
+msgid "莱卡恩–终结技"
+msgstr "莱卡恩–终结技"
+
+msgid "莱卡恩–蓄力普通攻击"
+msgstr "莱卡恩–蓄力普通攻击"
+
+msgid "莱卡恩-蓄力普通攻击"
+msgstr "莱卡恩-蓄力普通攻击"
+
+msgid "莱卡恩–闪A"
+msgstr "莱卡恩–闪A"
+
+msgid "莱卡恩-闪A"
+msgstr "莱卡恩-闪A"
+
+msgid "菲欧妮–特殊技"
+msgstr "菲欧妮–特殊技"
+
+msgid "菲欧妮-特殊技"
+msgstr "菲欧妮-特殊技"
+
+msgid "菲欧妮–长按普攻–焚罪"
+msgstr "菲欧妮–长按普攻–焚罪"
+
+msgid "菲欧妮-长按普攻-焚罪"
+msgstr "菲欧妮-长按普攻-焚罪"
+
+msgid "蕾米埃尔-入场技"
+msgstr "蕾米埃尔-入场技"
+
+msgid "蕾米埃尔–入场技"
+msgstr "蕾米埃尔–入场技"
+
+msgid "蕾米埃尔–普通攻击"
+msgstr "蕾米埃尔–普通攻击"
+
+msgid "蕾米埃尔-普通攻击"
+msgstr "蕾米埃尔-普通攻击"
+
+msgid "蕾米埃尔–点按接蓄力"
+msgstr "蕾米埃尔–点按接蓄力"
+
+msgid "蕾米埃尔-点按接蓄力"
+msgstr "蕾米埃尔-点按接蓄力"
+
+msgid "蕾米埃尔-终结技"
+msgstr "蕾米埃尔-终结技"
+
+msgid "蕾米埃尔–终结技"
+msgstr "蕾米埃尔–终结技"
+
+msgid "蕾米埃尔-连携攻击"
+msgstr "蕾米埃尔-连携攻击"
+
+msgid "蕾米埃尔–连携攻击"
+msgstr "蕾米埃尔–连携攻击"
+
+msgid "蕾米埃尔–长按强化特殊技"
+msgstr "蕾米埃尔–长按强化特殊技"
+
+msgid "蕾米埃尔-长按强化特殊技"
+msgstr "蕾米埃尔-长按强化特殊技"
+
+msgid "蕾米埃尔-长按普攻"
+msgstr "蕾米埃尔-长按普攻"
+
+msgid "蕾米埃尔–长按普攻"
+msgstr "蕾米埃尔–长按普攻"
+
+msgid "薇薇安–3A"
+msgstr "薇薇安–3A"
+
+msgid "薇薇安-3A"
+msgstr "薇薇安-3A"
+
+msgid "薇薇安-4A突刺"
+msgstr "薇薇安-4A突刺"
+
+msgid "薇薇安–4A突刺"
+msgstr "薇薇安–4A突刺"
+
+msgid "薇薇安-4A突刺强化特殊攻击"
+msgstr "薇薇安-4A突刺强化特殊攻击"
+
+msgid "薇薇安–4A突刺强化特殊攻击"
+msgstr "薇薇安–4A突刺强化特殊攻击"
+
+msgid "薇薇安–5A悬落"
+msgstr "薇薇安–5A悬落"
+
+msgid "薇薇安-5A悬落"
+msgstr "薇薇安-5A悬落"
+
+msgid "薇薇安–强化特殊技合轴"
+msgstr "薇薇安–强化特殊技合轴"
+
+msgid "薇薇安-强化特殊技合轴"
+msgstr "薇薇安-强化特殊技合轴"
+
+msgid "薇薇安–快速支援"
+msgstr "薇薇安–快速支援"
+
+msgid "薇薇安-快速支援"
+msgstr "薇薇安-快速支援"
+
+msgid "薇薇安–快速支援强化特殊技"
+msgstr "薇薇安–快速支援强化特殊技"
+
+msgid "薇薇安-快速支援强化特殊技"
+msgstr "薇薇安-快速支援强化特殊技"
+
+msgid "薇薇安-支援攻击"
+msgstr "薇薇安-支援攻击"
+
+msgid "薇薇安–支援攻击"
+msgstr "薇薇安–支援攻击"
+
+msgid "薇薇安–终结技"
+msgstr "薇薇安–终结技"
+
+msgid "薇薇安-终结技"
+msgstr "薇薇安-终结技"
+
+msgid "薇薇安–连携攻击"
+msgstr "薇薇安–连携攻击"
+
+msgid "薇薇安-连携攻击"
+msgstr "薇薇安-连携攻击"
+
+msgid "薇薇安–闪A"
+msgstr "薇薇安–闪A"
+
+msgid "薇薇安-闪A"
+msgstr "薇薇安-闪A"
+
+msgid "诺姆–强化特殊攻击"
+msgstr "诺姆–强化特殊攻击"
+
+msgid "诺姆-强化特殊攻击"
+msgstr "诺姆-强化特殊攻击"
+
+msgid "诺姆-支援攻击"
+msgstr "诺姆-支援攻击"
+
+msgid "诺姆–支援攻击"
+msgstr "诺姆–支援攻击"
+
+msgid "诺姆–普通攻击合轴"
+msgstr "诺姆–普通攻击合轴"
+
+msgid "诺姆-普通攻击合轴"
+msgstr "诺姆-普通攻击合轴"
+
+msgid "诺姆-终结技"
+msgstr "诺姆-终结技"
+
+msgid "诺姆–终结技"
+msgstr "诺姆–终结技"
+
+msgid "诺姆–连携攻击"
+msgstr "诺姆–连携攻击"
+
+msgid "诺姆-连携攻击"
+msgstr "诺姆-连携攻击"
+
+msgid "诺姆–长按普攻"
+msgstr "诺姆–长按普攻"
+
+msgid "诺姆-长按普攻"
+msgstr "诺姆-长按普攻"
+
+msgid "连携–取消"
+msgstr "连携–取消"
+
+msgid "连携-取消"
+msgstr "连携-取消"
+
+msgid "连携–右"
+msgstr "连携–右"
+
+msgid "连携-右"
+msgstr "连携-右"
+
+msgid "连携-左"
+msgstr "连携-左"
+
+msgid "连携–左"
+msgstr "连携–左"
+
+msgid "通用–切人普通攻击"
+msgstr "通用–切人普通攻击"
+
+msgid "通用-切人普通攻击"
+msgstr "通用-切人普通攻击"
+
+msgid "通用–强化特殊技"
+msgstr "通用–强化特殊技"
+
+msgid "通用-强化特殊技"
+msgstr "通用-强化特殊技"
+
+msgid "通用–快速支援"
+msgstr "通用–快速支援"
+
+msgid "通用-快速支援"
+msgstr "通用-快速支援"
+
+msgid "通用-支援攻击"
+msgstr "通用-支援攻击"
+
+msgid "通用–支援攻击"
+msgstr "通用–支援攻击"
+
+msgid "通用-普通攻击"
+msgstr "通用-普通攻击"
+
+msgid "通用–普通攻击"
+msgstr "通用–普通攻击"
+
+msgid "通用-特殊攻击合轴"
+msgstr "通用-特殊攻击合轴"
+
+msgid "通用–特殊攻击合轴"
+msgstr "通用–特殊攻击合轴"
+
+msgid "通用-终结技"
+msgstr "通用-终结技"
+
+msgid "通用–终结技"
+msgstr "通用–终结技"
+
+msgid "通用–连携攻击"
+msgstr "通用–连携攻击"
+
+msgid "通用-连携攻击"
+msgstr "通用-连携攻击"
+
+msgid "通用–长按普攻"
+msgstr "通用–长按普攻"
+
+msgid "通用-长按普攻"
+msgstr "通用-长按普攻"
+
+msgid "通用-长按特殊攻击"
+msgstr "通用-长按特殊攻击"
+
+msgid "通用–长按特殊攻击"
+msgstr "通用–长按特殊攻击"
+
+msgid "通用–闪A"
+msgstr "通用–闪A"
+
+msgid "通用-闪A"
+msgstr "通用-闪A"
+
+msgid "通用-闪避-前"
+msgstr "通用-闪避-前"
+
+msgid "通用–闪避–前"
+msgstr "通用–闪避–前"
+
+msgid "通用–闪避–左"
+msgstr "通用–闪避–左"
+
+msgid "通用-闪避-左"
+msgstr "通用-闪避-左"
+
+msgid "雅-拔刀斩"
+msgstr "雅-拔刀斩"
+
+msgid "雅–拔刀斩"
+msgstr "雅–拔刀斩"
+
+msgid "雅–支援攻击"
+msgstr "雅–支援攻击"
+
+msgid "雅-支援攻击"
+msgstr "雅-支援攻击"
+
+msgid "雅–普通攻击"
+msgstr "雅–普通攻击"
+
+msgid "雅-普通攻击"
+msgstr "雅-普通攻击"
+
+msgid "雅–特殊攻击"
+msgstr "雅–特殊攻击"
+
+msgid "雅-特殊攻击"
+msgstr "雅-特殊攻击"
+
+msgid "雅–特殊攻击二连"
+msgstr "雅–特殊攻击二连"
+
+msgid "雅-特殊攻击二连"
+msgstr "雅-特殊攻击二连"
+
+msgid "雅–终结技"
+msgstr "雅–终结技"
+
+msgid "雅-终结技"
+msgstr "雅-终结技"
+
+msgid "雅–连携攻击"
+msgstr "雅–连携攻击"
+
+msgid "雅-连携攻击"
+msgstr "雅-连携攻击"
+
+msgid "雅-闪A"
+msgstr "雅-闪A"
+
+msgid "雅–闪A"
+msgstr "雅–闪A"
+
+msgid "雨果-强化特殊攻击"
+msgstr "雨果-强化特殊攻击"
+
+msgid "雨果–强化特殊攻击"
+msgstr "雨果–强化特殊攻击"
+
+msgid "雨果–快速支援"
+msgstr "雨果–快速支援"
+
+msgid "雨果-快速支援"
+msgstr "雨果-快速支援"
+
+msgid "雨果–支援攻击"
+msgstr "雨果–支援攻击"
+
+msgid "雨果-支援攻击"
+msgstr "雨果-支援攻击"
+
+msgid "雨果–普通攻击"
+msgstr "雨果–普通攻击"
+
+msgid "雨果-普通攻击"
+msgstr "雨果-普通攻击"
+
+msgid "雨果–普通攻击A4"
+msgstr "雨果–普通攻击A4"
+
+msgid "雨果-普通攻击A4"
+msgstr "雨果-普通攻击A4"
+
+msgid "雨果–终结技"
+msgstr "雨果–终结技"
+
+msgid "雨果-终结技"
+msgstr "雨果-终结技"
+
+msgid "雨果-连携攻击"
+msgstr "雨果-连携攻击"
+
+msgid "雨果–连携攻击"
+msgstr "雨果–连携攻击"
+
+msgid "雨果-闪A"
+msgstr "雨果-闪A"
+
+msgid "雨果–闪A"
+msgstr "雨果–闪A"
+
+msgid "零号安比–强化特殊技"
+msgstr "零号安比–强化特殊技"
+
+msgid "零号安比-强化特殊技"
+msgstr "零号安比-强化特殊技"
+
+msgid "零号安比-强化特殊技合轴"
+msgstr "零号安比-强化特殊技合轴"
+
+msgid "零号安比–强化特殊技合轴"
+msgstr "零号安比–强化特殊技合轴"
+
+msgid "零号安比–快速支援"
+msgstr "零号安比–快速支援"
+
+msgid "零号安比-快速支援"
+msgstr "零号安比-快速支援"
+
+msgid "零号安比–支援攻击"
+msgstr "零号安比–支援攻击"
+
+msgid "零号安比-支援攻击"
+msgstr "零号安比-支援攻击"
+
+msgid "零号安比–普通攻击"
+msgstr "零号安比–普通攻击"
+
+msgid "零号安比-普通攻击"
+msgstr "零号安比-普通攻击"
+
+msgid "零号安比–普通攻击合轴"
+msgstr "零号安比–普通攻击合轴"
+
+msgid "零号安比-普通攻击合轴"
+msgstr "零号安比-普通攻击合轴"
+
+msgid "零号安比–特殊技突进"
+msgstr "零号安比–特殊技突进"
+
+msgid "零号安比-特殊技突进"
+msgstr "零号安比-特殊技突进"
+
+msgid "零号安比–终结技"
+msgstr "零号安比–终结技"
+
+msgid "零号安比-终结技"
+msgstr "零号安比-终结技"
+
+msgid "零号安比-给席德的专属强化特殊技合轴"
+msgstr "零号安比-给席德的专属强化特殊技合轴"
+
+msgid "零号安比–给席德的专属强化特殊技合轴"
+msgstr "零号安比–给席德的专属强化特殊技合轴"
+
+msgid "零号安比–连携攻击"
+msgstr "零号安比–连携攻击"
+
+msgid "零号安比-连携攻击"
+msgstr "零号安比-连携攻击"
+
+msgid "零号安比-闪A"
+msgstr "零号安比-闪A"
+
+msgid "零号安比–闪A"
+msgstr "零号安比–闪A"
+
+msgid "露西-平直球合轴"
+msgstr "露西-平直球合轴"
+
+msgid "露西–平直球合轴"
+msgstr "露西–平直球合轴"
+
+msgid "露西–支援攻击"
+msgstr "露西–支援攻击"
+
+msgid "露西-支援攻击"
+msgstr "露西-支援攻击"
+
+msgid "露西–高飞球合轴"
+msgstr "露西–高飞球合轴"
+
+msgid "露西-高飞球合轴"
+msgstr "露西-高飞球合轴"
+
+msgid "青衣–支援攻击"
+msgstr "青衣–支援攻击"
+
+msgid "青衣-支援攻击"
+msgstr "青衣-支援攻击"
+
+msgid "青衣–普通攻击"
+msgstr "青衣–普通攻击"
+
+msgid "青衣-普通攻击"
+msgstr "青衣-普通攻击"
+
+msgid "青衣-特殊技"
+msgstr "青衣-特殊技"
+
+msgid "青衣–特殊技"
+msgstr "青衣–特殊技"
+
+msgid "青衣-特殊攻击接普通攻击"
+msgstr "青衣-特殊攻击接普通攻击"
+
+msgid "青衣–特殊攻击接普通攻击"
+msgstr "青衣–特殊攻击接普通攻击"
+
+msgid "青衣-终结技"
+msgstr "青衣-终结技"
+
+msgid "青衣–终结技"
+msgstr "青衣–终结技"
+
+msgid "青衣–续普攻"
+msgstr "青衣–续普攻"
+
+msgid "青衣-续普攻"
+msgstr "青衣-续普攻"
+
+msgid "青衣-续普通攻击"
+msgstr "青衣-续普通攻击"
+
+msgid "青衣–续普通攻击"
+msgstr "青衣–续普通攻击"
+
+msgid "青衣–醉花云月转"
+msgstr "青衣–醉花云月转"
+
+msgid "青衣-醉花云月转"
+msgstr "青衣-醉花云月转"
+
+msgid "青衣-闪电鞭"
+msgstr "青衣-闪电鞭"
+
+msgid "青衣–闪电鞭"
+msgstr "青衣–闪电鞭"
+
+msgid "青衣-闪避后衔接接普通攻击"
+msgstr "青衣-闪避后衔接接普通攻击"
+
+msgid "青衣–闪避后衔接接普通攻击"
+msgstr "青衣–闪避后衔接接普通攻击"

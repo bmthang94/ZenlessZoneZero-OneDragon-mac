@@ -76,10 +76,10 @@ area_list:
 - area_name: 电量确认
   id_mark: false
   pc_rect:
-  - 875
-  - 640
-  - 1200
-  - 754
+  - 820
+  - 712
+  - 1160
+  - 790
   text: 确认
   lcs_percent: 0.5
   template_sub_dir: ''

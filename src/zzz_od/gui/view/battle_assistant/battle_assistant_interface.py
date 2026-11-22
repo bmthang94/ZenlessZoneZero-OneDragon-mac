@@ -115,11 +115,11 @@ class BattleAssistantInterface(AppRunInterface):
         # SegmentedWidget 模式切换
         self.mode_segment = SegmentedWidget()
         self.mode_segment.addItem(
-            routeKey=self.MODE_AUTO_BATTLE, text=self.MODE_AUTO_BATTLE,
+            routeKey=self.MODE_AUTO_BATTLE, text=gt(self.MODE_AUTO_BATTLE),
             onClick=lambda: self._apply_mode(self.MODE_AUTO_BATTLE),
         )
         self.mode_segment.addItem(
-            routeKey=self.MODE_DODGE_ASSISTANT, text=self.MODE_DODGE_ASSISTANT,
+            routeKey=self.MODE_DODGE_ASSISTANT, text=gt(self.MODE_DODGE_ASSISTANT),
             onClick=lambda: self._apply_mode(self.MODE_DODGE_ASSISTANT),
         )
         top.add_widget(self.mode_segment)
@@ -320,7 +320,7 @@ class BattleAssistantInterface(AppRunInterface):
             '同时，请确保游戏画面没有被其他窗口遮挡，让 AI 能看清全局。\n\n'
             '祝您游戏愉快！'
         )
-        w = MessageBox(gt("使用说明"), content, self.window())
+        w = MessageBox(gt("使用说明"), gt(content), self.window())
         w.cancelButton.hide()
         w.yesButton.setText(gt("确认"))
         w.exec()

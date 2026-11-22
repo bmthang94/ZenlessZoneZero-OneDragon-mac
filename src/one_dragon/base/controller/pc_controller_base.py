@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import threading
 import time
 from collections.abc import Callable
 from typing import TYPE_CHECKING
@@ -10,7 +11,10 @@ from cv2.typing import MatLike
 from pynput import keyboard
 
 from one_dragon.base.controller.controller_base import ControllerBase
-from one_dragon.base.controller.macos_vhid import MacVirtualHIDMouse
+from one_dragon.base.controller.macos_vhid import (
+    MacVirtualHIDMouse,
+    resolve_macos_hid_key,
+)
 from one_dragon.base.controller.pc_button import pc_button_utils
 from one_dragon.base.controller.pc_button.keyboard_mouse_controller import (
     KeyboardMouseController,
@@ -33,6 +37,8 @@ class PcControllerBase(ControllerBase):
     SLEEP_BEFORE_DRAG_END: float = 0.2
     DRAG_MIN_DURATION: float = 0.1
     MAC_MOUSE_MOVE_SETTLE: float = 0.1
+    MAC_ACTIVE_SETTLE: float = 0.1
+    TOUCH_PRESS_WAIT: float = 0.05
 
     def __init__(self,
                  screenshot_method: str,
@@ -53,6 +59,10 @@ class PcControllerBase(ControllerBase):
         self.screenshot_controller: PcScreenshotController = PcScreenshotController(self.game_win, standard_width, standard_height)
         self.screenshot_method: str = screenshot_method
         self._mac_virtual_hid_mouse: MacVirtualHIDMouse | None = None
+        self._mac_virtual_hid_lock: threading.Lock = threading.Lock()
+        self._touch_held: bool = False
+        self._touch_float_pos: tuple[float, float] | None = None  # 触点浮点屏幕坐标(累计,防舍入漂移)
+        self._touch_sent_pos: Point | None = None  # 已下发的整数屏幕坐标
 
     def init_game_win(self) -> bool:
         """
@@ -72,8 +82,7 @@ class PcControllerBase(ControllerBase):
         pyautogui.FAILSAFE = False  # 禁用 Fail-Safe,防止鼠标接近屏幕的边缘或角落时报错
         if sys.platform == 'darwin':
             try:
-                if self._mac_virtual_hid_mouse is None:
-                    self._mac_virtual_hid_mouse = MacVirtualHIDMouse()
+                self._get_mac_virtual_hid_mouse()
             except (OSError, RuntimeError, TimeoutError) as e:
                 log.error(gt('初始化 macOS 虚拟鼠标失败: %(v)s', model='log'), {'v': e})
                 return False
@@ -86,9 +95,11 @@ class PcControllerBase(ControllerBase):
         清理资源
         """
         self.btn_controller.reset()
-        if self._mac_virtual_hid_mouse is not None:
-            self._mac_virtual_hid_mouse.close()
-            self._mac_virtual_hid_mouse = None
+        self.touch_up()
+        with self._mac_virtual_hid_lock:
+            if self._mac_virtual_hid_mouse is not None:
+                self._mac_virtual_hid_mouse.close()
+                self._mac_virtual_hid_mouse = None
         self.screenshot_controller.cleanup()
 
     def active_window(self) -> None:
@@ -116,6 +127,9 @@ class PcControllerBase(ControllerBase):
                 button=pc_button_utils.get_mouse_button(key).name
             )
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'tap', None)
+            return
         self.btn_controller.tap(key)
 
     def btn_press(self, key: str, press_time: float | None = None) -> None:
@@ -130,6 +144,9 @@ class PcControllerBase(ControllerBase):
                 finally:
                     mouse.release(mouse_button)
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'press', press_time)
+            return
         self.btn_controller.press(key, press_time)
 
     def btn_release(self, key: str) -> None:
@@ -139,14 +156,48 @@ class PcControllerBase(ControllerBase):
                 pc_button_utils.get_mouse_button(key).name
             )
             return
+        if sys.platform == 'darwin':
+            self._mac_keyboard(key, 'release', None)
+            return
         self.btn_controller.release(key)
 
+    def _mac_keyboard(self, key: str, action: str, press_time: float | None) -> None:
+        """用虚拟键盘把按键送进 PlayCover。窗口不在前台时先激活。"""
+        if not self.game_win.is_win_active:
+            self.game_win.active()
+            time.sleep(self.MAC_ACTIVE_SETTLE)
+        try:
+            kind, code = resolve_macos_hid_key(key)
+        except ValueError as error:
+            log.error(gt('macOS 键盘输入失败: %(v)s', model='log'), {'v': error})
+            raise
+        hid = self._get_mac_virtual_hid_mouse()
+        if kind == 'mod':
+            if action == 'release':
+                hid.modifier_up(code)
+            elif press_time is None and action == 'press':
+                hid.modifier_down(code)
+            else:
+                hid.modifier_tap(code, 0.02 if press_time is None else press_time)
+            return
+        if action == 'release':
+            hid.key_up(code)
+        elif press_time is None and action == 'press':
+            hid.key_down(code)
+        else:
+            hid.key_tap(code, 0.02 if press_time is None else press_time)
+
     def _get_mac_virtual_hid_mouse(self) -> MacVirtualHIDMouse:
-        if self._mac_virtual_hid_mouse is None:
-            raise RuntimeError(
-                'macOS 虚拟鼠标未初始化；请先运行启动脚本并确认 Karabiner 虚拟 HID 服务正常'
-            )
-        return self._mac_virtual_hid_mouse
+        with self._mac_virtual_hid_lock:
+            if self._mac_virtual_hid_mouse is not None and not self._mac_virtual_hid_mouse.is_running():
+                self._mac_virtual_hid_mouse.close()
+                self._mac_virtual_hid_mouse = None
+            if self._mac_virtual_hid_mouse is None:
+                try:
+                    self._mac_virtual_hid_mouse = MacVirtualHIDMouse()
+                except (OSError, RuntimeError, TimeoutError) as e:
+                    raise RuntimeError(gt('macOS 虚拟 HID 初始化失败，请检查 Karabiner 虚拟 HID 服务：{error}', model='log').format(error=e)) from e
+            return self._mac_virtual_hid_mouse
 
     @property
     def is_game_window_ready(self) -> bool:
@@ -154,6 +205,8 @@ class PcControllerBase(ControllerBase):
         return self.game_win.is_win_valid
 
     def close_game(self) -> None:
+        if sys.platform == 'darwin' and not self.game_win.is_win_valid:
+            return
         win = self.game_win.get_win()
         if win is None:
             return
@@ -177,7 +230,8 @@ class PcControllerBase(ControllerBase):
         self.enable_keyboard()
         log.info(gt('已启用前台键鼠模式', model='log'))
 
-    def click(self, pos: Point = None, press_time: float = 0.1, pc_alt: bool = False) -> bool:
+    def click(self, pos: Point = None, press_time: float = 0.1, pc_alt: bool = False,
+              *, raise_on_input_error: bool = False) -> bool:
         """点击位置。
 
         Args:
@@ -187,9 +241,10 @@ class PcControllerBase(ControllerBase):
         Returns:
             不在窗口区域时不点击 返回False
         """
-        return self._foreground_click(pos, press_time, pc_alt)
+        return self._foreground_click(pos, press_time, pc_alt, raise_on_input_error=raise_on_input_error)
 
-    def _foreground_click(self, pos: Point | None, press_time: float = 0.1, pc_alt: bool = False) -> bool:
+    def _foreground_click(self, pos: Point | None, press_time: float = 0.1, pc_alt: bool = False,
+                          *, raise_on_input_error: bool = False) -> bool:
         """前台点击，可选按住 ALT 解锁光标。
 
         Args:
@@ -210,35 +265,52 @@ class PcControllerBase(ControllerBase):
             click_pos = get_current_mouse_pos()
 
         alt_pressed = False
+        mac_alt_bit: int | None = None
         try:
-            if pc_alt:
-                self.keyboard_controller.keyboard.press(keyboard.Key.alt)
-                alt_pressed = True
-                time.sleep(0.2)
             if sys.platform == 'darwin':
-                if self._mac_virtual_hid_mouse is None:
-                    log.error(gt('macOS 虚拟鼠标未初始化；请先运行启动脚本并确认 Karabiner 虚拟 HID 服务正常', model='log'))
-                    return False
+                mouse = self._get_mac_virtual_hid_mouse()
+                # 先激活游戏窗口再按 Alt：切换焦点会让 WindowServer 重置修饰键状态
                 if not self.game_win.is_win_active:
                     self.game_win.active()
-                    time.sleep(0.05)
+                    time.sleep(self.MAC_ACTIVE_SETTLE)
+                if pc_alt:
+                    # PlayCover 的 GCKeyboard 收不到 pynput 合成按键，Alt 必须走虚拟 HID
+                    _, mac_alt_bit = resolve_macos_hid_key('alt')
+                    mouse.modifier_down(mac_alt_bit)
+                    alt_pressed = True
+                    time.sleep(0.15)
                 pyautogui.moveTo(click_pos.x, click_pos.y)
-                self._mac_virtual_hid_mouse.nudge_cursor()
+                mouse.nudge_cursor()
                 actual_pos = pyautogui.position()
                 log.info(
                     gt('macOS 鼠标定位: 游戏坐标=%(v)s, 目标桌面坐标=(%(v_2)s, %(v_3)s), 实际桌面坐标=(%(v_4)s, %(v_5)s)', model='log'),
                     {'v': pos, 'v_2': click_pos.x, 'v_3': click_pos.y, 'v_4': actual_pos.x, 'v_5': actual_pos.y},
                 )
                 time.sleep(self.MAC_MOUSE_MOVE_SETTLE)
-                self._mac_virtual_hid_mouse.click(press_time=press_time)
+                mouse.click(press_time=press_time)
+                if pc_alt:
+                    # Alt 多保持一小段，等游戏处理完 click 事件再松开
+                    time.sleep(0.05)
             else:
+                if pc_alt:
+                    self.keyboard_controller.keyboard.press(keyboard.Key.alt)
+                    alt_pressed = True
+                    time.sleep(0.2)
                 win_click(click_pos, press_time=press_time)
         except (OSError, RuntimeError, TimeoutError) as e:
             log.error(gt('鼠标点击失败: %(v)s', model='log'), {'v': e})
+            if raise_on_input_error:
+                raise
             return False
         finally:
             if alt_pressed:
-                self.keyboard_controller.keyboard.release(keyboard.Key.alt)
+                if sys.platform == 'darwin' and mac_alt_bit is not None:
+                    try:
+                        self._get_mac_virtual_hid_mouse().modifier_up(mac_alt_bit)
+                    except (OSError, RuntimeError, TimeoutError) as e:
+                        log.warning(gt('释放 macOS Alt 修饰键失败: %(v)s', model='log'), {'v': e})
+                else:
+                    self.keyboard_controller.keyboard.release(keyboard.Key.alt)
         return True
 
     def drag_to(
@@ -282,7 +354,7 @@ class PcControllerBase(ControllerBase):
         if sys.platform == 'darwin':
             if not self.game_win.is_win_active:
                 self.game_win.active()
-                time.sleep(0.05)
+                time.sleep(self.MAC_ACTIVE_SETTLE)
             mouse = self._get_mac_virtual_hid_mouse()
             drag_mouse(
                 from_pos,
@@ -295,6 +367,129 @@ class PcControllerBase(ControllerBase):
             )
         else:
             drag_mouse(from_pos, to_pos, duration=duration, timing=timing)
+
+    def touch_down(self, game_pos: Point) -> bool:
+        """在指定游戏坐标按下触点并保持(触屏拖拽的按下阶段)。
+
+        macOS 上走虚拟 HID 鼠标按下,PlayCover 触屏模式将其解释为触摸按下;
+        其他平台用 pyautogui.mouseDown。成功后记录按住状态,
+        需配合 touch_move_relative / touch_up 使用。
+
+        Args:
+            game_pos: 游戏内坐标(1920×1080 空间)
+
+        Returns:
+            是否成功按下
+        """
+        win_pos = self.game_win.game2win_pos(game_pos)
+        if win_pos is None:
+            log.error(gt('触点不在游戏窗口区域 (%(v)s)', model='log'), {'v': game_pos})
+            return False
+        try:
+            if sys.platform == 'darwin':
+                if not self.game_win.is_win_active:
+                    self.game_win.active()
+                    time.sleep(self.MAC_ACTIVE_SETTLE)
+                mouse = self._get_mac_virtual_hid_mouse()
+                pyautogui.moveTo(win_pos.x, win_pos.y)
+                mouse.nudge_cursor()
+                time.sleep(self.MAC_MOUSE_MOVE_SETTLE)
+                mouse.press('left')
+            else:
+                pyautogui.moveTo(win_pos.x, win_pos.y)
+                pyautogui.mouseDown()
+        except (OSError, RuntimeError, TimeoutError) as e:
+            log.error(gt('触点按下失败: %(v)s', model='log'), {'v': e})
+            return False
+        self._touch_held = True
+        self._touch_float_pos = (float(win_pos.x), float(win_pos.y))
+        self._touch_sent_pos = Point(win_pos.x, win_pos.y)
+        # 按下后短暂停顿再移动,确保 PlayCover 把后续位移识别为拖拽而非点击
+        time.sleep(self.TOUCH_PRESS_WAIT)
+        return True
+
+    def touch_move_relative(self, dx: float, dy: float) -> None:
+        """触点保持按下时的相对移动(拖拽路径),参数为屏幕像素。
+
+        未处于按住状态时忽略。与 drag_mouse 成功路径一致:先用
+        pyautogui.moveTo 同步真实光标位置(走 WindowServer 事件流),
+        再发虚拟 HID 相对位移,PlayCover 才能把两者识别为同一触点的拖拽。
+        位移按浮点累计、整数下发,避免逐步取整产生累计漂移。
+        """
+        if not self._touch_held or self._touch_float_pos is None or self._touch_sent_pos is None:
+            return
+        fx = self._touch_float_pos[0] + dx
+        fy = self._touch_float_pos[1] + dy
+        self._touch_float_pos = (fx, fy)
+        tx, ty = int(round(fx)), int(round(fy))
+        ddx, ddy = tx - self._touch_sent_pos.x, ty - self._touch_sent_pos.y
+        if ddx == 0 and ddy == 0:
+            return
+        pyautogui.moveTo(tx, ty)
+        if sys.platform == 'darwin':
+            self._get_mac_virtual_hid_mouse().move_relative(ddx, ddy)
+        self._touch_sent_pos = Point(tx, ty)
+
+    def touch_up(self) -> None:
+        """抬起触点;未按住时为空操作,重复调用安全。"""
+        if not self._touch_held:
+            return
+        self._touch_held = False
+        self._touch_float_pos = None
+        self._touch_sent_pos = None
+        try:
+            if sys.platform == 'darwin':
+                self._get_mac_virtual_hid_mouse().release('left')
+            else:
+                pyautogui.mouseUp()
+        except (OSError, RuntimeError, TimeoutError) as e:
+            log.warning(gt('触点抬起失败: %(v)s', model='log'), {'v': e})
+
+    def touch_drag_hold(
+        self, start: Point, end: Point,
+        move_time: float = 0.2, hold_time: float = 0.5,
+    ) -> bool:
+        """按下→沿直线拖到 end→在 end 保持 hold_time→抬起。
+
+        用于摇杆偏转、镜头滑动等需要「按住-拖动-保持」的触屏操作。
+        坐标均为 1920×1080 游戏空间。
+
+        Args:
+            start: 触点起点(游戏坐标)
+            end: 触点终点(游戏坐标)
+            move_time: 从 start 拖到 end 的时长(秒)
+            hold_time: 到达 end 后保持按住的时长(秒)
+
+        Returns:
+            是否成功完成整段拖拽
+        """
+        from_pos = self.game_win.game2win_pos(start)
+        if from_pos is None:
+            log.error(gt('触点起点不在游戏窗口区域 (%(v)s)', model='log'), {'v': start})
+            return False
+        to_pos = self.game_win.game2win_pos(end)
+        if to_pos is None:
+            log.error(gt('触点终点不在游戏窗口区域 (%(v)s)', model='log'), {'v': end})
+            return False
+        if not self.touch_down(start):
+            return False
+        try:
+            steps = max(int(move_time / 0.02), 1)
+            prev_x, prev_y = from_pos.x, from_pos.y
+            for i in range(1, steps + 1):
+                t = i / steps
+                cx = int(from_pos.x + (to_pos.x - from_pos.x) * t)
+                cy = int(from_pos.y + (to_pos.y - from_pos.y) * t)
+                if sys.platform == 'darwin':
+                    pyautogui.moveTo(cx, cy)
+                self.touch_move_relative(cx - prev_x, cy - prev_y)
+                prev_x, prev_y = cx, cy
+                time.sleep(move_time / steps)
+            if hold_time > 0:
+                time.sleep(hold_time)
+        finally:
+            self.touch_up()
+        return True
 
     def scroll(self, down: int, pos: Point | None = None) -> None:
         """向下滚动。
@@ -312,7 +507,7 @@ class PcControllerBase(ControllerBase):
         if sys.platform == 'darwin':
             if not self.game_win.is_win_active:
                 self.game_win.active()
-                time.sleep(0.05)
+                time.sleep(self.MAC_ACTIVE_SETTLE)
             mouse = self._get_mac_virtual_hid_mouse()
             pyautogui.moveTo(win_pos.x, win_pos.y)
             mouse.nudge_cursor()

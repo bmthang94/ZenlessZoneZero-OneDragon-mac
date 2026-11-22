@@ -15,6 +15,7 @@ from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
 from one_dragon.utils.i18_utils import gt
+from one_dragon.utils.log_utils import log
 from zzz_od.application.charge_plan import charge_plan_const
 from zzz_od.application.coffee import coffee_app_const
 from zzz_od.application.coffee.coffee_config import (
@@ -102,12 +103,15 @@ class CoffeeApp(ZApplication):
         :return:
         """
         if self.config.transport_point == CoffeeTransportPoint.POINT_1.value.value:
-            result = turn_to_angle(self, target_angle=180, turn_status='转向正西')
+            result = turn_to_angle(self, target_angle=180, turn_status='转向正西', angle_threshold=15.0)
             if not result.is_success:
-                return result
+                if self.node_retry_times >= self.node_max_retry_times - 1:
+                    log.warning('转向正西达到重试上限，尝试直接前移交互')
+                else:
+                    return result
             self.ctx.controller.move_w(press=True, press_time=1, release=True)
 
-        time.sleep(1) # 防止交互无效 issue #2405 #2395 #2328
+        time.sleep(1)  # 防止交互无效 issue #2405 #2395 #2328
         self.ctx.controller.interact(press=True, press_time=0.2, release=True)
         return self.round_success()
 
@@ -247,7 +251,9 @@ class CoffeeApp(ZApplication):
     @node_from(from_name='对话选咖啡', status='点单后跳过')  # 片刻闲首次点单后的动画可在此跳过
     @operation_node(name='点单后跳过')
     def skip_after_order(self) -> OperationRoundResult:
-        result = self.round_by_find_area(self.last_screenshot, '咖啡店', '电量确认')
+        result = self.round_by_find_area(self.last_screenshot, '道具处理-获得', '按钮-确认')
+        if not result.is_success:
+            result = self.round_by_find_area(self.last_screenshot, '咖啡店', '电量确认')
         if result.is_success:
             return self.round_success(result.status)
 
@@ -271,13 +277,35 @@ class CoffeeApp(ZApplication):
     @node_notify(when=NotifyTiming.CURRENT_SUCCESS)
     @operation_node(name='电量确认')
     def charge_confirm(self) -> OperationRoundResult:
-        result = self.round_by_find_and_click_area(self.last_screenshot, '咖啡店', '电量确认')
+        result = self.round_by_find_and_click_area(self.last_screenshot, '道具处理-获得', '按钮-确认')
+        if not result.is_success:
+            result = self.round_by_find_and_click_area(self.last_screenshot, '咖啡店', '电量确认')
 
         if result.is_success:
-            if self.chosen_coffee.extra:
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
                 return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
             else:
                 return self.round_success(wait=1)
+
+        # 兜底：识别到获得弹窗或电量文本，说明奖励已到账但按钮文字微偏，直接点击弹窗确认区域
+        obtained_title = self.round_by_find_area(self.last_screenshot, '道具处理-获得', '标题-获得')
+        energy_ocr = self.round_by_ocr(self.last_screenshot, '电量')
+        if obtained_title.is_success or energy_ocr.is_success:
+            log.info('识别到电量奖励弹窗，点击确认关闭')
+            self.ctx.controller.click(Point(990, 751))
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
+                return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
+            else:
+                return self.round_success(wait=1)
+
+        current_screen = self.check_and_update_current_screen(
+            self.last_screenshot, screen_name_list=['大世界-普通', '大世界-勘域']
+        )
+        if current_screen in ('大世界-普通', '大世界-勘域'):
+            log.info('已回到大世界，电量恢复完成')
+            if self.chosen_coffee is not None and self.chosen_coffee.extra:
+                return self.round_success(CoffeeApp.STATUS_EXTRA_COFFEE, wait=1)
+            return self.round_success(wait=1)
 
         return self.round_retry(wait=1)
 

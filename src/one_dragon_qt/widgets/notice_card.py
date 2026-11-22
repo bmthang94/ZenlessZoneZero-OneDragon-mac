@@ -575,7 +575,7 @@ class NoticeCard(SimpleCardWidget):
         self.announcementsWidget, self.softwareResearchWidget, self.gameGuidesWidget = widgets
 
         types = ["announcements", "software_research", "game_guides"]
-        type_names = ["公告要闻", "软件科研", "游戏攻略"]
+        type_names = [gt('公告要闻'), gt('软件科研'), gt('游戏攻略')]
 
         for widget, post_type, name in zip(widgets, types, type_names, strict=False):
             widget.setSpacing(0)
@@ -759,7 +759,7 @@ class NoticeCard(SimpleCardWidget):
     def add_posts_to_widget(self, widget: ListWidget, type: str):
         for post in self.posts[type][:3]:
             item = QListWidgetItem()
-            item.setData(Qt.ItemDataRole.DisplayRole, post["title"])
+            item.setData(Qt.ItemDataRole.DisplayRole, gt(post["title"]))
             item.setData(Qt.ItemDataRole.UserRole, post["date"])
             widget.addItem(item)
 

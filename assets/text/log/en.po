@@ -4499,3 +4499,158 @@ msgstr "first run, syncing the code repo..."
 #, python-format
 msgid "鼠标点击失败: %(v)s"
 msgstr "mouse click failed: %(v)s"
+
+#. src/one_dragon/base/controller/mac_game_window.py:70
+#. src/one_dragon/base/controller/mac_game_window.py:74
+#, python-format
+msgid "osascript 激活游戏窗口失败: %(v)s"
+msgstr "osascript could not activate the game window: %(v)s"
+
+#. src/one_dragon/base/controller/mac_game_window.py:130
+msgid "无法关闭 PlayCover 游戏"
+msgstr "could not close the PlayCover game"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:172
+#, python-format
+msgid "macOS 键盘输入失败: %(v)s"
+msgstr "macOS keyboard input failed: %(v)s"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:199
+#, python-brace-format
+msgid "macOS 虚拟 HID 初始化失败，请检查 Karabiner 虚拟 HID 服务：{error}"
+msgstr ""
+"could not initialize macOS virtual HID; check the Karabiner virtual HID "
+"service: {error}"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:311
+#, python-format
+msgid "释放 macOS Alt 修饰键失败: %(v)s"
+msgstr "could not release the macOS Alt modifier: %(v)s"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:386
+#, python-format
+msgid "触点不在游戏窗口区域 (%(v)s)"
+msgstr "touch point is outside the game window (%(v)s)"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:402
+#, python-format
+msgid "触点按下失败: %(v)s"
+msgstr "touch down failed: %(v)s"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:446
+#, python-format
+msgid "触点抬起失败: %(v)s"
+msgstr "touch up failed: %(v)s"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:468
+#, python-format
+msgid "触点起点不在游戏窗口区域 (%(v)s)"
+msgstr "touch start point is outside the game window (%(v)s)"
+
+#. src/one_dragon/base/controller/pc_controller_base.py:472
+#, python-format
+msgid "触点终点不在游戏窗口区域 (%(v)s)"
+msgstr "touch end point is outside the game window (%(v)s)"
+
+#. src/one_dragon/base/controller/pc_screenshot/pc_screenshot_controller.py:119
+msgid "macOS 本次未能获取游戏窗口截图，将在下一轮重试"
+msgstr "macOS could not capture the game window; retrying next round"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:122
+msgid "当前系统不支持按进程录制音频，改为录制默认输出设备"
+msgstr ""
+"per-process audio capture is unavailable on this system; falling back to the "
+"default output device"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:128
+msgid "未找到游戏窗口所属进程，改为录制默认输出设备"
+msgstr ""
+"could not find the game window's process; falling back to the default output "
+"device"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:135
+msgid "按进程录制音频失败，改为录制默认输出设备"
+msgstr ""
+"could not start per-process audio capture; falling back to the default "
+"output device"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:138
+#, python-brace-format
+msgid "开始录制游戏进程音频 pid={pid}"
+msgstr "recording game process audio, pid={pid}"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:146
+msgid "读取游戏进程音频失败，改为录制默认输出设备"
+msgstr ""
+"could not read game process audio; falling back to the default output device"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:169
+#, python-brace-format
+msgid "未找到默认扬声器 [{speaker}] 的 loopback 设备"
+msgstr "no loopback device found for the default speaker [{speaker}]"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:213
+msgid "游戏应用"
+msgstr "game application"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:213
+msgid "系统输出"
+msgstr "system output"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:220
+#, python-brace-format
+msgid "启动失败 ({result})"
+msgstr "start failed ({result})"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:227
+#, python-brace-format
+msgid "读取失败 ({read_frames})"
+msgstr "read failed ({read_frames})"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:221
+#, python-format
+msgid "ScreenCaptureKit 开始录制%(source)s音频"
+msgstr "ScreenCaptureKit started recording %(source)s audio"
+
+#. src/zzz_od/auto_battle/auto_battle_dodge_context.py:234
+#, python-format
+msgid "ScreenCaptureKit %(source)s音频捕获失败：%(detail)s"
+msgstr "ScreenCaptureKit %(source)s audio capture failed: %(detail)s"
+
+#. src/zzz_od/operation/enter_game/open_game.py:30
+msgid "请在 PlayCover 中启动绝区零，程序将等待游戏窗口出现"
+msgstr "launch Zenless Zone Zero in PlayCover; waiting for the game window"
+
+#. src/zzz_od/operation/enter_game/open_game.py:38
+#, python-brace-format
+msgid "无效的 PlayCover 游戏应用路径: {selected_path}"
+msgstr "invalid PlayCover game application path: {selected_path}"
+
+#. src/zzz_od/operation/enter_game/open_game.py:43
+msgid "无法打开 PlayCover 游戏"
+msgstr "could not open the PlayCover game"
+
+#. src/zzz_od/operation/enter_game/open_game.py:44
+#, python-brace-format
+msgid "无法打开 PlayCover 游戏: {error}"
+msgstr "could not open the PlayCover game: {error}"
+
+#. src/zzz_od/operation/enter_game/open_game.py:48
+msgid "未配置游戏路径，请前往 [ 账户管理 ] -> [ 游戏路径 ] 手动设置"
+msgstr ""
+"game path is not configured; set it under [ Account Management ] -> [ Game "
+"Path ]"
+
+#. src/zzz_od/context/zzz_context.py:144
+msgid "游戏窗口检测: 已找到"
+msgstr "game window detection: found"
+
+#. src/zzz_od/context/zzz_context.py:146
+msgid "游戏窗口检测: 未找到"
+msgstr "game window detection: not found"
+
+#. src/zzz_od/application/random_play/random_play_app.py:97
+msgid "录像店柜台室内无小地图朝向，直接前移交互"
+msgstr ""
+"the video store counter has no indoor minimap heading; moving forward to "
+"interact"

@@ -88,13 +88,13 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         )
         control_layout.addWidget(list_card)
 
-        self.new_list_btn = PushButton(text='新建')
+        self.new_list_btn = PushButton(text=gt('新建'))
         self.new_list_btn.clicked.connect(self.on_new_list_clicked)
-        self.save_list_btn = PushButton(text='保存')
+        self.save_list_btn = PushButton(text=gt('保存'))
         self.save_list_btn.clicked.connect(self.on_save_list_clicked)
-        self.delete_list_btn = PushButton(text='删除')
+        self.delete_list_btn = PushButton(text=gt('删除'))
         self.delete_list_btn.clicked.connect(self.on_delete_list_clicked)
-        self.cancel_btn = PushButton(text='取消')
+        self.cancel_btn = PushButton(text=gt('取消'))
         self.cancel_btn.clicked.connect(self.on_cancel_clicked)
 
         list_mgmt_card = MultiPushSettingCard(
@@ -118,9 +118,9 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         control_layout.addWidget(area_card)
 
         # 路线操作
-        self.add_area_btn = PushButton(text='添加整个区域')
+        self.add_area_btn = PushButton(text=gt('添加整个区域'))
         self.add_area_btn.clicked.connect(self.on_add_area_clicked)
-        self.add_route_btn = PushButton(text='添加单条路线')
+        self.add_route_btn = PushButton(text=gt('添加单条路线'))
         self.add_route_btn.clicked.connect(self.on_add_route_clicked)
 
         route_ops_card = MultiPushSettingCard(
@@ -131,11 +131,11 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         control_layout.addWidget(route_ops_card)
 
         # 顺序调整
-        self.move_up_btn = PushButton(text='上移')
+        self.move_up_btn = PushButton(text=gt('上移'))
         self.move_up_btn.clicked.connect(self.on_move_up_clicked)
-        self.move_down_btn = PushButton(text='下移')
+        self.move_down_btn = PushButton(text=gt('下移'))
         self.move_down_btn.clicked.connect(self.on_move_down_clicked)
-        self.remove_btn = PushButton(text='移除')
+        self.remove_btn = PushButton(text=gt('移除'))
         self.remove_btn.clicked.connect(self.on_remove_clicked)
 
         order_card = MultiPushSettingCard(
@@ -314,7 +314,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
             self._update_route_list_combo()
             log.info(gt('保存路线列表成功: {name}', model='log').format(name=self.current_route_list.name))
         else:
-            QMessageBox.warning(self, '错误', '保存路线列表失败')
+            QMessageBox.warning(self, gt('错误'), gt('保存路线列表失败'))
 
     def on_delete_list_clicked(self):
         """删除列表按钮点击"""
@@ -329,7 +329,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
             self._update_btn_display()
             log.info(gt('删除路线列表成功', model='log'))
         else:
-            QMessageBox.warning(self, '错误', '删除路线列表失败')
+            QMessageBox.warning(self, gt('错误'), gt('删除路线列表失败'))
 
     def on_cancel_clicked(self) -> None:
         if self.current_route_list is None:
@@ -345,7 +345,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
 
         # 显示可用路线选择对话框
         if not self.available_routes:
-            QMessageBox.information(self, '提示', '当前区域没有可用路线')
+            QMessageBox.information(self, gt('提示'), gt('当前区域没有可用路线'))
             return
 
         selected_route = self.source_route_list_widget.currentItem().data(Qt.ItemDataRole.UserRole)
@@ -359,7 +359,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
             return
 
         if not self.available_routes:
-            QMessageBox.information(self, '提示', '当前区域没有可用路线')
+            QMessageBox.information(self, gt('提示'), gt('当前区域没有可用路线'))
             return
 
         route_indices = [route.idx for route in self.available_routes]

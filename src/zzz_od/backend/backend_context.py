@@ -13,6 +13,7 @@ game 切片方法（``check_window``/``capture``/``analyze``）从
 """
 
 import asyncio
+import sys
 import threading
 import time
 from collections.abc import Callable
@@ -711,7 +712,14 @@ class ZzzBackendContext:
         if controller is None or not controller.is_game_window_ready:
             raise BackendNotReadyError('游戏窗口未就绪')
         controller.active_window()
-        clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt)
+        if sys.platform == 'darwin':
+            from one_dragon.base.controller.pc_controller_base import PcControllerBase
+
+        if sys.platform == 'darwin' and isinstance(controller, PcControllerBase):
+            clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt,
+                                       raise_on_input_error=True)
+        else:
+            clicked = controller.click(Point(int(x), int(y)), press_time=press_time, pc_alt=pc_alt)
         return {'success': clicked, 'x': int(x), 'y': int(y), 'in_window': clicked, 'pc_alt': pc_alt}
 
     def key_tap(self, key: str, press_time: float = 0.0) -> dict:
@@ -736,7 +744,7 @@ class ZzzBackendContext:
             raise BackendNotReadyError('游戏窗口未就绪')
         controller.active_window()
         if press_time > 0:
-            controller.btn_controller.press(key, press_time=press_time)
+            controller.btn_press(key, press_time=press_time)
         else:
             controller.btn_tap(key)
         return {'success': True, 'key': key, 'press_time': press_time}
@@ -765,6 +773,47 @@ class ZzzBackendContext:
         controller.active_window()
         controller.drag_to(Point(int(x2), int(y2)), start=Point(int(x1), int(y1)), duration=duration)
         return {'success': True, 'x1': int(x1), 'y1': int(y1), 'x2': int(x2), 'y2': int(y2), 'duration': duration}
+
+    def touch_drag(
+        self,
+        x1: int | float, y1: int | float,
+        x2: int | float, y2: int | float,
+        move_time: float = 0.2, hold_time: float = 0.5,
+    ) -> dict:
+        """触屏按住拖拽:按下 (x1,y1) 拖到 (x2,y2) 并保持 hold_time 秒。操作类。
+
+        用于触屏模式(PlayCover 触屏布局)下的虚拟摇杆偏转、镜头滑动等
+        需要「按住-拖动-保持」的操作;普通点击用 ``click_game``、一次性拖拽用 ``drag``。
+        坐标为 1920×1080 游戏空间,经控制器缩放到真实屏幕。
+
+        Args:
+            x1, y1: 触点起点坐标。
+            x2, y2: 触点终点坐标。
+            move_time: 拖动耗时(秒),默认 0.2。
+            hold_time: 到达终点后保持按住的时长(秒),默认 0.5。
+
+        Returns:
+            ``{success, x1, y1, x2, y2, move_time, hold_time}``。
+
+        Raises:
+            BackendNotReadyError: ZContext / 游戏窗口未就绪,或控制器不支持触屏拖拽时抛。
+        """
+        self._ensure_ready()
+        controller = self._ctx.controller
+        if controller is None or not controller.is_game_window_ready:
+            raise BackendNotReadyError('游戏窗口未就绪')
+        if not hasattr(controller, 'touch_drag_hold'):
+            raise BackendNotReadyError('当前控制器不支持触屏拖拽')
+        controller.active_window()
+        ok = controller.touch_drag_hold(
+            Point(int(x1), int(y1)), Point(int(x2), int(y2)),
+            move_time=move_time, hold_time=hold_time,
+        )
+        return {
+            'success': ok, 'x1': int(x1), 'y1': int(y1),
+            'x2': int(x2), 'y2': int(y2),
+            'move_time': move_time, 'hold_time': hold_time,
+        }
 
     def input_text(self, text: str, use_clipboard: bool | None = None) -> dict:
         """向当前焦点输入框输入文本(账号/密码等)。操作类。

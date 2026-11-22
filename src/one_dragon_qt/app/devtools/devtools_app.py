@@ -1,5 +1,4 @@
 import sys
-from typing import Optional
 
 from PySide6.QtCore import Qt
 from PySide6.QtWidgets import QApplication
@@ -61,7 +60,7 @@ class DevtoolsAppWindow(AppWindowBase):
         self.add_sub_interface(ImageProcessingInterface(self.ctx, parent=self))
 
 
-def create_devtools_app(ctx: Optional[OneDragonContext] = None):
+def create_devtools_app(ctx: OneDragonContext | None = None):
     """创建开发工具应用程序"""
     if ctx is None:
         # 如果没有提供上下文，创建一个基础的上下文
@@ -84,6 +83,9 @@ def create_devtools_app(ctx: Optional[OneDragonContext] = None):
         setTheme(Theme[ctx.custom_config.theme.upper()])
     else:
         setTheme(Theme.AUTO)
+
+    if hasattr(ctx, 'apply_ui_language'):
+        ctx.apply_ui_language()
 
     # 创建并显示主窗口
     window = DevtoolsAppWindow(ctx)

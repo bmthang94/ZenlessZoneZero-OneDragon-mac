@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <cctype>
 #include <chrono>
 #include <condition_variable>
 #include <cstdint>
@@ -6,6 +7,7 @@
 #include <memory>
 #include <mutex>
 #include <sstream>
+#include <stdexcept>
 #include <string>
 #include <thread>
 
@@ -16,11 +18,15 @@
 namespace {
 
 using Client = pqrs::karabiner::driverkit::virtual_hid_device_service::client;
+using KeyboardInput = pqrs::karabiner::driverkit::virtual_hid_device_driver::hid_report::keyboard_input;
+using KeyboardModifier = pqrs::karabiner::driverkit::virtual_hid_device_driver::hid_report::modifier;
+using KeyboardParameters = pqrs::karabiner::driverkit::virtual_hid_device_service::virtual_hid_keyboard_parameters;
 using PointingInput = pqrs::karabiner::driverkit::virtual_hid_device_driver::hid_report::pointing_input;
 
 std::mutex state_mutex;
 std::condition_variable state_changed;
 bool pointing_ready = false;
+bool keyboard_ready = false;
 std::string startup_error;
 
 void set_startup_error(const std::string& message) {
@@ -33,7 +39,9 @@ void set_startup_error(const std::string& message) {
 
 void stop_client(std::unique_ptr<Client>& client) {
   if (client) {
+    KeyboardInput release_keys;
     PointingInput release_report;
+    client->async_post_report(release_keys);
     client->async_post_report(release_report);
     std::this_thread::sleep_for(std::chrono::milliseconds(50));
     client->async_stop();
@@ -43,12 +51,42 @@ void stop_client(std::unique_ptr<Client>& client) {
   pqrs::dispatcher::extra::terminate_shared_dispatcher();
 }
 
+bool keyboard_is_ready() {
+  std::lock_guard<std::mutex> lock(state_mutex);
+  if (!startup_error.empty()) {
+    std::cout << "ERROR " << startup_error << std::endl;
+    return false;
+  }
+  if (!keyboard_ready) {
+    std::cout << "ERROR 虚拟键盘设备未就绪" << std::endl;
+    return false;
+  }
+  return true;
+}
+
+bool read_unsigned(std::istringstream& input, unsigned int& value) {
+  std::string token;
+  if (!(input >> token) || token.empty() ||
+      !std::all_of(token.begin(), token.end(), [](unsigned char ch) {
+        return std::isdigit(ch) != 0;
+      })) {
+    return false;
+  }
+  try {
+    value = static_cast<unsigned int>(std::stoul(token));
+  } catch (const std::exception&) {
+    return false;
+  }
+  return true;
+}
+
 int run() {
   pqrs::dispatcher::extra::initialize_shared_dispatcher();
 
   auto client = std::make_unique<Client>();
   client->connected.connect([&client] {
     client->async_virtual_hid_pointing_initialize();
+    client->async_virtual_hid_keyboard_initialize(KeyboardParameters());
   });
   client->connect_failed.connect([](const auto& error_code) {
     set_startup_error("无法连接 Karabiner 虚拟 HID 服务: " + error_code.message());
@@ -61,6 +99,11 @@ int run() {
     pointing_ready = ready;
     state_changed.notify_all();
   });
+  client->virtual_hid_keyboard_ready.connect([](bool ready) {
+    std::lock_guard<std::mutex> lock(state_mutex);
+    keyboard_ready = ready;
+    state_changed.notify_all();
+  });
   client->driver_version_mismatched.connect([](bool mismatched) {
     if (mismatched) {
       set_startup_error("Karabiner 虚拟 HID 客户端与驱动版本不匹配");
@@ -68,9 +111,10 @@ int run() {
   });
   client->async_start();
 
+  const auto startup_deadline = std::chrono::steady_clock::now() + std::chrono::seconds(10);
   {
     std::unique_lock<std::mutex> lock(state_mutex);
-    state_changed.wait_for(lock, std::chrono::seconds(10), [] {
+    state_changed.wait_until(lock, startup_deadline, [] {
       return pointing_ready || !startup_error.empty();
     });
     if (!pointing_ready) {
@@ -82,11 +126,16 @@ int run() {
       stop_client(client);
       return 1;
     }
+    // 键盘没就绪也不要挡住鼠标。按键命令会单独返回错误。
+    state_changed.wait_until(lock, startup_deadline, [] {
+      return keyboard_ready || !startup_error.empty();
+    });
   }
 
   std::cout << "READY" << std::endl;
 
   uint32_t buttons_state = 0;
+  KeyboardInput keyboard_report;
   std::string line;
   while (std::getline(std::cin, line)) {
     if (line == "quit") {
@@ -97,6 +146,70 @@ int run() {
     std::string command;
     if (!(input >> command)) {
       std::cout << "ERROR 无效的虚拟鼠标命令" << std::endl;
+      continue;
+    }
+
+    // 修饰键必须进 modifiers 位，不能当成键盘 usage 放进 keys。
+    if (command == "key" || command == "mod") {
+      std::string action;
+      unsigned int value = 0;
+      unsigned int duration_ms = 0;
+      std::string trailing;
+      if (!(input >> action)) {
+        std::cout << "ERROR 无效的虚拟键盘命令" << std::endl;
+        continue;
+      }
+      const bool is_tap = action == "tap";
+      const bool is_down = action == "down";
+      const bool is_up = action == "up";
+      bool arguments_ok = is_tap || is_down || is_up;
+      if (arguments_ok && is_tap) {
+        arguments_ok = read_unsigned(input, value) && read_unsigned(input, duration_ms) &&
+                       !(input >> trailing) && duration_ms >= 1 && duration_ms <= 60000;
+      } else if (arguments_ok) {
+        arguments_ok = read_unsigned(input, value) && !(input >> trailing);
+      }
+      const bool value_ok = command == "key"
+                                ? value >= 1 && value <= 0x00ff
+                                : value >= 1 && value <= 0x80 && (value & (value - 1)) == 0;
+      if (!arguments_ok || !value_ok) {
+        std::cout << "ERROR 无效的虚拟键盘命令" << std::endl;
+        continue;
+      }
+      if (!keyboard_is_ready()) {
+        continue;
+      }
+
+      const auto apply_key = [&keyboard_report, command, value](bool pressed) {
+        if (command == "key") {
+          const auto usage = static_cast<uint16_t>(value);
+          if (pressed) {
+            keyboard_report.keys.insert(usage);
+          } else {
+            keyboard_report.keys.erase(usage);
+          }
+          return;
+        }
+        const auto modifier = static_cast<KeyboardModifier>(value);
+        if (pressed) {
+          keyboard_report.modifiers.insert(modifier);
+        } else {
+          keyboard_report.modifiers.erase(modifier);
+        }
+      };
+      const bool was_pressed = command == "key"
+                                   ? keyboard_report.keys.exists(static_cast<uint16_t>(value))
+                                   : keyboard_report.modifiers.exists(static_cast<KeyboardModifier>(value));
+      apply_key(is_down || is_tap);
+      client->async_post_report(keyboard_report);
+      if (is_tap) {
+        std::this_thread::sleep_for(std::chrono::milliseconds(duration_ms));
+        if (!was_pressed) {
+          apply_key(false);
+          client->async_post_report(keyboard_report);
+        }
+      }
+      std::cout << "OK" << std::endl;
       continue;
     }
 

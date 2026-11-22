@@ -25,6 +25,7 @@ area_list:
   - 90
   template_sub_dir: menu
   template_id: back
+  template_match_threshold: 0.7
 - area_name: 主区域名称
   pc_rect:
   - 0

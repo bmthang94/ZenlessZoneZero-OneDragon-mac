@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
     QWidget,
 )
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon_qt.widgets.fast_scroll_area import FastScrollArea
 
 
@@ -23,7 +24,7 @@ class ColorChannelDialog(QDialog):
 
     def __init__(self, image: np.ndarray, parent: QWidget):
         super().__init__(parent=parent)
-        self.setWindowTitle('色彩通道分析')
+        self.setWindowTitle(gt('色彩通道分析'))
         self.setMinimumSize(1000, 700)
         self.resize(1200, 800)
 
@@ -53,7 +54,7 @@ class ColorChannelDialog(QDialog):
         main_layout.addWidget(scroll_area)
 
         # 确定按钮
-        self.confirm_button = QPushButton('确定')
+        self.confirm_button = QPushButton(gt('确定'))
         self.confirm_button.clicked.connect(self.accept)
         main_layout.addWidget(self.confirm_button, 0, Qt.AlignmentFlag.AlignRight)
 

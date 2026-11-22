@@ -146,6 +146,7 @@ class ConditionalOperator(ConditionalOperatorLoader):
 
             # log.debug('开始等待新的主循环')
             to_sleep: float | None = None
+            idle_trigger_time: float | None = None
 
             # 上锁后确保运行状态不会被篡改
             with self._task_lock:
@@ -179,12 +180,24 @@ class ConditionalOperator(ConditionalOperatorLoader):
                         self.running_executor_cnt.inc()
                         future = self.running_executor.run_async()
                         future.add_done_callback(self._on_task_done)
+                    else:
+                        idle_trigger_time = trigger_time
+
+            if idle_trigger_time is not None:
+                self._on_normal_scene_idle(idle_trigger_time)
 
             if to_sleep is not None:
                 # 等待时间不能写在锁里 要尽快释放锁
                 time.sleep(to_sleep)
             else:  # 没有命中的状态 或者 提交执行了 那就自旋等待
                 time.sleep(0.02)
+
+    def _on_normal_scene_idle(self, trigger_time: float) -> None:
+        """
+        无触发场景匹配时的空闲回调
+        :param trigger_time: 本次匹配的触发时间
+        """
+        pass
 
     def _trigger_scene(self, state_name: str) -> None:
         """

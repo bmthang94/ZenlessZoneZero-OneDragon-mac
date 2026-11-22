@@ -702,7 +702,7 @@ class OverlayManager(QObject):
         if app is not None:
             app_name = str(getattr(app, "display_name", None) or getattr(app, "op_name", "-"))
             if app_name and app_name != "-":
-                parts.append(app_name)
+                parts.append(gt(app_name))
             node = "-"
             with contextlib.suppress(Exception):
                 node = str(app.current_node.name or "-")
@@ -711,7 +711,7 @@ class OverlayManager(QObject):
         return "｜".join(parts)
 
     @staticmethod
-    def _format_hotkey(key) -> str:
+    def _format_hotkey(key: str | None) -> str:
         """快捷键显示名：空值返回空串（不显示），单个空格显示为 SPACE。"""
         key = str(key or "")
         if key == " ":
@@ -736,7 +736,7 @@ class OverlayManager(QObject):
             (self.ctx.key_debug or "f12", "显示"),
         )
         return ";".join(
-            f"{name}|{label}"
+            f"{name}|{gt(label)}"
             for name, label in ((self._format_hotkey(k), lb) for k, lb in items)
             if name
         )

@@ -1,0 +1,8 @@
+sub_dir: menu
+template_id: dynamic_wallpaper_playcover
+template_name: dynamic_wallpaper_playcover
+template_shape: rectangle
+auto_mask: true
+point_list:
+- 80, 760
+- 190, 842

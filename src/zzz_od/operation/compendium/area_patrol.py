@@ -10,6 +10,7 @@ from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
 from one_dragon.utils.i18_utils import gt
+from one_dragon.utils.log_utils import log
 from zzz_od.application.charge_plan import charge_plan_const
 from zzz_od.application.charge_plan.charge_plan_config import (
     ChargePlanConfig,
@@ -152,9 +153,13 @@ class AreaPatrol(ZOperation):
         return self.round_success()
 
     @node_from(from_name='加载自动战斗指令')
-    @operation_node(name='等待战斗画面加载', node_max_retry_times=60)
+    @operation_node(name='等待战斗画面加载', node_max_retry_times=120)
     def wait_battle_screen(self) -> OperationRoundResult:
+        if self.last_screenshot is None:
+            return self.round_retry(status='未获取到游戏画面', wait_round_time=1)
         result = self.round_by_find_area(self.last_screenshot, '战斗画面', '按键-普通攻击', retry_wait_round=1)
+        if self.node_retry_times > 0 and self.node_retry_times % 10 == 0:
+            log.info('等待战斗画面加载中... 重试 %d/%d', self.node_retry_times, self.node_max_retry_times)
         return result
 
     @node_from(from_name='等待战斗画面加载')

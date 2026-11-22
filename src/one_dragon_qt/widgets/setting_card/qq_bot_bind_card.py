@@ -112,11 +112,11 @@ class QQBotBindCard(MultiPushSettingCard):
         self._runner: QQBotBindRunner | None = None
         self._verify_bar: InfoBar | None = None
 
-        self.bind_user_btn = PushButton(text='绑定单聊', icon=FluentIcon.PEOPLE)
+        self.bind_user_btn = PushButton(text=gt('绑定单聊'), icon=FluentIcon.PEOPLE)
         self.bind_user_btn.clicked.connect(lambda: self._start_bind(False))
-        self.bind_group_btn = PushButton(text='绑定群聊', icon=FluentIcon.PEOPLE)
+        self.bind_group_btn = PushButton(text=gt('绑定群聊'), icon=FluentIcon.PEOPLE)
         self.bind_group_btn.clicked.connect(lambda: self._start_bind(True))
-        self.cancel_btn = PushButton(text='取消', icon=FluentIcon.CANCEL)
+        self.cancel_btn = PushButton(text=gt('取消'), icon=FluentIcon.CANCEL)
         self.cancel_btn.clicked.connect(self._cancel_bind)
         self.cancel_btn.setVisible(False)
 
@@ -177,7 +177,7 @@ class QQBotBindCard(MultiPushSettingCard):
         """验证码另弹一条不自动消失的提示，卡片里那行灰色小字容易被忽略"""
         self._close_verify_bar()
         self._verify_bar = InfoBar.warning(
-            title='绑定 QQ 机器人',
+            title=gt('绑定 QQ 机器人'),
             content=msg,
             isClosable=True,
             duration=-1,

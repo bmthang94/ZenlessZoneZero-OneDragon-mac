@@ -70,10 +70,11 @@ class HouHouBakeryApp(ZApplication):
         # 残留弹窗交由后续「返回大世界」统一处理。
         # 必须置于「确定/确认」分支之前: 否则弹窗自带的「确认」会被该分支误点,
         #   关闭弹窗后退回集卡机 -> 再点盲盒 -> 又弹窗, 反复循环直至节点重试耗尽而失败。
-        result = self.round_by_ocr(self.last_screenshot, '同类型奖励')
-        if result.is_success:
-            status = '领取成功' if self.claimed else '今日已领取'
-            return self.round_success(status=status, wait=1)
+        for keyword in ['同类型奖励', '相同类型']:
+            result = self.round_by_ocr(self.last_screenshot, keyword)
+            if result.is_success:
+                status = '领取成功' if self.claimed else '今日已领取'
+                return self.round_success(status=status, wait=1)
 
         # 卡片揭示 -> 点击确定
         for confirm_word in ['确定', '确认']:
@@ -97,6 +98,22 @@ class HouHouBakeryApp(ZApplication):
             if click_result.is_success:
                 return self.round_wait(status='选择盲盒', wait=1)
             return self.round_retry(status='盲盒区域点击失败', wait=1)
+
+        # 领奖界面没打开，画面上还是吼吼先生：再按一次交互。
+        # 黑屏加载读不到这个名字，不在这里按键。
+        if self.round_by_ocr(self.last_screenshot, '吼吼先生').is_success or self.round_by_ocr(self.last_screenshot, '吼吼饼铺').is_success:
+            time.sleep(1)  # 防止交互无效 issue #2405 #2395 #2328
+            self.ctx.controller.interact(press=True, press_time=0.2, release=True)
+            return self.round_retry(status='未打开领奖界面', wait=1)
+
+        # 兼容误触活动或弹窗画面：尝试识别并点击通用返回/关闭按钮
+        if self.node_retry_times > 3:
+            close_res = self.round_by_find_and_click_area(self.last_screenshot, '画面-通用', '返回')
+            if close_res.is_success:
+                return self.round_wait(status='关闭异常画面', wait=1)
+            close_res = self.round_by_find_and_click_area(self.last_screenshot, '画面-通用', '关闭')
+            if close_res.is_success:
+                return self.round_wait(status='关闭异常画面', wait=1)
 
         return self.round_retry(status='未识别目标文本', wait=1)
 

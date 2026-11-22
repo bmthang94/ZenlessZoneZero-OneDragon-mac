@@ -549,7 +549,7 @@ class AutoBattleContext:
 
     def check_battle_state(
         self,
-        screen: MatLike,
+        screen: MatLike | None,
         screenshot_time: float,
         check_battle_end_normal_result: bool = False,
         check_battle_end_hollow_result: bool = False,
@@ -561,6 +561,9 @@ class AutoBattleContext:
         识别战斗状态的总入口
         :return: 当前是否在战斗画面
         """
+        if screen is None:
+            return self.last_check_in_battle
+
         normal_attack_available: bool = self.is_normal_attack_btn_available(screen)
 
         # 普通攻击和终结技各自判断 按钮禁用时中心显示灰白 X 只看圆心区域 外圈进度环不参与
@@ -1096,9 +1099,13 @@ class AutoBattleContext:
         :param screen:
         :return:
         """
+        template_id: str = self.area_btn_normal.template_id or 'btn_normal_attack'
+        threshold: float = 0.9 if template_id == 'btn_normal_attack' else (self.area_btn_normal.template_match_threshold or 0.6)
         mrl = self.ctx.tm.crop_and_match_template(
-            screen, self.area_btn_normal.rect, 'battle', 'btn_normal_attack',
-            threshold=0.9,
+            screen, self.area_btn_normal.rect,
+            self.area_btn_normal.template_sub_dir or 'battle',
+            template_id,
+            threshold=threshold,
         )
         return mrl.max is not None
 

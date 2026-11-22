@@ -1,0 +1,20 @@
+author: "BMTD"
+version: "1.0.0"
+introduction: "Remielle tap normal attack, wait 0.5s, hold normal attack 2s and release"
+
+check_dodge_interval: 0.02
+check_agent_interval: 0.5
+check_chain_interval: 1.0
+check_quick_interval: 0.5
+fallback_attack_enabled: false
+auto_turn_interval: 0
+auto_lock_interval: 0
+
+scenes:
+  - triggers: []
+    priority: 10
+    handlers:
+      - states: "[前台-蕾米埃尔] & ![自定义-蕾米埃尔-连招完成, 0, 999999]"
+        debug_name: "Remielle tap and 2s hold"
+        operations:
+          - operation_template: "蕾米埃尔-点按接蓄力"

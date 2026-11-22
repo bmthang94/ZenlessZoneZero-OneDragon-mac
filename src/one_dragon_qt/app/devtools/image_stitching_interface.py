@@ -83,10 +83,10 @@ class ImageStitchingInterface(VerticalScrollInterface):
         control_layout.setSpacing(12)
 
         # 图像加载
-        self.load_base_btn = PushButton(text='加载底图')
+        self.load_base_btn = PushButton(text=gt('加载底图'))
         self.load_base_btn.clicked.connect(self.on_load_base_clicked)
         
-        self.load_second_btn = PushButton(text='加载第二张图')
+        self.load_second_btn = PushButton(text=gt('加载第二张图'))
         self.load_second_btn.clicked.connect(self.on_load_second_clicked)
         
         load_card = MultiPushSettingCard(
@@ -98,8 +98,11 @@ class ImageStitchingInterface(VerticalScrollInterface):
 
         # 拼接方向
         self.direction_combo = ComboBox()
-        self.direction_combo.addItems(['左边', '右边', '上边', '下边'])
-        self.direction_combo.currentTextChanged.connect(self.on_direction_changed)
+        self.direction_combo.addItem(gt('左边'), userData='left')
+        self.direction_combo.addItem(gt('右边'), userData='right')
+        self.direction_combo.addItem(gt('上边'), userData='top')
+        self.direction_combo.addItem(gt('下边'), userData='bottom')
+        self.direction_combo.currentIndexChanged.connect(self.on_direction_changed)
 
         direction_card = MultiPushSettingCard(
             icon=FluentIcon.ALIGNMENT,
@@ -134,7 +137,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         control_layout.addWidget(overlap_card)
 
         # 自动匹配
-        self.auto_match_btn = PushButton(text='自动匹配')
+        self.auto_match_btn = PushButton(text=gt('自动匹配'))
         self.auto_match_btn.clicked.connect(self.on_auto_match_clicked)
         
         match_card = MultiPushSettingCard(
@@ -153,10 +156,10 @@ class ImageStitchingInterface(VerticalScrollInterface):
         self.offset_y_input.setRange(-999, 999)
         self.offset_y_input.setValue(0)
 
-        self.apply_x_offset_btn = PushButton(text='X偏移')
+        self.apply_x_offset_btn = PushButton(text=gt('X偏移'))
         self.apply_x_offset_btn.clicked.connect(self.on_apply_x_offset_clicked)
 
-        self.apply_y_offset_btn = PushButton(text='Y偏移')
+        self.apply_y_offset_btn = PushButton(text=gt('Y偏移'))
         self.apply_y_offset_btn.clicked.connect(self.on_apply_y_offset_clicked)
 
         offset_card = MultiPushSettingCard(
@@ -171,13 +174,13 @@ class ImageStitchingInterface(VerticalScrollInterface):
         control_layout.addWidget(offset_card)
 
         # 合并操作
-        self.merge_btn = PushButton(text='合并图像')
+        self.merge_btn = PushButton(text=gt('合并图像'))
         self.merge_btn.clicked.connect(self.on_merge_clicked)
 
-        self.save_btn = PushButton(text='保存结果')
+        self.save_btn = PushButton(text=gt('保存结果'))
         self.save_btn.clicked.connect(self.on_save_clicked)
 
-        self.clear_btn = PushButton(text='清空图像')
+        self.clear_btn = PushButton(text=gt('清空图像'))
         self.clear_btn.clicked.connect(self.on_clear_clicked)
 
         merge_card = MultiPushSettingCard(
@@ -240,7 +243,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         支持多种图像格式，自动转换为RGB格式。
         """
         file_path, _ = QFileDialog.getOpenFileName(
-            self, '选择底图', '',
+            self, gt('选择底图'), '',
             'Image Files (*.png *.jpg *.jpeg *.bmp *.tiff)'
         )
 
@@ -258,7 +261,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
                 self._update_button_states()
 
             except Exception as e:
-                QMessageBox.warning(self, '错误', f'加载底图失败: {str(e)}')
+                QMessageBox.warning(self, gt('错误'), gt('加载底图失败: {error}').format(error=str(e)))
 
     def on_load_second_clicked(self):
         """处理加载第二张图按钮点击事件。
@@ -268,7 +271,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         加载后自动根据拼接方向进行初始拼接。
         """
         file_path, _ = QFileDialog.getOpenFileName(
-            self, '选择第二张图', '',
+            self, gt('选择第二张图'), '',
             'Image Files (*.png *.jpg *.jpeg *.bmp *.tiff)'
         )
 
@@ -294,24 +297,13 @@ class ImageStitchingInterface(VerticalScrollInterface):
                 self._update_button_states()
 
             except Exception as e:
-                QMessageBox.warning(self, '错误', f'加载第二张图失败: {str(e)}')
+                QMessageBox.warning(self, gt('错误'), gt('加载第二张图失败: {error}').format(error=str(e)))
 
-    def on_direction_changed(self, text: str):
-        """处理拼接方向改变事件。
-
-        当用户选择不同的拼接方向时，更新内部状态并记录日志。
-
-        Args:
-            text: 用户选择的方向文本（中文）
-        """
-        direction_map = {
-            '左边': 'left',
-            '右边': 'right',
-            '上边': 'top',
-            '下边': 'bottom'
-        }
-        self.stitch_direction = direction_map.get(text, 'left')
-        log.info(gt('拼接方向设置为: {text}', model='log').format(text=text))
+    def on_direction_changed(self, index: int) -> None:
+        """根据选项数据更新拼接方向，不依赖显示语言。"""
+        direction = self.direction_combo.itemData(index)
+        self.stitch_direction = direction if direction is not None else 'left'
+        log.info(gt('拼接方向设置为: {text}', model='log').format(text=self.stitch_direction))
 
     def on_overlap_changed(self):
         """处理重叠比例改变事件。
@@ -330,7 +322,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         匹配成功后会更新第二张图的绝对坐标并刷新显示。
         """
         if self.base_image is None or self.second_image is None:
-            QMessageBox.warning(self, '错误', '请先加载两张图像')
+            QMessageBox.warning(self, gt('错误'), gt('请先加载两张图像'))
             return
 
         try:
@@ -351,7 +343,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
             log.info(gt('第二张图新位置: ({second_image_x}, {second_image_y})', model='log').format(second_image_x=self.second_image_x, second_image_y=self.second_image_y))
 
         except Exception as e:
-            QMessageBox.warning(self, '错误', f'自动匹配失败: {str(e)}')
+            QMessageBox.warning(self, gt('错误'), gt('自动匹配失败: {error}').format(error=str(e)))
             log.error(gt('自动匹配失败: {str}', model='log').format(str=str(e)))
 
     def on_apply_x_offset_clicked(self):
@@ -361,7 +353,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         每次点击都会在当前位置基础上进行X方向偏移，实现累积效果。
         """
         if self.second_image is None:
-            QMessageBox.warning(self, '错误', '请先加载第二张图')
+            QMessageBox.warning(self, gt('错误'), gt('请先加载第二张图'))
             return
 
         # 获取当前输入的X偏移量
@@ -384,7 +376,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         每次点击都会在当前位置基础上进行Y方向偏移，实现累积效果。
         """
         if self.second_image is None:
-            QMessageBox.warning(self, '错误', '请先加载第二张图')
+            QMessageBox.warning(self, gt('错误'), gt('请先加载第二张图'))
             return
 
         # 获取当前输入的Y偏移量
@@ -407,7 +399,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         合并后的图像会成为新的底图，第二张图会被清空。
         """
         if self.base_image is None or self.second_image is None:
-            QMessageBox.warning(self, '错误', '请先加载两张图像')
+            QMessageBox.warning(self, gt('错误'), gt('请先加载两张图像'))
             return
 
         try:
@@ -432,7 +424,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
             log.info(gt('图像合并完成', model='log'))
 
         except Exception as e:
-            QMessageBox.warning(self, '错误', f'图像合并失败: {str(e)}')
+            QMessageBox.warning(self, gt('错误'), gt('图像合并失败: {error}').format(error=str(e)))
             log.error(gt('图像合并失败: {str}', model='log').format(str=str(e)))
 
     def on_save_clicked(self):
@@ -442,11 +434,11 @@ class ImageStitchingInterface(VerticalScrollInterface):
         支持多种图像格式的保存。
         """
         if self.base_image is None:
-            QMessageBox.warning(self, '错误', '没有可保存的图像')
+            QMessageBox.warning(self, gt('错误'), gt('没有可保存的图像'))
             return
 
         file_path, _ = QFileDialog.getSaveFileName(
-            self, '保存图像', '',
+            self, gt('保存图像'), '',
             'PNG Files (*.png);;JPG Files (*.jpg);;All Files (*)'
         )
 
@@ -454,10 +446,10 @@ class ImageStitchingInterface(VerticalScrollInterface):
             try:
                 cv2_utils.save_image(self.base_image, file_path)
                 log.info(gt('图像保存成功: {file_path}', model='log').format(file_path=file_path))
-                QMessageBox.information(self, '成功', '图像保存成功')
+                QMessageBox.information(self, gt('成功'), gt('图像保存成功'))
 
             except Exception as e:
-                QMessageBox.warning(self, '错误', f'保存失败: {str(e)}')
+                QMessageBox.warning(self, gt('错误'), gt('保存失败: {error}').format(error=str(e)))
 
     def on_clear_clicked(self):
         """处理清空图像按钮点击事件。
@@ -465,8 +457,8 @@ class ImageStitchingInterface(VerticalScrollInterface):
         清空所有已加载的图像（底图、第二张图、合并结果）并重置所有参数。
         操作前会显示确认对话框以防止误操作。
         """
-        reply = QMessageBox.question(self, '确认清空',
-                                   '确定要清空所有图像吗？',
+        reply = QMessageBox.question(self, gt('确认清空'),
+                                   gt('确定要清空所有图像吗？'),
                                    QMessageBox.StandardButton.Yes | QMessageBox.StandardButton.No)
         if reply == QMessageBox.StandardButton.Yes:
             self.base_image = None

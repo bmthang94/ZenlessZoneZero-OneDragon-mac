@@ -95,15 +95,21 @@ USER_PATH="$USER_HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:
 
 cd "$PROJECT_DIR"
 echo "以当前登录用户启动一条龙。首次使用时，请按 macOS 提示为实际运行程序授予屏幕录制和辅助功能权限。"
-if /usr/bin/env \
-    "HOME=$USER_HOME" \
-    "PATH=$USER_PATH" \
-    "PYTHONPATH=$PROJECT_DIR/src" \
-    "$UV_BIN" "${UV_ARGS[@]}"; then
-    EXIT_CODE=0
-else
-    EXIT_CODE=$?
-fi
+while true; do
+    if /usr/bin/env \
+        "HOME=$USER_HOME" \
+        "PATH=$USER_PATH" \
+        "PYTHONPATH=$PROJECT_DIR/src" \
+        "OD_LAUNCHER_OWNS_RESTART=1" \
+        "$UV_BIN" "${UV_ARGS[@]}"; then
+        EXIT_CODE=0
+    else
+        EXIT_CODE=$?
+    fi
+    if [[ "$EXIT_CODE" -ne 75 ]]; then
+        break
+    fi
+done
 
 if [[ "$EXIT_CODE" -eq 0 ]]; then
     echo "一条龙已退出。"

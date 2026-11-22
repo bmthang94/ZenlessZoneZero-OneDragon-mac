@@ -1,7 +1,7 @@
 from __future__ import annotations
 
-from functools import cached_property, lru_cache
-from typing import TYPE_CHECKING, Optional
+from functools import cache, cached_property
+from typing import TYPE_CHECKING
 
 from one_dragon.base.conditional_operation.state_record_service import (
     StateRecordService,
@@ -23,8 +23,8 @@ class AutoBattleStateRecordService(StateRecordService):
     def __init__(self):
         super().__init__()
 
-    @lru_cache(maxsize=None)
-    def get_state_recorder(self, state_name: str) -> Optional[StateRecorder]:
+    @cache  # noqa: B019
+    def get_state_recorder(self, state_name: str) -> StateRecorder | None:
         """
         获取状态记录器
 
@@ -40,7 +40,7 @@ class AutoBattleStateRecordService(StateRecordService):
             log.error(gt('使用了不合法的状态 {state_name}', model='log').format(state_name=state_name))
             return None
 
-    @lru_cache(maxsize=None)
+    @cache  # noqa: B019
     def is_valid_state(self, state_name: str) -> bool:
         """
         判断一个状态是否合法
@@ -51,12 +51,7 @@ class AutoBattleStateRecordService(StateRecordService):
         Returns:
             bool: 是否合法
         """
-        if state_name in self.all_state_event_ids:
-            return True
-        elif state_name.startswith('自定义-'):
-            return True
-        else:
-            return False
+        return state_name in self.all_state_event_ids or state_name.startswith('自定义-')
 
     @cached_property
     def all_state_event_ids(self) -> list[str]:
@@ -115,10 +110,8 @@ class AutoBattleStateRecordService(StateRecordService):
         # 添加连携条状态
         event_ids.append('连携技-准备')
 
-        # 添加目标状态 (V10: 从数据定义中动态获取)
+        # 添加目标状态 (从数据定义中动态获取所有已定义的目标状态，供配置语法树校验)
         for task in DETECTION_TASKS:
-            if not task.enabled:
-                continue
             for state_def in task.state_definitions:
                 if state_def.state_name not in event_ids:
                     event_ids.append(state_def.state_name)
