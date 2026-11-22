@@ -10,6 +10,7 @@ from one_dragon.utils.i18_utils import gt
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.operation.back_to_normal_world import BackToNormalWorld
 from zzz_od.operation.map_transport import MapTransport
+from zzz_od.operation.wait_normal_world import WaitNormalWorld
 from zzz_od.operation.zzz_operation import ZOperation
 
 
@@ -94,6 +95,11 @@ class Transport(ZOperation):
     def wait_in_world(self) -> OperationRoundResult:
         if not self.wait_at_last:
             return self.round_success('不等待大世界加载')
+        # 先等待大世界画面加载完成，避免在加载过渡期调用 BackToNormalWorld 误点击左上角导致打开菜单
+        op_wait = WaitNormalWorld(self.ctx)
+        wait_res = op_wait.execute()
+        if wait_res.is_success:
+            return self.round_by_op_result(wait_res)
         op = BackToNormalWorld(self.ctx)  # 传送落地可能触发好感度事件 使用BackToNormalWorld可以处理
         return self.round_by_op_result(op.execute())
 
