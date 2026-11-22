@@ -632,7 +632,7 @@ class DevtoolsTemplateHelperInterface(VerticalScrollInterface, HistoryMixin):
         )
         if file_path is not None and file_path.endswith('.png'):
             fix_file_path = os.path.normpath(file_path)
-            log.info('选择路径 %s', fix_file_path)
+            log.info(gt('选择路径 %(v)s', model='log'), {'v': fix_file_path})
             self.last_screen_dir = os.path.dirname(fix_file_path)
             self._on_image_chosen(fix_file_path)
 

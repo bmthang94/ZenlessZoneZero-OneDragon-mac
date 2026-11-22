@@ -1,10 +1,10 @@
 import time
-
 from typing import List, Optional
 
 from one_dragon.base.geometry.rectangle import Rect
-from zzz_od.hollow_zero.game_data.hollow_zero_event import HollowZeroEntry
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
+from zzz_od.hollow_zero.game_data.hollow_zero_event import HollowZeroEntry
 
 
 class HollowZeroMapNode:
@@ -73,7 +73,7 @@ class HollowZeroMap:
     def search_entry(self, entry_name: str) -> bool:
         for node in self.nodes:
             if node.entry.entry_name == entry_name:
-                log.info(f"发现节点 [{entry_name}]")
+                log.info(gt('发现节点 [{entry_name}]', model='log').format(entry_name=entry_name))
                 return True
         return False
 

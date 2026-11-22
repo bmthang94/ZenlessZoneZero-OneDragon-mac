@@ -1,11 +1,15 @@
-from collections import deque
+import html
 import logging
-from PySide6.QtCore import Signal, QObject, QTimer, QEvent
+import re
+from collections import deque
+
+from PySide6.QtCore import QEvent, QObject, QTimer, Signal
 from PySide6.QtGui import QMouseEvent
 from qfluentwidgets import PlainTextEdit, isDarkTheme
+
 from one_dragon.utils.log_utils import log as od_log
 from one_dragon.yolo.log_utils import log as yolo_log
-import re
+
 
 class LogSignal(QObject):
     new_log = Signal(str)
@@ -14,11 +18,11 @@ class LogReceiver(logging.Handler):
     def __init__(self):
         super().__init__()
         # 限制日志数量
-        self.log_list: deque[str] = deque(maxlen=64)  
+        self.log_list: deque[str] = deque(maxlen=64)
         # 新日志
         self.new_logs: list[str] = []
         # 是否接收日志
-        self.update = False 
+        self.update = False
 
     def emit(self, record):
         """将新日志记录添加到日志队列"""
@@ -51,7 +55,7 @@ class LogDisplayCard(PlainTextEdit):
         self.setReadOnly(True)
 
         # 初始化颜色
-        self.init_color()  
+        self.init_color()
 
         # 初始化接收器
         self.receiver = LogReceiver()
@@ -75,10 +79,10 @@ class LogDisplayCard(PlainTextEdit):
         self.auto_scroll = False
 
         # 更新频率(毫秒)
-        self.update_frequency = 100 
+        self.update_frequency = 100
 
         # 日志是否运行
-        self.is_running = False  
+        self.is_running = False
 
         # 暂停标记
         self.is_pause = False
@@ -137,7 +141,7 @@ class LogDisplayCard(PlainTextEdit):
         new_logs = self.receiver.get_new_logs()
         # 格式化日志
         if len(new_logs) != 0:
-            formatted_logs = self._format_logs(new_logs)  
+            formatted_logs = self._format_logs(new_logs)
             self.appendHtml(formatted_logs)
         if self.auto_scroll:
             self.verticalScrollBar().setValue(self.verticalScrollBar().maximum())  # 滚动到最新位置
@@ -174,7 +178,7 @@ class LogDisplayCard(PlainTextEdit):
         is_at_bottom = scrollbar.value() == scrollbar.maximum()
         is_scrollable = scrollbar.maximum() > scrollbar.minimum()
 
-        if not self.auto_scroll: 
+        if not self.auto_scroll:
             if is_at_bottom and is_scrollable:
                 if self.is_running and not self.is_pause:
                     self.auto_scroll = True
@@ -191,32 +195,35 @@ class LogDisplayCard(PlainTextEdit):
         formatted_log = ""
 
         for log_item in log_list:
-            formatted_log = log_item
-            
-            # 1. 先处理红色错误关键字
+            # 先转义 HTML 特殊字符 防止日志内容被当成富文本解析(如 <module> <a href>)
+            formatted_log = html.escape(log_item)
+
+            # 1. 再处理红色错误关键字
             error_keywords = ['失败', '错误', '异常', '警告', 'ERROR', 'WARNING', 'FAIL', 'Exception', 'Error']
             for keyword in error_keywords:
                 if keyword in formatted_log:
                     formatted_log = formatted_log.replace(
-                        keyword, 
+                        keyword,
                         f'<span style="color: {self._error_color}; font-weight: bold;">{keyword}</span>'
                     )
-            
+
             # 2. 再处理绿色方括号内容(注意避免重复处理已经有HTML标签的部分)
             if '[' in log_item and ']' in log_item:
                 # 使用正则表达式来更精确地处理方括号，避免与HTML标签冲突
 
                 pattern = r'\[([^\]]+)\]'
-                
+
                 def replace_brackets(match):
                     content = match.group(1)
                     # 检查是否已经被HTML标签包围(避免重复处理)
                     if '<span' in content or '</span>' in content:
                         return match.group(0)  # 返回原始内容
                     return f'[<span style="color: {self._color};">{content}</span>]'
-                
+
                 formatted_log = re.sub(pattern, replace_brackets, formatted_log)
-                
+
+            # 保留原始换行(如堆栈信息) 与每条日志间的换行保持一致
+            formatted_log = formatted_log.replace('\n', '<br>')
             formatted_logs.append(formatted_log)
 
         # 检查是否有日志

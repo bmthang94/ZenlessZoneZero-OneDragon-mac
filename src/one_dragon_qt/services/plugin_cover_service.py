@@ -20,6 +20,7 @@ from PySide6.QtGui import QImage, QImageReader, QPixmap
 from one_dragon.base.operation.application.plugin_info import PluginInfo
 from one_dragon.base.operation.application.plugin_market import MARKET_URL
 from one_dragon.utils import http_utils, os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 MAX_COVER_BYTES = 4 * 1024 * 1024
@@ -100,7 +101,7 @@ class _DownloadTask(QRunnable):
             if ok:
                 temp_path.replace(self._target)
         except Exception as exc:  # noqa: BLE001 - 封面失败只是回退默认图，不影响界面
-            log.debug(f'下载插件封面失败 {self._url}: {exc}')
+            log.debug(gt('下载插件封面失败 {_url}: {exc}', model='log').format(_url=self._url, exc=exc))
             ok = False
         finally:
             if not ok:

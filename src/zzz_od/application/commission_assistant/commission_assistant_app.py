@@ -12,7 +12,8 @@ from one_dragon.base.operation.operation_base import OperationResult
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import (
-    OperationRoundResult, OperationRoundResultEnum,
+    OperationRoundResult,
+    OperationRoundResultEnum,
 )
 from one_dragon.utils import cv2_utils, str_utils
 from one_dragon.utils.i18_utils import gt
@@ -451,7 +452,7 @@ class CommissionAssistantApp(ZApplication):
             result = self.round_by_ocr_and_click(self.last_screenshot, '跳过', area=area, pre_delay=0, success_wait=0.4,
                                                  color_range=[[240, 240, 240], [255, 255, 255]])
             if result.is_success:
-                log.info('节点 委托助手 -> 剧情模式 返回状态点击跳过键')
+                log.info(gt('节点 委托助手 -> 剧情模式 返回状态点击跳过键', model='log'))
             else:
                 # (主线) 按优先级处理 跳过/菜单/自动, 不识别遮罩后的按钮
                 result = self.round_by_ocr_and_click_by_priority(['菜单', '自动'], area=area, pre_delay=0,

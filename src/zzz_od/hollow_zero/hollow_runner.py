@@ -158,7 +158,7 @@ class HollowRunner(ZOperation):
         any_match = False
         if normal_event is not None:
             any_match = True
-            log.info('匹配普通事件 [%s]', event_name)
+            log.info(gt('匹配普通事件 [%(v)s]', model='log'), {'v': event_name})
             if normal_event.is_entry_opt:
                 self._handled_events.add(event_name)
             op = NormalEventHandler(self.ctx, normal_event)
@@ -168,7 +168,7 @@ class HollowRunner(ZOperation):
 
         if event_name in self._special_event_handlers:
             any_match = True
-            log.info('匹配特殊事件 [%s]', event_name)
+            log.info(gt('匹配特殊事件 [%(v)s]', model='log'), {'v': event_name})
             special_event = hollow_event_utils.get_special_event_by_name(event_name)
             if special_event.is_entry_opt:
                 self._handled_events.add(event_name)
@@ -205,7 +205,7 @@ class HollowRunner(ZOperation):
         # if target_node.entry.entry_name == '不宜久留':  # 测试代码 在特殊情况停下
         #     return self.round_fail('不宜久留')
         next_to_move = target_node.next_node_to_move
-        log.info(f"前往目标: [{target_node.entry.entry_name}] 当前移动: [{next_to_move.entry.entry_name}]")
+        log.info(gt('前往目标: [{entry_name}] 当前移动: [{entry_name_2}]', model='log').format(entry_name=target_node.entry.entry_name, entry_name_2=next_to_move.entry.entry_name))
 
         # 999 是寻路兜底策略的特殊标识 是在识别识别的情况下使用的
         pathfinding_success = next_to_move is not None and next_to_move.path_step_cnt != 999

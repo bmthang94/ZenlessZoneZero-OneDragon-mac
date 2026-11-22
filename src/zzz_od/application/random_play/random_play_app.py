@@ -94,7 +94,7 @@ class RandomPlayApp(ZApplication):
             result = turn_to_angle(self, target_angle=0, turn_status='转向正东')
             if not result.is_success:
                 if self.config.transport_point == RandomPlayTransportPoint.POINT_1.value.value:
-                    log.warning('录像店柜台室内无小地图朝向，直接前移交互')
+                    log.warning(gt('录像店柜台室内无小地图朝向，直接前移交互', model='log'))
                 else:
                     return result
             self.ctx.controller.move_w(press=True, press_time=1, release=True)
@@ -205,16 +205,16 @@ class RandomPlayApp(ZApplication):
             if self._try_select_agent(agent_name, area):
                 return self.round_by_find_and_click_area(self.last_screenshot, '影像店营业', '确认',
                                                          retry_wait=1)
-            log.info(f'代理人匹配失败: {agent_name}')
+            log.info(gt('代理人匹配失败: {agent_name}', model='log').format(agent_name=agent_name))
 
         if self.node_retry_times >= 2:
             # 滚动多次仍未找到, 兜底选第一个位置
-            log.info('滚动多次仍未找到, 选择默认位置')
+            log.info(gt('滚动多次仍未找到, 选择默认位置', model='log'))
             self.round_by_click_area('影像店营业', '宣传员-1')
             return self.round_by_find_and_click_area(self.last_screenshot, '影像店营业', '确认',
                                                      retry_wait=1)
         # 向下滚动并重试
-        log.info('所有候选代理人匹配失败, 向下滚动重试')
+        log.info(gt('所有候选代理人匹配失败, 向下滚动重试', model='log'))
         self.scroll_area('影像店营业', '宣传员列表')
         return self.round_retry(wait=0.5)
 
@@ -291,7 +291,7 @@ class RandomPlayApp(ZApplication):
                 continue
             self._need_video_themes.append(theme)
 
-        log.info(f'所需主题 {self._need_video_themes}')
+        log.info(gt('所需主题 {_need_video_themes}', model='log').format(_need_video_themes=self._need_video_themes))
         return self.round_success()
 
     @node_from(from_name='识别录像带主题')

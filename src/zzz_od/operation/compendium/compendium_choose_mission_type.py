@@ -113,11 +113,11 @@ class CompendiumChooseMissionType(ZOperation):
         )
 
         if click_pos is None:
-            log.debug("未找到有效的代理人头像，执行滑动操作")
+            log.debug(gt('未找到有效的代理人头像，执行滑动操作', model='log'))
             return self.handle_scroll(area.rect)
 
         target_point = Point(click_pos[0], click_pos[1])
-        log.debug(f"找到代理人目标，最终目标点: {target_point}")
+        log.debug(gt('找到代理人目标，最终目标点: {target_point}', model='log').format(target_point=target_point))
         return self.handle_go_button(self.last_screenshot, target_point)
 
     def handle_scroll(self, area: Rect) -> OperationRoundResult:

@@ -1,15 +1,22 @@
 import cv2
 import numpy as np
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QFileDialog, QMessageBox
-from qfluentwidgets import (FluentIcon, PushButton, SpinBox, ComboBox,
-                            BodyLabel)
+from PySide6.QtWidgets import (
+    QFileDialog,
+    QHBoxLayout,
+    QMessageBox,
+    QVBoxLayout,
+    QWidget,
+)
+from qfluentwidgets import BodyLabel, ComboBox, FluentIcon, PushButton, SpinBox
 
 from one_dragon.base.operation.one_dragon_context import OneDragonContext
 from one_dragon.utils import cv2_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.image_viewer_widget import ImageViewerWidget
-from one_dragon_qt.widgets.setting_card.multi_push_setting_card import MultiPushSettingCard
+from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
+    MultiPushSettingCard,
+)
 from one_dragon_qt.widgets.vertical_scroll_interface import VerticalScrollInterface
 
 
@@ -249,7 +256,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
                 # 确保是RGB格式
                 self.base_image = self._ensure_rgb_format(image)
 
-                log.info(f'加载底图成功: {file_path}, 形状: {self.base_image.shape}')
+                log.info(gt('加载底图成功: {file_path}, 形状: {shape}', model='log').format(file_path=file_path, shape=self.base_image.shape))
                 self._update_display()
                 self._update_button_states()
 
@@ -283,8 +290,8 @@ class ImageStitchingInterface(VerticalScrollInterface):
                 # 启用缩放保持（从加载第二张图开始）
                 self.should_preserve_scale = True
 
-                log.info(f'加载第二张图成功: {file_path}, 形状: {self.second_image.shape}')
-                log.info(f'自动拼接位置: ({self.second_image_x}, {self.second_image_y})')
+                log.info(gt('加载第二张图成功: {file_path}, 形状: {shape}', model='log').format(file_path=file_path, shape=self.second_image.shape))
+                log.info(gt('自动拼接位置: ({second_image_x}, {second_image_y})', model='log').format(second_image_x=self.second_image_x, second_image_y=self.second_image_y))
 
                 self._update_display()
                 self._update_button_states()
@@ -296,7 +303,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         """根据选项数据更新拼接方向，不依赖显示语言。"""
         direction = self.direction_combo.itemData(index)
         self.stitch_direction = direction if direction is not None else 'left'
-        log.info(f'拼接方向设置为: {self.stitch_direction}')
+        log.info(gt('拼接方向设置为: {text}', model='log').format(text=self.stitch_direction))
 
     def on_overlap_changed(self):
         """处理重叠比例改变事件。
@@ -306,7 +313,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         """
         self.overlap_width_ratio = self.overlap_width_input.value() / 100.0
         self.overlap_height_ratio = self.overlap_height_input.value() / 100.0
-        log.info(f'重叠比例设置为: 宽度{self.overlap_width_input.value()}%, 高度{self.overlap_height_input.value()}%')
+        log.info(gt('重叠比例设置为: 宽度{value}%, 高度{value_2}%', model='log').format(value=self.overlap_width_input.value(), value_2=self.overlap_height_input.value()))
 
     def on_auto_match_clicked(self):
         """处理自动匹配按钮点击事件。
@@ -332,12 +339,12 @@ class ImageStitchingInterface(VerticalScrollInterface):
             # 更新显示
             self._update_display()
 
-            log.info(f'自动匹配完成，调整偏移: ({match_offset_x}, {match_offset_y})')
-            log.info(f'第二张图新位置: ({self.second_image_x}, {self.second_image_y})')
+            log.info(gt('自动匹配完成，调整偏移: ({match_offset_x}, {match_offset_y})', model='log').format(match_offset_x=match_offset_x, match_offset_y=match_offset_y))
+            log.info(gt('第二张图新位置: ({second_image_x}, {second_image_y})', model='log').format(second_image_x=self.second_image_x, second_image_y=self.second_image_y))
 
         except Exception as e:
             QMessageBox.warning(self, gt('错误'), gt('自动匹配失败: {error}').format(error=str(e)))
-            log.error(f'自动匹配失败: {str(e)}')
+            log.error(gt('自动匹配失败: {str}', model='log').format(str=str(e)))
 
     def on_apply_x_offset_clicked(self):
         """处理X偏移按钮点击事件。
@@ -360,7 +367,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
 
         # 更新显示
         self._update_display()
-        log.info(f'应用X偏移: Δ{delta_x}, 新位置: ({self.second_image_x}, {self.second_image_y})')
+        log.info(gt('应用X偏移: Δ{delta_x}, 新位置: ({second_image_x}, {second_image_y})', model='log').format(delta_x=delta_x, second_image_x=self.second_image_x, second_image_y=self.second_image_y))
 
     def on_apply_y_offset_clicked(self):
         """处理Y偏移按钮点击事件。
@@ -383,7 +390,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
 
         # 更新显示
         self._update_display()
-        log.info(f'应用Y偏移: Δ{delta_y}, 新位置: ({self.second_image_x}, {self.second_image_y})')
+        log.info(gt('应用Y偏移: Δ{delta_y}, 新位置: ({second_image_x}, {second_image_y})', model='log').format(delta_y=delta_y, second_image_x=self.second_image_x, second_image_y=self.second_image_y))
 
     def on_merge_clicked(self):
         """处理合并图像按钮点击事件。
@@ -414,11 +421,11 @@ class ImageStitchingInterface(VerticalScrollInterface):
             self._update_display()
             self._update_button_states()
 
-            log.info('图像合并完成')
+            log.info(gt('图像合并完成', model='log'))
 
         except Exception as e:
             QMessageBox.warning(self, gt('错误'), gt('图像合并失败: {error}').format(error=str(e)))
-            log.error(f'图像合并失败: {str(e)}')
+            log.error(gt('图像合并失败: {str}', model='log').format(str=str(e)))
 
     def on_save_clicked(self):
         """处理保存结果按钮点击事件。
@@ -438,7 +445,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         if file_path:
             try:
                 cv2_utils.save_image(self.base_image, file_path)
-                log.info(f'图像保存成功: {file_path}')
+                log.info(gt('图像保存成功: {file_path}', model='log').format(file_path=file_path))
                 QMessageBox.information(self, gt('成功'), gt('图像保存成功'))
 
             except Exception as e:
@@ -469,7 +476,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
             self._update_display()
             self._update_button_states()
 
-            log.info('已清空所有图像')
+            log.info(gt('已清空所有图像', model='log'))
 
     def _update_display(self):
         """更新图像显示。
@@ -514,7 +521,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
             current_scale = self.image_viewer.scale_spinbox.value()
             if current_scale != self.saved_scale_percent:
                 self.image_viewer.scale_spinbox.setValue(self.saved_scale_percent)
-                log.info(f'恢复缩放状态: {self.saved_scale_percent}% (当前: {current_scale}%)')
+                log.info(gt('恢复缩放状态: {saved_scale_percent}% (当前: {current_scale}%)', model='log').format(saved_scale_percent=self.saved_scale_percent, current_scale=current_scale))
 
     def _update_button_states(self):
         """更新按钮状态。
@@ -604,7 +611,7 @@ class ImageStitchingInterface(VerticalScrollInterface):
         # 计算偏移量
         offset_x, offset_y = self._calculate_offset_from_match(max_loc)
 
-        log.info(f'匹配成功，匹配度: {max_val:.3f}')
+        log.info(gt('匹配成功，匹配度: {max_val:.3f}', model='log').format(max_val=max_val))
         return offset_x, offset_y
 
     def _extract_matching_regions(self) -> tuple[np.ndarray | None, np.ndarray | None]:

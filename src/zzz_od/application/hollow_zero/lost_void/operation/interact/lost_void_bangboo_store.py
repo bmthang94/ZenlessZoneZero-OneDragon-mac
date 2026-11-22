@@ -118,7 +118,7 @@ class LostVoidBangbooStore(ZOperation):
                 self.slide_to_right = True
                 return self.round_wait(status='向右滑动')
 
-            log.info(f'邦布商店 第{self.refresh_times + 1}轮 | 结果 | 未选中可购买藏品 下一步=刷新')
+            log.info(gt('邦布商店 第{v}轮 | 结果 | 未选中可购买藏品 下一步=刷新', model='log').format(v=self.refresh_times + 1))
             result = self.round_by_find_and_click_area(self.last_screenshot, '迷失之地-邦布商店', '按钮-刷新-可用')
             if result.is_success:
                 self.slide_to_right = False  # 刷新后 重置滑动
@@ -133,7 +133,7 @@ class LostVoidBangbooStore(ZOperation):
         target: LostVoidArtifactPos = priority_list[0]
         target_item: LostVoidArtifact = target.artifact
 
-        log.info(f'邦布商店 第{self.refresh_times + 1}轮 | 结果 | 购买 {target_item.display_name}')
+        log.info(gt('邦布商店 第{v}轮 | 结果 | 购买 {display_name}', model='log').format(v=self.refresh_times + 1, display_name=target_item.display_name))
         self.ctx.controller.click(target.store_buy_rect.center)
         return self.round_success(target_item.name, wait=1)
 
@@ -154,7 +154,7 @@ class LostVoidBangbooStore(ZOperation):
             level_parts.append(f'第4级(战斗组)={",".join(lv.challenge_config.artifact_priority_in_battle)}')
         level_text = ' '.join(level_parts) if len(level_parts) > 0 else '无'
         abandon_text = ', '.join(lv.dynamic_abandon_list) if len(lv.dynamic_abandon_list) > 0 else '空'
-        log.info(f'邦布商店 第{round_num}轮 | 规则 | {level_text} 放弃组={abandon_text}')
+        log.info(gt('邦布商店 第{round_num}轮 | 规则 | {level_text} 放弃组={abandon_text}', model='log').format(round_num=round_num, level_text=level_text, abandon_text=abandon_text))
 
     def get_artifact_pos(self, screen: MatLike) -> tuple[list[LostVoidArtifactPos], list[LostVoidArtifactPos]]:
         """
@@ -202,7 +202,7 @@ class LostVoidBangbooStore(ZOperation):
 
         can_buy_list = [i for i in artifact_pos_list if i.store_buy_rect is not None]
         display_text = ', '.join([i.artifact.display_name for i in can_buy_list]) if len(can_buy_list) > 0 else '无'
-        log.info(f'当前可购买藏品 {display_text}')
+        log.info(gt('当前可购买藏品 {display_text}', model='log').format(display_text=display_text))
 
         return artifact_pos_list, can_buy_list
 

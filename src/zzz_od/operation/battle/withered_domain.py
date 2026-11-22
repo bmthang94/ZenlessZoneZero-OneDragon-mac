@@ -13,6 +13,7 @@ from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.operation.battle.base import BattleOpBase
@@ -105,10 +106,10 @@ class WitheredDomainBattleOp(BattleOpBase):
 
         current_distance = self.ctx.auto_battle_context.last_check_distance
         if self.last_distance is not None and abs(self.last_distance - current_distance) < 0.5:
-            log.info('上次移动后距离没有发生变化 尝试脱困')
+            log.info(gt('上次移动后距离没有发生变化 尝试脱困', model='log'))
             if self.last_stuck_distance is not None and abs(self.last_stuck_distance - current_distance) < 0.5:
                 # 困的时候显示的距离跟上次困住的一样 代表脱困方向不对 换一个
-                log.info('上次脱困后距离没有发生变化 更换脱困方向')
+                log.info(gt('上次脱困后距离没有发生变化 更换脱困方向', model='log'))
                 self.stuck_move_direction = (self.stuck_move_direction + 1) % 6
 
             self.last_distance = current_distance
@@ -181,7 +182,7 @@ class WitheredDomainBattleOp(BattleOpBase):
 
     def _get_rid_of_stuck(self) -> None:
         """[复制自 hollow_battle.py:143-164] 6 方向脱困状态机(0..5;由调用方切方向,本方法只执行移动)。"""
-        log.info(f'本次脱困方向 {self.stuck_move_direction}')
+        log.info(gt('本次脱困方向 {stuck_move_direction}', model='log').format(stuck_move_direction=self.stuck_move_direction))
         if self.stuck_move_direction == 0:  # 向左走
             self.ctx.controller.move_a(press=True, press_time=1, release=True)
         elif self.stuck_move_direction == 1:  # 向右走

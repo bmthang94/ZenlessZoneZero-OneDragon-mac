@@ -219,10 +219,10 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
             fallback_on_slow: bool = False,
             ) -> bool:
         with self._init_lock:
-            log.info('正在加载OCR模型')
+            log.info(gt('正在加载OCR模型', model='log'))
 
             if self._model is not None:
-                log.info('加载OCR模型完毕')
+                log.info(gt('加载OCR模型完毕', model='log'))
                 return True
 
             # 先检查模型文件和下载模型
@@ -237,7 +237,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
                 fallback_on_slow=fallback_on_slow,
             )
             if not done:
-                log.error('下载OCR模型失败')
+                log.error(gt('下载OCR模型失败', model='log'))
                 return False
 
             # 加载模型
@@ -246,10 +246,10 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
             try:
                 args = self._ocr_param.to_dict()
                 self._model = ONNXPaddleOcr(**args)
-                log.info('加载OCR模型完毕')
+                log.info(gt('加载OCR模型完毕', model='log'))
                 return True
             except Exception:
-                log.error('OCR模型加载出错', exc_info=True)
+                log.error(gt('OCR模型加载出错', model='log'), exc_info=True)
                 return False
 
     def cleanup(self) -> None:
@@ -304,7 +304,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         :return: {key_word: []}
         """
         if image is None:
-            log.warning('OCR输入的图片为None')
+            log.warning(gt('OCR输入的图片为None', model='log'))
             return {}
         if self._model is None and not self.init_model():
             return {}
@@ -318,7 +318,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         )
         if len(scan_result_list) == 0:
             if log.isEnabledFor(DEBUG):
-                log.debug('OCR结果 %s 耗时 %.2f', result_map.keys(), time.time() - start_time)
+                log.debug(gt('OCR结果 %(v)s 耗时 %(v_2).2f', model='log'), {'v': result_map.keys(), 'v_2': time.time() - start_time})
             return result_map
 
         scan_result = scan_result_list[0]
@@ -353,7 +353,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         self._emit_debug_perf_and_timeline(elapsed_ms, len(result_map))
 
         if log.isEnabledFor(DEBUG):
-            log.debug('OCR结果 %s 耗时 %.2f', result_map.keys(), time.time() - start_time)
+            log.debug(gt('OCR结果 %(v)s 耗时 %(v_2).2f', model='log'), {'v': result_map.keys(), 'v_2': time.time() - start_time})
         return result_map
 
     def _run_ocr_without_det(self, image: MatLike, threshold: float = 0) -> str:
@@ -375,13 +375,13 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         )
         img_result = scan_result[0]  # 取第一张图片
         if len(img_result) > 1:
-            log.debug("禁检测的OCR模型返回多个识别结果")  # 目前没有出现这种情况
+            log.debug(gt('禁检测的OCR模型返回多个识别结果', model='log'))  # 目前没有出现这种情况
 
         if img_result[0][1] < threshold:
-            log.debug("OCR模型返回的识别结果置信度低于阈值")
+            log.debug(gt('OCR模型返回的识别结果置信度低于阈值', model='log'))
             return ""
         if log.isEnabledFor(DEBUG):
-            log.debug('OCR结果 %s 耗时 %.2f', scan_result, time.time() - start_time)
+            log.debug(gt('OCR结果 %(v)s 耗时 %(v_2).2f', model='log'), {'v': scan_result, 'v_2': time.time() - start_time})
         return img_result[0][0]
 
     def match_words(
@@ -450,7 +450,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         scan_result_list: list = self._model.ocr(image, cls=False)
         if len(scan_result_list) == 0:
             if log.isEnabledFor(DEBUG):
-                log.debug('OCR结果 [] 耗时 %.2f', time.time() - start_time)
+                log.debug(gt('OCR结果 [] 耗时 %(v).2f', model='log'), {'v': time.time() - start_time})
             return ocr_result_list
 
         scan_result = scan_result_list[0]  # 只取第一张图片
@@ -481,7 +481,7 @@ class OnnxOcrMatcher(OcrMatcher, ZipDownloader):
         self._emit_debug_perf_and_timeline(elapsed_ms, len(ocr_result_list))
 
         if log.isEnabledFor(DEBUG):
-            log.debug('OCR结果 %s 耗时 %.2f', [i.data for i in ocr_result_list], time.time() - start_time)
+            log.debug(gt('OCR结果 %(v)s 耗时 %(v_2).2f', model='log'), {'v': [i.data for i in ocr_result_list], 'v_2': time.time() - start_time})
 
         return ocr_result_list
 

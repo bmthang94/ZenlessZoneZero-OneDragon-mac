@@ -20,12 +20,16 @@ class RuntimeLauncher(ExeLauncher):
         """同步代码：首次运行时克隆，后续运行时自动更新"""
         pre_modules = set(sys.modules)
 
+        from one_dragon.base.config.custom_config import CustomConfig
         from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
         from one_dragon.envs.git_service import GitSyncStatus
-        from one_dragon.utils.i18_utils import gt
+        from one_dragon.utils.i18_utils import apply_ui_language, gt
         from one_dragon.utils.log_utils import log
         from one_dragon.version import __version__
-        log.info(f"OneDragon 集成启动器 {__version__}")
+
+        # 启动器在创建游戏上下文前就会输出日志，先按配置应用语言
+        apply_ui_language(CustomConfig().ui_language)
+        log.info(gt('OneDragon 集成启动器 {version}', model='log').format(version=__version__))
 
         env_context = OneDragonEnvContext()
         env_config = env_context.env_config
@@ -33,7 +37,7 @@ class RuntimeLauncher(ExeLauncher):
         first_run = git_service.is_initial_checkout_pending()
 
         if not first_run and not env_config.auto_update_code:
-            log.info(gt('未开启代码自动更新，跳过'))
+            log.info(gt('未开启代码自动更新，跳过', model='log'))
             return
 
         last_progress_printed = False
@@ -52,7 +56,7 @@ class RuntimeLauncher(ExeLauncher):
 
             log.info(message)
 
-        log.info(gt('首次运行，正在同步代码仓库...') if first_run else gt('正在检查代码更新...'))
+        log.info(gt('首次运行，正在同步代码仓库...', model='log') if first_run else gt('正在检查代码更新...', model='log'))
         initial_tag = __version__ if first_run and __version__.startswith('v') and __version__ != 'v0.0.0' else None
         status, message = git_service.fetch_latest_code(log_progress, initial_tag=initial_tag)
 
@@ -64,22 +68,22 @@ class RuntimeLauncher(ExeLauncher):
         elif status is GitSyncStatus.UP_TO_DATE:
             log.info(message)
         elif status is GitSyncStatus.RUNTIME_INCOMPATIBLE:
-            log.warning(f'{message}, {gt("继续使用当前版本")}')
+            log.warning(message + '，' + gt('继续使用当前版本', model='log'))
         elif status is GitSyncStatus.BUILTIN_TAG_UNAVAILABLE:
-            log.warning(f'{message}, {gt("继续使用内置版本")}')
+            log.warning(message + '，' + gt('继续使用内置版本', model='log'))
         elif status is GitSyncStatus.REMOTE_UNAVAILABLE:
             if first_run:
-                log.error(f'{message}, {gt("请稍后重试或切换代码源")}')
+                log.error(message + '，' + gt('请稍后重试或切换代码源', model='log'))
                 sys.exit(1)
                 return
-            log.warning(f'{message}, {gt("继续使用当前版本")}')
+            log.warning(message + '，' + gt('继续使用当前版本', model='log'))
         elif status is GitSyncStatus.LOCAL_CHANGES:
-            log.warning(f'{message}, {gt("继续使用当前版本")}')
+            log.warning(message + '，' + gt('继续使用当前版本', model='log'))
         elif status is GitSyncStatus.LOCAL_UPDATE_FAILED:
-            log.error(f'{message}, {gt("请重新运行启动器；仍然失败时请重新安装")}')
+            log.error(message + '，' + gt('请重新运行启动器；仍然失败时请重新安装', model='log'))
             sys.exit(1)
         else:
-            log.error(f'{message}, {gt("请查看日志后重试")}')
+            log.error(message + '，' + gt('请查看日志后重试', model='log'))
             sys.exit(1)
 
     @staticmethod

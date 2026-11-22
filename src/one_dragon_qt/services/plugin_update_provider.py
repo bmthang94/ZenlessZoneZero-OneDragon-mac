@@ -87,7 +87,7 @@ class PluginUpdateProvider(PluginOperationMixin, QObject):
                 package_dir,
             )
             if spec is None:
-                log.warning(f'插件 {entry.name} 无法更新: {error}')
+                log.warning(gt('插件 {name} 无法更新: {error}', model='log').format(name=entry.name, error=error))
                 continue
             spec.note = gt('第三方插件更新，未经官方审查')
             specs.append(spec)

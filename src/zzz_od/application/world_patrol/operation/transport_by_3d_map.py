@@ -181,7 +181,7 @@ class TransportBy3dMap(ZOperation):
                 target_icon = i
 
         if target_icon is None:
-            log.error(f'未找到目标传送点配置 {self.target_tp_name}')
+            log.error(gt('未找到目标传送点配置 {target_tp_name}', model='log').format(target_tp_name=self.target_tp_name))
             return self.round_fail(f'未找到目标传送点配置 {self.target_tp_name}')
 
         # 存储搜索所需的信息
@@ -190,7 +190,7 @@ class TransportBy3dMap(ZOperation):
         self.target_icon = target_icon
         self.map_area = self.ctx.screen_loader.get_area('3D地图', '区域-地图')
 
-        log.info(f'初始化传送点搜索完成，目标：{self.target_tp_name}')
+        log.info(gt('初始化传送点搜索完成，目标：{target_tp_name}', model='log').format(target_tp_name=self.target_tp_name))
         return self.round_success()
 
     @node_from(from_name='初始化传送点搜索')
@@ -221,17 +221,17 @@ class TransportBy3dMap(ZOperation):
         # 步骤2: 决策点 - 根据画面内是否有图标选择行动
         if len(all_mrl) == 0:
             # 情况A：画面内无任何图标 - 执行随机方向拖动
-            log.debug('画面内无传送点图标，执行随机拖动')
+            log.debug(gt('画面内无传送点图标，执行随机拖动', model='log'))
             self._perform_random_drag(self.map_area)
             return self.round_retry(wait=0.5)  # 等待拖动完成后重试
 
         # 情况B：画面内有图标 - 依次尝试每个图标
-        log.debug(f'画面内发现 {len(all_mrl)} 个传送点图标，开始逐个检查')
+        log.debug(gt('画面内发现 {len} 个传送点图标，开始逐个检查', model='log').format(len=len(all_mrl)))
 
         # 首先检查所有图标，看是否有目标传送点
         navigation_reference = None  # 用于导航的参考点
         for idx, selected_icon in enumerate(all_mrl):
-            log.debug(f'检查第 {idx + 1}/{len(all_mrl)} 个图标')
+            log.debug(gt('检查第 {v}/{len} 个图标', model='log').format(v=idx + 1, len=len(all_mrl)))
 
             # 步骤3: 交互与识别 - 点击图标并识别名称
             # 点击图标
@@ -248,7 +248,7 @@ class TransportBy3dMap(ZOperation):
             )
 
             if found_go.is_fail:
-                log.warning('点击图标后未找到前往按钮')
+                log.warning(gt('点击图标后未找到前往按钮', model='log'))
                 continue  # 尝试下一个图标
 
             # OCR识别传送点名称
@@ -259,38 +259,38 @@ class TransportBy3dMap(ZOperation):
             )
 
             if len(ocr_result_list) == 0:
-                log.warning('未能OCR识别到传送点名称')
+                log.warning(gt('未能OCR识别到传送点名称', model='log'))
                 continue  # 尝试下一个图标
 
             recognized_name = ocr_result_list[0].data
-            log.debug(f'OCR识别到传送点名称：{recognized_name}')
+            log.debug(gt('OCR识别到传送点名称：{recognized_name}', model='log').format(recognized_name=recognized_name))
 
             # 匹配到具体的图标
             icon_idx = str_utils.find_best_match_by_difflib(gt(recognized_name, 'game'), self.icon_word_list)
             if icon_idx is None or icon_idx < 0:
-                log.warning(f'无法匹配传送点名称：{recognized_name}')
+                log.warning(gt('无法匹配传送点名称：{recognized_name}', model='log').format(recognized_name=recognized_name))
                 continue  # 尝试下一个图标
 
             matched_icon = self.large_map.icon_list[icon_idx]
-            log.debug(f'成功匹配到传送点：{matched_icon.icon_name}')
+            log.debug(gt('成功匹配到传送点：{icon_name}', model='log').format(icon_name=matched_icon.icon_name))
             current_icon_name = matched_icon.icon_name
 
             # 步骤4: 导航计算
             if current_icon_name == self.target_tp_name:
                 # 找到目标传送点！
-                log.info(f'找到目标传送点：{self.target_tp_name}')
+                log.info(gt('找到目标传送点：{target_tp_name}', model='log').format(target_tp_name=self.target_tp_name))
                 return self.round_success()
 
             # 记录第一个图标作为导航参考点
             if navigation_reference is None:
                 navigation_reference = matched_icon
-                log.debug(f'记录导航参考点：{matched_icon.icon_name}({matched_icon.lm_pos.x}, {matched_icon.lm_pos.y})')
+                log.debug(gt('记录导航参考点：{icon_name}({x}, {y})', model='log').format(icon_name=matched_icon.icon_name, x=matched_icon.lm_pos.x, y=matched_icon.lm_pos.y))
 
         # 所有图标都检查完毕，没有找到目标，执行导航
         if navigation_reference is not None:
             # 步骤5: 使用参考点执行精确导航
-            log.debug(f'当前参考位置：{navigation_reference.icon_name}({navigation_reference.lm_pos.x}, {navigation_reference.lm_pos.y})')
-            log.debug(f'目标位置：{self.target_tp_name}({self.target_icon.lm_pos.x}, {self.target_icon.lm_pos.y})')
+            log.debug(gt('当前参考位置：{icon_name}({x}, {y})', model='log').format(icon_name=navigation_reference.icon_name, x=navigation_reference.lm_pos.x, y=navigation_reference.lm_pos.y))
+            log.debug(gt('目标位置：{target_tp_name}({x}, {y})', model='log').format(target_tp_name=self.target_tp_name, x=self.target_icon.lm_pos.x, y=self.target_icon.lm_pos.y))
 
             # 计算目标相对于当前位置的方向
             dx = self.target_icon.lm_pos.x - navigation_reference.lm_pos.x
@@ -312,14 +312,12 @@ class TransportBy3dMap(ZOperation):
             start_point = self.map_area.center
             end_point = start_point + Point(drag_x, drag_y)
 
-            log.debug(f'执行精确拖动：从 {navigation_reference.icon_name}({navigation_reference.lm_pos.x}, {navigation_reference.lm_pos.y}) '
-                      f'向 {self.target_icon.icon_name}({self.target_icon.lm_pos.x}, {self.target_icon.lm_pos.y}) '
-                      f'坐标差({dx}, {dy}) -> 拖动方向({drag_x}, {drag_y})')
+            log.debug(gt('执行精确拖动：从 {icon_name}({x}, {y}) 向 {icon_name_2}({x_2}, {y_2}) 坐标差({dx}, {dy}) -> 拖动方向({drag_x}, {drag_y})', model='log').format(icon_name=navigation_reference.icon_name, x=navigation_reference.lm_pos.x, y=navigation_reference.lm_pos.y, icon_name_2=self.target_icon.icon_name, x_2=self.target_icon.lm_pos.x, y_2=self.target_icon.lm_pos.y, dx=dx, dy=dy, drag_x=drag_x, drag_y=drag_y))
 
             self.ctx.controller.drag_to(start=start_point, end=end_point)
         else:
             # 所有图标都识别失败，执行随机拖动
-            log.debug('所有图标识别失败，执行随机拖动')
+            log.debug(gt('所有图标识别失败，执行随机拖动', model='log'))
             self._perform_random_drag(self.map_area)
 
         # 等待拖动完成后重试
@@ -343,7 +341,7 @@ class TransportBy3dMap(ZOperation):
         start_point = map_area.center
         end_point = start_point + direction
 
-        log.debug(f'执行随机拖动：{direction}')
+        log.debug(gt('执行随机拖动：{direction}', model='log').format(direction=direction))
         self.ctx.controller.drag_to(start=start_point, end=end_point)
 
     @node_from(from_name='搜索传送点循环', success=False)  # 搜索失败后关闭残留弹窗

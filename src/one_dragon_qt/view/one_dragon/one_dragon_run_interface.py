@@ -171,7 +171,7 @@ class OneDragonRunInterface(SplitAppRunInterface):
         """
         self.ctx.one_dragon_config.after_done = value
         if value != AfterDoneOpEnum.SHUTDOWN.value.value:
-            log.info('已取消关机计划')
+            log.info(gt('已取消关机计划', model='log'))
             cmd_utils.cancel_shutdown_sys()
 
     def _on_app_runner_finished(self) -> None:
@@ -195,14 +195,14 @@ class OneDragonRunInterface(SplitAppRunInterface):
 
     def run_app(self) -> None:
         if self.app_runner.isRunning():
-            log.error('已有应用在运行中')
+            log.error(gt('已有应用在运行中', model='log'))
             return
         self.app_runner.app_id = self.app_id
         self.app_runner.start()
 
     def run_app_by_item(self, app: ApplicationGroupConfigItem) -> None:
         if self.app_runner.isRunning():
-            log.error('已有应用在运行中')
+            log.error(gt('已有应用在运行中', model='log'))
             return
         self.app_runner.app_id = app.app_id
         self.app_runner.start()

@@ -5,7 +5,10 @@ from typing import List, Optional, Tuple
 from one_dragon.utils import os_utils, yaml_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
-from zzz_od.hollow_zero.game_data.hollow_zero_event import HallowZeroEvent, HollowZeroEntry
+from zzz_od.hollow_zero.game_data.hollow_zero_event import (
+    HallowZeroEvent,
+    HollowZeroEntry,
+)
 from zzz_od.hollow_zero.game_data.hollow_zero_resonium import Resonium
 
 
@@ -44,7 +47,7 @@ class HallowZeroDataService:
                         e.on_the_right = True
                     self.normal_events = self.normal_events + events
             except Exception:
-                log.error(f'文件读取失败 {file_path}', exc_info=True)
+                log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def get_normal_event_by_name(self, event_name: str) -> Optional[HallowZeroEvent]:
         """
@@ -70,7 +73,7 @@ class HallowZeroDataService:
                     self.entry_list.append(entry)
                     self.name_2_entry[entry.entry_name] = entry
         except Exception:
-            log.error(f'文件读取失败 {file_path}', exc_info=True)
+            log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def get_entry_by_name(self, entry_name: str) -> Optional[HollowZeroEntry]:
         return self.name_2_entry.get(entry_name, None)
@@ -96,15 +99,15 @@ class HallowZeroDataService:
                     else:
                         self.cate_2_resonium[item.category].append(item)
         except Exception:
-            log.error(f'文件读取失败 {file_path}', exc_info=True)
+            log.error(gt('文件读取失败 {file_path}', model='log').format(file_path=file_path), exc_info=True)
 
     def match_resonium_by_ocr(self, cate_ocr: str, name_ocr: str) -> Optional[Resonium]:
-        log.info('当前识别 %s %s', cate_ocr, name_ocr)
+        log.info(gt('当前识别 %(v)s %(v_2)s', model='log'), {'v': cate_ocr, 'v_2': name_ocr})
         category_list = [gt(i, 'game') for i in self.resonium_cate_list]
         results = difflib.get_close_matches(cate_ocr, category_list, n=2, cutoff=0.5)
 
         if results is None or len(results) == 0:
-            log.info('匹配结果 无')
+            log.info(gt('匹配结果 无', model='log'))
             return None
 
         # 强x会同时匹配到强袭和顽强 这里用字符顺序顺序额外判断一下
@@ -130,12 +133,12 @@ class HallowZeroDataService:
         results = difflib.get_close_matches(name_ocr, resonium_name_list, n=1)
 
         if results is None or len(results) == 0:
-            log.info('匹配结果 无')
+            log.info(gt('匹配结果 无', model='log'))
             return None
 
         resonium_idx = resonium_name_list.index(results[0])
         r = resonium_list[resonium_idx]
-        log.info('匹配结果 %s %s', r.category, r.name)
+        log.info(gt('匹配结果 %(v)s %(v_2)s', model='log'), {'v': r.category, 'v_2': r.name})
         return r
 
     def match_resonium_by_ocr_full(self, name_full_str: str) -> Optional[Resonium]:

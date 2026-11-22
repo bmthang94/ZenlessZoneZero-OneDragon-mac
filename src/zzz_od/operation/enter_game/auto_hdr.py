@@ -37,19 +37,19 @@ class DisableAutoHDR(Operation):
                 with winreg.OpenKey(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_READ) as key:
                     value, _ = winreg.QueryValueEx(key, game_path)
                     self.ctx.game_config.original_hdr_value = value
-                    log.info('已保存原始HDR设置: %s', value)
+                    log.info(gt('已保存原始HDR设置: %(v)s', model='log'), {'v': value})
             except OSError:
                 self.ctx.game_config.original_hdr_value = None
-                log.info('没有找到原始HDR设置')
+                log.info(gt('没有找到原始HDR设置', model='log'))
 
             # 设置新值禁用HDR
             with winreg.CreateKeyEx(winreg.HKEY_CURRENT_USER, key_path, 0, winreg.KEY_WRITE) as key:
                 winreg.SetValueEx(key, game_path, 0, winreg.REG_SZ, "AutoHDREnable=2096;")
-                log.info('已设置注册表键值: %s -> AutoHDREnable=2096', game_path)
+                log.info(gt('已设置注册表键值: %(v)s -> AutoHDREnable=2096', model='log'), {'v': game_path})
 
             return self.round_success('已禁用HDR', wait=0.5)
         except OSError as e:
-            log.error('设置注册表失败: %s', str(e))
+            log.error(gt('设置注册表失败: %(v)s', model='log'), {'v': str(e)})
             return self.round_fail('设置注册表失败')
 
 class EnableAutoHDR(Operation):
@@ -77,13 +77,13 @@ class EnableAutoHDR(Operation):
                 if self.ctx.game_config.original_hdr_value:
                     # 如果有保存的原始值，则恢复
                     winreg.SetValueEx(key, game_path, 0, winreg.REG_SZ, self.ctx.game_config.original_hdr_value)
-                    log.info('已恢复原始HDR设置: %s', self.ctx.game_config.original_hdr_value)
+                    log.info(gt('已恢复原始HDR设置: %(v)s', model='log'), {'v': self.ctx.game_config.original_hdr_value})
                 else:
                     # 如果没有原始值，则删除键值
                     winreg.DeleteValue(key, game_path)
-                    log.info('已删除HDR设置键值')
+                    log.info(gt('已删除HDR设置键值', model='log'))
 
             return self.round_success('已启用HDR', wait=0.5)
         except OSError as e:
-            log.error('修改注册表失败: %s', str(e))
+            log.error(gt('修改注册表失败: %(v)s', model='log'), {'v': str(e)})
             return self.round_fail('修改注册表失败')

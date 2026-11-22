@@ -1,5 +1,6 @@
 from one_dragon.base.config.yaml_config import YamlConfig
 from one_dragon.utils import str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.game_data.agent import Agent
 
@@ -82,10 +83,8 @@ class TeamConfig(YamlConfig):
             return
 
         log.info(
-            '预备编队名称更新:下标:%d 原名称:%s 新名称:%s',
-            team_idx,
-            team.name,
-            normalized_name,
+            gt('预备编队名称更新:下标:%(v)d 原名称:%(v_2)s 新名称:%(v_3)s', model='log'),
+            {'v': team_idx, 'v_2': team.name, 'v_3': normalized_name},
         )
         team.name = normalized_name
         self.update_team(team)
@@ -100,10 +99,8 @@ class TeamConfig(YamlConfig):
             normalized_name = str_utils.remove_whitespace(team_name)
             if team.name != normalized_name:
                 log.info(
-                    '预备编队名称更新:下标:%d 原名称:%s 新名称:%s',
-                    team_idx,
-                    team.name,
-                    normalized_name,
+                    gt('预备编队名称更新:下标:%(v)d 原名称:%(v_2)s 新名称:%(v_3)s', model='log'),
+                    {'v': team_idx, 'v_2': team.name, 'v_3': normalized_name},
                 )
                 team.name = normalized_name
         team.agent_id_list = [member.agent_id for member in members[:3]]

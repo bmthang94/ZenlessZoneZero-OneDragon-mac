@@ -4,6 +4,7 @@ import numpy as np
 
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -58,7 +59,7 @@ class ScreenArea:
             try:
                 return ScreenAreaType(area_type)
             except ValueError:
-                log.warning('未知区域类型 %s，已降级为 none', area_type)
+                log.warning(gt('未知区域类型 %(v)s，已降级为 none', model='log'), {'v': area_type})
                 return ScreenAreaType.NONE
         if self.text:
             return ScreenAreaType.TEXT

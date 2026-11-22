@@ -6,15 +6,19 @@
 """
 
 import json
-import time
-import requests
 import threading
+import time
 from typing import Optional, Tuple
 
+import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -105,12 +109,12 @@ class WorkWeixinApp(PushChannel):
                     access_token = data["access_token"]
                     expires_in = data["expires_in"]  # 默认 7200 秒
                     self._last_access_token_info = (access_token, time.time() + expires_in)
-                    log.info("企业微信应用 Access Token 获取成功")
+                    log.info(gt('企业微信应用 Access Token 获取成功', model='log'))
                     return access_token, ""
                 else:
                     return "", f"获取 Access Token 失败: {data.get('errmsg', '未知错误')}"
             except Exception as e:
-                log.error("获取企业微信应用 Access Token 请求异常", exc_info=True)
+                log.error(gt('获取企业微信应用 Access Token 请求异常', model='log'), exc_info=True)
                 return "", f"获取 Access Token 异常: {str(e)}"
 
     def _upload_image_media(
@@ -143,12 +147,12 @@ class WorkWeixinApp(PushChannel):
             data = response.json()
 
             if data.get("errcode") == 0:
-                log.info(f"企业微信应用临时图片素材上传成功，media_id: {data.get('media_id')}")
+                log.info(gt('企业微信应用临时图片素材上传成功，media_id: {get}', model='log').format(get=data.get('media_id')))
                 return data["media_id"], ""
             else:
                 return "", f"临时图片素材上传失败: {data.get('errmsg', '未知错误')}"
         except Exception as e:
-            log.error("企业微信应用临时图片素材上传请求异常", exc_info=True)
+            log.error(gt('企业微信应用临时图片素材上传请求异常', model='log'), exc_info=True)
             return "", f"临时图片素材上传异常: {str(e)}"
 
     def _upload_image_permanent(
@@ -182,12 +186,12 @@ class WorkWeixinApp(PushChannel):
 
             if data.get("errcode") == 0:
                 permanent_url = data["url"]
-                log.info(f"企业微信应用图片上传成功，获取永久URL: {permanent_url}")
+                log.info(gt('企业微信应用图片上传成功，获取永久URL: {permanent_url}', model='log').format(permanent_url=permanent_url))
                 return permanent_url, ""
             else:
                 return "", f"图片上传失败: {data.get('errmsg', '未知错误')}"
         except Exception as e:
-            log.error("企业微信应用图片上传请求异常", exc_info=True)
+            log.error(gt('企业微信应用图片上传请求异常', model='log'), exc_info=True)
             return "", f"图片上传异常: {str(e)}"
 
     def _send_message_api(
@@ -216,7 +220,7 @@ class WorkWeixinApp(PushChannel):
             else:
                 return False, f"推送失败: {result.get('errmsg', '未知错误')}"
         except Exception as e:
-            log.error("企业微信应用消息发送请求异常", exc_info=True)
+            log.error(gt('企业微信应用消息发送请求异常', model='log'), exc_info=True)
             return False, f"消息发送异常: {str(e)}"
 
     def push(
@@ -242,7 +246,7 @@ class WorkWeixinApp(PushChannel):
         """
         ok, msg = self.validate_config(config)
         if not ok:
-            log.error(f"企业微信应用校验失败：{msg}")
+            log.error(gt('企业微信应用校验失败：{msg}', model='log').format(msg=msg))
             return False, msg
 
         corpid = config.get('CORP_ID', '')
@@ -255,7 +259,7 @@ class WorkWeixinApp(PushChannel):
         # 1. 获取 Access Token
         access_token, token_err = self._get_access_token(corpid, corpsecret, proxies)
         if not access_token:
-            log.error(f"企业微信应用推送失败：{token_err}")
+            log.error(gt('企业微信应用推送失败：{token_err}', model='log').format(token_err=token_err))
             return False, f"企业微信应用推送失败：{token_err}"
 
         # 2. 处理图片：如果传入了图片，尝试上传获取永久URL和临时media_id
@@ -269,14 +273,14 @@ class WorkWeixinApp(PushChannel):
             if temp_permanent_image_url:
                 permanent_image_url = temp_permanent_image_url
             else:
-                log.warning(f"企业微信应用图片上传获取永久URL失败，无法在消息体中插入图片。错误: {permanent_upload_err}")
+                log.warning(gt('企业微信应用图片上传获取永久URL失败，无法在消息体中插入图片。错误: {permanent_upload_err}', model='log').format(permanent_upload_err=permanent_upload_err))
 
             # 尝试上传图片获取临时media_id，用于mpnews封面
             temp_uploaded_media_id, upload_media_err = self._upload_image_media(access_token, image, proxies)
             if temp_uploaded_media_id:
                 effective_thumb_media_id = temp_uploaded_media_id
             else:
-                log.warning(f"企业微信应用图片上传获取临时media_id失败，无法作为封面图。错误: {upload_media_err}")
+                log.warning(gt('企业微信应用图片上传获取临时media_id失败，无法作为封面图。错误: {upload_media_err}', model='log').format(upload_media_err=upload_media_err))
 
         # 根据是否获取到永久URL，追加content
         if permanent_image_url:
@@ -320,7 +324,7 @@ class WorkWeixinApp(PushChannel):
 
         # 如果图文消息发送失败，尝试回退到文本消息（仅当原意是发送图文且发送失败时）
         if not send_ok and effective_thumb_media_id:
-            log.warning(f"企业微信应用图文消息发送失败：{send_msg}，尝试发送纯文本消息。")
+            log.warning(gt('企业微信应用图文消息发送失败：{send_msg}，尝试发送纯文本消息。', model='log').format(send_msg=send_msg))
             text_fallback_payload = {
                 "touser": touser,
                 "msgtype": "text",
@@ -332,10 +336,10 @@ class WorkWeixinApp(PushChannel):
                 access_token, text_fallback_payload, proxies
             )
             if text_fallback_ok:
-                log.info("企业微信应用图文消息失败，已回退至文本消息推送成功")
+                log.info(gt('企业微信应用图文消息失败，已回退至文本消息推送成功', model='log'))
                 return True, "图文消息失败，已回退至文本消息推送成功"
             else:
-                log.error(f"企业微信应用图文消息和文本消息均失败: {send_msg}; 文本回退失败: {text_fallback_msg}")
+                log.error(gt('企业微信应用图文消息和文本消息均失败: {send_msg}; 文本回退失败: {text_fallback_msg}', model='log').format(send_msg=send_msg, text_fallback_msg=text_fallback_msg))
                 return False, f"图文消息和文本消息均失败: {send_msg}; 文本回退失败: {text_fallback_msg}"
 
         return send_ok, send_msg

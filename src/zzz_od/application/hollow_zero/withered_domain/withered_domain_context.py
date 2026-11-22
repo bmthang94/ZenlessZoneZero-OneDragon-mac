@@ -10,6 +10,7 @@ from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.operation.application import application_const
 from one_dragon.utils import cv2_utils, str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.hollow_zero.withered_domain import withered_domain_const
 from zzz_od.application.hollow_zero.withered_domain.withered_domain_config import (
@@ -123,7 +124,7 @@ class WitheredDomainContext:
                         node.path_first_need_step_node = node
                         node.path_step_cnt = 999
                         node.path_node_cnt = 1
-                        log.info(f"优先级 [空白已通行]")
+                        log.info(gt('优先级 [空白已通行]', model='log'))
                         self.invalid_map_times = 0
                         return node
             # 没有识别到[当前]节点的话 就不需要寻路移动了
@@ -138,7 +139,7 @@ class WitheredDomainContext:
                                                        target_entry_list=self._get_go_in_1_step())
         target = self.try_target_node(current_map, target)
         if target is not None:
-            log.info(f"优先级 [一步]")
+            log.info(gt('优先级 [一步]', model='log'))
             return target
 
         go_priority_list = self._get_waypoint()
@@ -148,7 +149,7 @@ class WitheredDomainContext:
             target = self.try_target_node(current_map, target)
             if target is None:
                 continue
-            log.info(f"优先级 [途经]")
+            log.info(gt('优先级 [途经]', model='log'))
             return target
 
         # 是一定能走到的出口
@@ -162,14 +163,14 @@ class WitheredDomainContext:
             target = hollow_pathfinding.get_route_by_entry(current_map, to_go, self._visited_nodes)
             target = self.try_target_node(current_map, target)
             if target is not None:
-                log.info(f"优先级 [终点]")
+                log.info(gt('优先级 [终点]', model='log'))
                 return target
 
             # 如果之前走过，但走不到 说明可能中间有格子识别错了 这种情况就一格一格地走
             target = hollow_pathfinding.get_route_by_entry(current_map, to_go, [])
             target = self.try_target_node(current_map, target)
             if target is not None:
-                log.info(f"优先级 [终点]")
+                log.info(gt('优先级 [终点]', model='log'))
                 target.path_go_way = 0
                 return target
 
@@ -178,7 +179,7 @@ class WitheredDomainContext:
                                                         target_entry_list=self.data_service.get_no_battle_list())
         target = self.try_target_node(current_map, target)
         if target is not None:
-            log.info(f"优先级 [随机一步]")
+            log.info(gt('优先级 [随机一步]', model='log'))
             return target
 
         # 没有匹配到特殊点的时候 按副本类型走特定方向
@@ -193,14 +194,14 @@ class WitheredDomainContext:
         target = hollow_pathfinding.get_route_by_direction(current_map, direction)
         target = self.try_target_node(current_map, target)
         if target is not None:
-            log.info(f"优先级 [方向]")
+            log.info(gt('优先级 [方向]', model='log'))
             return target
 
         # 兜底 走一步能到的
         target = hollow_pathfinding.get_route_in_1_step(current_map, self._visited_nodes)
         target = self.try_target_node(current_map, target)
         if target is not None:
-            log.info(f"优先级 [兜底]")
+            log.info(gt('优先级 [兜底]', model='log'))
             return target
 
         # 最终兜底 在[当前]节点四周随便移动一格
@@ -230,7 +231,7 @@ class WitheredDomainContext:
             fake_node.path_first_need_step_node = fake_node
             fake_node.path_step_cnt = 999
             fake_node.path_node_cnt = 1
-            log.info(f"优先级 [随机相邻]")
+            log.info(gt('优先级 [随机相邻]', model='log'))
             return fake_node
 
     def try_target_node(self, current_map: HollowZeroMap, target: HollowZeroMapNode) -> Optional[HollowZeroMapNode]:
@@ -553,7 +554,7 @@ class WitheredDomainContext:
                 if result is not None:
                     any_not_none = True
             except Exception:
-                log.error('识别角色头像失败', exc_info=True)
+                log.error(gt('识别角色头像失败', model='log'), exc_info=True)
                 result_agent_list.append(None)
 
         if any_not_none:  # 由于有空格存在 任意一个识别到就算ok

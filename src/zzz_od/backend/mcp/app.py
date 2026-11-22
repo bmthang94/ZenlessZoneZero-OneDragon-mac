@@ -24,6 +24,7 @@ from mcp.server import MCPServer
 from mcp.types import ToolAnnotations
 from pydantic import Field
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.backend.backend_context import ZzzBackendContext, _save_screenshot
 from zzz_od.backend.mcp.config_app import (
@@ -173,7 +174,7 @@ def create_mcp_server(backend: ZzzBackendContext, name: str = "zzz_od") -> MCPSe
             path = _save_screenshot(image)
         except Exception as e:  # noqa: BLE001 工具层统一兜底
             return f"错误: {e}"
-        log.info(f"截图已保存到: {path}")
+        log.info(gt('截图已保存到: {path}', model='log').format(path=path))
         return path
 
     @mcp.tool(annotations=ToolAnnotations(read_only_hint=True, title="分析游戏画面"))

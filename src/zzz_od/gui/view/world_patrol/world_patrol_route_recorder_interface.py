@@ -1,32 +1,48 @@
 import cv2
-from PySide6.QtCore import Signal, QThread
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel, QSpinBox
 from cv2.typing import MatLike
+from PySide6.QtCore import QThread, Signal
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QSpinBox, QVBoxLayout, QWidget
 from qfluentwidgets import FluentIcon, PushButton
 
 from one_dragon.base.config.config_item import ConfigItem
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.matcher.match_result import MatchResult
 from one_dragon.base.operation.context_event_bus import ContextEventItem
-from one_dragon.base.operation.one_dragon_context import ContextKeyboardEventEnum, OneDragonContext
+from one_dragon.base.operation.one_dragon_context import (
+    ContextKeyboardEventEnum,
+    OneDragonContext,
+)
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.click_image_label import ClickImageLabel
 from one_dragon_qt.widgets.editable_combo_box import EditableComboBox
 from one_dragon_qt.widgets.image_viewer_widget import ImageViewerWidget
 from one_dragon_qt.widgets.log_display_card import LogDisplayCard
-from one_dragon_qt.widgets.setting_card.multi_push_setting_card import MultiPushSettingCard
+from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
+    MultiPushSettingCard,
+)
 from one_dragon_qt.widgets.setting_card.switch_setting_card import SwitchSettingCard
 from one_dragon_qt.widgets.vertical_scroll_interface import VerticalScrollInterface
 from zzz_od.application.devtools.large_map_recorder import large_map_recorder_utils
-from zzz_od.application.devtools.large_map_recorder.large_map_recorder_wrapper import LargeMapSnapshot, MiniMapSnapshot
-from zzz_od.application.world_patrol.operation.world_patrol_run_route import WorldPatrolRunRoute
-from zzz_od.application.world_patrol.world_patrol_area import WorldPatrolEntry, WorldPatrolArea, \
-    WorldPatrolLargeMapIcon, WorldPatrolLargeMap
+from zzz_od.application.devtools.large_map_recorder.large_map_recorder_wrapper import (
+    LargeMapSnapshot,
+    MiniMapSnapshot,
+)
+from zzz_od.application.world_patrol.operation.world_patrol_run_route import (
+    WorldPatrolRunRoute,
+)
+from zzz_od.application.world_patrol.world_patrol_area import (
+    WorldPatrolArea,
+    WorldPatrolEntry,
+    WorldPatrolLargeMap,
+    WorldPatrolLargeMapIcon,
+)
 from zzz_od.application.world_patrol.world_patrol_route import WorldPatrolRoute
 from zzz_od.application.world_patrol.world_patrol_service import WorldPatrolService
 from zzz_od.context.zzz_context import ZContext
-from zzz_od.gui.view.world_patrol.route_operation_editor_dialog import RouteOperationEditorDialog
+from zzz_od.gui.view.world_patrol.route_operation_editor_dialog import (
+    RouteOperationEditorDialog,
+)
 
 
 class DebugRouteRunner(QThread):
@@ -45,7 +61,7 @@ class DebugRouteRunner(QThread):
             self.ctx.run_context.start_running()
             self.op.execute()
         except Exception as e:
-            log.error('调试异常', exc_info=True)
+            log.error(gt('调试异常', model='log'), exc_info=True)
         finally:
             self.ctx.run_context.stop_running()
 
@@ -287,14 +303,14 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
 
         if self.chosen_large_map.road_mask is None:
             self.large_map = None
-            log.info('未有地图数据')
+            log.info(gt('未有地图数据', model='log'))
         else:
             # 使用原图大小显示，不进行缩放
             self.large_map = LargeMapSnapshot(
                 world_patrol_large_map=self.chosen_large_map,
                 pos_after_merge=Point(self.chosen_large_map.road_mask.shape[1] // 2, self.chosen_large_map.road_mask.shape[0] // 2)
             )
-            log.info(f'自动加载地图成功: {self.chosen_area.full_name}')
+            log.info(gt('自动加载地图成功: {full_name}', model='log').format(full_name=self.chosen_area.full_name))
 
         # 更新传送点列表和路线列表
         self._update_tp_list()
@@ -344,18 +360,18 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
                     self.chosen_tp_icon = tp_icon
                     break
             self.current_pos = self.world_patrol_service.get_route_last_pos(self.chosen_route)
-            log.info(f'加载路线: {selected_route.tp_name} ({len(selected_route.op_list)}步)')
+            log.info(gt('加载路线: {tp_name} ({len}步)', model='log').format(tp_name=selected_route.tp_name, len=len(selected_route.op_list)))
             self._update_large_map_display()
         self._update_btn_display()
 
     def on_new_route_btn_clicked(self) -> None:
         """新增路线按钮点击"""
         if self.chosen_area is None:
-            log.error('请先选择区域')
+            log.error(gt('请先选择区域', model='log'))
             return
 
         if self.chosen_tp_icon is None:
-            log.error('请先选择传送点')
+            log.error(gt('请先选择传送点', model='log'))
             return
 
         # 获取下一个可用的idx
@@ -368,7 +384,7 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
             tp_name=tp_name,
             idx=next_idx,
         )
-        log.info(f'新建路线: {self.chosen_area.full_name} - 传送点: {tp_name} (idx: {next_idx})')
+        log.info(gt('新建路线: {full_name} - 传送点: {tp_name} (idx: {next_idx})', model='log').format(full_name=self.chosen_area.full_name, tp_name=tp_name, next_idx=next_idx))
 
         # 重置路线选择
         self.route_combo_box.setCurrentIndex(0)
@@ -378,25 +394,25 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
     def on_save_route_btn_clicked(self) -> None:
         """保存路线按钮点击"""
         if self.chosen_route is None:
-            log.error('没有可保存的路线')
+            log.error(gt('没有可保存的路线', model='log'))
             return
 
         success = self.world_patrol_service.save_world_patrol_route(self.chosen_route)
         if success:
-            log.info(f'路线保存成功: {self.chosen_route.tp_name}')
+            log.info(gt('路线保存成功: {tp_name}', model='log').format(tp_name=self.chosen_route.tp_name))
             # 刷新路线列表
             self._update_route_list()
         else:
-            log.error('路线保存失败')
+            log.error(gt('路线保存失败', model='log'))
 
     def on_delete_route_btn_clicked(self) -> None:
         """删除路线按钮点击"""
         if self.chosen_route is None:
-            log.error('没有可删除的路线')
+            log.error(gt('没有可删除的路线', model='log'))
             return
 
         if self.chosen_route.idx == 0:
-            log.error('无法删除未保存的路线')
+            log.error(gt('无法删除未保存的路线', model='log'))
             return
 
         success = self.world_patrol_service.delete_world_patrol_route(self.chosen_route)
@@ -415,10 +431,10 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
     def on_cancel_route_btn_clicked(self) -> None:
         """取消路线编辑按钮点击"""
         if self.chosen_route is None:
-            log.info('没有正在编辑的路线')
+            log.info(gt('没有正在编辑的路线', model='log'))
             return
 
-        log.info(f'取消编辑路线: {self.chosen_route.tp_name}')
+        log.info(gt('取消编辑路线: {tp_name}', model='log').format(tp_name=self.chosen_route.tp_name))
 
         # 清除当前路线
         self.chosen_route = None
@@ -436,20 +452,20 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
     def on_undo_move_btn_clicked(self) -> None:
         """回退移动操作按钮点击"""
         if self.chosen_route is None:
-            log.error('没有正在编辑的路线')
+            log.error(gt('没有正在编辑的路线', model='log'))
             return
 
         if not self.chosen_route.op_list:
-            log.info('路线中没有可回退的操作')
+            log.info(gt('路线中没有可回退的操作', model='log'))
             return
 
         # 删除最后一个操作
         removed_op = self.chosen_route.op_list.pop()
 
         if removed_op.op_type == 'move' and len(removed_op.data) >= 2:
-            log.info(f'回退移动操作: ({removed_op.data[0]}, {removed_op.data[1]}), 剩余操作数: {len(self.chosen_route.op_list)}')
+            log.info(gt('回退移动操作: ({data}, {data_2}), 剩余操作数: {len}', model='log').format(data=removed_op.data[0], data_2=removed_op.data[1], len=len(self.chosen_route.op_list)))
         else:
-            log.info(f'回退操作: {removed_op.op_type}, 剩余操作数: {len(self.chosen_route.op_list)}')
+            log.info(gt('回退操作: {op_type}, 剩余操作数: {len}', model='log').format(op_type=removed_op.op_type, len=len(self.chosen_route.op_list)))
 
         # 更新显示
         self._update_large_map_display()
@@ -540,16 +556,16 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
         if self.chosen_route is None:
             return
         if self.large_map is None:
-            log.error('[截图] 请先选择区域加载地图')
+            log.error(gt('[截图] 请先选择区域加载地图', model='log'))
             return
 
-        log.info('[截图] 开始')
+        log.info(gt('[截图] 开始', model='log'))
         _, screen = self.ctx.controller.screenshot()
         mini_map_wrapper = self.ctx.world_patrol_service.cut_mini_map(screen)
         self.mini_map = large_map_recorder_utils.create_mini_map_snapshot(self.ctx, mini_map_wrapper, 0.7)
 
         self._update_mini_map_display()
-        log.info('[截图] 完成')
+        log.info(gt('[截图] 完成', model='log'))
 
         self.mini_map_pos_mr = large_map_recorder_utils.cal_pos(
             self.ctx,
@@ -559,11 +575,11 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
             use_icon=True
         )
         if self.mini_map_pos_mr is not None:
-            log.info(f'[计算坐标] 当前坐标: {self.mini_map_pos_mr.center}')
+            log.info(gt('[计算坐标] 当前坐标: {center}', model='log').format(center=self.mini_map_pos_mr.center))
             self.chosen_route.add_move_operation(self.mini_map_pos_mr.center)
             self._update_large_map_display()
         else:
-            log.info(f'[计算坐标] 当前计算坐标失败')
+            log.info(gt('[计算坐标] 当前计算坐标失败', model='log'))
 
         self._update_btn_display()
 
@@ -576,14 +592,14 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
         if self.chosen_large_map is None:
             return
 
-        log.info('[重叠] 更改重叠显示方式')
+        log.info(gt('[重叠] 更改重叠显示方式', model='log'))
         self.overlap_mode = (self.overlap_mode + 1) % 2
         self._update_large_map_display()
 
     def on_add_move_btn_clicked(self) -> None:
         """添加移动操作到路线"""
         if self.chosen_route is None:
-            log.error('请先新建路线')
+            log.error(gt('请先新建路线', model='log'))
             return
 
         if self.mini_map_pos_mr is not None:
@@ -592,7 +608,7 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
             pos = self.current_pos
         self.chosen_route.add_move_operation(pos)
 
-        log.info(f'[添加移动] 坐标: ({pos.x}, {pos.y}), 当前路线操作数: {len(self.chosen_route.op_list)}')
+        log.info(gt('[添加移动] 坐标: ({x}, {y}), 当前路线操作数: {len}', model='log').format(x=pos.x, y=pos.y, len=len(self.chosen_route.op_list)))
 
         # 清除当前计算结果，准备下一次操作
         self.mini_map_pos_mr = None
@@ -616,7 +632,7 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
         self.mini_map_pos_mr = None
         if self.auto_add_click_pos_opt.btn.checked:
             self.on_add_move_btn_clicked()
-        log.info('[位置] 更新为点击位置')
+        log.info(gt('[位置] 更新为点击位置', model='log'))
         self._update_large_map_display()
 
     def _load_chosen_large_map(self) -> None:
@@ -655,7 +671,7 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
     def on_edit_operations_btn_clicked(self) -> None:
         """编辑操作按钮点击"""
         if self.chosen_route is None:
-            log.error('请先选择路线')
+            log.error(gt('请先选择路线', model='log'))
             return
 
         # 创建编辑对话框
@@ -677,4 +693,4 @@ class WorldPatrolRouteRecorderInterface(VerticalScrollInterface):
         # 更新按钮状态
         self._update_btn_display()
 
-        log.info(f'路线操作已更新，当前操作数: {len(self.chosen_route.op_list)}')
+        log.info(gt('路线操作已更新，当前操作数: {len}', model='log').format(len=len(self.chosen_route.op_list)))

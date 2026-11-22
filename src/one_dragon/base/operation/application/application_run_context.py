@@ -398,10 +398,10 @@ class ApplicationRunContext:
             bool: 是否成功开始运行
         """
         if not self.is_context_stop:
-            log.error("请先结束其他运行中的功能 再启动")
+            log.error(gt('请先结束其他运行中的功能 再启动', model='log'))
             return False
         if self.ctx.controller is None:
-            log.error("未初始化控制器")
+            log.error(gt('未初始化控制器', model='log'))
             return False
 
         if self.ctx.controller.init_before_context_run():
@@ -412,7 +412,7 @@ class ApplicationRunContext:
             )
             return True
         else:
-            log.error("运行前初始化失败")
+            log.error(gt('运行前初始化失败', model='log'))
             return False
 
     def stop_running(self) -> ApplicationRunResult:
@@ -432,13 +432,13 @@ class ApplicationRunContext:
         根据当前状态在暂停和运行之间切换，并发送相应的事件。
         """
         if self._run_state == ApplicationRunContextStateEnum.RUNNING:
-            log.info("暂停运行")
+            log.info(gt('暂停运行', model='log'))
             self._run_state = ApplicationRunContextStateEnum.PAUSE
             self.event_bus.dispatch_event(
                 ApplicationRunContextStateEventEnum.PAUSE, self._run_state
             )
         elif self._run_state == ApplicationRunContextStateEnum.PAUSE:
-            log.info("恢复运行")
+            log.info(gt('恢复运行', model='log'))
             self._run_state = ApplicationRunContextStateEnum.RUNNING
             self.event_bus.dispatch_event(
                 ApplicationRunContextStateEventEnum.RESUME, self._run_state
@@ -480,7 +480,7 @@ class ApplicationRunContext:
         while not self.ctx.ready_for_application:
             now = time.time()
             if now - start_time >= init_timeout:
-                log.error("等待应用 %s 初始化超时", app_id)
+                log.error(gt('等待应用 %(v)s 初始化超时', model='log'), {'v': app_id})
                 return self._create_run_result(
                     RunFinishReason.NOT_STARTED, app_id, instance_idx, group_id
                 )
@@ -488,7 +488,7 @@ class ApplicationRunContext:
             time.sleep(1)
 
         if not self.is_app_registered(app_id):
-            log.error("应用 %s 未注册", app_id)
+            log.error(gt('应用 %(v)s 未注册', model='log'), {'v': app_id})
             return self._create_run_result(
                 RunFinishReason.NOT_STARTED, app_id, instance_idx, group_id
             )
@@ -502,7 +502,7 @@ class ApplicationRunContext:
         try:
             app = self.get_application(app_id, instance_idx, group_id)
         except Exception:
-            log.error("创建应用 %s 失败", app_id, exc_info=True)
+            log.error(gt('创建应用 %(v)s 失败', model='log'), {'v': app_id}, exc_info=True)
             return self._finish_running(
                 self._create_run_result(
                     RunFinishReason.FAILED, app_id, instance_idx, group_id
@@ -524,7 +524,7 @@ class ApplicationRunContext:
             )
         except Exception as e:
             finish_reason = RunFinishReason.FAILED
-            log.error("运行应用 %s 失败", app_id, exc_info=True)
+            log.error(gt('运行应用 %(v)s 失败', model='log'), {'v': app_id}, exc_info=True)
             # 异常时固化失败终态，避免 last_application_result 留 None 被误判为成功。
             self.last_application_result = OperationResult(
                 success=False, status=f'执行异常: {e}'

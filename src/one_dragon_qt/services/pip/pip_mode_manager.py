@@ -8,6 +8,7 @@ from one_dragon.base.controller.pc_screenshot.pc_screenshot_controller import (
     PcScreenshotController,
 )
 from one_dragon.base.operation.one_dragon_context import OneDragonContext
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.services.pip.pip_capture_worker import PipCaptureWorker
 from one_dragon_qt.widgets.pip_window import PipWindow
@@ -100,7 +101,7 @@ class PipModeManager:
         try:
             self._do_poll()
         except Exception:
-            log.error('画中画轮询异常', exc_info=True)
+            log.error(gt('画中画轮询异常', model='log'), exc_info=True)
 
     def _do_poll(self) -> None:
         controller = self.ctx.controller
@@ -148,7 +149,7 @@ class PipModeManager:
         c = self._controller
         ctrl = PcScreenshotController(c.game_win, c.standard_width, c.standard_height)
         if ctrl.init_screenshot(c.screenshot_method) is None:
-            log.warning('画中画截图器初始化失败')
+            log.warning(gt('画中画截图器初始化失败', model='log'))
             return None
         return ctrl
 

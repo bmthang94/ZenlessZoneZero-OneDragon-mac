@@ -2,6 +2,7 @@ from typing import Any
 
 from PySide6.QtCore import QTimer
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.setting_card.yaml_config_adapter import YamlConfigAdapter
 
@@ -34,7 +35,7 @@ class AdapterInitMixin:
                 value = self._get_adapter_value(adapter)
                 self._schedule_value_apply(value, current_generation)
             except Exception:
-                log.error("加载配置项失败", exc_info=True)
+                log.error(gt('加载配置项失败', model='log'), exc_info=True)
 
         QTimer.singleShot(0, load_value)
 

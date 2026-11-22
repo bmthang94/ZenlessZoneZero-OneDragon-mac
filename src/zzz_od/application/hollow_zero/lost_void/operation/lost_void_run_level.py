@@ -300,7 +300,7 @@ class LostVoidRunLevel(ZOperation):
                 # 如果桌子旁没有感叹号交互 可以直接走到后方的感叹号
                 self.ctx.controller.move_w(press=True, press_time=0.7, release=True)
                 self.ctx.controller.move_d(press=True, press_time=1.4, release=True)
-                log.info('挚交会谈开局向右移动')
+                log.info(gt('挚交会谈开局向右移动', model='log'))
 
         # 在大世界 开始检测
         frame_result: DetectFrameResult = self.ctx.lost_void.detect_to_go(
@@ -427,7 +427,7 @@ class LostVoidRunLevel(ZOperation):
         基于战斗上下文中已识别的当前队伍，补充强攻/异常类型优先级。
         """
         agent_context = self.ctx.auto_battle_context.agent_context
-        log.info('追加代理人类型优先级前，强制刷新一次战斗上下文队伍信息')
+        log.info(gt('追加代理人类型优先级前，强制刷新一次战斗上下文队伍信息', model='log'))
         agent_context.team_info.request_check_all_agents()
         self.screenshot()
         agent_context._last_check_agent_time = 0
@@ -435,7 +435,7 @@ class LostVoidRunLevel(ZOperation):
         team_info = agent_context.team_info
 
         if team_info is None or team_info.agent_list is None or len(team_info.agent_list) == 0:
-            log.info('战斗上下文强制刷新后仍暂无队伍信息，跳过代理人类型优先级追加')
+            log.info(gt('战斗上下文强制刷新后仍暂无队伍信息，跳过代理人类型优先级追加', model='log'))
             return self.round_success(status='非战斗区域')
 
         current_priority_list = self.ctx.lost_void.dynamic_priority_list.copy()
@@ -499,19 +499,11 @@ class LostVoidRunLevel(ZOperation):
         abandon_text = ', '.join(self.ctx.lost_void.dynamic_abandon_list) if len(self.ctx.lost_void.dynamic_abandon_list) > 0 else '空'
         if len(appended_priority_list) > 0:
             log.info(
-                f'战斗上下文代理人: {recognized_agent_text} '
-                f'追加代理人类型优先级: {", ".join(appended_priority_list)} '
-                f'追加动态放弃组: {", ".join(appended_abandon_list) if len(appended_abandon_list) > 0 else "无"} '
-                f'当前动态优先级: {priority_text} '
-                f'当前动态放弃组: {abandon_text}'
+                gt('战斗上下文代理人: {recognized_agent_text} 追加代理人类型优先级: {join} 追加动态放弃组: {v} 当前动态优先级: {priority_text} 当前动态放弃组: {abandon_text}', model='log').format(recognized_agent_text=recognized_agent_text, join=", ".join(appended_priority_list), v=", ".join(appended_abandon_list) if len(appended_abandon_list) > 0 else "无", priority_text=priority_text, abandon_text=abandon_text)
             )
         else:
             log.info(
-                f'战斗上下文代理人: {recognized_agent_text} '
-                f'未追加新的代理人类型优先级 '
-                f'追加动态放弃组: {", ".join(appended_abandon_list) if len(appended_abandon_list) > 0 else "无"} '
-                f'当前动态优先级: {priority_text} '
-                f'当前动态放弃组: {abandon_text}'
+                gt('战斗上下文代理人: {recognized_agent_text} 未追加新的代理人类型优先级 追加动态放弃组: {v} 当前动态优先级: {priority_text} 当前动态放弃组: {abandon_text}', model='log').format(recognized_agent_text=recognized_agent_text, v=", ".join(appended_abandon_list) if len(appended_abandon_list) > 0 else "无", priority_text=priority_text, abandon_text=abandon_text)
             )
 
         return self.round_success(status='非战斗区域')
@@ -556,7 +548,7 @@ class LostVoidRunLevel(ZOperation):
                 if current_interact_target is not None:
                     target_key = self.get_interact_target_key(current_interact_target)
                     if self.region_type != LostVoidRegionType.ENTRY and target_key in self.interacted_target_key_list:
-                        log.info('当前层已交互过 %s，本次不再交互，先离开当前对象', target_key)
+                        log.info(gt('当前层已交互过 %(v)s，本次不再交互，先离开当前对象', model='log'), {'v': target_key})
                         # 反复走回已交互对象 说明卡在其附近 计入卡住次数让后续脱困策略升级
                         self.stuck_state.stuck_times += 1
                         self.interact_target = current_interact_target
@@ -585,8 +577,7 @@ class LostVoidRunLevel(ZOperation):
                         if self.entry_door_block_times < 8:
                             self.entry_door_block_times += 1
                             target_name = current_interact_target.name if current_interact_target is not None else '未识别'
-                            log.info(f'入口层交互文本 [{target_name}] 不是入口或未交互目标 '
-                                     f'走位后重试 第{self.entry_door_block_times}次')
+                            log.info(gt('入口层交互文本 [{target_name}] 不是入口或未交互目标 走位后重试 第{entry_door_block_times}次', model='log').format(target_name=target_name, entry_door_block_times=self.entry_door_block_times))
                             if gave_up_interact:
                                 # 找门: 感叹号已放弃 朝检测到的下层入口图标迈步(检测不到才蛇形兜底)
                                 self._steer_towards_other_interact_icon(current_target_label_x, prefer_entry=True)
@@ -599,13 +590,13 @@ class LostVoidRunLevel(ZOperation):
                         if (current_interact_target is not None
                                 and not current_interact_target.is_entry
                                 and self.get_interact_target_key(current_interact_target) in self.interacted_target_key_list):
-                            log.info('入口层走位重试达上限 目标仍是已交互NPC 后退换角度重新接近')
+                            log.info(gt('入口层走位重试达上限 目标仍是已交互NPC 后退换角度重新接近', model='log'))
                             self.entry_door_block_times = 0
                             self.stuck_state.stuck_times += 1
                             self.ctx.controller.move_s(press=True, press_time=1.2, release=True)
                             time.sleep(0.2)
                             return self.round_fail('重复交互对象')
-                        log.info('入口层交互文本一直未确认到可交互目标 走位重试已达上限 直接交互')
+                        log.info(gt('入口层交互文本一直未确认到可交互目标 走位重试已达上限 直接交互', model='log'))
                     else:
                         # 文本已确认到目标 本轮走位重试计数清零 后续目标重新计数
                         self.entry_door_block_times = 0
@@ -707,7 +698,7 @@ class LostVoidRunLevel(ZOperation):
                         if self.entry_gear_repeat_times >= 3 and interact_class_name not in self.had_been_list:
                             # 重复交互多次说明转向策略一直失败 放弃剩余感叹号 直接前往下层入口(最后兜底)
                             self.had_been_list.append(interact_class_name)
-                            log.info('入口层武备选择重复交互多次 本层忽略感叹号 前往下层入口')
+                            log.info(gt('入口层武备选择重复交互多次 本层忽略感叹号 前往下层入口', model='log'))
 
                 return self.round_wait(op_result.status, wait=2)
             else:
@@ -886,7 +877,7 @@ class LostVoidRunLevel(ZOperation):
                         and len(self.entry_gear_name_list) >= 2
                         and f'感叹号:{LostVoidInteractNPC.SCGMDYJY.value}' in self.interacted_target_key_list):
                     self.had_been_list.append(interact_class_name)
-                    log.info('入口层三个NPC均已交互完成 忽略剩余感叹号 直接前往下层入口')
+                    log.info(gt('入口层三个NPC均已交互完成 忽略剩余感叹号 直接前往下层入口', model='log'))
             self.locked_interact_target = None
 
         if in_normal_world:
@@ -1007,11 +998,11 @@ class LostVoidRunLevel(ZOperation):
             # 也不能后退 否则会退回刚才被NPC抢交互的位置 保持前进让下一轮从更近处接近入口
             # 每次仍被抢都说明NPC还在角色与门之间 步长随重复次数加大 加快脱离NPC的交互范围
             press_time = min(0.4 + 0.2 * self.entry_gear_repeat_times, 1.5)
-            log.info(f'入口层已放弃感叹号 保持朝下层入口前进 {press_time:.1f}秒')
+            log.info(gt('入口层已放弃感叹号 保持朝下层入口前进 {press_time:.1f}秒', model='log').format(press_time=press_time))
             self.ctx.controller.move_w(press=True, press_time=press_time, release=True)
             return
 
-        log.info('入口层武备选择后 后退让相邻感叹号进入视野')
+        log.info(gt('入口层武备选择后 后退让相邻感叹号进入视野', model='log'))
         self.ctx.controller.move_s(press=True, press_time=0.8, release=True)
         time.sleep(0.2)  # 消除惯性
 
@@ -1047,7 +1038,7 @@ class LostVoidRunLevel(ZOperation):
                 target = max(kept_list, key=lambda i: i.height)  # 图标越大离得越近
                 target_x = target.center[0]
                 dx = target_x - self.ctx.controller.standard_width // 2
-                log.info(f'入口层朝剩余感叹号迈步 目标x={target_x:.0f} dx={dx:.0f}')
+                log.info(gt('入口层朝剩余感叹号迈步 目标x={target_x:.0f} dx={dx:.0f}', model='log').format(target_x=target_x, dx=dx))
                 # 先前进收距离 再按目标偏向横移 最后一步移动方向决定朝向
                 self.ctx.controller.move_w(press=True, press_time=0.18, release=True)
                 time.sleep(0.1)
@@ -1065,7 +1056,7 @@ class LostVoidRunLevel(ZOperation):
                 entry_icon = result
         if entry_icon is not None:
             dx = entry_icon.center[0] - self.ctx.controller.standard_width // 2
-            log.info(f'入口层朝下层入口图标迈步 目标x={entry_icon.center[0]:.0f} dx={dx:.0f}')
+            log.info(gt('入口层朝下层入口图标迈步 目标x={center:.0f} dx={dx:.0f}', model='log').format(center=entry_icon.center[0], dx=dx))
             self.ctx.controller.move_w(press=True, press_time=0.3, release=True)
             time.sleep(0.1)
             self._sidestep_by_dx(dx)
@@ -1073,7 +1064,7 @@ class LostVoidRunLevel(ZOperation):
             return
 
         # 什么图标都没检测到 前进+左右交替兜底
-        log.info('入口层未检测到可用图标 前进+交替侧移兜底')
+        log.info(gt('入口层未检测到可用图标 前进+交替侧移兜底', model='log'))
         self.ctx.controller.move_w(press=True, press_time=0.2, release=True)
         time.sleep(0.1)
         if self.entry_door_block_times % 2 == 1:
@@ -1132,7 +1123,7 @@ class LostVoidRunLevel(ZOperation):
                             not_in_battle = True
                     except Exception as e:
                         # 刚开始可能有一段时间识别报错 有可能是一张图同时在两个onnx里面跑 加入第二次截图观察
-                        log.error('战斗中识别交互出现异常', exc_info=e)
+                        log.error(gt('战斗中识别交互出现异常', model='log'), exc_info=e)
                         return self.round_wait()
 
                 # 当前在战斗中
@@ -1209,7 +1200,7 @@ class LostVoidRunLevel(ZOperation):
                         return self.round_success(screen_name)
                     else:
                         self.interact_target = LostVoidInteractTarget(name='战斗后', icon='战斗后', after_battle=True)
-                        log.info('识别正在交互')
+                        log.info(gt('识别正在交互', model='log'))
                         return self.round_success('识别正在交互')
 
                 return self.round_wait(wait_round_time=self.ctx.battle_assistant_config.screenshot_interval)
@@ -1273,12 +1264,12 @@ class LostVoidRunLevel(ZOperation):
             # 一个武备都没选到的超时保持重开(重摇布局比绕路更划算)
             self.had_been_list.append(interact_class_name)
             self.attempt_start_time = time.time()
-            log.info('入口层超时且完成过武备选择 本层放弃感叹号 直接前往下层入口')
+            log.info(gt('入口层超时且完成过武备选择 本层放弃感叹号 直接前往下层入口', model='log'))
             return self.round_success(status='准备重试')
 
         if self.restart_count < 3:
             self.restart_count += 1
-            log.info(f'寻路失败或阵亡，开始第 {self.restart_count} 次重试')
+            log.info(gt('寻路失败或阵亡，开始第 {restart_count} 次重试', model='log').format(restart_count=self.restart_count))
             op = RestartInBattle(self.ctx)
             op_result = op.execute()
             if op_result.success:
@@ -1299,7 +1290,7 @@ class LostVoidRunLevel(ZOperation):
             else:
                 return self.round_fail(op_result.status)
         else:
-            log.info('重试次数已达上限，准备退出挑战')
+            log.info(gt('重试次数已达上限，准备退出挑战', model='log'))
             return self.round_success('准备最终退出')
 
     @node_from(from_name='处理寻路失败或阵亡', status='准备最终退出')

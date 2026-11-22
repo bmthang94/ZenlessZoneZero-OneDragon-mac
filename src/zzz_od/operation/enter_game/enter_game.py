@@ -51,7 +51,7 @@ class EnterGame(ZOperation):
         # switch=True 时前置流程已执行游戏内登出，不能跳过 force_login
         cfg = self.ctx.game_account_config
         if not switch and self.force_login and not cfg.has_login_info:
-            log.warning('登录信息未配置完整，跳过强制重新登录，将使用游戏当前登录状态')
+            log.warning(gt('登录信息未配置完整，跳过强制重新登录，将使用游戏当前登录状态', model='log'))
             self.force_login = False
 
         self.already_login: bool = False  # 是否已经提交账号登录
@@ -74,7 +74,7 @@ class EnterGame(ZOperation):
 
         # B服登录时采用BitBlt截图
         if self.ctx.game_account_config.game_region == GameRegionEnum.CNB.value.value:
-            log.info('检测到B服登录, 使用Bitblt截图方式')
+            log.info(gt('检测到B服登录, 使用Bitblt截图方式', model='log'))
             self.ctx.controller.screenshot_controller.init_screenshot(ScreenshotMethodEnum.BITBLT.value.value)
 
     @node_from(from_name='国服-输入账号密码')
@@ -746,7 +746,7 @@ class EnterGame(ZOperation):
     # noinspection PyUnusedLocal
     def restore_screenshot_func(self, result: OperationResult) -> None:
         if self.ctx.game_account_config.game_region == GameRegionEnum.CNB.value.value:
-            log.info('B服登录结束, 恢复原来的截图方式: ' + self.screenshot_func)
+            log.info(gt('B服登录结束, 恢复原来的截图方式: {screenshot_func}', model='log').format(screenshot_func=self.screenshot_func))
             self.ctx.controller.screenshot_controller.init_screenshot(self.screenshot_func)
 
 

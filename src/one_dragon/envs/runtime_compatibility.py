@@ -5,6 +5,7 @@ import importlib
 import sys
 from pathlib import Path
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -21,7 +22,7 @@ def load_runtime_manifest() -> bytes | None:
     try:
         return manifest_path.read_bytes()
     except Exception:
-        log.warning('读取本地模块清单失败，跳过检查', exc_info=True)
+        log.warning(gt('读取本地模块清单失败，跳过检查', model='log'), exc_info=True)
         return None
 
 
@@ -62,7 +63,7 @@ def check_manifest_compatible(local_manifest: bytes, target_manifest: bytes) -> 
     try:
         added_imports = _parse_manifest_imports(target_manifest) - _parse_manifest_imports(local_manifest)
     except (SyntaxError, UnicodeError, ValueError):
-        log.warning('无法解析模块清单', exc_info=True)
+        log.warning(gt('无法解析模块清单', model='log'), exc_info=True)
         return False
 
     for module_name, import_name in sorted(added_imports):
@@ -74,7 +75,7 @@ def check_manifest_compatible(local_manifest: bytes, target_manifest: bytes) -> 
                 importlib.import_module(f'{module_name}.{import_name}')
         except Exception:
             dependency = f'{module_name}.{import_name}' if import_name else module_name
-            log.warning(f'当前运行时无法导入 {dependency}', exc_info=True)
+            log.warning(gt('当前运行时无法导入 {dependency}', model='log').format(dependency=dependency), exc_info=True)
             return False
 
     return True

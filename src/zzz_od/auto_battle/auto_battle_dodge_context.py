@@ -22,6 +22,7 @@ from scipy.signal import butter, filtfilt, resample_poly
 from one_dragon.base.conditional_operation.state_recorder import StateRecord
 from one_dragon.base.operation.context_notify_event import ContextNotifyEvent
 from one_dragon.utils import cal_utils, os_utils, thread_utils, yolo_config_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.yolo.flash_classifier import FlashClassifier
@@ -99,7 +100,7 @@ class AudioRecorder:
             if not self._record_process_loop() and self.running:
                 self._record_device_loop()
         except RuntimeError as e:
-            log.warning('音频录制异常，已停止声音闪避识别', exc_info=True)
+            log.warning(gt('音频录制异常，已停止声音闪避识别', model='log'), exc_info=True)
             if self._error_callback is not None:
                 self._error_callback(e)
         finally:
@@ -118,23 +119,23 @@ class AudioRecorder:
         )
 
         if not is_process_audio_capture_supported():
-            log.info('当前系统不支持按进程录制音频，改为录制默认输出设备')
+            log.info(gt('当前系统不支持按进程录制音频，改为录制默认输出设备', model='log'))
             return False
 
         hwnd = self._hwnd_getter() if self._hwnd_getter is not None else None
         pid = get_pid_by_hwnd(hwnd)
         if pid is None:
-            log.info('未找到游戏窗口所属进程，改为录制默认输出设备')
+            log.info(gt('未找到游戏窗口所属进程，改为录制默认输出设备', model='log'))
             return False
 
         capture = ProcessAudioCapture(pid, self._sample_rate, self._used_channel)
         try:
             capture.open()
         except ProcessAudioCaptureError:
-            log.warning('按进程录制音频失败，改为录制默认输出设备', exc_info=True)
+            log.warning(gt('按进程录制音频失败，改为录制默认输出设备', model='log'), exc_info=True)
             return False
 
-        log.info(f'开始录制游戏进程音频 pid={pid}')
+        log.info(gt('开始录制游戏进程音频 pid={pid}', model='log').format(pid=pid))
         try:
             with capture:  # 退出时释放进程录音资源，再回退
                 while self.running:
@@ -142,7 +143,7 @@ class AudioRecorder:
                     if stream_data.shape[0] > 0:
                         self._push_audio(stream_data.mean(axis=1))
         except ProcessAudioCaptureError:
-            log.warning('读取游戏进程音频失败，改为录制默认输出设备', exc_info=True)
+            log.warning(gt('读取游戏进程音频失败，改为录制默认输出设备', model='log'), exc_info=True)
             return False
         return True
 
@@ -165,7 +166,7 @@ class AudioRecorder:
                 _mic = mic
                 break
         if _mic is None:
-            raise RuntimeError(f'未找到默认扬声器 [{default_speaker.name}] 的 loopback 设备')
+            raise RuntimeError(gt('未找到默认扬声器 [{speaker}] 的 loopback 设备', model='log').format(speaker=default_speaker.name))
         _recorder = _mic.recorder(samplerate=self._sample_rate, channels=self._used_channel)
         with _recorder as audio_recorder:
             while self.running:
@@ -201,7 +202,7 @@ class AudioRecorder:
             if self.running:
                 self._record_loop_macos_fallback()
         except Exception as error:
-            log.warning('macOS 音频录制异常，已停止声音闪避识别', exc_info=True)
+            log.warning(gt('macOS 音频录制异常，已停止声音闪避识别', model='log'), exc_info=True)
             if self._error_callback is not None:
                 self._error_callback(RuntimeError(str(error)))
         finally:
@@ -209,30 +210,32 @@ class AudioRecorder:
 
     def _record_macos_sck_stream(self, lib: ctypes.CDLL, window_id: int | None) -> bool:
         """录制指定应用或系统输出；启动或读取失败时返回 False。"""
-        source = '游戏应用' if window_id else '系统输出'
+        source = gt('游戏应用', model='log') if window_id else gt('系统输出', model='log')
         result = (
             lib.od_sck_audio_start_for_window(self._sample_rate, window_id)
             if window_id else lib.od_sck_audio_start(self._sample_rate)
         )
         try:
             if result != 0:
-                raise RuntimeError(f'启动失败 ({result})')
-            log.info('ScreenCaptureKit 开始录制%s音频', source)
+                raise RuntimeError(gt('启动失败 ({result})', model='log').format(result=result))
+            log.info(gt('ScreenCaptureKit 开始录制%(source)s音频', model='log'), {'source': source})
             buf = (ctypes.c_float * self._chunk_size)()
             samples = np.ctypeslib.as_array(buf)
             while self.running:
                 read_frames = lib.od_sck_audio_read(buf, self._chunk_size, 50)
                 if read_frames < 0:
-                    raise RuntimeError(f'读取失败 ({read_frames})')
+                    raise RuntimeError(gt('读取失败 ({read_frames})', model='log').format(read_frames=read_frames))
                 if read_frames > 0:
                     self._push_audio(samples[:read_frames])
             return True
         except RuntimeError as error:
             detail = lib.od_sck_audio_last_error()
             log.warning(
-                'ScreenCaptureKit %s音频捕获失败：%s',
-                source,
-                detail.decode('utf-8', errors='replace') if detail else error,
+                gt('ScreenCaptureKit %(source)s音频捕获失败：%(detail)s', model='log'),
+                {
+                    'source': source,
+                    'detail': detail.decode('utf-8', errors='replace') if detail else error,
+                },
             )
             return False
         finally:
@@ -261,7 +264,7 @@ class AudioRecorder:
                     timeout=30,
                 )
             except Exception:
-                log.warning('构建 macOS ScreenCaptureKit 音频库失败', exc_info=True)
+                log.warning(gt('构建 macOS ScreenCaptureKit 音频库失败', model='log'), exc_info=True)
 
         if not dylib_path.is_file():
             return None
@@ -301,7 +304,7 @@ class AudioRecorder:
                 'ScreenCaptureKit 音频捕获未就绪（请检查屏幕与系统录音权限），且未找到 BlackHole 等虚拟音频设备'
             )
 
-        log.info('已回退使用虚拟音频输入设备进行声音闪避识别: %s', target_mic.name)
+        log.info(gt('已回退使用虚拟音频输入设备进行声音闪避识别: %(v)s', model='log'), {'v': target_mic.name})
         recorder = target_mic.recorder(samplerate=self._sample_rate, channels=self._used_channel)
         with recorder as audio_recorder:
             while self.running:
@@ -440,7 +443,7 @@ class AutoBattleDodgeContext:
         """
         if self._audio_template_fft is not None:
             return
-        log.info('加载声音模板中')
+        log.info(gt('加载声音模板中', model='log'))
 
         template_dir = Path(os_utils.get_path_under_work_dir('assets', 'template', 'dodge_audio'))
         template_files: tuple[str, ...] = (
@@ -488,7 +491,7 @@ class AutoBattleDodgeContext:
         # 缓存三个模板的频域数据，实时识别时不再重复计算模板 FFT。
         self._audio_template_fft = rfft(template_matrix, n=fft_size, axis=1)
 
-        log.info('加载声音模板完成')
+        log.info(gt('加载声音模板完成', model='log'))
 
     def _load_audio_template(self, template_path: Path) -> np.ndarray:
         """读取模板并转换为录音使用的采样率和单声道。"""
@@ -565,7 +568,7 @@ class AutoBattleDodgeContext:
 
             return should_dodge
         except Exception:
-            log.error('识别画面闪光失败', exc_info=True)
+            log.error(gt('识别画面闪光失败', model='log'), exc_info=True)
             return False
         finally:
             self._check_dodge_flash_lock.release()
@@ -604,7 +607,7 @@ class AutoBattleDodgeContext:
 
             return False
         except Exception:
-            log.error('识别闪避声音失败', exc_info=True)
+            log.error(gt('识别闪避声音失败', model='log'), exc_info=True)
             return False
         finally:
             self._check_audio_lock.release()

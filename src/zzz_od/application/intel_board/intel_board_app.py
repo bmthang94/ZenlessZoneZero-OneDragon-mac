@@ -9,6 +9,7 @@ from one_dragon.base.operation.operation_round_result import (
     OperationRoundResultEnum,
 )
 from one_dragon.utils import cv2_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.intel_board import intel_board_const
 from zzz_od.application.intel_board.intel_board_config import IntelBoardConfig
@@ -261,7 +262,7 @@ class IntelBoardApp(ZApplication):
     @operation_node(name='选择任意预备编队')
     def choose_any_predefined_team(self) -> OperationRoundResult:
         fallback_team = self.ctx.team_config.team_list[0]
-        log.warning(f'因未选择预备编队，当前副本没有代理人出战，使用预备编队 {fallback_team.name} 重新出战')
+        log.warning(gt('因未选择预备编队，当前副本没有代理人出战，使用预备编队 {name} 重新出战', model='log').format(name=fallback_team.name))
         op = ChoosePredefinedTeam(self.ctx, [fallback_team.idx])
         return self.round_by_op_result(op.execute())
 

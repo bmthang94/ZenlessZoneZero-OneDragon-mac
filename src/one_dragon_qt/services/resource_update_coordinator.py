@@ -59,7 +59,7 @@ class _ResourceUpdateCheckRunner(QThread):
             need_update = self.resource_check.check_update()
         except Exception:
             log.error(
-                f'资源更新检查失败: {self.resource_check.check_id}',
+                gt('资源更新检查失败: {check_id}', model='log').format(check_id=self.resource_check.check_id),
                 exc_info=True,
             )
         self.checked.emit(self.resource_check.check_id, need_update)
@@ -271,7 +271,7 @@ class ResourceUpdateCoordinator(QObject):
                 resource_specs = resource_check.build_specs()
             except Exception:
                 log.error(
-                    f'构造资源下载项失败: {check_id}',
+                    gt('构造资源下载项失败: {check_id}', model='log').format(check_id=check_id),
                     exc_info=True,
                 )
                 resource_specs = []

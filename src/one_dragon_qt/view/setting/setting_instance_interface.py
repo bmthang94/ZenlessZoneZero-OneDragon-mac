@@ -409,7 +409,7 @@ class SettingInstanceInterface(VerticalScrollInterface):
             self.init_game_account_config()
 
     def _on_instance_login(self, idx: int) -> None:
-        log.error("未配置登录操作")
+        log.error(gt('未配置登录操作', model='log'))
 
     def _on_instance_delete(self, idx: int) -> None:
         if len(self.ctx.one_dragon_config.instance_list) <= 1:
@@ -447,7 +447,7 @@ class SettingInstanceInterface(VerticalScrollInterface):
                     break
             if selected_path.suffix.lower() == '.app':
                 norm_path = str(selected_path)
-                log.info(f"{gt('选择路径')} {norm_path}")
+                log.info(gt('选择路径 {norm_path}', model='log').format(norm_path=norm_path))
                 self._on_game_path_chosen(norm_path)
             return
 
@@ -456,7 +456,7 @@ class SettingInstanceInterface(VerticalScrollInterface):
             self, f"{gt('选择你的')} {executable_name}", filter="Exe (*.exe)"
         )
         if file_path is not None and file_path.endswith(".exe"):
-            log.info(f"{gt('选择路径')} {file_path}")
+            log.info(gt('选择路径 {file_path}', model='log').format(file_path=file_path))
             self._on_game_path_chosen(os.path.normpath(file_path))
 
     def _on_game_path_chosen(self, file_path) -> None:

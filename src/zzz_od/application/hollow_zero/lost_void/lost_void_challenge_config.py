@@ -4,6 +4,7 @@ from enum import Enum
 from one_dragon.base.config.config_item import ConfigItem
 from one_dragon.base.config.yaml_config import YamlConfig
 from one_dragon.utils import os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -307,7 +308,7 @@ def get_all_lost_void_challenge_config(with_sample: bool = True) -> list[LostVoi
             config = LostVoidChallengeConfig(module_name)
             config_list.append(config)
         except Exception:
-            log.error('配置文件读取错误 跳过 %s', config_name)
+            log.error(gt('配置文件读取错误 跳过 %(v)s', model='log'), {'v': config_name})
     return config_list
 
 

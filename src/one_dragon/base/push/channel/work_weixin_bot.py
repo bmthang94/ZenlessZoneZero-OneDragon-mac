@@ -6,7 +6,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -89,21 +93,21 @@ class WorkWeixinBot(PushChannel):
                 try:
                     resp = resp_obj.json()
                 except Exception as je:
-                    error_msg = f"企业微信机器人文字响应解析失败: {type(je).__name__}: {je}; status={status}; body_snip={body_snip}"
+                    error_msg = gt('企业微信机器人文字响应解析失败: {__name__}: {je}; status={status}; body_snip={body_snip}', model='log').format(__name__=type(je).__name__, je=je, status=status, body_snip=body_snip)
                     error_messages.append(error_msg)
                     log.error(error_msg)
 
                 if resp and resp.get("errcode") == 0:
                     text_success = True
-                    log.info("企业微信机器人文字推送成功！")
+                    log.info(gt('企业微信机器人文字推送成功！', model='log'))
                 else:
                     errcode = resp.get("errcode") if resp else None
                     errmsg = resp.get("errmsg") if resp else None
-                    error_msg = f"企业微信机器人文字推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; body_snip={body_snip}"
+                    error_msg = gt('企业微信机器人文字推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; body_snip={body_snip}', model='log').format(status=status, errcode=errcode, errmsg=errmsg, body_snip=body_snip)
                     error_messages.append(error_msg)
                     log.error(error_msg)
             except Exception as e:
-                error_msg = f"企业微信机器人文字推送请求异常: {type(e).__name__}: {e}"
+                error_msg = gt('企业微信机器人文字推送请求异常: {__name__}: {e}', model='log').format(__name__=type(e).__name__, e=e)
                 error_messages.append(error_msg)
                 log.error(error_msg)
 
@@ -161,18 +165,18 @@ class WorkWeixinBot(PushChannel):
         try:
             resp = resp_obj.json()
         except Exception as je:
-            error_msg = f"企业微信机器人图片响应解析失败: {type(je).__name__}: {je}; status={status}; body_snip={body_snip}"
+            error_msg = gt('企业微信机器人图片响应解析失败: {__name__}: {je}; status={status}; body_snip={body_snip}', model='log').format(__name__=type(je).__name__, je=je, status=status, body_snip=body_snip)
             error_messages.append(error_msg)
             log.error(error_msg)
             return False
 
         if resp and resp.get("errcode") == 0:
-            log.info("企业微信机器人图片推送成功！")
+            log.info(gt('企业微信机器人图片推送成功！', model='log'))
             return True
         else:
             errcode = resp.get("errcode") if resp else None
             errmsg = resp.get("errmsg") if resp else None
-            error_msg = f"企业微信机器人图片推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; size={img_size}B; body_snip={body_snip}"
+            error_msg = gt('企业微信机器人图片推送失败! status={status}; errcode={errcode}; errmsg={errmsg}; size={img_size}B; body_snip={body_snip}', model='log').format(status=status, errcode=errcode, errmsg=errmsg, img_size=img_size, body_snip=body_snip)
             error_messages.append(error_msg)
             log.error(error_msg)
             return False

@@ -5,6 +5,7 @@ from one_dragon.base.operation.application_run_record import AppRunRecord
 from one_dragon.base.operation.operation import Operation
 from one_dragon.base.operation.operation_base import OperationResult
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.operation.enter_game.enter_game import EnterGame
@@ -47,7 +48,7 @@ class ZApplication(Application):
         self.ctx.controller.active_window()
         _, screen = self.ctx.controller.screenshot()
         if EnterGame.is_login_screen(self.ctx, screen):
-            log.info('检测到当前处于登录画面，开始进入游戏')
+            log.info(gt('检测到当前处于登录画面，开始进入游戏', model='log'))
             op = EnterGame(self.ctx)
             return self.round_by_op_result(op.execute())
 

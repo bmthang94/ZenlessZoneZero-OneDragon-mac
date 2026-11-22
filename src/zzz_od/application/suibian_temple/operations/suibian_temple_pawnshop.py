@@ -202,7 +202,7 @@ class SuibianTemplePawnshop(ZOperation):
 
             goods_list.append(GoodsPos(name=target_word_list[idx], pos=ocr_result.rect))
 
-        log.info('识别商品列表: %s', [goods.name for goods in goods_list])
+        log.info(gt('识别商品列表: %(v)s', model='log'), {'v': [goods.name for goods in goods_list]})
 
         # 过滤已售罄的商品
         for ocr_result in ocr_result_list:
@@ -233,7 +233,7 @@ class SuibianTemplePawnshop(ZOperation):
                 target_goods.unlimited = True
 
         filter_goods_list = [goods for goods in goods_list if not goods.sold_out]
-        log.info('可购买商品列表: %s', [goods.name for goods in filter_goods_list])
+        log.info(gt('可购买商品列表: %(v)s', model='log'), {'v': [goods.name for goods in filter_goods_list]})
 
         return filter_goods_list
 

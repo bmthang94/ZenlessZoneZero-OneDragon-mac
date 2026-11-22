@@ -332,4 +332,4 @@ class OcrService:
     def clear_cache(self) -> None:
         """清空所有缓存"""
         self._cache.clear()
-        log.debug("OCR缓存已清空")
+        log.debug(gt('OCR缓存已清空', model='log'))

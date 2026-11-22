@@ -88,27 +88,27 @@ def verify_working_directory() -> str:
         cwd = os.getcwd()
 
     os.chdir(cwd)
-    print_message(f"当前工作目录：{cwd}", "INFO")
+    print_message(gt('当前工作目录: {cwd}', model='log').format(cwd=cwd), "INFO")
 
     # 验证路径是否存在问题
     if any('\u4e00' <= char <= '\u9fff' for char in cwd):
-        print_message("路径包含中文字符", "ERROR")
+        print_message(gt('路径包含中文字符', model='log'), "ERROR")
         sys.exit(1)
     if ' ' in cwd:
-        print_message("路径中存在空格", "ERROR")
+        print_message(gt('路径中存在空格', model='log'), "ERROR")
         sys.exit(1)
-    print_message("目录核验通过", "PASS")
+    print_message(gt('目录核验通过', model='log'), "PASS")
 
     return cwd
 
 def configure_environment(ctx: OneDragonEnvContext, cwd):
     uv_path = ctx.env_config.uv_path
     if not uv_path or not os.path.exists(uv_path):
-        print_message("获取 UV 路径失败，请运行安装程序。", "ERROR")
+        print_message(gt('获取 UV 路径失败，请运行安装程序。', model='log'), "ERROR")
         sys.exit(1)
 
     # 配置环境变量
-    print_message("开始配置环境变量...", "INFO")
+    print_message(gt('开始配置环境变量...', model='log'), "INFO")
     os.environ.update({
         'PYTHONPATH': os.path.join(cwd, "src"),
         'UV_DEFAULT_INDEX': ctx.env_config.pip_source,
@@ -116,11 +116,11 @@ def configure_environment(ctx: OneDragonEnvContext, cwd):
 
     for var in ['PYTHONPATH', 'UV_DEFAULT_INDEX']:
         if not os.environ.get(var):
-            print_message(f"{var} 未设置", "ERROR")
+            print_message(gt('{var} 未设置', model='log').format(var=var), "ERROR")
             sys.exit(1)
 
-    print_message(f"PYTHONPATH：{os.environ['PYTHONPATH']}", "PASS")
-    print_message(f"UV_DEFAULT_INDEX：{os.environ['UV_DEFAULT_INDEX']}", "PASS")
+    print_message(gt('PYTHONPATH: {v}', model='log').format(v=os.environ['PYTHONPATH']), "PASS")
+    print_message(gt('UV_DEFAULT_INDEX: {v}', model='log').format(v=os.environ['UV_DEFAULT_INDEX']), "PASS")
 
 def execute_python_script(
         ctx: OneDragonEnvContext,
@@ -140,14 +140,14 @@ def execute_python_script(
     app_module_path = Path(os.environ.get('PYTHONPATH', '')).joinpath(*app_module_parts)
     app_file_path = app_module_path.with_suffix('.py')
     if not app_file_path.is_file():
-        print_message(f"PYTHONPATH 设置错误，无法找到 {app_file_path}", "ERROR")
+        print_message(gt('PYTHONPATH 设置错误，无法找到 {app_file_path}', model='log').format(app_file_path=app_file_path), "ERROR")
         sys.exit(1)
 
     # 构建 uv run 命令参数
     run_args = ['run', '--frozen', '-m', app_module]
     if args:
         run_args.extend(args)
-        print_message(f"传递参数：{' '.join(args)}", "INFO")
+        print_message(gt('传递参数: {v}', model='log').format(v=' '.join(args)), "INFO")
 
     # 构建 PowerShell 命令参数列表
     def escape_powershell_arg(arg):
@@ -279,14 +279,14 @@ def execute_python_script(
             ["powershell", "-NoProfile", "-NonInteractive", "-Command", full_command],
             creationflags=subprocess.CREATE_NO_WINDOW if no_windows else 0
         )
-        print_message("等待主界面弹出...", "INFO")
+        print_message(gt('等待主界面弹出...', model='log'), "INFO")
 
 def fetch_latest_code(ctx: OneDragonEnvContext) -> None:
     """
     获取最新代码
     """
     if not ctx.env_config.auto_update_code:
-        print_message(gt('未开启代码自动更新，跳过'), "INFO")
+        print_message(gt('未开启代码自动更新，跳过', model='log'), "INFO")
         return
     _configure_runtime_logger()
     from one_dragon.envs.git_service import GitSyncStatus
@@ -296,26 +296,26 @@ def fetch_latest_code(ctx: OneDragonEnvContext) -> None:
     if status in (GitSyncStatus.SUCCESS, GitSyncStatus.UP_TO_DATE):
         level = 'PASS'
     elif status is GitSyncStatus.RUNTIME_INCOMPATIBLE:
-        message = f'{message}, {gt("继续使用当前版本")}'
+        message = f'{message}，{gt("继续使用当前版本", model="log")}'
         level = 'WARNING'
     elif status is GitSyncStatus.BUILTIN_TAG_UNAVAILABLE:
-        message = f'{message}, {gt("继续使用内置版本")}'
+        message = f'{message}，{gt("继续使用内置版本", model="log")}'
         level = 'WARNING'
     elif status in (GitSyncStatus.REMOTE_UNAVAILABLE, GitSyncStatus.LOCAL_CHANGES):
-        message = f'{message}, {gt("继续使用当前版本")}'
+        message = f'{message}，{gt("继续使用当前版本", model="log")}'
         level = 'WARNING'
     elif status is GitSyncStatus.LOCAL_UPDATE_FAILED:
-        message = f'{message}, {gt("请重新运行启动器；仍然失败时请重新安装")}'
+        message = f'{message}，{gt("请重新运行启动器；仍然失败时请重新安装", model="log")}'
         level = 'ERROR'
     else:
-        message = f'{message}, {gt("请查看日志后重试")}'
+        message = f'{message}，{gt("请查看日志后重试", model="log")}'
         level = 'ERROR'
     print_message(message, level)
 
 
 def sync_dependencies(ctx: OneDragonEnvContext) -> None:
     """按需同步运行依赖。"""
-    print_message("开始检查运行环境...", "INFO")
+    print_message(gt('开始检查运行环境...', model='log'), "INFO")
     success, msg = ctx.python_service.uv_sync_runtime_dependencies()
     print_message(msg, "PASS" if success else "ERROR")
     if not success:
@@ -327,8 +327,12 @@ def sync_dependencies(ctx: OneDragonEnvContext) -> None:
 def run_python(app_path, no_windows: bool = True, args: list[str] | None = None, piped: bool = False) -> None:
     # 主函数
     try:
+        from one_dragon.base.config.custom_config import CustomConfig
+        from one_dragon.utils.i18_utils import apply_ui_language
         from one_dragon.version import __version__
-        print_message(f"OneDragon 启动器 {__version__}", "INFO")
+        # 启动器在创建游戏上下文前就会输出，先按配置应用语言
+        apply_ui_language(CustomConfig().ui_language)
+        print_message(gt('OneDragon 启动器 {version}', model='log').format(version=__version__), "INFO")
         cwd = verify_working_directory()
         from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
         ctx = OneDragonEnvContext(prefer_bundled_config=True)
@@ -337,9 +341,9 @@ def run_python(app_path, no_windows: bool = True, args: list[str] | None = None,
         sync_dependencies(ctx)
         execute_python_script(ctx, app_path, no_windows, args, piped)
     except SystemExit as e:
-        print_message(f"程序已退出，状态码：{e.code}", "ERROR")
+        print_message(gt('程序已退出，状态码: {code}', model='log').format(code=e.code), "ERROR")
         raise
     except Exception as e:
-        print_message(f"出现未处理的异常：{e}", "ERROR")
+        print_message(gt('出现未处理的异常: {e}', model='log').format(e=e), "ERROR")
     finally:
         time.sleep(5)

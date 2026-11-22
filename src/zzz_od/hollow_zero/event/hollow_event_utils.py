@@ -195,10 +195,10 @@ def check_event_text_and_run(op: ZOperation, screen: MatLike, handlers: List[Eve
         bottom_opt_pos = None
 
     if target_handler is not None:
-        log.debug('识别事件选项 %s' % target_handler.target_cn)
+        log.debug((gt('识别事件选项 %(v)s', model='log') % {'v': target_handler.target_cn}))
         return run_event_handler(op, target_handler, target_mrl.max)
     elif event_mark_handler is not None:
-        log.debug('识别事件无选项 %s' % event_mark_handler.target_cn)
+        log.debug((gt('识别事件无选项 %(v)s', model='log') % {'v': event_mark_handler.target_cn}))
         return click_empty(op, bottom_opt_pos)
     else:
         click_empty(op, bottom_opt_pos)  # 做一个兜底点击 感觉可以跟上面合并

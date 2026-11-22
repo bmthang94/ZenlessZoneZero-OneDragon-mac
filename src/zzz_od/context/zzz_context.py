@@ -3,6 +3,7 @@ from __future__ import annotations
 from functools import cached_property
 
 from one_dragon.base.operation.one_dragon_context import OneDragonContext
+from one_dragon.utils.i18_utils import gt
 from zzz_od.context.zzz_screen_context import ZScreenContext
 
 
@@ -139,7 +140,11 @@ class ZContext(OneDragonContext):
             # 初始化窗口标题
             self.controller.set_window_title(self._get_win_title())
             from one_dragon.utils.log_utils import log
-            log.info('游戏窗口检测: %s', '已找到' if self.controller.is_game_window_ready else '未找到')
+            log.info(
+                gt('游戏窗口检测: 已找到', model='log')
+                if self.controller.is_game_window_ready
+                else gt('游戏窗口检测: 未找到', model='log')
+            )
 
     def init_for_application(self) -> None:
         self.map_service.reload()  # 传送需要用的数据

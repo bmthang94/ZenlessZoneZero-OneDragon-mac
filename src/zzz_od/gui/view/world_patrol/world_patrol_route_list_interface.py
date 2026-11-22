@@ -1,20 +1,32 @@
 from PySide6.QtCore import Qt
-from PySide6.QtWidgets import (QWidget, QVBoxLayout, QHBoxLayout, QListWidget,
-                               QListWidgetItem, QMessageBox, QInputDialog)
-from qfluentwidgets import FluentIcon, PushButton, BodyLabel
+from PySide6.QtWidgets import (
+    QHBoxLayout,
+    QInputDialog,
+    QListWidget,
+    QListWidgetItem,
+    QMessageBox,
+    QVBoxLayout,
+    QWidget,
+)
+from qfluentwidgets import BodyLabel, FluentIcon, PushButton
 
 from one_dragon.base.config.config_item import ConfigItem
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.combo_box import ComboBox
 from one_dragon_qt.widgets.editable_combo_box import EditableComboBox
-from one_dragon_qt.widgets.setting_card.multi_push_setting_card import MultiPushSettingCard
+from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
+    MultiPushSettingCard,
+)
 from one_dragon_qt.widgets.vertical_scroll_interface import VerticalScrollInterface
 from zzz_od.application.world_patrol.world_patrol_route_list import (
-    WorldPatrolRouteList, RouteListType
+    RouteListType,
+    WorldPatrolRouteList,
 )
 from zzz_od.application.world_patrol.world_patrol_service import (
-    WorldPatrolService, WorldPatrolEntry, WorldPatrolArea
+    WorldPatrolArea,
+    WorldPatrolEntry,
+    WorldPatrolService,
 )
 from zzz_od.context.zzz_context import ZContext
 
@@ -290,7 +302,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
                     break
             self._update_route_list_display()
             self._update_btn_display()
-            log.info(f'新建路线列表: {name}')
+            log.info(gt('新建路线列表: {name}', model='log').format(name=name))
 
     def on_save_list_clicked(self):
         """保存列表按钮点击"""
@@ -300,7 +312,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         success = self.world_patrol_service.save_world_patrol_route_list(self.current_route_list)
         if success:
             self._update_route_list_combo()
-            log.info(f'保存路线列表成功: {self.current_route_list.name}')
+            log.info(gt('保存路线列表成功: {name}', model='log').format(name=self.current_route_list.name))
         else:
             QMessageBox.warning(self, gt('错误'), gt('保存路线列表失败'))
 
@@ -315,7 +327,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
             self._update_route_list_combo()
             self._update_route_list_display()
             self._update_btn_display()
-            log.info('删除路线列表成功')
+            log.info(gt('删除路线列表成功', model='log'))
         else:
             QMessageBox.warning(self, gt('错误'), gt('删除路线列表失败'))
 
@@ -339,7 +351,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         selected_route = self.source_route_list_widget.currentItem().data(Qt.ItemDataRole.UserRole)
         self.current_route_list.add_route(selected_route.full_id)
         self._update_route_list_display()
-        log.info(f'添加路线: {selected_route.full_id}')
+        log.info(gt('添加路线: {full_id}', model='log').format(full_id=selected_route.full_id))
 
     def on_add_area_clicked(self):
         """添加整个区域按钮点击"""
@@ -354,7 +366,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         for route in self.available_routes:
             self.current_route_list.add_route(route.full_id)
         self._update_route_list_display()
-        log.info(f'添加整个区域: {self.chosen_area.full_name} ({len(route_indices)}条路线)')
+        log.info(gt('添加整个区域: {full_name} ({len}条路线)', model='log').format(full_name=self.chosen_area.full_name, len=len(route_indices)))
 
     def on_move_up_clicked(self):
         """上移按钮点击"""
@@ -387,7 +399,7 @@ class WorldPatrolRouteListInterface(VerticalScrollInterface):
         if 0 <= current_row < len(self.current_route_list.route_items):
             removed_item = self.current_route_list.route_items.pop(current_row)
             self._update_route_list_display()
-            log.info(f'移除路线: {removed_item}')
+            log.info(gt('移除路线: {removed_item}', model='log').format(removed_item=removed_item))
 
     def on_selection_changed(self):
         """选择变化"""

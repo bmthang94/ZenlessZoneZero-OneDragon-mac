@@ -7,6 +7,7 @@ from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.hollow_zero.withered_domain import withered_domain_const
 from zzz_od.application.hollow_zero.withered_domain.withered_domain_config import (
@@ -199,7 +200,7 @@ class WitheredDomainApp(ZApplication):
         try:
             self.ctx.withered_domain.init_before_hollow_start(self.mission_type_name, self.mission_name, self.level, self.phase)
         except Exception:
-            log.error('模型加载失败', exc_info=True)
+            log.error(gt('模型加载失败', model='log'), exc_info=True)
             return self.round_fail('模型加载失败 请重新下载模型')
         op = self._create_runner()
         return self.round_by_op_result(op.execute())

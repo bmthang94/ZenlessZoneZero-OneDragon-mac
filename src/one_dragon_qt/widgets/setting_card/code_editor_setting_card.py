@@ -316,7 +316,7 @@ class JsonEditorMixin:
             # 如果不是有效的 JSON，不做处理
             pass
         except Exception:
-            log.error('格式化 JSON 失败', exc_info=True)
+            log.error(gt('格式化 JSON 失败', model='log'), exc_info=True)
 
     def _compact_json(self, text: str) -> str:
         """将JSON内容紧凑化（去除空格和换行）"""
@@ -329,7 +329,7 @@ class JsonEditorMixin:
             # 如果不是有效的 JSON，返回原文
             return text
         except Exception:
-            log.error('紧凑化 JSON 失败', exc_info=True)
+            log.error(gt('紧凑化 JSON 失败', model='log'), exc_info=True)
             return text
 
     def _is_compact_json(self, text: str) -> bool:
@@ -508,7 +508,7 @@ class PythonCodeEditorDialog(BaseCodeEditorDialog):
         if QDesktopServices.openUrl(QUrl.fromLocalFile(self._script_path)):
             self.reject()
         else:
-            log.error('打开外部编辑器失败: %s', self._script_path)
+            log.error(gt('打开外部编辑器失败: %(v)s', model='log'), {'v': self._script_path})
 
     def get_code(self) -> str:
         return self.editor.toPlainText()

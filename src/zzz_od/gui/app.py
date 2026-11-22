@@ -330,7 +330,6 @@ def main() -> None:
     app.setAttribute(Qt.ApplicationAttribute.AA_DontCreateNativeWidgetSiblings)
 
     _ctx = ZContext()
-    _ctx.apply_ui_language()
 
     # 设置主题
     setTheme(Theme[_ctx.custom_config.theme.upper()])

@@ -3,6 +3,7 @@ from collections.abc import Callable
 from dataclasses import dataclass
 
 from one_dragon.utils import http_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 # 使用 ghproxy 代理的源
@@ -105,7 +106,7 @@ class CommonDownloader:
             candidates = list(self.param.download_urls.keys())
 
         if len(candidates) == 0:
-            log.error('没有可用的下载源')
+            log.error(gt('没有可用的下载源', model='log'))
             if status_callback is not None:
                 status_callback(ResourceDownloadProgress(phase='failed', message='没有可用的下载源'))
             return False
@@ -118,7 +119,7 @@ class CommonDownloader:
                 if proxy_prefix:
                     download_url = f'{proxy_prefix}/{download_url}'
 
-            log.info(f'尝试从 {source_id} 下载 {self.param.save_file_name}')
+            log.info(gt('尝试从 {source_id} 下载 {save_file_name}', model='log').format(source_id=source_id, save_file_name=self.param.save_file_name))
             if status_callback is not None:
                 status_callback(
                     ResourceDownloadProgress(
@@ -166,7 +167,7 @@ class CommonDownloader:
 
             if on_source_failure is not None:
                 on_source_failure(source_id)
-            log.warning(f'从 {source_id} 下载失败 尝试下一个源')
+            log.warning(gt('从 {source_id} 下载失败 尝试下一个源', model='log').format(source_id=source_id))
 
         return False
 

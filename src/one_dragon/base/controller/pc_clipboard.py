@@ -11,6 +11,7 @@ if sys.platform == 'win32':
 elif sys.platform == 'darwin':
     from AppKit import NSPasteboard
 
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log, mask_text
 
 
@@ -55,7 +56,7 @@ class PcClipboard:
         :return: 无
         """
         if sys.platform == 'darwin':
-            log.info(f'复制文字到剪切板:{mask_text(text)}')
+            log.info(gt('复制文字到剪切板:{mask_text}', model='log').format(mask_text=mask_text(text)))
             pasteboard = NSPasteboard.generalPasteboard()
             pasteboard.clearContents()
             pasteboard.setString_forType_(text, 'public.utf8-plain-text')
@@ -63,11 +64,11 @@ class PcClipboard:
 
         try:
             # 脱敏（前后10%的字符不加密）
-            log.info(f'复制文字到剪切板:{mask_text(text)}')
+            log.info(gt('复制文字到剪切板:{mask_text}', model='log').format(mask_text=mask_text(text)))
             win32clipboard.OpenClipboard()
             win32clipboard.EmptyClipboard()
             win32clipboard.SetClipboardText(text, win32con.CF_UNICODETEXT)
-            log.info('复制文字到剪切板成功')
+            log.info(gt('复制文字到剪切板成功', model='log'))
         finally:
             with suppress(Exception):
                 win32clipboard.CloseClipboard()
@@ -88,10 +89,10 @@ class PcClipboard:
         else:
             modifier = Key.ctrl
             try:
-                log.info('粘贴文字, 查找剪切板')
+                log.info(gt('粘贴文字, 查找剪切板', model='log'))
                 win32clipboard.OpenClipboard()
                 data = win32clipboard.GetClipboardData(win32con.CF_UNICODETEXT)
-                log.info(f'粘贴文字, 获取到:{mask_text(data)}')
+                log.info(gt('粘贴文字, 获取到:{mask_text}', model='log').format(mask_text=mask_text(data)))
             except pywintypes.error:
                 data = ''
             finally:
@@ -99,14 +100,14 @@ class PcClipboard:
                     win32clipboard.CloseClipboard()
 
         # 使用 pynput 模拟粘贴操作
-        log.info('粘贴文字, 按下粘贴快捷键')
-        log.debug('粘贴文字, 按下修饰键')
+        log.info(gt('粘贴文字, 按下粘贴快捷键', model='log'))
+        log.debug(gt('粘贴文字, 按下修饰键', model='log'))
         with keyboard.pressed(modifier):
             time.sleep(0.2)
-            log.debug('粘贴文字, 按下 V')
+            log.debug(gt('粘贴文字, 按下 V', model='log'))
             keyboard.press('v')
             time.sleep(0.2)
-            log.debug('粘贴文字, 释放 V')
+            log.debug(gt('粘贴文字, 释放 V', model='log'))
             keyboard.release('v')
 
         return data

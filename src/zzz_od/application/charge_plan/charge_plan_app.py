@@ -6,6 +6,7 @@ from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_notify import NotifyTiming, node_notify
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.utils import cv2_utils, str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.charge_plan import charge_plan_const
 from zzz_od.application.charge_plan.charge_plan_config import (
@@ -69,7 +70,7 @@ class ChargePlanApp(ZApplication):
             plan.skipped = False
         current_dt = self.run_record.get_current_dt()
         if self.config.try_reset_plan_times_by_dt(current_dt):
-            log.info('已按游戏刷新日重置体力计划已运行次数 %s', current_dt)
+            log.info(gt('已按游戏刷新日重置体力计划已运行次数 %(v)s', model='log'), {'v': current_dt})
         return self.round_success()
 
     @node_from(from_name='挑战完成')
@@ -138,7 +139,7 @@ class ChargePlanApp(ZApplication):
         self.backup_battery_charge = backup_battery_charge
         self.ether_battery = ether_battery
         self.run_record.record_current_charge_power(self.battery_charge)
-        log.info('剩余电量 %s 储蓄电量 %s 以太电池 %s', self.battery_charge, self.backup_battery_charge, self.ether_battery)
+        log.info(gt('剩余电量 %(v)s 储蓄电量 %(v_2)s 以太电池 %(v_3)s', model='log'), {'v': self.battery_charge, 'v_2': self.backup_battery_charge, 'v_3': self.ether_battery})
         if self.config.double_reward and not self.double_reward_checked:
             self.double_reward_checked = True
             return self.round_success('查看双倍活动')

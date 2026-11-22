@@ -8,7 +8,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -138,7 +142,7 @@ class Webhook(PushChannel):
                             image_bytes.seek(0)
                             image_base64 = base64.b64encode(image_bytes.getvalue()).decode('utf-8')
                     except Exception as e:
-                        log.error(f"图片处理失败: {e}")
+                        log.error(gt('图片处理失败: {e}', model='log').format(e=e))
                         image_base64 = ""
 
                 processed_body = processed_body.replace("$image", image_base64)
@@ -176,10 +180,10 @@ class Webhook(PushChannel):
             return True, f"Webhook推送成功！状态码: {response.status_code}"
 
         except requests.RequestException as e:
-            log.error("网络请求异常", exc_info=True)
+            log.error(gt('网络请求异常', model='log'), exc_info=True)
             return False, f"网络请求异常: {str(e)}"
         except Exception as e:
-            log.error("Webhook推送异常", exc_info=True)
+            log.error(gt('Webhook推送异常', model='log'), exc_info=True)
             return False, f"Webhook推送异常: {str(e)}"
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:

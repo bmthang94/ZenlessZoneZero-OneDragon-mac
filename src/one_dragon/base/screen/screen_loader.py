@@ -5,6 +5,7 @@ import yaml
 from one_dragon.base.screen.screen_area import ScreenArea
 from one_dragon.base.screen.screen_info import ScreenInfo
 from one_dragon.utils import os_utils, yaml_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -102,18 +103,18 @@ class ScreenContext:
                 if file_path.name == '_od_merged.yml':
                     continue
                 with file_path.open(encoding='utf-8') as file:
-                    log.debug(f"加载yaml: {file_path}")
+                    log.debug(gt('加载yaml: {file_path}', model='log').format(file_path=file_path))
                     data = yaml_utils.safe_load(file)
                 if not isinstance(data, dict):
-                    log.warning(f"画面配置格式错误，已跳过: {file_path}")
+                    log.warning(gt('画面配置格式错误，已跳过: {file_path}', model='log').format(file_path=file_path))
                     continue
 
                 screen_info = ScreenInfo(data)
                 if screen_info.screen_name in self.screen_info_map:
-                    log.warning(f"画面名称冲突，已跳过: {screen_info.screen_name}")
+                    log.warning(gt('画面名称冲突，已跳过: {screen_name}', model='log').format(screen_name=screen_info.screen_name))
                     continue
                 if screen_info.screen_id in self._id_2_screen:
-                    log.warning(f"画面ID冲突，已跳过: {screen_info.screen_id}")
+                    log.warning(gt('画面ID冲突，已跳过: {screen_id}', model='log').format(screen_id=screen_info.screen_id))
                     continue
 
                 self.screen_info_list.append(screen_info)
@@ -127,25 +128,25 @@ class ScreenContext:
             file_path = self.merge_yml_file_path
             if file_path.exists():
                 with file_path.open(encoding='utf-8') as file:
-                    log.debug(f"加载yaml: {file_path}")
+                    log.debug(gt('加载yaml: {file_path}', model='log').format(file_path=file_path))
                     yaml_data = yaml_utils.safe_load(file)
             else:
-                log.info(f"合并画面配置文件不存在，按空配置加载: {file_path}")
+                log.info(gt('合并画面配置文件不存在，按空配置加载: {file_path}', model='log').format(file_path=file_path))
                 yaml_data = []
             if not isinstance(yaml_data, list):
                 if yaml_data is not None:
-                    log.warning(f"合并画面配置格式错误，已忽略: {file_path}")
+                    log.warning(gt('合并画面配置格式错误，已忽略: {file_path}', model='log').format(file_path=file_path))
                 yaml_data = []
             for data in yaml_data:
                 if not isinstance(data, dict):
-                    log.warning(f"合并画面配置中存在非字典条目，已跳过: {file_path}")
+                    log.warning(gt('合并画面配置中存在非字典条目，已跳过: {file_path}', model='log').format(file_path=file_path))
                     continue
                 screen_info = ScreenInfo(data)
                 if screen_info.screen_name in self.screen_info_map:
-                    log.warning(f"画面名称冲突，已跳过: {screen_info.screen_name}")
+                    log.warning(gt('画面名称冲突，已跳过: {screen_name}', model='log').format(screen_name=screen_info.screen_name))
                     continue
                 if screen_info.screen_id in self._id_2_screen:
-                    log.warning(f"画面ID冲突，已跳过: {screen_info.screen_id}")
+                    log.warning(gt('画面ID冲突，已跳过: {screen_id}', model='log').format(screen_id=screen_info.screen_id))
                     continue
 
                 self.screen_info_list.append(screen_info)
@@ -180,10 +181,10 @@ class ScreenContext:
             if file_path.suffix != '.yml':
                 continue
             with file_path.open(encoding='utf-8') as file:
-                log.debug(f"加载插件画面: {file_path}")
+                log.debug(gt('加载插件画面: {file_path}', model='log').format(file_path=file_path))
                 data = yaml_utils.safe_load(file)
             if not isinstance(data, dict):
-                log.warning(f"插件画面配置格式错误，已跳过: {file_path}")
+                log.warning(gt('插件画面配置格式错误，已跳过: {file_path}', model='log').format(file_path=file_path))
                 continue
 
             if default_app_id and not data.get('app_id'):
@@ -191,10 +192,10 @@ class ScreenContext:
 
             screen_info = ScreenInfo(data)
             if screen_info.screen_name in self.screen_info_map:
-                log.warning(f"插件画面名称冲突，已跳过: {screen_info.screen_name}")
+                log.warning(gt('插件画面名称冲突，已跳过: {screen_name}', model='log').format(screen_name=screen_info.screen_name))
                 continue
             if screen_info.screen_id in self._id_2_screen:
-                log.warning(f"插件画面ID冲突，已跳过: {screen_info.screen_id}")
+                log.warning(gt('插件画面ID冲突，已跳过: {screen_id}', model='log').format(screen_id=screen_info.screen_id))
                 continue
 
             self.screen_info_list.append(screen_info)
@@ -361,11 +362,11 @@ class ScreenContext:
                     continue
                 from_screen_route = self.screen_route_map[screen_info.screen_name]
                 if from_screen_route is None:
-                    log.error('画面路径没有初始化 %s', screen_info.screen_name)
+                    log.error(gt('画面路径没有初始化 %(v)s', model='log'), {'v': screen_info.screen_name})
                     continue
                 for goto_screen_name in area.goto_list:
                     if goto_screen_name not in from_screen_route:
-                        log.error('画面路径 %s -> %s 无法找到目标画面', screen_info.screen_name, goto_screen_name)
+                        log.error(gt('画面路径 %(v)s -> %(v_2)s 无法找到目标画面', model='log'), {'v': screen_info.screen_name, 'v_2': goto_screen_name})
                         continue
                     from_screen_route[goto_screen_name].node_list.append(
                         ScreenRouteNode(

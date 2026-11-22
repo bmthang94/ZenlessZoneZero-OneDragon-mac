@@ -51,10 +51,10 @@ class HollowQuickRunner(HollowRunner):
             if stand_node.next_node_to_move is None:
                 return target_node, None
             # 先走到挡路小怪的前一格 再使用炸弹
-            log.info(f'终点被 [{blocker_node.entry.entry_name}] 挡住 先前往它旁边的格子')
+            log.info(gt('终点被 [{entry_name}] 挡住 先前往它旁边的格子', model='log').format(entry_name=blocker_node.entry.entry_name))
             return stand_node, None
 
-        log.info(f'终点被 [{blocker_node.entry.entry_name}] 挡住 使用炸弹')
+        log.info(gt('终点被 [{entry_name}] 挡住 使用炸弹', model='log').format(entry_name=blocker_node.entry.entry_name))
         return target_node, self._use_bomb_and_medical()
 
     def _log_map(self, current_map: HollowZeroMap, target_node: HollowZeroMapNode) -> None:
@@ -69,7 +69,7 @@ class HollowQuickRunner(HollowRunner):
             for name in names
         }
         summary = ' '.join(f'{name}={cnt}' for name, cnt in counts.items() if cnt > 0)
-        log.info(f'速刷地图 层={level_info.level} 阶段={level_info.phase} 目标=[{target_node.entry.entry_name}] {summary}')
+        log.info(gt('速刷地图 层={level} 阶段={phase} 目标=[{entry_name}] {summary}', model='log').format(level=level_info.level, phase=level_info.phase, entry_name=target_node.entry.entry_name, summary=summary))
 
     def _use_bomb_and_medical(self) -> OperationRoundResult | None:
         """
@@ -77,14 +77,14 @@ class HollowQuickRunner(HollowRunner):
         :return: 本轮的结果；炸弹用不了时返回None 回退为常规处理
         """
         if self._bomb_times >= HollowQuickRunner.MAX_BOMB_TIMES:
-            log.error('炸弹使用次数已达上限 炸不掉挡路的小怪 回退为战斗通过')
+            log.error(gt('炸弹使用次数已达上限 炸不掉挡路的小怪 回退为战斗通过', model='log'))
             self._plugin_unavailable = True
             return None
 
         self._bomb_times += 1
         bomb_result = UseBangbooPlugin(self.ctx, BangbooPlugin.BOMB).execute()
         if not bomb_result.success:
-            log.error(f'使用炸弹失败 回退为战斗通过 {bomb_result.status}')
+            log.error(gt('使用炸弹失败 回退为战斗通过 {status}', model='log').format(status=bomb_result.status))
             self._plugin_unavailable = True
             self._recover_after_plugin()
             return self.round_wait('使用炸弹失败', wait=1)
@@ -92,7 +92,7 @@ class HollowQuickRunner(HollowRunner):
         # 炸弹对全队造成伤害 马上使用医疗包 失败了也继续
         medical_result = UseBangbooPlugin(self.ctx, BangbooPlugin.MEDICAL).execute()
         if not medical_result.success:
-            log.error(f'使用医疗包失败 {medical_result.status}')
+            log.error(gt('使用医疗包失败 {status}', model='log').format(status=medical_result.status))
 
         # 小怪格被清除 之前识别的地图已经失效
         self._recover_after_plugin()

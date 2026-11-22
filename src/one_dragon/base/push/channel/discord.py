@@ -10,7 +10,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -138,7 +142,7 @@ class Discord(PushChannel):
             return True, "推送成功"
 
         except Exception as e:
-            log.error("Discord 推送异常", exc_info=True)
+            log.error(gt('Discord 推送异常', model='log'), exc_info=True)
             return False, f"Discord 推送异常: {str(e)}"
 
     @staticmethod

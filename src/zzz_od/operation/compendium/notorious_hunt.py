@@ -205,7 +205,7 @@ class NotoriousHunt(ZOperation):
                 self.run_record.left_times = left_times
                 self.can_run_times = left_times
 
-            log.info('恶名狩猎剩余奖励次数 %s', self.can_run_times)
+            log.info(gt('恶名狩猎剩余奖励次数 %(v)s', model='log'), {'v': self.can_run_times})
 
             # 运行次数上限是计划剩余次数
             need_run_times = self.plan.plan_times - self.plan.run_times

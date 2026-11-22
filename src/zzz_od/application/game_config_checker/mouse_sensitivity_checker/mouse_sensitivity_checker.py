@@ -5,6 +5,7 @@ import numpy as np
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.game_config_checker.mouse_sensitivity_checker import (
     mouse_sensitivity_checker_const,
@@ -51,13 +52,13 @@ class MouseSensitivityChecker(ZApplication):
 
         if angle is None:
             return self.round_fail(status='识别朝向失败')
-        log.info(f'当前识别朝向 {angle:.2f}')
+        log.info(gt('当前识别朝向 {angle:.2f}', model='log').format(angle=angle))
 
         if self.angle_check_times > 0:
             angle_diff = angle - self.last_angle
             if angle_diff > 180:
                 angle_diff -= 360
-            log.info(f'本次角度偏移 {angle_diff:.2f}')
+            log.info(gt('本次角度偏移 {angle_diff:.2f}', model='log').format(angle_diff=angle_diff))
             self.angle_diff_list.append(angle_diff)
 
         self.angle_check_times += 1
@@ -80,7 +81,7 @@ class MouseSensitivityChecker(ZApplication):
 
         dx = self.turn_distance / mean_diff
         self.ctx.game_config.turn_dx = dx
-        log.info(f'转向系数 turn_dx={dx:.6f}')
+        log.info(gt('转向系数 turn_dx={dx:.6f}', model='log').format(dx=dx))
 
         return self.round_success('完成检测')
 

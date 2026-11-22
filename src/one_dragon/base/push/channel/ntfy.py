@@ -6,7 +6,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -155,7 +159,7 @@ class Ntfy(PushChannel):
                 if response.status_code == 200:
                     success_cnt += 1
                 else:
-                    error_msg = f"Ntfy 推送失败！错误信息：{response.text}"
+                    error_msg = gt('Ntfy 推送失败！错误信息：{text}', model='log').format(text=response.text)
                     log.error(error_msg)
 
             if success_cnt == len(data_list):
@@ -166,7 +170,7 @@ class Ntfy(PushChannel):
                 return False, "Ntfy 推送失败！"
 
         except Exception as e:
-            error_msg = f"Ntfy 推送异常: {str(e)}"
+            error_msg = gt('Ntfy 推送异常: {str}', model='log').format(str=str(e))
             log.error(error_msg, exc_info=True)
             return False, error_msg
 

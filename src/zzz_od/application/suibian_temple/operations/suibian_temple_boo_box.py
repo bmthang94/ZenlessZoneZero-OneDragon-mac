@@ -123,7 +123,7 @@ class SuibianTempleBooBox(ZOperation):
         if len(s_bangboo_list) > 0:
             # 记录找到的价格信息到日志
             price_info = ','.join([i[0] for i in s_bangboo_list])
-            log.info(f"找到S级邦布，价格: {price_info}")
+            log.info(gt('找到S级邦布，价格: {price_info}', model='log').format(price_info=price_info))
 
             # 依次点击所有符合条件的邦布进行选中
             for bangboo in s_bangboo_list:
@@ -151,20 +151,20 @@ class SuibianTempleBooBox(ZOperation):
         whole_ocr_list = self.ctx.ocr_service.get_ocr_result_list(self.last_screenshot)
         for ocr_result in whole_ocr_list:
             if '次数用尽' in ocr_result.data:
-                log.info(f"邦巢购买完成 - 购买邦布数量: {self.bought_count}, 刷新次数: {self.refresh_count}")
+                log.info(gt('邦巢购买完成 - 购买邦布数量: {bought_count}, 刷新次数: {refresh_count}', model='log').format(bought_count=self.bought_count, refresh_count=self.refresh_count))
                 return self.round_success(status='次数用尽')
 
         # 检查刷新次数限制
         if self.refresh_count >= self.max_refresh_count:
-            log.info(f"达到最大刷新次数限制({self.max_refresh_count}) - 购买邦布数量: {self.bought_count}, 刷新次数: {self.refresh_count}")
+            log.info(gt('达到最大刷新次数限制({max_refresh_count}) - 购买邦布数量: {bought_count}, 刷新次数: {refresh_count}', model='log').format(max_refresh_count=self.max_refresh_count, bought_count=self.bought_count, refresh_count=self.refresh_count))
             return self.round_success(status='次数用尽')
 
         # 如果没有S级邦布，点击刷新按钮
         self.refresh_count += 1
-        log.info(f"尝试点击刷新区域 (第{self.refresh_count}次)")
+        log.info(gt('尝试点击刷新区域 (第{refresh_count}次)', model='log').format(refresh_count=self.refresh_count))
         # 先检查当前屏幕识别
         current_screen = self.check_and_update_current_screen(self.last_screenshot)
-        log.info(f"当前识别的屏幕: {current_screen}")
+        log.info(gt('当前识别的屏幕: {current_screen}', model='log').format(current_screen=current_screen))
 
         self.round_by_click_area('随便观-邦巢', '按钮-刷新')
 
@@ -222,7 +222,7 @@ class SuibianTempleBooBox(ZOperation):
 
         if click_result.is_success:
             self.bought_count += 1
-            log.info(f"成功购买第{self.bought_count}个S级邦布")
+            log.info(gt('成功购买第{bought_count}个S级邦布', model='log').format(bought_count=self.bought_count))
             return self.round_success(status='点击聘用', wait=2)
         else:
             return self.round_retry(status='未找到聘用按钮', wait=1)
@@ -235,7 +235,7 @@ class SuibianTempleBooBox(ZOperation):
         if result.is_success:
             result = self.round_by_find_and_click_area(self.last_screenshot, '随便观-邦巢', '取消', success_wait=1)
             if result.is_success:
-                log.info("派驻邦布持有数量已达上限，停止邦巢购买")
+                log.info(gt('派驻邦布持有数量已达上限，停止邦巢购买', model='log'))
                 return self.round_success(status='持有上限')
 
         ocr_result_map = self.ctx.ocr.run_ocr(self.last_screenshot)

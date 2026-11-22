@@ -15,6 +15,7 @@ else:
 
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -139,11 +140,11 @@ class PcGameWindow:
             return True
         except Exception as error:
             if getattr(error, 'args', None) and '1400' in str(error.args[0]):
-                log.warning('无效的窗口句柄，尝试重置窗口')
+                log.warning(gt('无效的窗口句柄，尝试重置窗口', model='log'))
                 self._reset_cached_window()
                 return False
             if isinstance(error, win32ui.error):
-                log.error('激活窗口失败', exc_info=True)
+                log.error(gt('激活窗口失败', model='log'), exc_info=True)
                 return False
 
             try:
@@ -154,10 +155,10 @@ class PcGameWindow:
                 return True
             except Exception as fallback_error:
                 if getattr(fallback_error, 'args', None) and '1400' in str(fallback_error.args[0]):
-                    log.warning('无效的窗口句柄，尝试重置窗口')
+                    log.warning(gt('无效的窗口句柄，尝试重置窗口', model='log'))
                     self._reset_cached_window()
                     return False
-                log.error('切换到游戏窗口失败', exc_info=True)
+                log.error(gt('切换到游戏窗口失败', model='log'), exc_info=True)
                 return False
 
     @property
@@ -176,7 +177,7 @@ class PcGameWindow:
 
         # 句柄失效时重置缓存并重试一次，避免永久复用坏句柄
         if not got_rect and ctypes.windll.user32.IsWindow(hwnd) == 0:
-            log.warning('检测到失效窗口句柄，重置缓存后重试')
+            log.warning(gt('检测到失效窗口句柄，重置缓存后重试', model='log'))
             self._reset_cached_window()
             win = self.get_win()
             hwnd = self.get_hwnd()
@@ -189,7 +190,7 @@ class PcGameWindow:
             try:
                 win.restore()
             except Exception:
-                log.debug('win.restore 失败，尝试 ShowWindow 兜底', exc_info=True)
+                log.debug(gt('win.restore 失败，尝试 ShowWindow 兜底', model='log'), exc_info=True)
                 ctypes.windll.user32.ShowWindow(hwnd, 4)  # SW_SHOWNOACTIVATE
             got_rect, client_rect = self._try_get_client_rect(hwnd)
 

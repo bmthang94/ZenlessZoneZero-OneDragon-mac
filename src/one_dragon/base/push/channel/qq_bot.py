@@ -25,6 +25,7 @@ from one_dragon.base.push.push_channel_config import (
     FieldTypeEnum,
     PushChannelConfigField,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 _GATEWAY_URL: str = 'https://api.sgroup.qq.com/gateway'
@@ -139,7 +140,7 @@ class QQBot(PushChannel):
         try:
             return self._send(config, title, content, image, proxy_url)
         except Exception as e:
-            log.error('QQ 官方机器人推送异常', exc_info=True)
+            log.error(gt('QQ 官方机器人推送异常', model='log'), exc_info=True)
             return False, f'推送异常：{e}'
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:
@@ -179,7 +180,7 @@ class QQBot(PushChannel):
         """逐个接收目标发送消息，最后附图。单个目标失败不影响其他目标，但有接收方没收到就按失败返回，图片失败只降级为纯文本。"""
         ok, msg = self.validate_config(config)
         if not ok:
-            log.error(f"QQ 官方机器人校验失败：{msg}")
+            log.error(gt('QQ 官方机器人校验失败：{msg}', model='log').format(msg=msg))
             return False, msg
 
         proxies = self.get_proxy(proxy_url)
@@ -189,7 +190,7 @@ class QQBot(PushChannel):
             proxies,
         )
         if len(err) > 0:
-            log.error(f"QQ 官方机器人{err}")
+            log.error(gt('QQ 官方机器人{err}', model='log').format(err=err))
             return False, err
 
         targets = self._targets(config)
@@ -203,7 +204,7 @@ class QQBot(PushChannel):
             ok, err = self._send_message(base_path, payload, access_token, proxies)
             if not ok:
                 errors.append(f"{target_name}消息发送失败：{err}")
-                log.warning(f"QQ 官方机器人{target_name}消息发送失败：{err}")
+                log.warning(gt('QQ 官方机器人{target_name}消息发送失败：{err}', model='log').format(target_name=target_name, err=err))
                 continue
 
             ok_count += 1
@@ -213,14 +214,14 @@ class QQBot(PushChannel):
             ok, err = self._send_image(base_path, image, access_token, proxies)
             if not ok:
                 # 文本已经送达，图片失败只记警告，不把整次推送判为失败
-                log.warning(f"QQ 官方机器人{target_name}图片发送失败，已降级为纯文本：{err}")
+                log.warning(gt('QQ 官方机器人{target_name}图片发送失败，已降级为纯文本：{err}', model='log').format(target_name=target_name, err=err))
 
         if len(errors) > 0:
             # 有接收方没收到就按失败返回：只返回成功的话调用方只会提示成功，错误被吞掉
             prefix = f"{ok_count}/{len(targets)} 个接收方推送成功；" if ok_count > 0 else ''
             return False, f"{prefix}{'；'.join(errors)}"
 
-        log.info(f"QQ 官方机器人推送成功，目标数：{ok_count}")
+        log.info(gt('QQ 官方机器人推送成功，目标数：{ok_count}', model='log').format(ok_count=ok_count))
         return True, "推送成功"
 
     def _targets(self, config: dict[str, str]) -> list[tuple[str, str]]:
@@ -433,7 +434,7 @@ class QQBot(PushChannel):
 
             if attempt < self._MAX_RETRY:
                 delay = self._RETRY_DELAY * (2 ** attempt)
-                log.warning(f'QQ 官方机器人{err}，{delay:.1f} 秒后重试')
+                log.warning(gt('QQ 官方机器人{err}，{delay:.1f} 秒后重试', model='log').format(err=err, delay=delay))
                 time.sleep(delay)
 
         return False, err
@@ -486,7 +487,7 @@ class QQBot(PushChannel):
 
             if attempt < retries:
                 delay = self._RETRY_DELAY * (2 ** attempt)
-                log.warning(f'QQ 官方机器人{err}，{delay:.1f} 秒后重试')
+                log.warning(gt('QQ 官方机器人{err}，{delay:.1f} 秒后重试', model='log').format(err=err, delay=delay))
                 time.sleep(delay)
 
         return None, err
@@ -737,7 +738,7 @@ def _open_session(
 
     # 握手用较长超时，之后靠短超时的收消息循环定期检查取消与发送心跳
     ws.settimeout(_RECV_TIMEOUT_SECONDS)
-    log.info('QQ 官方机器人已连接网关，等待消息事件')
+    log.info(gt('QQ 官方机器人已连接网关，等待消息事件', model='log'))
     return _GatewaySession(ws, heartbeat_ms, deadline, cancel_event, auth_message, timeout_message), ''
 
 

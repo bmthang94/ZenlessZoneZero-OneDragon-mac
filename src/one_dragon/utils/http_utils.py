@@ -74,10 +74,10 @@ def download_file(
         if total_size > 0:
             total_size_mb = total_size / 1024.0 / 1024.0
             progress = downloaded_bytes / total_size
-            msg = f"{gt('正在下载')} {downloaded_mb:.2f}/{total_size_mb:.2f} MB ({progress * 100:.2f}%)"
+            msg = gt('正在下载 {downloaded_mb:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)', model='log').format(downloaded_mb=downloaded_mb, total_size_mb=total_size_mb, progress=progress * 100)
         else:
             progress = 0
-            msg = f"{gt('正在下载')} {downloaded_mb:.2f} MB"
+            msg = gt('正在下载 {downloaded_mb:.2f} MB', model='log').format(downloaded_mb=downloaded_mb)
 
         speed = (
             (downloaded_bytes - last_status_bytes) / status_elapsed
@@ -128,12 +128,12 @@ def download_file(
             )
 
     try:
-        msg = f"{gt('开始下载')} {download_url}"
+        msg = gt('开始下载 {download_url}', model='log').format(download_url=download_url)
         log.info(msg)
         if progress_callback is not None:
             progress_callback(0, msg)
         if status_callback is not None:
-            status_callback(HttpDownloadProgress(phase='connecting', message=gt('正在连接')))
+            status_callback(HttpDownloadProgress(phase='connecting', message=gt('正在连接', model='log')))
 
         url = urllib.parse.urlparse(download_url)
         if url.scheme not in ('http', 'https'):
@@ -169,7 +169,7 @@ def download_file(
             temp_path.replace(save_path)
             temp_path = None
 
-        msg = f"{gt('下载完成')} {save_file_path}"
+        msg = gt('下载完成 {save_file_path}', model='log').format(save_file_path=save_file_path)
         log.info(msg)
         if progress_callback is not None:
             progress_callback(1, msg)
@@ -182,14 +182,14 @@ def download_file(
                     total_bytes=total_size,
                     bytes_per_second=downloaded_bytes / elapsed,
                     progress=1,
-                    message=gt('下载完成'),
+                    message=gt('下载完成', model='log'),
                 )
             )
         return True
     except DownloadCancelledError:
         if temp_path is not None:
             temp_path.unlink(missing_ok=True)
-        msg = f"{gt('下载已取消')}"
+        msg = gt('下载已取消', model='log')
         log.info(msg)
         if progress_callback is not None:
             progress_callback(0, msg)
@@ -199,7 +199,7 @@ def download_file(
     except Exception as e:
         if temp_path is not None:
             temp_path.unlink(missing_ok=True)
-        msg = f"{gt('下载失败')} {e}"
+        msg = gt('下载失败 {e}', model='log').format(e=e)
         if progress_callback is not None:
             progress_callback(0, msg)
         if status_callback is not None:

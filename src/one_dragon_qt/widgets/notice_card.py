@@ -109,7 +109,7 @@ class BannerImageLoader(QThread):
                         self._save_to_cache(banner["image"]["url"], response.content)
                         self.image_loaded.emit(image, banner["image"]["link"])
             except Exception as e:
-                log.error(f"加载banner图片失败: {e}")
+                log.error(gt('加载banner图片失败: {e}', model='log').format(e=e))
 
             self.loaded_count += 1
 
@@ -142,10 +142,10 @@ class BannerImageLoader(QThread):
                 try:
                     image = QImage(cache_path)
                     if not image.isNull():
-                        log.debug(f"从缓存加载banner图片: {cache_path}")
+                        log.debug(gt('从缓存加载banner图片: {cache_path}', model='log').format(cache_path=cache_path))
                         return image
                 except Exception as e:
-                    log.error(f"从缓存加载图片失败: {e}")
+                    log.error(gt('从缓存加载图片失败: {e}', model='log').format(e=e))
         return None
 
     def _save_to_cache(self, url: str, image_data: bytes):
@@ -161,9 +161,9 @@ class BannerImageLoader(QThread):
             if os.path.exists(cache_path):
                 os.remove(cache_path)
             os.rename(temp_path, cache_path)
-            log.debug(f"banner图片已缓存: {cache_path}")
+            log.debug(gt('banner图片已缓存: {cache_path}', model='log').format(cache_path=cache_path))
         except Exception as e:
-            log.error(f"保存banner图片到缓存失败: {e}")
+            log.error(gt('保存banner图片到缓存失败: {e}', model='log').format(e=e))
             # 清理临时文件
             temp_path = self._get_cache_path(url) + '.tmp'
             if os.path.exists(temp_path):
@@ -248,7 +248,7 @@ class DataFetcher(QThread):
                         cached_data = json.load(cache_file)
                         self.data_fetched.emit(cached_data)
                 except (FileNotFoundError, json.JSONDecodeError) as cache_error:
-                    log.error(f"读取缓存文件失败: {cache_error}")
+                    log.error(gt('读取缓存文件失败: {cache_error}', model='log').format(cache_error=cache_error))
                     self.data_fetched.emit({"error": str(e)})
             else:
                 self.data_fetched.emit({"error": str(e)})
@@ -257,9 +257,9 @@ class DataFetcher(QThread):
         """确保缓存目录存在"""
         try:
             os.makedirs(DataFetcher.CACHE_DIR, exist_ok=True)
-            log.debug(f"缓存目录已确保存在: {DataFetcher.CACHE_DIR}")
+            log.debug(gt('缓存目录已确保存在: {CACHE_DIR}', model='log').format(CACHE_DIR=DataFetcher.CACHE_DIR))
         except Exception as e:
-            log.error(f"创建缓存目录失败: {e}")
+            log.error(gt('创建缓存目录失败: {e}', model='log').format(e=e))
 
     def is_cache_valid(self):
         if not os.path.exists(DataFetcher.CACHE_FILE):
@@ -268,7 +268,7 @@ class DataFetcher(QThread):
             cache_mtime = os.path.getmtime(DataFetcher.CACHE_FILE)
             return time.time() - cache_mtime < DataFetcher.CACHE_DURATION
         except OSError as e:
-            log.error(f"检查缓存文件时间失败: {e}")
+            log.error(gt('检查缓存文件时间失败: {e}', model='log').format(e=e))
             return False
 
     def save_cache(self, data):
@@ -276,9 +276,9 @@ class DataFetcher(QThread):
             self.ensure_cache_dir()
             with open(DataFetcher.CACHE_FILE, "w", encoding="utf-8") as cache_file:
                 json.dump(data, cache_file, ensure_ascii=False, indent=2)
-            log.debug(f"JSON缓存已保存: {DataFetcher.CACHE_FILE}")
+            log.debug(gt('JSON缓存已保存: {CACHE_FILE}', model='log').format(CACHE_FILE=DataFetcher.CACHE_FILE))
         except Exception as e:
-            log.error(f"保存JSON缓存失败: {e}")
+            log.error(gt('保存JSON缓存失败: {e}', model='log').format(e=e))
 
     def download_related_files(self, data):
         for file_url in data.get("related_files", []):
@@ -289,11 +289,11 @@ class DataFetcher(QThread):
                 response.raise_for_status()
                 with open(file_path, "wb") as file:
                     file.write(response.content)
-                log.debug(f"相关文件已下载: {file_path}")
+                log.debug(gt('相关文件已下载: {file_path}', model='log').format(file_path=file_path))
             except requests.RequestException as e:
-                log.error(f"下载相关文件失败: {e}")
+                log.error(gt('下载相关文件失败: {e}', model='log').format(e=e))
             except Exception as e:
-                log.error(f"保存相关文件失败: {e}")
+                log.error(gt('保存相关文件失败: {e}', model='log').format(e=e))
 
 
 class AcrylicBackground(QWidget):

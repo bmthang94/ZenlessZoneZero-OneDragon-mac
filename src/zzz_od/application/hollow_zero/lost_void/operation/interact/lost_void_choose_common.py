@@ -9,6 +9,7 @@ from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
 from one_dragon.base.screen import screen_utils
 from one_dragon.utils import cv2_utils, str_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.hollow_zero.lost_void.operation.interact.lost_void_artifact_pos import (
     LostVoidArtifactPos,
@@ -50,7 +51,7 @@ class LostVoidChooseCommon(ZOperation):
                 self.last_choose_target_num = self.to_choose_num
             chosen_cnt = self.get_effective_chosen_count(self.last_screenshot, chosen_list, self.to_choose_num)
             log.info(
-                f'选择决策 | 概览 | 需选={self.to_choose_num} 已选={chosen_cnt} 可选={len(art_list)}'
+                gt('选择决策 | 概览 | 需选={to_choose_num} 已选={chosen_cnt} 可选={len}', model='log').format(to_choose_num=self.to_choose_num, chosen_cnt=chosen_cnt, len=len(art_list))
             )
             if chosen_cnt >= self.to_choose_num:
                 return self.click_confirm()
@@ -121,8 +122,7 @@ class LostVoidChooseCommon(ZOperation):
 
             if len(merged_list) == 0:
                 log.info(
-                    f'选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} '
-                    f'可选={len(available_list)} 结果=无候选 下一步=答题兜底'
+                    gt('选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} 可选={len} 结果=无候选 下一步=答题兜底', model='log').format(target_num=target_num, chosen_cnt=chosen_cnt, len=len(available_list))
                 )
                 return False
 
@@ -130,12 +130,11 @@ class LostVoidChooseCommon(ZOperation):
             priority_text = ', '.join([i.artifact.display_name for i in priority_list]) if len(priority_list) > 0 else '无'
             merged_text = ', '.join([i.artifact.display_name for i in merged_list]) if len(merged_list) > 0 else '无'
             log.info(
-                f'选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} 还需={remain_cnt} 可选={len(available_list)} '
-                f'NEW={new_text} 优先级={priority_text} 合并={merged_text}'
+                gt('选择决策 | 常规层 | 需选={target_num} 已选={chosen_cnt} 还需={remain_cnt} 可选={len} NEW={new_text} 优先级={priority_text} 合并={merged_text}', model='log').format(target_num=target_num, chosen_cnt=chosen_cnt, remain_cnt=remain_cnt, len=len(available_list), new_text=new_text, priority_text=priority_text, merged_text=merged_text)
             )
 
             target = merged_list[0]
-            log.info(f'选择决策 | 常规层 | 动作=点击 目标={target.artifact.display_name} 坐标=({target.rect.center.x},{target.rect.center.y})')
+            log.info(gt('选择决策 | 常规层 | 动作=点击 目标={display_name} 坐标=({x},{y})', model='log').format(display_name=target.artifact.display_name, x=target.rect.center.x, y=target.rect.center.y))
             self.ctx.controller.click(target.rect.center)
             self.fallback_click_count += 1
             time.sleep(0.3)
@@ -193,7 +192,7 @@ class LostVoidChooseCommon(ZOperation):
         )
         if result.is_success:
             self.ctx.lost_void.priority_updated = False
-            log.info("藏品选择成功，已设置优先级更新标志")
+            log.info(gt('藏品选择成功，已设置优先级更新标志', model='log'))
             return self.round_success(result.status)
         else:
             return self.round_retry(result.status, wait=1)
@@ -211,7 +210,7 @@ class LostVoidChooseCommon(ZOperation):
             can_choose_list, chosen_list = self.get_artifact_pos(current_screen)
             chosen_cnt = self.get_effective_chosen_count(current_screen, chosen_list, target_num)
             if chosen_cnt >= target_num:
-                log.info('选择决策 | 答题兜底 | 结果=已满足目标数量')
+                log.info(gt('选择决策 | 答题兜底 | 结果=已满足目标数量', model='log'))
                 return True
 
             answer_fallback_list = self.sort_candidates([
@@ -220,8 +219,7 @@ class LostVoidChooseCommon(ZOperation):
             ])
             candidate_text = ', '.join([i.artifact.display_name for i in answer_fallback_list]) if len(answer_fallback_list) > 0 else '无'
             log.info(
-                f'选择决策 | 答题兜底 | 需选={target_num} 已选={chosen_cnt} '
-                f'候选数={len(answer_fallback_list)} 候选={candidate_text}'
+                gt('选择决策 | 答题兜底 | 需选={target_num} 已选={chosen_cnt} 候选数={len} 候选={candidate_text}', model='log').format(target_num=target_num, chosen_cnt=chosen_cnt, len=len(answer_fallback_list), candidate_text=candidate_text)
             )
 
             target = None
@@ -236,10 +234,10 @@ class LostVoidChooseCommon(ZOperation):
                     break
 
             if target is None:
-                log.info('选择决策 | 答题兜底 | 结果=无命中 下一步=盲点兜底')
+                log.info(gt('选择决策 | 答题兜底 | 结果=无命中 下一步=盲点兜底', model='log'))
                 break
 
-            log.info(f'选择决策 | 答题兜底 | 动作=点击 目标={target.artifact.display_name} 坐标=({target.rect.center.x},{target.rect.center.y})')
+            log.info(gt('选择决策 | 答题兜底 | 动作=点击 目标={display_name} 坐标=({x},{y})', model='log').format(display_name=target.artifact.display_name, x=target.rect.center.x, y=target.rect.center.y))
             self.ctx.controller.click(target.rect.center)
             tried_center_list.append(target.rect.center)
             self.fallback_click_count += 1
@@ -249,7 +247,7 @@ class LostVoidChooseCommon(ZOperation):
         _, chosen_after = self.get_artifact_pos(final_screen)
         chosen_after_cnt = self.get_effective_chosen_count(final_screen, chosen_after, target_num)
         if chosen_after_cnt >= target_num:
-            log.info('选择决策 | 答题兜底 | 结果=点击后已满足目标数量')
+            log.info(gt('选择决策 | 答题兜底 | 结果=点击后已满足目标数量', model='log'))
             return True
 
         return False
@@ -267,35 +265,35 @@ class LostVoidChooseCommon(ZOperation):
         _, current_screen = self.ctx.controller.screenshot()
         click_target_list = self.get_name_text_click_target_list(current_screen)
         if len(click_target_list) == 0:
-            log.info('选择决策 | 盲点兜底 | 结果=未识别到名称文本块')
+            log.info(gt('选择决策 | 盲点兜底 | 结果=未识别到名称文本块', model='log'))
             return False
 
-        log.info(f'选择决策 | 盲点兜底 | 阶段=第一轮 文本块数={len(click_target_list)}')
+        log.info(gt('选择决策 | 盲点兜底 | 阶段=第一轮 文本块数={len}', model='log').format(len=len(click_target_list)))
         for target_idx, target in enumerate(click_target_list):
             self.ctx.controller.click(target.center)
             time.sleep(0.3)
 
             _, clicked_screen = self.ctx.controller.screenshot()
             if self.has_same_style_selected(clicked_screen):
-                log.info(f'选择决策 | 盲点兜底 | 阶段=第一轮 结果=命中同流派武备 序号={target_idx + 1}/{len(click_target_list)}')
+                log.info(gt('选择决策 | 盲点兜底 | 阶段=第一轮 结果=命中同流派武备 序号={v}/{len}', model='log').format(v=target_idx + 1, len=len(click_target_list)))
                 return True
 
-        log.info(f'选择决策 | 盲点兜底 | 阶段=第二轮 文本块数={len(click_target_list)}')
+        log.info(gt('选择决策 | 盲点兜底 | 阶段=第二轮 文本块数={len}', model='log').format(len=len(click_target_list)))
         for target_idx, target in enumerate(click_target_list):
             self.ctx.controller.click(target.center)
             time.sleep(0.3)
 
             _, clicked_screen = self.ctx.controller.screenshot()
             if self.has_selected(clicked_screen):
-                log.info(f'选择决策 | 盲点兜底 | 阶段=第二轮 结果=命中已选择 序号={target_idx + 1}/{len(click_target_list)}')
+                log.info(gt('选择决策 | 盲点兜底 | 阶段=第二轮 结果=命中已选择 序号={v}/{len}', model='log').format(v=target_idx + 1, len=len(click_target_list)))
                 return True
 
         _, final_screen = self.ctx.controller.screenshot()
         if self.has_selected(final_screen):
-            log.info('选择决策 | 盲点兜底 | 阶段=第二轮 结果=结束后检测到已选择')
+            log.info(gt('选择决策 | 盲点兜底 | 阶段=第二轮 结果=结束后检测到已选择', model='log'))
             return True
 
-        log.info('选择决策 | 盲点兜底 | 结果=两轮结束仍未命中')
+        log.info(gt('选择决策 | 盲点兜底 | 结果=两轮结束仍未命中', model='log'))
         return False
 
     def try_fill_by_can_choose(self, target_num: int) -> bool:
@@ -311,7 +309,7 @@ class LostVoidChooseCommon(ZOperation):
             can_choose_list, chosen_list = self.get_artifact_pos(current_screen)
             chosen_cnt = self.get_effective_chosen_count(current_screen, chosen_list, target_num)
             if chosen_cnt >= target_num:
-                log.info('选择决策 | can_choose兜底 | 结果=已达到目标数量')
+                log.info(gt('选择决策 | can_choose兜底 | 结果=已达到目标数量', model='log'))
                 return True
 
             candidate_list = self.sort_candidates([i for i in can_choose_list if i.can_choose])
@@ -338,10 +336,10 @@ class LostVoidChooseCommon(ZOperation):
         _, chosen_after = self.get_artifact_pos(final_screen)
         chosen_after_cnt = self.get_effective_chosen_count(final_screen, chosen_after, target_num)
         if chosen_after_cnt >= target_num:
-            log.info('选择决策 | can_choose兜底 | 结果=点击后已达到目标数量')
+            log.info(gt('选择决策 | can_choose兜底 | 结果=点击后已达到目标数量', model='log'))
             return True
 
-        log.info('选择决策 | can_choose兜底 | 结果=候选耗尽仍未达到目标数量')
+        log.info(gt('选择决策 | can_choose兜底 | 结果=候选耗尽仍未达到目标数量', model='log'))
         return False
 
     def get_effective_chosen_count(
@@ -360,7 +358,7 @@ class LostVoidChooseCommon(ZOperation):
             # 以按钮计数为准，同时同步兜底计数，避免后续切换来源时出现突变。
             self.fallback_click_count = confirm_cnt
             return confirm_cnt
-        log.debug(f'按钮计数未命中，使用点击次数兜底={self.fallback_click_count}')
+        log.debug(gt('按钮计数未命中，使用点击次数兜底={fallback_click_count}', model='log').format(fallback_click_count=self.fallback_click_count))
         return self.fallback_click_count
 
     def _get_chosen_count_from_confirm_button(self, screen: MatLike, target_num: int | None = None) -> int | None:
@@ -380,13 +378,13 @@ class LostVoidChooseCommon(ZOperation):
             current_cnt = int(match.group(1))
             total_cnt = int(match.group(2))
             if target_num is not None and total_cnt != target_num:
-                log.debug(f'按钮计数忽略 文本={text} 解析={current_cnt}/{total_cnt} 目标={target_num}')
+                log.debug(gt('按钮计数忽略 文本={text} 解析={current_cnt}/{total_cnt} 目标={target_num}', model='log').format(text=text, current_cnt=current_cnt, total_cnt=total_cnt, target_num=target_num))
                 continue
             if chosen_cnt is None or current_cnt > chosen_cnt:
                 chosen_cnt = current_cnt
 
         if chosen_cnt is not None:
-            log.debug(f'按钮计数命中 已选={chosen_cnt} 目标={target_num}')
+            log.debug(gt('按钮计数命中 已选={chosen_cnt} 目标={target_num}', model='log').format(chosen_cnt=chosen_cnt, target_num=target_num))
         return chosen_cnt
 
     def get_name_text_click_target_list(self, screen: MatLike) -> list[MatchResult]:
@@ -455,11 +453,11 @@ class LostVoidChooseCommon(ZOperation):
 
         can_choose_list = [i for i in artifact_pos_list if i.can_choose]
         can_choose_text = ', '.join([i.artifact.display_name for i in can_choose_list]) if len(can_choose_list) > 0 else '无'
-        log.info(f'选择识别 | 可选 | 数量={len(can_choose_list)} 候选={can_choose_text}')
+        log.info(gt('选择识别 | 可选 | 数量={len} 候选={can_choose_text}', model='log').format(len=len(can_choose_list), can_choose_text=can_choose_text))
 
         chosen_list = [i for i in artifact_pos_list if i.chosen]
         chosen_text = ', '.join([i.artifact.display_name for i in chosen_list]) if len(chosen_list) > 0 else '无'
-        log.info(f'选择识别 | 已选 | 数量={len(chosen_list)} 候选={chosen_text}')
+        log.info(gt('选择识别 | 已选 | 数量={len} 候选={chosen_text}', model='log').format(len=len(chosen_list), chosen_text=chosen_text))
 
         return can_choose_list, chosen_list
 
@@ -581,9 +579,7 @@ class LostVoidChooseCommon(ZOperation):
                 matched_rule = 'fallback:none'
 
         log.info(
-            f'选择决策 | 标题 | OCR={title_words if len(title_words) > 0 else ["无"]} '
-            f'规则={matched_rule} 需选={self.to_choose_num} '
-            f'藏品={self.to_choose_artifact} 武备={self.to_choose_gear} 分支={self.to_choose_gear_branch}'
+            gt('选择决策 | 标题 | OCR={v} 规则={matched_rule} 需选={to_choose_num} 藏品={to_choose_artifact} 武备={to_choose_gear} 分支={to_choose_gear_branch}', model='log').format(v=title_words if len(title_words) > 0 else ["无"], matched_rule=matched_rule, to_choose_num=self.to_choose_num, to_choose_artifact=self.to_choose_artifact, to_choose_gear=self.to_choose_gear, to_choose_gear_branch=self.to_choose_gear_branch)
         )
 
 def __debug():

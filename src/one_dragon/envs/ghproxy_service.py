@@ -3,6 +3,7 @@ import re
 import requests
 
 from one_dragon.envs.env_config import EnvConfig
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -26,24 +27,24 @@ class GhProxyService:
             response.raise_for_status()
             js_content = response.text
         except Exception:
-            log.error('自动获取免费代理地址失败', exc_info=True)
+            log.error(gt('自动获取免费代理地址失败', model='log'), exc_info=True)
             return False
 
         url_prefix = '<a href=\\\\\\"'
         url_prefix_idx = js_content.find(url_prefix)
         if url_prefix_idx == -1:
-            log.error('自动获取免费代理地址失败')
+            log.error(gt('自动获取免费代理地址失败', model='log'))
             return False
 
         url_suffix = '\\\\\\" target='
         url_suffix_idx = js_content.find(url_suffix)
         if url_suffix_idx == -1:
-            log.error('自动获取免费代理地址失败')
+            log.error(gt('自动获取免费代理地址失败', model='log'))
             return False
 
         another_url_prefix_idx = js_content.find(url_prefix, url_suffix_idx)  # 理论上这个文件里只有一个 <a href> 标签 有多个时候忽略 等待后续再处理
         if another_url_prefix_idx != -1:
-            log.error('自动获取免费代理地址失败 有多个 <a href> 标签')
+            log.error(gt('自动获取免费代理地址失败 有多个 <a href> 标签', model='log'))
             return False
 
         proxy_url = js_content[url_prefix_idx + len(url_prefix):url_suffix_idx]
@@ -52,10 +53,10 @@ class GhProxyService:
 
         # 使用正则表达式匹配
         if not re.match(pattern, proxy_url):
-            log.error('自动获取免费代理地址失败 提取域名不合法 %s', proxy_url)
+            log.error(gt('自动获取免费代理地址失败 提取域名不合法 %(v)s', model='log'), {'v': proxy_url})
             return False
 
-        log.info('自动获取免费代理地址成功 %s', proxy_url)
+        log.info(gt('自动获取免费代理地址成功 %(v)s', model='log'), {'v': proxy_url})
         self.env_config.gh_proxy_url = proxy_url
         return True
 

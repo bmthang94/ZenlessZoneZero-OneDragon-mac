@@ -91,13 +91,13 @@ class UseBangbooPlugin(ZOperation):
     def choose_plugin(self) -> OperationRoundResult:
         if self._slots is None:
             self._slots = self._find_slots(self.last_screenshot)
-            log.info(f'识别到插件槽位 {len(self._slots)} 个')
+            log.info(gt('识别到插件槽位 {len} 个', model='log').format(len=len(self._slots)))
 
         if self._slot_idx >= len(self._slots):
             # 关闭插件列表 使用通用的关闭按钮模板
             self.round_by_find_and_click_area(self.screenshot(), '画面-通用', '关闭', success_wait=0.5)
             if self._quick_used:
-                log.info(f'列表里没有 {self.plugin.value} 之前的手势应该已经快速使用了')
+                log.info(gt('列表里没有 {value} 之前的手势应该已经快速使用了', model='log').format(value=self.plugin.value))
                 return self.round_success(self.STATUS_QUICK_USED)
             return self.round_fail(f'列表里没有 {self.plugin.value}')
 

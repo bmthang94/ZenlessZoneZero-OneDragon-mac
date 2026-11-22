@@ -6,6 +6,7 @@ import zipfile
 import onnxruntime as ort
 
 from one_dragon.utils import gpu_executor
+from one_dragon.utils.i18_utils import gt
 from one_dragon.yolo.log_utils import log
 
 _GH_PROXY_URL = 'https://ghfast.top'
@@ -41,8 +42,8 @@ class OnnxModelLoader:
         self.output_names: list[str] = []
 
         if not self.check_and_download_model():  # 新模型不ok
-            log.error(f'模型 {self.model_name} 未下载成功 请尝试更换代理下载')
-            log.info(f'尝试使用备用模型 {self.backup_model_name}')
+            log.error(gt('模型 {model_name} 未下载成功 请尝试更换代理下载', model='log').format(model_name=self.model_name))
+            log.info(gt('尝试使用备用模型 {backup_model_name}', model='log').format(backup_model_name=self.backup_model_name))
             self.model_name = self.backup_model_name
             self.model_dir_path = os.path.join(self.model_parent_dir_path, self.model_name)
 
@@ -82,7 +83,7 @@ class OnnxModelLoader:
             os.environ['https_proxy'] = self.personal_proxy
         elif self.gh_proxy:
             download_url = f'{self.gh_proxy_url}/{self.model_download_url}/{self.model_name}.zip'
-        log.info('开始下载 %s %s', self.model_name, download_url)
+        log.info(gt('开始下载 %(model_name)s %(download_url)s', model='log'), {'model_name': self.model_name, 'download_url': download_url})
         zip_file_path = os.path.join(self.model_dir_path, f'{self.model_name}.zip')
         last_log_time = time.time()
 
@@ -94,15 +95,15 @@ class OnnxModelLoader:
             downloaded = block_num * block_size / 1024.0 / 1024.0
             total_size_mb = total_size / 1024.0 / 1024.0
             progress = downloaded / total_size_mb * 100
-            log.info(f"正在下载 {self.model_name}: {downloaded:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)")
+            log.info(gt("正在下载 {model_name}: {downloaded:.2f}/{total_size_mb:.2f} MB ({progress:.2f}%)", model='log').format(model_name=self.model_name, downloaded=downloaded, total_size_mb=total_size_mb, progress=progress))
 
         try:
             _, _ = urllib.request.urlretrieve(download_url, zip_file_path, log_download_progress)
-            log.info('下载完成 %s', self.model_name)
+            log.info(gt('下载完成 %(model_name)s', model='log'), {'model_name': self.model_name})
             self.unzip_model(zip_file_path)
             return True
         except Exception:
-            log.error('下载失败模型失败', exc_info=True)
+            log.error(gt('下载失败模型失败', model='log'), exc_info=True)
             return False
 
     def unzip_model(self, zip_file_path: str):
@@ -111,7 +112,7 @@ class OnnxModelLoader:
         :param zip_file_path: 压缩文件路径
         :return:
         """
-        log.info('开始解压文件 %s', zip_file_path)
+        log.info(gt('开始解压文件 %(zip_file_path)s', model='log'), {'zip_file_path': zip_file_path})
 
         if not os.path.exists(self.model_dir_path):
             os.mkdir(self.model_dir_path)
@@ -119,7 +120,7 @@ class OnnxModelLoader:
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
             zip_ref.extractall(self.model_dir_path)
 
-        log.info('解压完成 %s', zip_file_path)
+        log.info(gt('解压完成 %(zip_file_path)s', model='log'), {'zip_file_path': zip_file_path})
 
     def load_model(self) -> None:
         """
@@ -135,12 +136,12 @@ class OnnxModelLoader:
                 providers = ['DmlExecutionProvider']
             else:
                 providers = ['CPUExecutionProvider']
-                log.warning('未找到GPU执行提供程序，回退到CPU')
+                log.warning(gt('未找到GPU执行提供程序，回退到CPU', model='log'))
         else:
             providers = ['CPUExecutionProvider']
 
         onnx_path = os.path.join(self.model_dir_path, 'model.onnx')
-        log.info('加载模型 %s', onnx_path)
+        log.info(gt('加载模型 %(onnx_path)s', model='log'), {'onnx_path': onnx_path})
 
         session_options = ort.SessionOptions()
         if "DmlExecutionProvider" in providers:
@@ -150,7 +151,7 @@ class OnnxModelLoader:
         session_options.add_session_config_entry('session.intra_op.allow_spinning', '0')
         session_options.add_session_config_entry('session.inter_op.allow_spinning', '0')
 
-        log.info('开始创建ONNX Runtime会话 %s providers=%s', onnx_path, providers)
+        log.info(gt('开始创建ONNX Runtime会话 %(onnx_path)s providers=%(providers)s', model='log'), {'onnx_path': onnx_path, 'providers': providers})
         self.session = gpu_executor.create_onnx_session(
             lambda: ort.InferenceSession(
                 onnx_path,
@@ -159,7 +160,7 @@ class OnnxModelLoader:
             ),
             providers=providers,
         )
-        log.info('创建ONNX Runtime会话完成 providers=%s', self.session.get_providers())
+        log.info(gt('创建ONNX Runtime会话完成 providers=%(providers)s', model='log'), {'providers': self.session.get_providers()})
         self.get_input_details()
         self.get_output_details()
 

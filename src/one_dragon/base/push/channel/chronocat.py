@@ -12,7 +12,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -118,9 +122,9 @@ class Chronocat(PushChannel):
 
                 if self._send_message(api_url, headers, data):
                     success_count += 1
-                    log.info(f"Chronocat QQ个人消息:{user_id} 推送成功")
+                    log.info(gt('Chronocat QQ个人消息:{user_id} 推送成功', model='log').format(user_id=user_id))
                 else:
-                    log.error(f"Chronocat QQ个人消息:{user_id} 推送失败")
+                    log.error(gt('Chronocat QQ个人消息:{user_id} 推送失败', model='log').format(user_id=user_id))
 
             # 发送群消息 (chatType=2)
             for group_id in group_ids:
@@ -137,9 +141,9 @@ class Chronocat(PushChannel):
 
                 if self._send_message(api_url, headers, data):
                     success_count += 1
-                    log.info(f"Chronocat QQ群消息:{group_id} 推送成功")
+                    log.info(gt('Chronocat QQ群消息:{group_id} 推送成功', model='log').format(group_id=group_id))
                 else:
-                    log.error(f"Chronocat QQ群消息:{group_id} 推送失败")
+                    log.error(gt('Chronocat QQ群消息:{group_id} 推送失败', model='log').format(group_id=group_id))
 
             if success_count == 0:
                 return False, "所有消息推送失败"
@@ -149,7 +153,7 @@ class Chronocat(PushChannel):
                 return True, "推送成功"
 
         except Exception as e:
-            log.error("Chronocat 推送异常", exc_info=True)
+            log.error(gt('Chronocat 推送异常', model='log'), exc_info=True)
             return False, f"Chronocat 推送异常: {str(e)}"
 
     def validate_config(self, config: dict[str, str]) -> tuple[bool, str]:
@@ -224,5 +228,5 @@ class Chronocat(PushChannel):
             response = requests.post(url, headers=headers, data=json.dumps(data), timeout=15)
             return response.status_code == 200
         except Exception:
-            log.error("Chronocat 推送异常", exc_info=True)
+            log.error(gt('Chronocat 推送异常', model='log'), exc_info=True)
             return False

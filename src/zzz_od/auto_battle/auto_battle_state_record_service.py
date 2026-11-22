@@ -7,6 +7,7 @@ from one_dragon.base.conditional_operation.state_record_service import (
     StateRecordService,
 )
 from one_dragon.base.conditional_operation.state_recorder import StateRecorder
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.auto_battle.auto_battle_dodge_context import YoloStateEventEnum
 from zzz_od.auto_battle.auto_battle_state import BattleStateEnum
@@ -36,7 +37,7 @@ class AutoBattleStateRecordService(StateRecordService):
         if self.is_valid_state(state_name):
             return StateRecorder(state_name, mutex_list=self.mutex_list.get(state_name, None))
         else:
-            log.error(f'使用了不合法的状态 {state_name}')
+            log.error(gt('使用了不合法的状态 {state_name}', model='log').format(state_name=state_name))
             return None
 
     @cache  # noqa: B019

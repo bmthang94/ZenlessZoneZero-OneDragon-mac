@@ -13,6 +13,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from one_dragon.utils import os_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 MARKET_URL = 'https://onedragon-anyone.github.io/plugin-data/api/v1/plugins.json'
@@ -202,7 +203,7 @@ class PluginMarketService:
         try:
             payload = self._download()
         except Exception as exc:  # noqa: BLE001 - 网络异常统一降级
-            log.error(f'拉取插件市场数据失败: {exc}')
+            log.error(gt('拉取插件市场数据失败: {exc}', model='log').format(exc=exc))
             cached = self._read_cache()
             if cached is not None:
                 return MarketSnapshot(plugins=cached.plugins, fetched_at=cached.fetched_at, from_cache=True)
@@ -245,7 +246,7 @@ class PluginMarketService:
                 from_cache=True,
             )
         except Exception as exc:  # noqa: BLE001 - 缓存损坏时按无缓存处理
-            log.warning(f'读取插件市场缓存失败: {exc}')
+            log.warning(gt('读取插件市场缓存失败: {exc}', model='log').format(exc=exc))
             return None
 
     def _write_cache(self, snapshot: MarketSnapshot) -> None:
@@ -275,7 +276,7 @@ class PluginMarketService:
                 encoding='utf-8',
             )
         except Exception as exc:  # noqa: BLE001 - 缓存写入失败不影响主流程
-            log.warning(f'写入插件市场缓存失败: {exc}')
+            log.warning(gt('写入插件市场缓存失败: {exc}', model='log').format(exc=exc))
 
 
 def _release_to_raw(release: MarketRelease | None) -> dict | None:

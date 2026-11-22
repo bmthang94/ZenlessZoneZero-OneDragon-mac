@@ -67,6 +67,7 @@ a = Analysis(
         ('module_manifest.py', '.'),
         ('../config/project.yml', 'resources/config'),
         ('../config/repository.yml', 'resources/config'),
+        ('../assets/text/output/en/LC_MESSAGES/log.mo', 'resources/assets/text/output/en/LC_MESSAGES'),
     ],
     hiddenimports=['_cffi_backend'],
     hookspath=[],

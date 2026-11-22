@@ -5,6 +5,7 @@ from typing import Any
 
 from cv2.typing import MatLike
 
+from one_dragon.utils.i18_utils import gt
 from onnxocr.logger import get_logger
 from onnxocr.predict_system import TextSystem
 from onnxocr.utils import draw_ocr
@@ -174,13 +175,13 @@ class ONNXPaddleOcr(TextSystem):
                 return ocr_res
         except Exception:
             from one_dragon.utils.log_utils import log as od_log
-            od_log.error('OCR推理出错', exc_info=True)
+            od_log.error(gt('OCR推理出错', model='log'), exc_info=True)
             try:
                 from one_dragon.utils import debug_utils
                 debug_image = img[0] if isinstance(img, list) else img
                 debug_utils.save_debug_image(image=debug_image, prefix='ocr_error')
             except Exception:
-                od_log.warning('保存OCR错误调试图片失败', exc_info=True)
+                od_log.warning(gt('保存OCR错误调试图片失败', model='log'), exc_info=True)
             raise
 
 

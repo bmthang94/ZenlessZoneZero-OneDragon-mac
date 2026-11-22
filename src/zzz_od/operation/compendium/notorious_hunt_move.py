@@ -84,7 +84,7 @@ class NotoriousHuntMove(ZOperation):
         if self._turn_to_target(distance_pos):
             return self.round_wait(wait=0.5)
         else:
-            log.info(f'识别距离: {current_distance}')
+            log.info(gt('识别距离: {current_distance}', model='log').format(current_distance=current_distance))
             press_time = current_distance / 7.2
             press_time = min(press_time, 5)
             if press_time > 0:
@@ -143,7 +143,7 @@ class NotoriousHuntMove(ZOperation):
                 for mr in mrl:
                     choose_mr_list.append(mr)
 
-        log.info('当前识别鸣徽选项数量 %d', len(choose_mr_list))
+        log.info(gt('当前识别鸣徽选项数量 %(v)d', model='log'), {'v': len(choose_mr_list)})
 
         if len(choose_mr_list) == 0:
             return self.round_retry('未识别到鸣徽选择', wait=1)

@@ -7,6 +7,7 @@ from one_dragon.base.matcher.match_result import MatchResult, MatchResultList
 from one_dragon.base.screen.template_info import TemplateInfo
 from one_dragon.base.screen.template_loader import TemplateLoader
 from one_dragon.utils import cv2_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -44,7 +45,7 @@ class TemplateMatcher:
         """
         template: TemplateInfo = self.template_loader.get_template(template_sub_dir, template_id)
         if template is None:
-            log.error(f'未加载模板 {template_id}')
+            log.error(gt('未加载模板 {template_id}', model='log').format(template_id=template_id))
             return MatchResultList()
 
         mask_usage: MatLike | None = None
@@ -110,7 +111,7 @@ class TemplateMatcher:
         """
         template: TemplateInfo = self.template_loader.get_template(template_sub_dir, template_id)
         if template is None:
-            log.error(f'未加载模板 {template_id}')
+            log.error(gt('未加载模板 {template_id}', model='log').format(template_id=template_id))
             return MatchResultList()
 
         # 对原图和模板都进行二值化处理

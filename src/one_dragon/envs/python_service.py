@@ -36,11 +36,11 @@ class PythonService:
         :return:
         """
         if self.get_uv_version() is not None:
-            msg = gt('已经安装了 UV')
+            msg = gt('已经安装了 UV', model='log')
             log.info(msg)
             return True, msg
 
-        msg = gt('正在安装 UV...')
+        msg = gt('正在安装 UV...', model='log')
         if progress_callback is not None:
             progress_callback(-1, msg)
         log.info(msg)
@@ -51,9 +51,9 @@ class PythonService:
         )
 
         if success:
-            return True, gt('安装 UV 成功')
+            return True, gt('安装 UV 成功', model='log')
         else:
-            return False, gt('安装 UV 失败')
+            return False, gt('安装 UV 失败', model='log')
 
     def install_standalone_python(self, progress_callback: Callable[[float, str], None] | None) -> bool:
         """
@@ -66,7 +66,7 @@ class PythonService:
             zip_file_name, DEFAULT_ENV_PATH, DEFAULT_PYTHON_DIR_PATH, progress_callback
         )
 
-        msg = gt('Python 安装成功') if success else gt('Python 安装失败')
+        msg = gt('Python 安装成功', model='log') if success else gt('Python 安装失败', model='log')
         log.info(msg)
         if progress_callback is not None:
             progress_callback(1 if success else 0, msg)
@@ -79,7 +79,7 @@ class PythonService:
         :param progress_callback:
         :return:
         """
-        msg = gt('正在使用 UV 创建虚拟环境...')
+        msg = gt('正在使用 UV 创建虚拟环境...', model='log')
         if progress_callback is not None:
             progress_callback(-1, msg)
         log.info(msg)
@@ -90,7 +90,7 @@ class PythonService:
                                         f'--python={self.project_config.python_version}',
                                         '--no-python-downloads'])
         success = result is not None
-        msg = gt('创建虚拟环境成功') if success else gt('创建虚拟环境失败')
+        msg = gt('创建虚拟环境成功', model='log') if success else gt('创建虚拟环境失败', model='log')
         log.info(msg)
         if progress_callback is not None:
             progress_callback(1 if success else 0, msg)
@@ -111,19 +111,19 @@ class PythonService:
         使用uv安装环境和依赖
         :return:
         """
-        msg = gt('正在使用 UV 安装依赖...')
+        msg = gt('正在使用 UV 安装依赖...', model='log')
         if progress_callback is not None:
             progress_callback(-1, msg)
         log.info(msg)
 
         env_zip_path = os.path.join(DEFAULT_ENV_PATH, self.project_config.env_archive_name)
         if os.path.exists(env_zip_path):
-            msg = gt('检测到已存在的环境压缩包，正在解压...')
+            msg = gt('检测到已存在的环境压缩包，正在解压...', model='log')
             log.info(msg)
 
             success = file_utils.unzip_file(env_zip_path, DEFAULT_WHEELS_DIR_PATH)
             if success:
-                msg = gt('解压环境包成功，正在安装运行依赖...')
+                msg = gt('解压环境包成功，正在安装运行依赖...', model='log')
                 log.info(msg)
 
         os.makedirs(DEFAULT_WHEELS_DIR_PATH, exist_ok=True)
@@ -144,7 +144,7 @@ class PythonService:
 
         result = cmd_utils.run_command(command)
         success = result is not None
-        msg = gt('运行依赖安装成功') if success else gt('运行依赖安装失败')
+        msg = gt('运行依赖安装成功', model='log') if success else gt('运行依赖安装失败', model='log')
         log.info(msg)
         if progress_callback is not None:
             progress_callback(1, msg)
@@ -170,17 +170,17 @@ class PythonService:
         """按需同步运行依赖，并恢复同步前的仓库锁文件。"""
         self._configure_uv_environment()
         if self._uv_runtime_environment_synced():
-            return True, gt('运行环境已同步')
+            return True, gt('运行环境已同步', model='log')
 
         lock_path = Path(os_utils.get_work_dir()) / 'uv.lock'
         if not lock_path.is_file():
-            return False, gt('找不到 uv.lock，无法同步运行环境')
+            return False, gt('找不到 uv.lock，无法同步运行环境', model='log')
 
         try:
             lock_content = lock_path.read_bytes()
         except OSError:
-            log.error('读取 uv.lock 失败', exc_info=True)
-            return False, gt('读取 uv.lock 失败')
+            log.error(gt('读取 uv.lock 失败', model='log'), exc_info=True)
+            return False, gt('读取 uv.lock 失败', model='log')
         try:
             cmd_utils.run_command_with_code(
                 [
@@ -196,12 +196,12 @@ class PythonService:
             try:
                 lock_path.write_bytes(lock_content)
             except OSError:
-                log.error('恢复 uv.lock 失败', exc_info=True)
+                log.error(gt('恢复 uv.lock 失败', model='log'), exc_info=True)
 
         if not self._uv_runtime_environment_synced():
-            return False, gt('运行环境同步失败')
+            return False, gt('运行环境同步失败', model='log')
 
-        return True, gt('运行环境同步完成')
+        return True, gt('运行环境同步完成', model='log')
 
     def uv_check_sync_status(
         self,
@@ -213,7 +213,7 @@ class PythonService:
         :param progress_callback: 进度回调
         :return:
         """
-        msg = gt('正在检查环境同步状态...')
+        msg = gt('正在检查环境同步状态...', model='log')
         if progress_callback is not None:
             progress_callback(-1, msg)
         log.info(msg)
@@ -236,7 +236,7 @@ class PythonService:
         获取当前系统环境变量中的uv路径
         :return:
         """
-        log.debug(gt('获取系统环境变量中的 UV'))
+        log.debug(gt('获取系统环境变量中的 UV', model='log'))
         message = cmd_utils.run_command(['where', 'uv'])
         if message is not None and message.endswith('.exe'):
             return message
@@ -247,7 +247,7 @@ class PythonService:
         """
         :return: 当前使用的uv版本
         """
-        log.debug(gt('检测当前 UV 版本'))
+        log.debug(gt('检测当前 UV 版本', model='log'))
         uv_path = self.env_config.uv_path
         if uv_path == '' or not os.path.exists(uv_path):
             return None
@@ -262,7 +262,7 @@ class PythonService:
         """
         :return: 当前使用的python版本
         """
-        log.debug(gt('检测当前 Python 版本'))
+        log.debug(gt('检测当前 Python 版本', model='log'))
         python_path = self.env_config.python_path
         if python_path == '' or not os.path.exists(python_path):
             return None
@@ -281,17 +281,17 @@ class PythonService:
         """
         # 清理旧环境
         if progress_callback is not None:
-            progress_callback(-1, gt('正在清理旧文件'))
+            progress_callback(-1, gt('正在清理旧文件', model='log'))
 
         self.env_config.python_path = ''
         if os.path.exists(DEFAULT_VENV_DIR_PATH):
             shutil.rmtree(DEFAULT_VENV_DIR_PATH)
 
         if not self.install_standalone_python(progress_callback):
-            return False, gt('安装 Python 失败 请尝试到「设置」更改 Python 下载源')
+            return False, gt('安装 Python 失败 请尝试到「设置」更改 Python 下载源', model='log')
 
         if not self.uv_create_venv(progress_callback):
-            return False, gt('创建环境失败')
+            return False, gt('创建环境失败', model='log')
         self.env_config.python_path = DEFAULT_VENV_PYTHON_PATH
 
         return True, ''
@@ -311,7 +311,7 @@ class PythonService:
         :param progress_callback: 进度回调
         :return: (最佳源的标签, 延迟ms) or None if no sources or all fail
         """
-        msg = gt(f'正在进行{log_prefix}测速...')
+        msg = gt('正在进行{log_prefix}测速...', model='log').format(log_prefix=log_prefix)
         if progress_callback is not None:
             progress_callback(-1, msg)
         log.info(msg)
@@ -319,7 +319,7 @@ class PythonService:
         ping_result_list = []
         sources_to_test = self.env_config.repo_config.get_source_values(source_name)
         if not sources_to_test:
-            msg = f"{gt('找不到')}{log_prefix}{gt('进行测速')}"
+            msg = gt('找不到{log_prefix}进行测速', model='log').format(log_prefix=log_prefix)
             log.warning(msg)
             if progress_callback is not None:
                 progress_callback(-1, msg)
@@ -343,7 +343,7 @@ class PythonService:
                 elapsed_ms = int(1000 * (end_time - start_time))
                 ms = elapsed_ms if elapsed_ms < 3000 else 9999
 
-            current_source_log = gt(f'{source.label} 耗时 {ms}ms')
+            current_source_log = gt('{label} 耗时 {ms}ms', model='log').format(label=source.label, ms=ms)
             log.info(current_source_log)
             if progress_callback is not None:
                 progress_callback(-1, current_source_log)
@@ -351,7 +351,7 @@ class PythonService:
             ping_result_list.append((source, ms))
 
         if not ping_result_list:
-            msg = f"{log_prefix}{gt('测速失败')}"
+            msg = gt('{log_prefix}测速失败', model='log').format(log_prefix=log_prefix)
             log.warning(msg)
             if progress_callback is not None:
                 progress_callback(-1, msg)
@@ -362,7 +362,7 @@ class PythonService:
         best_source_obj = ping_result_list[0][0]
         best_source_ms = ping_result_list[0][1]
 
-        final_log_msg = gt(f"{gt('选择最优')}{log_prefix} {best_source_obj.label}")
+        final_log_msg = gt('选择最优{log_prefix} {label}', model='log').format(log_prefix=log_prefix, label=best_source_obj.label)
         log.info(final_log_msg)
         if progress_callback is not None:
             progress_callback(-1, final_log_msg)
@@ -377,7 +377,7 @@ class PythonService:
         """
         return self._choose_best_source_by_ping(
             'pip_source',
-            gt('pip源'),
+            gt('pip源', model='log'),
             'pip_source',
             progress_callback
         )

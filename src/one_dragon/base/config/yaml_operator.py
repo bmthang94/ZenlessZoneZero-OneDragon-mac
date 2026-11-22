@@ -5,6 +5,7 @@ import shutil
 import yaml
 
 from one_dragon.utils import yaml_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 cached_yaml_data: dict[str, tuple[float, dict | list]] = {}
@@ -17,7 +18,7 @@ def read_cache_or_load(file_path: str) -> dict | list:
         return copy.deepcopy(cached[1])
 
     with open(file_path, encoding="utf-8") as file:
-        log.debug(f"加载yaml: {file_path}")
+        log.debug(gt('加载yaml: {file_path}', model='log').format(file_path=file_path))
         data = yaml_utils.safe_load(file)
         if data is None:
             data = {}
@@ -68,7 +69,7 @@ class YamlOperator:
         try:
             self.data = read_cache_or_load(self.file_path)
         except Exception:
-            log.error(f'文件读取失败 将使用默认值 {self.file_path}', exc_info=True)
+            log.error(gt('文件读取失败 将使用默认值 {file_path}', model='log').format(file_path=self.file_path), exc_info=True)
             return
 
         if self.data is None:
@@ -88,7 +89,7 @@ class YamlOperator:
                 shutil.copyfile(self._copy_on_write_source_path, write_path)
             except FileNotFoundError:
                 log.error(
-                    f'复制配置文件失败 来源文件不存在 source={self._copy_on_write_source_path} write_path={write_path}'
+                    gt('复制配置文件失败 来源文件不存在 source={_copy_on_write_source_path} write_path={write_path}', model='log').format(_copy_on_write_source_path=self._copy_on_write_source_path, write_path=write_path)
                 )
                 return False
 

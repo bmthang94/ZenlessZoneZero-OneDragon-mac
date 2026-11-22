@@ -417,7 +417,7 @@ class LostVoidApp(ZApplication):
                     if text[0] == '[':
                         text = text[1:3]
                     self.ctx.lost_void.challenge_config.artifact_priority_in_battle.append(text)
-                    log.info('添加协战代理人属性武备至第一优先级: [' + text + ']')
+                    log.info(gt('添加协战代理人属性武备至第一优先级: [{text}]', model='log').format(text=text))
                 return self.round_success('已选择协战代理人')
 
         return self.round_retry('未找到协战', wait=0.5)
@@ -460,7 +460,7 @@ class LostVoidApp(ZApplication):
             self.priority_agent_list = [x.data for x in match_agent_list]
 
             display_name: str = ', '.join([i.agent_name for i in self.priority_agent_list])
-            log.info(f'当前识别UP代理人列表: [{display_name}]')
+            log.info(gt('当前识别UP代理人列表: [{display_name}]', model='log').format(display_name=display_name))
 
             if len(self.priority_agent_list) > 0:
                 return self.round_success()
@@ -486,9 +486,7 @@ class LostVoidApp(ZApplication):
 
         # [DEBUG] 打印关键决策参数
         config = self.ctx.lost_void.challenge_config
-        log.debug(f"【决策检查】 追新模式: {config.chase_new_mode}, "
-                  f"当前挑战配置: {config.module_name}, "
-                  f"预设调查战略: {config.investigation_strategy}")
+        log.debug(gt('【决策检查】 追新模式: {chase_new_mode}, 当前挑战配置: {module_name}, 预设调查战略: {investigation_strategy}', model='log').format(chase_new_mode=config.chase_new_mode, module_name=config.module_name, investigation_strategy=config.investigation_strategy))
 
         # 追新模式逻辑
         if config.chase_new_mode:
@@ -502,44 +500,43 @@ class LostVoidApp(ZApplication):
         追新模式下的选择逻辑
         """
         # 优先寻找无等级战略
-        log.debug("【追新模式】 开始执行无等级圈圈流水线分析...")
+        log.debug(gt('【追新模式】 开始执行无等级圈圈流水线分析...', model='log'))
         no_level_context = self.ctx.cv_service.run_pipeline('调查战略无等级圈圈', self.last_screenshot)
         if no_level_context.is_success and no_level_context.contours:
             target_contour = no_level_context.contours[0]
             M = cv2.moments(target_contour)
             if M["m00"] == 0:
-                log.debug("【追新模式】 轮廓面积为零，跳过无等级战略检测")
+                log.debug(gt('【追新模式】 轮廓面积为零，跳过无等级战略检测', model='log'))
             else:
                 center_x = int(M["m10"] / M["m00"])
                 center_y = int(M["m01"] / M["m00"])
                 offset_x, offset_y = no_level_context.crop_offset
                 click_pos = Point(center_x + offset_x, center_y + offset_y)
                 log.debug(
-                    f"【追新模式】 找到无等级战略，点击坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {no_level_context.crop_offset})"
+                    gt('【追新模式】 找到无等级战略，点击坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {crop_offset})', model='log').format(click_pos=click_pos, center_x=center_x, center_y=center_y, crop_offset=no_level_context.crop_offset)
                 )
                 self.ctx.controller.click(click_pos)
                 time.sleep(1)
                 return self._click_confirm_after_strategy_chosen()
 
-        log.debug("【追新模式】 未找到无等级战略，使用原有逻辑...")
+        log.debug(gt('【追新模式】 未找到无等级战略，使用原有逻辑...', model='log'))
 
         swipe_attempts = 0
         MAX_SWIPES = 3
 
         while swipe_attempts < MAX_SWIPES:
-            log.debug("【追新模式】 开始执行CV流水线分析...")
+            log.debug(gt('【追新模式】 开始执行CV流水线分析...', model='log'))
             frame_context = self.ctx.cv_service.run_pipeline('调查战略等级圈圈', self.last_screenshot)
             digit_context = self.ctx.cv_service.run_pipeline('调查战略等级分析', self.last_screenshot)
 
             if not frame_context.is_success or not frame_context.contours:
-                log.debug("【追新模式】 未找到任何战略外框，执行滑动...")
+                log.debug(gt('【追新模式】 未找到任何战略外框，执行滑动...', model='log'))
                 self._swipe_strategy_list()
                 swipe_attempts += 1
                 continue
 
             target_contour_to_click = None
-            log.debug(f"【追新模式】 找到 {len(frame_context.contours)} 个战略外框，"
-                      f"{len(digit_context.contours) if digit_context.is_success and digit_context.contours else 0} 个等级数字。开始匹配...")
+            log.debug(gt('【追新模式】 找到 {len} 个战略外框，{v} 个等级数字。开始匹配...', model='log').format(len=len(frame_context.contours), v=len(digit_context.contours) if digit_context.is_success and digit_context.contours else 0))
             for frame_contour in frame_context.contours:
                 frame_rect = cv2.boundingRect(frame_contour)
                 found_digit_contour = None
@@ -558,7 +555,7 @@ class LostVoidApp(ZApplication):
                             break
 
                 if found_digit_contour is None:
-                    log.debug("【追新模式】 找到一个未满级/无等级目标，准备点击。")
+                    log.debug(gt('【追新模式】 找到一个未满级/无等级目标，准备点击。', model='log'))
                     target_contour_to_click = frame_contour
                     break
 
@@ -569,13 +566,13 @@ class LostVoidApp(ZApplication):
                 offset_x, offset_y = frame_context.crop_offset
                 click_pos = Point(center_x + offset_x, center_y + offset_y)
                 log.debug(
-                    f"【追新模式】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {frame_context.crop_offset})"
+                    gt('【追新模式】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {crop_offset})', model='log').format(click_pos=click_pos, center_x=center_x, center_y=center_y, crop_offset=frame_context.crop_offset)
                 )
                 self.ctx.controller.click(click_pos)
                 time.sleep(1)
                 return self._click_confirm_after_strategy_chosen()
 
-            log.debug("【追新模式】 当前屏幕无可选择目标，执行滑动...")
+            log.debug(gt('【追新模式】 当前屏幕无可选择目标，执行滑动...', model='log'))
             self._swipe_strategy_list()
             self.screenshot()
             swipe_attempts += 1
@@ -589,7 +586,7 @@ class LostVoidApp(ZApplication):
             center_y = int(M["m01"] / M["m00"])
             offset_x, offset_y = frame_context.crop_offset
             click_pos = Point(center_x + offset_x, center_y + offset_y)
-            log.debug(f"【追新模式-回退】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {frame_context.crop_offset})")
+            log.debug(gt('【追新模式-回退】 点击目标坐标: {click_pos} (相对: ({center_x}, {center_y}), 偏移: {crop_offset})', model='log').format(click_pos=click_pos, center_x=center_x, center_y=center_y, crop_offset=frame_context.crop_offset))
             self.ctx.controller.click(click_pos)
             time.sleep(1)
             return self._click_confirm_after_strategy_chosen()
@@ -741,7 +738,7 @@ class LostVoidApp(ZApplication):
     @node_from(from_name='层间移动')
     @operation_node(name='层间移动')
     def run_level(self) -> OperationRoundResult:
-        log.info(f'推测楼层类型 {self.next_region_type.value.value}')
+        log.info(gt('推测楼层类型 {value}', model='log').format(value=self.next_region_type.value.value))
         op = LostVoidRunLevel(self.ctx, self.next_region_type)
         op_result = op.execute()
         if op_result.success:

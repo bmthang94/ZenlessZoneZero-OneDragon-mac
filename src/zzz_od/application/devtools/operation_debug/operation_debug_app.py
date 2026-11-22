@@ -5,6 +5,7 @@ from one_dragon.base.operation.application import application_const
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.battle_assistant.battle_assistant_input_mode import (
     apply_battle_assistant_input_mode,
@@ -103,7 +104,7 @@ class OperationDebugApp(ZApplication):
             self.op_idx = 0
             return self.round_success()
         except Exception:
-            log.error('指令模板加载失败', exc_info=True)
+            log.error(gt('指令模板加载失败', model='log'), exc_info=True)
             return self.round_fail()
 
     @node_from(from_name='加载动作指令')

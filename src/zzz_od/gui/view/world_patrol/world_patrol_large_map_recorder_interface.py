@@ -2,32 +2,42 @@ import time
 
 import cv2
 from PySide6.QtCore import Signal
-from PySide6.QtWidgets import QWidget, QHBoxLayout, QVBoxLayout, QLabel
-from qfluentwidgets import FluentIcon, PushButton, SpinBox, DoubleSpinBox
+from PySide6.QtWidgets import QHBoxLayout, QLabel, QVBoxLayout, QWidget
+from qfluentwidgets import DoubleSpinBox, FluentIcon, PushButton, SpinBox
 
 from one_dragon.base.config.config_item import ConfigItem
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.matcher.match_result import MatchResult
 from one_dragon.base.operation.context_event_bus import ContextEventItem
 from one_dragon.base.operation.one_dragon_context import ContextKeyboardEventEnum
-from one_dragon.utils import cv2_utils, cal_utils
+from one_dragon.utils import cal_utils, cv2_utils
 from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon_qt.widgets.click_image_label import ClickImageLabel
 from one_dragon_qt.widgets.editable_combo_box import EditableComboBox
 from one_dragon_qt.widgets.image_viewer_widget import ImageViewerWidget
 from one_dragon_qt.widgets.log_display_card import LogDisplayCard
-from one_dragon_qt.widgets.setting_card.multi_push_setting_card import MultiLineSettingCard, MultiPushSettingCard
+from one_dragon_qt.widgets.setting_card.multi_push_setting_card import (
+    MultiLineSettingCard,
+    MultiPushSettingCard,
+)
 from one_dragon_qt.widgets.setting_card.switch_setting_card import SwitchSettingCard
 from one_dragon_qt.widgets.vertical_scroll_interface import VerticalScrollInterface
 from zzz_od.application.devtools.large_map_recorder import large_map_recorder_utils
-from zzz_od.application.devtools.large_map_recorder.large_map_recorder_wrapper import LargeMapSnapshot, MiniMapSnapshot
-from zzz_od.application.world_patrol.world_patrol_area import WorldPatrolEntry, WorldPatrolArea, \
-    WorldPatrolLargeMapIcon, WorldPatrolLargeMap
+from zzz_od.application.devtools.large_map_recorder.large_map_recorder_wrapper import (
+    LargeMapSnapshot,
+    MiniMapSnapshot,
+)
+from zzz_od.application.world_patrol.mini_map_wrapper import MiniMapWrapper
+from zzz_od.application.world_patrol.world_patrol_area import (
+    WorldPatrolArea,
+    WorldPatrolEntry,
+    WorldPatrolLargeMap,
+    WorldPatrolLargeMapIcon,
+)
 from zzz_od.application.world_patrol.world_patrol_service import WorldPatrolService
 from zzz_od.context.zzz_context import ZContext
 from zzz_od.gui.view.devtools.icon_editor_dialog import IconEditorDialog
-from zzz_od.application.world_patrol.mini_map_wrapper import MiniMapWrapper
 
 
 class LargeMapRecorderInterface(VerticalScrollInterface):
@@ -305,13 +315,13 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
 
         if self.chosen_large_map.road_mask is None:
             self.large_map = None
-            log.info('未有地图数据 新建')
+            log.info(gt('未有地图数据 新建', model='log'))
         else:
             self.large_map = LargeMapSnapshot(
                 world_patrol_large_map=self.chosen_large_map,
                 pos_after_merge=Point(self.chosen_large_map.road_mask.shape[1] // 2, self.chosen_large_map.road_mask.shape[0] // 2)
             )
-            log.info('加载成功')
+            log.info(gt('加载成功', model='log'))
             self.current_pos = self.large_map.pos_after_merge
 
         self._update_large_map_display()
@@ -381,7 +391,7 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         if self.chosen_large_map is None:
             return
 
-        log.info('[截图] 计算小地图道路 开始')
+        log.info(gt('[截图] 计算小地图道路 开始', model='log'))
         _, screen = self.ctx.controller.screenshot()
         self.mini_map_1 = self.ctx.world_patrol_service.cut_mini_map(screen)
         snapshot_1 = large_map_recorder_utils.create_mini_map_snapshot(self.ctx, self.mini_map_1, self.current_icon_threshold)
@@ -395,7 +405,7 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         self.mini_map = large_map_recorder_utils.merge_mini_map(snapshot_1, snapshot_2)
 
         self._update_mini_map_display()
-        log.info('[截图] 计算小地图道路 完成')
+        log.info(gt('[截图] 计算小地图道路 完成', model='log'))
 
     def _update_mini_map_display(self) -> None:
         self.mm_viewer_1.set_image(self.mini_map_1.rgb)
@@ -407,13 +417,13 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
             return
 
         if self.large_map is None or self.mini_map is None:
-            log.info('[计算坐标] 当前未有地图 跳过')
+            log.info(gt('[计算坐标] 当前未有地图 跳过', model='log'))
             return
 
-        log.info('[计算坐标] 开始')
+        log.info(gt('[计算坐标] 开始', model='log'))
 
         if self.current_pos is None:
-            log.error('[计算坐标] 未有上次坐标 请选点击选择一个坐标')
+            log.error(gt('[计算坐标] 未有上次坐标 请选点击选择一个坐标', model='log'))
             return
 
         self.mini_map_pos_mr = large_map_recorder_utils.cal_pos(
@@ -425,13 +435,13 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         )
         self._update_large_map_display()
 
-        log.info(f'[计算坐标] 完成 当前坐标: {self.mini_map_pos_mr.center}')
+        log.info(gt('[计算坐标] 完成 当前坐标: {center}', model='log').format(center=self.mini_map_pos_mr.center))
 
     def on_overlap_btn_clicked(self) -> None:
         if self.chosen_large_map is None:
             return
 
-        log.info('[重叠] 更改重叠显示方式')
+        log.info(gt('[重叠] 更改重叠显示方式', model='log'))
         self.overlap_mode = (self.overlap_mode + 1) % 2
         self._update_large_map_display()
 
@@ -442,7 +452,7 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         if self.mini_map is None:
             return
 
-        log.info('[合并到大地图] 开始')
+        log.info(gt('[合并到大地图] 开始', model='log'))
 
         self.last_large_map = self.large_map
         self.large_map = large_map_recorder_utils.merge_large_map(
@@ -456,13 +466,13 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         self.mini_map_pos_mr = None
         self._update_large_map_display()
         self._update_pos_display()
-        log.info('[合并到大地图] 完成')
+        log.info(gt('[合并到大地图] 完成', model='log'))
 
     def on_back_btn_clicked(self) -> None:
         if self.chosen_large_map is None:
             return
 
-        log.info('[回退] 恢复上一步大地图 只能恢复一次')
+        log.info(gt('[回退] 恢复上一步大地图 只能恢复一次', model='log'))
         self.large_map = self.last_large_map
         self.current_pos = self.last_pos
         self._update_large_map_display()
@@ -471,7 +481,7 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
     def on_edit_icons_btn_clicked(self) -> None:
         """打开图标编辑器"""
         if self.large_map is None or not self.large_map.icon_list:
-            log.info('没有可编辑的图标')
+            log.info(gt('没有可编辑的图标', model='log'))
             return
 
         # 如果对话框已存在，则显示并激活
@@ -498,7 +508,7 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
         if self.large_map is not None:
             self.large_map.icon_list = icon_list
             self._update_large_map_display()
-            log.info('图标列表已更新')
+            log.info(gt('图标列表已更新', model='log'))
 
     def _on_icon_editor_closed(self):
         """处理图标编辑器关闭事件"""
@@ -558,14 +568,14 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
                     if self.icon_editor_dialog is not None:
                         self.icon_editor_dialog.highlight_icon(i)
                     self._update_large_map_display()
-                    log.info(f'[图标] 选中图标 {icon.template_id} 位置 ({icon.lm_pos.x}, {icon.lm_pos.y})')
+                    log.info(gt('[图标] 选中图标 {template_id} 位置 ({x}, {y})', model='log').format(template_id=icon.template_id, x=icon.lm_pos.x, y=icon.lm_pos.y))
                     return
 
         # 如果没有点击图标，则更新角色位置
         self.current_pos = clicked_point
         self.mini_map_pos_mr = None
         self.highlighted_icon_index = -1  # 清除图标高亮
-        log.info('[位置] 更新为点击位置')
+        log.info(gt('[位置] 更新为点击位置', model='log'))
         self._update_large_map_display()
         self._update_pos_display()
 
@@ -637,4 +647,4 @@ class LargeMapRecorderInterface(VerticalScrollInterface):
     def _on_icon_threshold_save_clicked(self):
         """保存图标匹配阈值"""
         self.current_icon_threshold = self.icon_threshold_input.value()
-        log.info(f'图标匹配阈值已更新为: {self.current_icon_threshold}')
+        log.info(gt('图标匹配阈值已更新为: {current_icon_threshold}', model='log').format(current_icon_threshold=self.current_icon_threshold))

@@ -5,7 +5,11 @@ import requests
 from cv2.typing import MatLike
 
 from one_dragon.base.push.push_channel import PushChannel
-from one_dragon.base.push.push_channel_config import PushChannelConfigField, FieldTypeEnum
+from one_dragon.base.push.push_channel_config import (
+    FieldTypeEnum,
+    PushChannelConfigField,
+)
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -115,16 +119,16 @@ class Telegram(PushChannel):
                 if result.get("ok"):
                     return True, "推送成功"
                 else:
-                    error_msg = f"Telegram 推送失败: {result.get('description', '未知错误')}"
+                    error_msg = gt('Telegram 推送失败: {get}', model='log').format(get=result.get('description', '未知错误'))
                     log.error(error_msg)
                     return False, error_msg
 
             except requests.RequestException as e:
-                error_msg = f"Telegram 请求异常: {str(e)}"
+                error_msg = gt('Telegram 请求异常: {str}', model='log').format(str=str(e))
                 log.error(error_msg)
                 return False, error_msg
             except Exception as e:
-                error_msg = f"Telegram 推送异常: {str(e)}"
+                error_msg = gt('Telegram 推送异常: {str}', model='log').format(str=str(e))
                 log.error(error_msg)
                 return False, error_msg
 

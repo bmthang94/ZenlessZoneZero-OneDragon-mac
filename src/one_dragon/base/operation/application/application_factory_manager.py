@@ -25,6 +25,7 @@ from one_dragon.base.operation.application.plugin_manifest import (
     extract_manifest_info,
     read_manifest_file,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from one_dragon.utils.plugin_module_loader import (
     ensure_sys_path,
@@ -133,10 +134,7 @@ class ApplicationFactoryManager:
 
         internal_count = sum(1 for factory in other_factories if factory.internal_app)
         log.info(
-            f"发现 {len(default_factories)} 个默认组应用, "
-            f"{len(other_factories) - internal_count} 个独立应用, "
-            f"{internal_count} 个固定入口应用, "
-            f"{len(self._scan_failures)} 个失败"
+            gt('发现 {len} 个默认组应用, {v} 个独立应用, {internal_count} 个固定入口应用, {len_2} 个失败', model='log').format(len=len(default_factories), v=len(other_factories) - internal_count, internal_count=internal_count, len_2=len(self._scan_failures))
         )
         return default_factories + other_factories
 
@@ -181,7 +179,7 @@ class ApplicationFactoryManager:
                         names = ', '.join(p.name for p in repo_plugins)
                         error_msg = f"一个插件仓库只能有一个插件目录，实际有 {len(repo_plugins)} 个: {names}"
                         self._scan_failures.append((directory, error_msg))
-                        log.warning(f"仓库 {directory} 已跳过: {error_msg}")
+                        log.warning(gt('仓库 {directory} 已跳过: {error_msg}', model='log').format(directory=directory, error_msg=error_msg))
                         return factories
                     plugin_dirs = repo_plugins
 
@@ -241,7 +239,7 @@ class ApplicationFactoryManager:
                     error_msg = f"同一目录下存在多个{label}文件: {names}"
                     for f in grouped:
                         self._scan_failures.append((f, error_msg))
-                    log.warning(f"目录 {parent_dir} 中发现多个{label}文件，已跳过: {names}")
+                    log.warning(gt('目录 {parent_dir} 中发现多个{label}文件，已跳过: {names}', model='log').format(parent_dir=parent_dir, label=label, names=names))
 
         for factory_file in factory_files:
             if factory_file.parent in conflict_dirs:
@@ -256,7 +254,7 @@ class ApplicationFactoryManager:
             except Exception as e:
                 error_msg = f"{type(e).__name__}: {str(e)}"
                 self._scan_failures.append((factory_file, error_msg))
-                log.warning(f"加载工厂文件 {factory_file} 失败: {error_msg}")
+                log.warning(gt('加载工厂文件 {factory_file} 失败: {error_msg}', model='log').format(factory_file=factory_file, error_msg=error_msg))
 
         return factories
 
@@ -390,7 +388,7 @@ class ApplicationFactoryManager:
         for name in set(modules_to_remove):
             if name in sys.modules:
                 del sys.modules[name]
-        log.debug(f"卸载插件模块: {modules_to_remove}")
+        log.debug(gt('卸载插件模块: {modules_to_remove}', model='log').format(modules_to_remove=modules_to_remove))
 
     def _find_factory_in_module(
         self,
@@ -430,8 +428,7 @@ class ApplicationFactoryManager:
                     factory, factory_file, module_name, source
                 )
                 log.debug(
-                    f"加载工厂: {attr_name} "
-                    f"(default_group={factory.default_group}, internal_app={factory.internal_app})"
+                    gt('加载工厂: {attr_name} (default_group={default_group}, internal_app={internal_app})', model='log').format(attr_name=attr_name, default_group=factory.default_group, internal_app=factory.internal_app)
                 )
                 return factory
 

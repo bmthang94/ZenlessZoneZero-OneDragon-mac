@@ -11,6 +11,7 @@ from one_dragon.base.geometry.rectangle import Rect
 from one_dragon.base.matcher.match_result import MatchResult
 from one_dragon.base.screen.screen_utils import find_template_coord_in_area
 from one_dragon.utils import cal_utils, cv2_utils, os_utils, yaml_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 from zzz_od.application.world_patrol.mini_map_wrapper import MiniMapWrapper
 from zzz_od.application.world_patrol.world_patrol_area import (
@@ -107,7 +108,7 @@ class WorldPatrolService:
             if mini_map.play_mask_found and mini_map_screen_name is not None:
                 self._mini_map_rect = mini_map_rect
                 self._mini_map_screen_name = mini_map_screen_name
-            log.info(f'[小地图] 动态匹配小地图坐标: ({mini_map_rect.x1}, {mini_map_rect.y1}) - ({mini_map_rect.x2}, {mini_map_rect.y2})')
+            log.info(gt('[小地图] 动态匹配小地图坐标: ({x1}, {y1}) - ({x2}, {y2})', model='log').format(x1=mini_map_rect.x1, y1=mini_map_rect.y1, x2=mini_map_rect.x2, y2=mini_map_rect.y2))
 
             return mini_map, mini_map_rect
         else:
@@ -210,7 +211,7 @@ class WorldPatrolService:
         op.data = [i.to_dict() for i in large_map.icon_list]
         op.save()
 
-        log.info(f'保存区域地图成功: {area.full_id}')
+        log.info(gt('保存区域地图成功: {full_id}', model='log').format(full_id=area.full_id))
         self.load_area_map()
         return True
 
@@ -267,7 +268,7 @@ class WorldPatrolService:
                     route = WorldPatrolRoute.from_dict(data, area)
                     routes.append(route)
                 except Exception as e:
-                    log.error(f'加载路线文件失败: {filename}, 错误: {e}')
+                    log.error(gt('加载路线文件失败: {filename}, 错误: {e}', model='log').format(filename=filename, e=e))
 
         # 按idx排序
         routes.sort(key=lambda r: r.idx)
@@ -285,10 +286,10 @@ class WorldPatrolService:
             with open(file_path, 'w', encoding='utf-8') as f:
                 yaml.dump(route.to_dict(), f, default_flow_style=False, allow_unicode=True)
 
-            log.info(f'保存路线成功: {route.tp_area.full_name} - {route.tp_name} ({filename})')
+            log.info(gt('保存路线成功: {full_name} - {tp_name} ({filename})', model='log').format(full_name=route.tp_area.full_name, tp_name=route.tp_name, filename=filename))
             return True
         except Exception as e:
-            log.error(f'保存路线失败: {e}')
+            log.error(gt('保存路线失败: {e}', model='log').format(e=e))
             return False
 
     def get_next_route_idx(self, area: WorldPatrolArea) -> int:
@@ -307,14 +308,14 @@ class WorldPatrolService:
 
             if os.path.exists(file_path):
                 os.remove(file_path)
-                log.info(f'删除路线成功: {route.tp_area.full_name} - {route.tp_name} ({filename})')
+                log.info(gt('删除路线成功: {full_name} - {tp_name} ({filename})', model='log').format(full_name=route.tp_area.full_name, tp_name=route.tp_name, filename=filename))
                 return True
             else:
-                log.error(f'路线文件不存在: {filename}')
+                log.error(gt('路线文件不存在: {filename}', model='log').format(filename=filename))
                 return False
 
         except Exception as e:
-            log.error(f'删除路线失败: {e}')
+            log.error(gt('删除路线失败: {e}', model='log').format(e=e))
             return False
 
     def get_world_patrol_route_lists(self) -> list[WorldPatrolRouteList]:
@@ -334,7 +335,7 @@ class WorldPatrolService:
                     route_list = WorldPatrolRouteList.from_dict(data)
                     route_lists.append(route_list)
                 except Exception as e:
-                    log.error(f'加载路线列表失败: {filename}, 错误: {e}')
+                    log.error(gt('加载路线列表失败: {filename}, 错误: {e}', model='log').format(filename=filename, e=e))
 
         return route_lists
 
@@ -350,10 +351,10 @@ class WorldPatrolService:
             with open(file_path, 'w', encoding='utf-8') as f:
                 yaml.dump(route_list.to_dict(), f, default_flow_style=False, allow_unicode=True)
 
-            log.info(f'保存路线列表成功: {route_list.name} ({route_list.list_type})')
+            log.info(gt('保存路线列表成功: {name} ({list_type})', model='log').format(name=route_list.name, list_type=route_list.list_type))
             return True
         except Exception as e:
-            log.error(f'保存路线列表失败: {e}')
+            log.error(gt('保存路线列表失败: {e}', model='log').format(e=e))
             return False
 
     def delete_world_patrol_route_list(self, route_list: WorldPatrolRouteList) -> bool:
@@ -365,14 +366,14 @@ class WorldPatrolService:
 
             if os.path.exists(file_path):
                 os.remove(file_path)
-                log.info(f'删除路线列表成功: {route_list.name}')
+                log.info(gt('删除路线列表成功: {name}', model='log').format(name=route_list.name))
                 return True
             else:
-                log.error(f'路线列表文件不存在: {filename}')
+                log.error(gt('路线列表文件不存在: {filename}', model='log').format(filename=filename))
                 return False
 
         except Exception as e:
-            log.error(f'删除路线列表失败: {e}')
+            log.error(gt('删除路线列表失败: {e}', model='log').format(e=e))
             return False
 
     def get_route_large_map(self, route: WorldPatrolRoute) -> WorldPatrolLargeMap | None:

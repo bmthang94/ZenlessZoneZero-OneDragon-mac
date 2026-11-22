@@ -13,6 +13,7 @@ from CoreFoundation import kCFBooleanTrue
 
 from one_dragon.base.geometry.point import Point
 from one_dragon.base.geometry.rectangle import Rect
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -66,11 +67,12 @@ class MacGameWindowHandle:
                 capture_output=True, text=True, timeout=5,
             )
         except (OSError, subprocess.SubprocessError) as e:
-            log.warning('osascript 激活游戏窗口失败: %s', e)
+            log.warning(gt('osascript 激活游戏窗口失败: %(v)s', model='log'), {'v': e})
             return False
         if result.returncode != 0:
             log.warning(
-                'osascript 激活游戏窗口失败: %s', result.stderr.strip()
+                gt('osascript 激活游戏窗口失败: %(v)s', model='log'),
+                {'v': result.stderr.strip()},
             )
             return False
         return self._is_frontmost()
@@ -125,7 +127,7 @@ class MacGameWindowHandle:
                 return
             time.sleep(0.1)
         if not app.forceTerminate() and not app.isTerminated():
-            raise RuntimeError('无法关闭 PlayCover 游戏')
+            raise RuntimeError(gt('无法关闭 PlayCover 游戏', model='log'))
 
 
 class MacPcGameWindow:
@@ -416,7 +418,7 @@ class MacPcGameWindow:
         window_raised = self._raise_game_window(window)
         if not app_activated and not window_raised:
             if not self._activate_error_logged:
-                log.error('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限')
+                log.error(gt('无法激活 PlayCover 游戏窗口，请检查系统辅助功能权限', model='log'))
                 self._activate_error_logged = True
             return False
         self._activate_error_logged = False

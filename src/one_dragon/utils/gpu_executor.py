@@ -4,6 +4,7 @@ from concurrent.futures import Future, ThreadPoolExecutor
 from typing import TypeVar
 
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 T = TypeVar("T")
@@ -57,7 +58,7 @@ def should_serialize_session(session) -> bool:
     try:
         providers = session.get_providers()
     except Exception:
-        log.warning('获取ONNX Runtime执行提供程序失败，将保守串行化执行', exc_info=True)
+        log.warning(gt('获取ONNX Runtime执行提供程序失败，将保守串行化执行', model='log'), exc_info=True)
         return True
     return should_serialize_providers(providers)
 

@@ -127,7 +127,7 @@ class RestoreCharge(ZOperation):
         if exchange_amount is None:
             return self.round_retry('未识别到兑换数量', wait=0.5)
 
-        log.info(f'{source} 兑换数量 {exchange_amount}')
+        log.info(gt('{source} 兑换数量 {exchange_amount}', model='log').format(source=source, exchange_amount=exchange_amount))
         if exchange_amount > current_amount:
             return self.round_retry('兑换数量大于当前数量', wait=0.5)
 

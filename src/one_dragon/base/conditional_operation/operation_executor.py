@@ -5,6 +5,7 @@ from threading import Lock
 
 from one_dragon.base.conditional_operation.atomic_op import AtomicOp
 from one_dragon.utils import thread_utils
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 # 当前执行1个 新的打断1个 即理论最多2个同时运行
@@ -64,7 +65,7 @@ class OperationExecutor:
                 except TimeoutError:
                     continue
                 except Exception:
-                    log.error('指令执行出错', exc_info=True)
+                    log.error(gt('指令执行出错', model='log'), exc_info=True)
                     break
 
             with self._op_lock:

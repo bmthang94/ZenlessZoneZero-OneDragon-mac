@@ -10,6 +10,7 @@ from one_dragon.base.push.push_channel_config import (
     FieldTypeEnum,
     PushChannelConfigField,
 )
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -125,13 +126,13 @@ class OneBot(PushChannel):
 
                     if result_private.get("status") == "ok":
                         success_count += 1
-                        log.info("OneBot 私聊推送成功！")
+                        log.info(gt('OneBot 私聊推送成功！', model='log'))
                     else:
-                        error_msg = f"OneBot 私聊推送失败: {result_private}"
+                        error_msg = gt('OneBot 私聊推送失败: {result_private}', model='log').format(result_private=result_private)
                         error_messages.append(error_msg)
                         log.error(error_msg)
                 except Exception as e:
-                    error_msg = f"OneBot 私聊推送异常: {str(e)}"
+                    error_msg = gt('OneBot 私聊推送异常: {str}', model='log').format(str=str(e))
                     error_messages.append(error_msg)
                     log.error(error_msg)
 
@@ -152,13 +153,13 @@ class OneBot(PushChannel):
 
                     if result_group.get("status") == "ok":
                         success_count += 1
-                        log.info("OneBot 群聊推送成功！")
+                        log.info(gt('OneBot 群聊推送成功！', model='log'))
                     else:
-                        error_msg = f"OneBot 群聊推送失败: {result_group}"
+                        error_msg = gt('OneBot 群聊推送失败: {result_group}', model='log').format(result_group=result_group)
                         error_messages.append(error_msg)
                         log.error(error_msg)
                 except Exception as e:
-                    error_msg = f"OneBot 群聊推送异常: {str(e)}"
+                    error_msg = gt('OneBot 群聊推送异常: {str}', model='log').format(str=str(e))
                     error_messages.append(error_msg)
                     log.error(error_msg)
 
@@ -240,13 +241,13 @@ class OneBot(PushChannel):
             resp.raise_for_status()
             result = resp.json()
             if result.get('status') == 'ok':
-                log.info(f'OneBot {label}成功！')
+                log.info(gt('OneBot {label}成功！', model='log').format(label=label))
                 return True, ''
-            msg = f'OneBot {label}失败: {result}'
+            msg = gt('OneBot {label}失败: {result}', model='log').format(label=label, result=result)
             log.error(msg)
             return False, msg
         except Exception as e:
-            msg = f'OneBot {label}异常: {str(e)}'
+            msg = gt('OneBot {label}异常: {str}', model='log').format(label=label, str=str(e))
             log.error(msg)
             return False, msg
 

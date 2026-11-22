@@ -11,6 +11,7 @@ from one_dragon.base.operation.operation_base import OperationResult
 from one_dragon.base.operation.operation_edge import node_from
 from one_dragon.base.operation.operation_node import operation_node
 from one_dragon.base.operation.operation_round_result import OperationRoundResult
+from one_dragon.utils.i18_utils import gt
 from one_dragon.utils.log_utils import log
 
 
@@ -97,7 +98,7 @@ class OneDragonApp(Application):
 
         self._instance_idx = next_idx
         self.ctx.switch_instance(next_instance.idx)
-        log.info('下一个实例 %s', self.ctx.one_dragon_config.current_active_instance.name)
+        log.info(gt('下一个实例 %(v)s', model='log'), {'v': self.ctx.one_dragon_config.current_active_instance.name})
         return self.round_success()
 
     @node_from(from_name='切换实例配置', status='游戏路径不同')
@@ -108,7 +109,7 @@ class OneDragonApp(Application):
         if self._last_controller.is_game_window_ready:
             self._last_controller.close_game()
             return self.round_retry('检查是否关闭成功', wait=3)
-        log.info('等待游戏占用文件释放(10s)...')
+        log.info(gt('等待游戏占用文件释放(10s)...', model='log'))
         return self.round_success(wait=10)
 
     @node_from(from_name='切换实例配置')
@@ -126,7 +127,7 @@ class OneDragonApp(Application):
     @operation_node(name='切换账号重新打开游戏', screenshot_before_round=False)
     def after_close_game(self) -> OperationRoundResult:
         self.ctx.switch_instance(self._instance_list[self._instance_idx].idx)
-        log.info('下一个实例 %s', self.ctx.one_dragon_config.current_active_instance.name)
+        log.info(gt('下一个实例 %(v)s', model='log'), {'v': self.ctx.one_dragon_config.current_active_instance.name})
         if self._instance_idx == self._instance_start_idx:
             return self.round_success()
         if self.op_to_enter_game is None:

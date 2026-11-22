@@ -28,13 +28,14 @@ if __name__ == '__main__':
     os.chdir(work_dir)
 
     # 延迟导入
+    from one_dragon.base.config.custom_config import CustomConfig
     from one_dragon.base.operation.one_dragon_env_context import OneDragonEnvContext
-    from one_dragon.utils.i18_utils import detect_and_set_default_language, gt
+    from one_dragon.utils.i18_utils import apply_ui_language, gt
     from zzz_od.gui.zzz_installer_window import ZInstallerWindow
 
+    apply_ui_language(CustomConfig().ui_language)
     _ctx = OneDragonEnvContext()
     _ctx.installer_dir = str(installer_dir)
-    detect_and_set_default_language()
     w = ZInstallerWindow(_ctx, gt(f'{_ctx.project_config.project_name}-installer'))
     w.show()
     app.exec()
